@@ -1,0 +1,17 @@
+{
+  "name": "rtrbau_v.0.1",
+  "version": "1.0.0",
+  "description": "Neo4j-Nodejs server for rtrbau experimentation",
+  "main": "rtrbau.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Iñigo Fernández del Amo",
+  "license": "ISC",
+  "dependencies": {
+    "express": "*",
+    "ejs": "*",
+    "morgan": "*",
+    "neo4j-driver": "*"
+  }
+}
