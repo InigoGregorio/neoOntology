@@ -92,57 +92,38 @@ app.get('/api/ontologies/:ontologyName/class/:className/individuals', function(r
 app.get('/api/ontologies/:ontologyName/individual/:individualName/properties', function(req,res){
     let uriElement = ontologiesURI + req.params.ontologyName + "#" + req.params.individualName;
     // To capture elements independently due to the message structure retrieved by the cypher query
-    // Object properties are stored differently than data properties so they require different capture
+    // Object properties are stored differently than data properties so they require different capture methods
     let classArray;
     let dataPropertiesArray = [];
     let objectPropertiesArray = [];
     session
         .run(`MATCH (a:owl__NamedIndividual{uri:"${uriElement}"})-[m]->(b) RETURN a.uri, labels(a), properties(a), type(m), b.uri`)
         .then(function (result){
-            // Return class name, data and object properties names and values
-            // result.records[0]._fields[2].forEach(function (record){
-            //     dataPropertiesArray.push(record);
-            //     //     property: {
-            //     //         name:
-            //     //     }
-            //     // });
-            // });
-            // console.log(dataPropertiesArray);
-            // // Return class name of individual in the ontology
-            // result.records[0]._fields[1].forEach(function (record){
-            //     if (returnNeo4jNameElement(req.params.ontologyName,record) !== null) {
-            //         className = returnNeo4jNameElement(req.params.ontologyName,record);
-            //         console.log(className);
-            //     }
-            // });
-            result.records.forEach(function(record, index, result){
+            result.records.forEach(function(record, index, array){
                 // Some fields in each record include repeated data, these need pre-processing
                 // Pre-processing is not elegant as it repeats the same operation more than needed
                 // Conditional clause included to avoid replication, only get results from first record
-                if (Object.is(result.length - 1, index)) {
+                if (Object.is(array.length - 1, index)) {
                     // Pre-processing of an array
-                    record._fields[1].forEach(function(label){
-                        if (returnNeo4jNameElement(req.params.ontologyName,label) !== null) {
-                            classArray = returnNeo4jNameElement(req.params.ontologyName,label);
-                        }
+                    record._fields[1].forEach(function(label) {
+                        if (returnNeo4jNameElement(req.params.ontologyName, label) !== null) {
+                            classArray = returnNeo4jNameElement(req.params.ontologyName, label);
+                        } else {}
                     });
-                    // Pre-processing of a json object
-                    for (let dataProperty in record._fields[2]) {
-                        if (returnNeo4jNameElement(req.params.ontologyName,dataProperty) !== null){
-                            dataPropertiesArray.push({
-                                property: {
-                                    name: returnNeo4jNameElement(req.params.ontologyName,dataProperty),
-                                    value: record._fields[2][dataProperty]
-                                }
-                            });
-                        }
-                    }
+                    // Pre-processing of a json object using keys as an array to maintain forEach use
+                    let dataPropertiesKeys = Object.keys(record._fields[2]);
+                    dataPropertiesKeys.forEach(function(dataPropertyKey){
+                       if(returnNeo4jNameElement(req.params.ontologyName,dataPropertyKey) !== null) {
+                           dataPropertiesArray.push({
+                               property: {
+                                   name: returnNeo4jNameElement(req.params.ontologyName,dataPropertyKey),
+                                   value: record._fields[2][dataPropertyKey]
+                               }
+                           });
+                       } else {}
+                    });
                 }
-                // record._fields[2].forEach(function(dataProperty) {
-                //     Object.keys(dataProperty);
-                //     console.log("Hello");
-                // });
-                // Then objects which give the final record list are processed
+                // Then objects which determine the record length list are processed
                 objectPropertiesArray.push({
                     property: {
                         name: returnNeo4jNameElement(req.params.ontologyName,record._fields[3]),
@@ -150,10 +131,7 @@ app.get('/api/ontologies/:ontologyName/individual/:individualName/properties', f
                     }
                 });
             });
-            //res.json(objectPropertiesArray);
-            //console.log(objectPropertiesArray);
-            // Return data properties names and values: similar in each record
-            //res.json({individual: req.params.individualName, class: req.params.ontologyName, properties: ""});
+            // Because data and object properties are similar in nature, they are concatenated to be sent
             res.json({individual: req.params.individualName, class: classArray, properties: dataPropertiesArray.concat(objectPropertiesArray)});
         })
         .catch(function(err){
