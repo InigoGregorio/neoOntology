@@ -12,6 +12,7 @@
     "express": "*",
     "ejs": "*",
     "morgan": "*",
+    "body-parser": "*",
     "neo4j-driver": "*"
   }
 }
