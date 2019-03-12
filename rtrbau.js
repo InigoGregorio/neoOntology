@@ -13,6 +13,7 @@
 // All var declarations changed by let (when updated) or const (when fixed)
 
 // NAMESPACES
+const fs = require('fs');
 const express = require('express');
 const path = require('path');
 const logger = require('morgan');
@@ -24,6 +25,8 @@ const neo4j = require('neo4j-driver').v1;
 const port = 8008;
 // To be changed once server becomes complete
 const ontologiesURI = "http://138.250.108.1:3003/api/ontologies/";
+// Ontology prefixes excluded from retrieval
+const ontologiesDisabled = ['xml','rdf','rdfs','owl','xsd'];
 
 // INITIALISATION
 // Open express
@@ -42,16 +45,17 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
-// Static folder setup for file sharing (bootstrap, jquery, images, etc.)
-app.use(express.static(path.join(__dirname,'public')));
+// Static folder setup for file sharing
+// Folder structured according to file types (ontologies, images, 3D models, etc.)
+app.use(express.static(path.join(__dirname,'files')));
 
 // GET
+// Ontology-related GET requests
+// Ontology-level ontology-related GET requests
 // Retrieve all ontologies available to be consulted
 app.get('/api/ontologies', function(req,res){
     // Variable to capture parts of message being read in loop
     let ontologiesArray = [];
-    // Array to describe common ontologies not described in the database
-    const ontologiesDisabled = ['xml','rdf','rdfs','owl','xsd'];
     // neo4j query session
     session
         .run(`MATCH (n:NamespacePrefixDefinition) RETURN properties(n)`)
@@ -82,7 +86,7 @@ app.get('/api/ontologies', function(req,res){
             res.json(err);
         });
 });
-
+// Class-level ontology-related GET requests
 // Given a class name, retrieve its subclasses in json format
 app.get('/api/ontologies/:ontologyName/class/:className/subclasses', function(req,res){
     // Variable to identify relevant uri to look for
@@ -100,8 +104,21 @@ app.get('/api/ontologies/:ontologyName/class/:className/subclasses', function(re
             res.json(err);
         });
 });
-
-
+// Given a class name, retrieve all individuals that belong to it in json format
+app.get('/api/ontologies/:ontologyName/class/:className/individuals', function(req,res){
+    let individualsArray = [];
+    session
+        .run(`MATCH (n) WHERE n:owl__NamedIndividual AND n:${req.params.ontologyName}__${req.params.className} RETURN n.uri`)
+        .then(function(result){
+            result.records.forEach(function(record){
+                individualsArray.push(returnUriElement(record._fields[0]));
+            });
+            res.json({class: req.params.className, individuals: individualsArray});
+        })
+        .catch(function(err){
+            res.json(err);
+        });
+});
 // Given a class name, retrieve its properties in json format
 app.get('/api/ontologies/:ontologyName/class/:className/properties', function(req,res){
     let uriElement = ontologiesURI + req.params.ontologyName + "#" + req.params.className;
@@ -124,21 +141,7 @@ app.get('/api/ontologies/:ontologyName/class/:className/properties', function(re
             res.json(err);
         });
 });
-// Given a class name, retrieve all individuals that belong to it in json format
-app.get('/api/ontologies/:ontologyName/class/:className/individuals', function(req,res){
-    let individualsArray = [];
-    session
-        .run(`MATCH (n) WHERE n:owl__NamedIndividual AND n:${req.params.ontologyName}__${req.params.className} RETURN n.uri`)
-        .then(function(result){
-           result.records.forEach(function(record){
-               individualsArray.push(returnUriElement(record._fields[0]));
-           });
-           res.json({class: req.params.className, individuals: individualsArray});
-        })
-        .catch(function(err){
-            res.json(err);
-        });
-});
+// Individual-level ontology-related GET requests
 // Given an individual name, retrieve its properties in json format
 app.get('/api/ontologies/:ontologyName/individual/:individualName/properties', function(req,res){
     let uriElement = ontologiesURI + req.params.ontologyName + "#" + req.params.individualName;
@@ -189,7 +192,32 @@ app.get('/api/ontologies/:ontologyName/individual/:individualName/properties', f
             res.json(err);
         });
 });
+// File-related GET requests
+// Given a file type and name, retrieve the file
+app.get('/api/files/:fileType/:fileName', function(req,res){
+    // Error handling: if fileType is not available
+    if(!returnAvailable(path.join(__dirname,"files"), req.params.fileType)) res.status(404).send('File type not available');
+    // Error handling: if fileName is not available
+    if(!returnAvailable(path.join(__dirname,"files",req.params.fileType), req.params.fileName)) res.status(404).send('File not available');
+    //console.log(filenames);
+    //res.send(returnAvailable(`files/${req.params.fileType}`, req.params.fileType).toString());
+    res.sendFile(path.join(__dirname,"files",req.params.fileType,req.params.fileName));
+});
+
+// Ontology file-related GET requests
+// Image file-related GET requests
+// 3D Model file-related GET requests
+
+
 // POST
+// Ontology-related POST requests
+// Ontology-level ontology-related POST requests
+// Class-level ontology-related POST requests
+// Individual-level ontology-related POST requests
+// File-related POST requests
+// Ontology file-related POST requests
+// Image file-related POST requests
+// 3D Model file-related POST requests
 
 // PUT
 
@@ -214,7 +242,6 @@ function returnUriElement (uri) {
         return null;
     }
 }
-
 function returnNeo4jNameElement (prefix, element) {
     // For parsing prefixed names in neo4j
     // If not null, retrieve elements name that match the ontology prefix
@@ -223,4 +250,11 @@ function returnNeo4jNameElement (prefix, element) {
     } else {
         return null;
     }
+}
+function returnAvailable (dirname,filename) {
+    // Returns true if filename can be found in dirname directory
+    // Avoids 'hidden' directories '.'
+    let filesAvailable = fs.readdirSync(dirname);
+    filesAvailable = filesAvailable.filter(item => !(/(^|\/)\.[^\/\.]/g).test(item));
+    return filesAvailable.includes(filename);
 }
