@@ -46,11 +46,65 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(express.static(path.join(__dirname,'public')));
 
 // GET
-// Given a class name, retrieve its properties in json format
-app.get('/api/ontologies/:ontologyName/class/:className/properties', function(req,res){
+// Retrieve all ontologies available to be consulted
+app.get('/api/ontologies', function(req,res){
+    // Variable to capture parts of message being read in loop
+    let ontologiesArray = [];
+    // Array to describe common ontologies not described in the database
+    const ontologiesDisabled = ['xml','rdf','rdfs','owl','xsd'];
+    // neo4j query session
+    session
+        .run(`MATCH (n:NamespacePrefixDefinition) RETURN properties(n)`)
+        .then(function(result){
+            // Review each record sent by neo4j
+            result.records.forEach(function(record){
+                // Variable to get keys from specific json object
+                let ontologiesKeys = Object.keys(record._fields[0]);
+                // For each loop over json keys to access json object indirectly
+                ontologiesKeys.forEach(function(ontologyKey){
+                    console.log(record._fields[0][ontologyKey]);
+                    // Process key to check if it is a common ontology to avoid
+                    if (ontologiesDisabled.includes(record._fields[0][ontologyKey]) !== true){
+                        // Obtain elements from neo4j record and pass them over sending message
+                        ontologiesArray.push({
+                            ontology:{
+                                prefix: record._fields[0][ontologyKey],
+                                uri: ontologyKey
+                            }
+                        });
+                    } else {}
+                });
+            });
+            // All to be sent through json objects
+            res.json(ontologiesArray);
+        })
+        .catch(function(err){
+            res.json(err);
+        });
+});
+
+// Given a class name, retrieve its subclasses in json format
+app.get('/api/ontologies/:ontologyName/class/:className/subclasses', function(req,res){
     // Variable to identify relevant uri to look for
     let uriElement = ontologiesURI + req.params.ontologyName + "#" + req.params.className;
-    // neo4j query session
+    let subclassesArray = [];
+    session
+        .run(`MATCH (a:owl__Class{uri:"${uriElement}"})<-[m:rdfs__subClassOf]-(b:owl__Class) RETURN a.uri, b.uri`)
+        .then(function(result){
+            result.records.forEach(function(record){
+               subclassesArray.push(returnUriElement(record._fields[1]));
+            });
+            res.json({class: req.params.className, subclasses: subclassesArray});
+        })
+        .catch(function(err){
+            res.json(err);
+        });
+});
+
+
+// Given a class name, retrieve its properties in json format
+app.get('/api/ontologies/:ontologyName/class/:className/properties', function(req,res){
+    let uriElement = ontologiesURI + req.params.ontologyName + "#" + req.params.className;
     session
         .run(`MATCH (a:owl__Class{uri:"${uriElement}"})<-[m:rdfs__domain]-(b)-[n:rdfs__range]->(c) WHERE b:owl__ObjectProperty OR b:owl__DatatypeProperty RETURN a.uri,b.uri,c.uri`)
         .then(function(result){
@@ -67,25 +121,22 @@ app.get('/api/ontologies/:ontologyName/class/:className/properties', function(re
             res.json({class: req.params.className, properties: propertiesArray});
         })
         .catch(function(err){
-            res.send(err);
+            res.json(err);
         });
 });
 // Given a class name, retrieve all individuals that belong to it in json format
 app.get('/api/ontologies/:ontologyName/class/:className/individuals', function(req,res){
-    // Variable to capture parts of message being read in loop
     let individualsArray = [];
     session
         .run(`MATCH (n) WHERE n:owl__NamedIndividual AND n:${req.params.ontologyName}__${req.params.className} RETURN n.uri`)
         .then(function(result){
            result.records.forEach(function(record){
-               individualsArray.push({
-                  individual: returnUriElement(record._fields[0])
-               });
+               individualsArray.push(returnUriElement(record._fields[0]));
            });
            res.json({class: req.params.className, individuals: individualsArray});
         })
         .catch(function(err){
-            res.send(err);
+            res.json(err);
         });
 });
 // Given an individual name, retrieve its properties in json format
@@ -135,7 +186,7 @@ app.get('/api/ontologies/:ontologyName/individual/:individualName/properties', f
             res.json({individual: req.params.individualName, class: classArray, properties: dataPropertiesArray.concat(objectPropertiesArray)});
         })
         .catch(function(err){
-            res.send(err);
+            res.json(err);
         });
 });
 // POST
