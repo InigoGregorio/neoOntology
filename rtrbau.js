@@ -24,7 +24,7 @@ const neo4j = require('neo4j-driver').v1;
 // const port = process.env.PORT || 8008;
 const port = 8008;
 // To be changed once server becomes complete
-const ontologiesURI = "http://138.250.108.1:3003/api/ontologies/";
+const ontologiesURI = "http://138.250.108.1:3003/api/files/ontologies/";
 // Ontology prefixes excluded from retrieval
 const ontologiesDisabled = ['xml','rdf','rdfs','owl','xsd'];
 
@@ -203,11 +203,12 @@ app.get('/api/files/:fileType/:fileName', function(req,res){
     //res.send(returnAvailable(`files/${req.params.fileType}`, req.params.fileType).toString());
     res.sendFile(path.join(__dirname,"files",req.params.fileType,req.params.fileName));
 });
-
-// Ontology file-related GET requests
-// Image file-related GET requests
-// 3D Model file-related GET requests
-
+// View-related GET requests
+// Ontology view-related GET requests
+// Given an ontology name, retrieve the ontology
+// TO BE COMPLETED ONCE SERVER FINISHED: "http://138.250.108.1:3003/api/files/ontologies/rtrbau#"
+// Given an ontology element name, retrieve the element
+// TO BE COMPLETED ONCE SERVER FINISHED: "http://138.250.108.1:3003/api/files/ontologies/rtrbau#element"
 
 // POST
 // Ontology-related POST requests
