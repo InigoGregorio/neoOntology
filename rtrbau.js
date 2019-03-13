@@ -66,7 +66,6 @@ app.get('/api/ontologies', function(req,res){
                 let ontologiesKeys = Object.keys(record._fields[0]);
                 // For each loop over json keys to access json object indirectly
                 ontologiesKeys.forEach(function(ontologyKey){
-                    // console.log(record._fields[0][ontologyKey]);
                     // Process key to check if it is a common ontology to avoid
                     if (ontologiesDisabled.includes(record._fields[0][ontologyKey]) !== true){
                         // Obtain elements from neo4j record and pass them over sending message
@@ -120,28 +119,6 @@ app.get('/api/ontologies/:ontologyName/class/:className/individuals', function(r
         });
 });
 // Given a class name, retrieve its properties in json format
-// app.get('/api/ontologies/:ontologyName/class/:className/properties', function(req,res){
-//     let uriElement = ontologiesURI + req.params.ontologyName + "#" + req.params.className;
-//     session
-//         .run(`MATCH (a:owl__Class{uri:"${uriElement}"})<-[m:rdfs__domain]-(b)-[n:rdfs__range]->(c) WHERE b:owl__ObjectProperty OR b:owl__DatatypeProperty RETURN a.uri,b.uri,c.uri`)
-//         .then(function(result){
-//             let propertiesArray= [];
-//             result.records.forEach(function(record){
-//                 propertiesArray.push({
-//                     property: {
-//                         // Record fields are declared according to cypher response structure
-//                         name: returnUriElement(record._fields[1]),
-//                         range: returnUriElement(record._fields[2])
-//                     }
-//                 });
-//             });
-//             res.json({class: req.params.className, properties: propertiesArray});
-//         })
-//         .catch(function(err){
-//             res.json(err);
-//         });
-// });
-// Given a class name, retrieve its properties in json format
 app.get('/api/ontologies/:ontologyName/class/:className/properties', function(req,res){
     let uriElement = ontologiesURI + req.params.ontologyName + "#" + req.params.className;
     session
@@ -163,6 +140,7 @@ app.get('/api/ontologies/:ontologyName/class/:className/properties', function(re
                         range: returnUriElement(record._fields[3])
                     }
                 });
+                // Regenerate propertyTypesArray for new property to be pushed into the array
                 propertyTypesArray =[];
             });
             res.json({class: req.params.className, properties: propertiesArray});
