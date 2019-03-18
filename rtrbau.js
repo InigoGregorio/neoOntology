@@ -70,10 +70,8 @@ app.get('/api/ontologies', function(req,res){
                     if (ontologiesDisabled.includes(record._fields[0][ontologyKey]) !== true){
                         // Obtain elements from neo4j record and pass them over sending message
                         ontologiesArray.push({
-                            ontology:{
-                                prefix: record._fields[0][ontologyKey],
-                                uri: ontologyKey
-                            }
+                            prefix: record._fields[0][ontologyKey],
+                            uri: ontologyKey
                         });
                     } else {}
                 });
@@ -133,12 +131,10 @@ app.get('/api/ontologies/:ontologyName/class/:className/properties', function(re
                     } else {}
                 });
                 propertiesArray.push({
-                    property: {
-                        // Record fields are declared according to cypher response structure
-                        types: propertyTypesArray,
-                        name: returnUriElement(record._fields[2]),
-                        range: returnUriElement(record._fields[3])
-                    }
+                    // Record fields are declared according to cypher response structure
+                    name: returnUriElement(record._fields[2]),
+                    range: returnUriElement(record._fields[3]),
+                    types: propertyTypesArray
                 });
                 // Regenerate propertyTypesArray for new property to be pushed into the array
                 propertyTypesArray =[];
@@ -160,7 +156,7 @@ app.get('/api/ontologies/:ontologyName/individual/:individualName/properties', f
     let objectPropertiesArray = [];
     session
         .run(`MATCH (a:owl__NamedIndividual{uri:"${uriElement}"})-[m]->(b) RETURN a.uri, labels(a), properties(a), type(m), b.uri`)
-        .then(function (result){
+        .then(function(result){
             result.records.forEach(function(record, index, array){
                 // Some fields in each record include repeated data, these need pre-processing
                 // Pre-processing is not elegant as it repeats the same operation more than needed
@@ -177,20 +173,16 @@ app.get('/api/ontologies/:ontologyName/individual/:individualName/properties', f
                     dataPropertiesKeys.forEach(function(dataPropertyKey){
                        if(returnNeo4jNameElement(req.params.ontologyName,dataPropertyKey) !== null) {
                            dataPropertiesArray.push({
-                               property: {
-                                   name: returnNeo4jNameElement(req.params.ontologyName,dataPropertyKey),
-                                   value: record._fields[2][dataPropertyKey]
-                               }
+                               name: returnNeo4jNameElement(req.params.ontologyName,dataPropertyKey),
+                               value: record._fields[2][dataPropertyKey]
                            });
                        } else {}
                     });
                 }
                 // Then objects which determine the record length list are processed
                 objectPropertiesArray.push({
-                    property: {
-                        name: returnNeo4jNameElement(req.params.ontologyName,record._fields[3]),
-                        value: returnUriElement(record._fields[4])
-                    }
+                    name: returnNeo4jNameElement(req.params.ontologyName,record._fields[3]),
+                    value: returnUriElement(record._fields[4])
                 });
             });
             // Because data and object properties are similar in nature, they are concatenated to be sent
@@ -210,6 +202,82 @@ app.get('/api/files/:fileType/:fileName', function(req,res){
     //console.log(filenames);
     //res.send(returnAvailable(`files/${req.params.fileType}`, req.params.fileType).toString());
     res.sendFile(path.join(__dirname,"files",req.params.fileType,req.params.fileName));
+});
+
+app.get('/api/filterArrays', function(req,res){
+
+    const individualExample = {"individual":"assembly_1-3-1-2-2_1","class":"Assembly","properties":[{"property":{"name":"hasMatingValue","value":"planar","types":["FunctionalProperty","ObjectProperty"]}},{"property":{"name":"hasSpatialValue","value":"perpendicular","types":["FunctionalProperty","ObjectProperty"]}},{"property":{"name":"hasXTranslationFreedomDegree","value":"true","types":["FunctionalProperty","DatatypeProperty"]}},{"property":{"name":"hasYTranslationFreedomDegree","value":"false","types":["FunctionalProperty","DatatypeProperty"]}},{"property":{"name":"hasZTranslationFreedomDegree","value":"false","types":["FunctionalProperty","DatatypeProperty"]}},{"property":{"name":"hasXRotationFreedomDegree","value":"false","types":["FunctionalProperty","DatatypeProperty"]}},{"property":{"name":"hasYRotationFreedomDegree","value":"false","types":["FunctionalProperty","DatatypeProperty"]}},{"property":{"name":"hasZRotationFreedomDegree","value":"false","types":["FunctionalProperty","DatatypeProperty"]}},{"property":{"name":"hasInverseMovement","value":"false","types":["FunctionalProperty","DatatypeProperty"]}},{"property":{"name":"nextAssemblyIs","value":"","types":["FunctionalProperty","ObjectProperty"]}},{"property":{"name":"previousAssemblyIs","value":"","types":["FunctionalProperty","ObjectProperty"]}},{"property":{"name":"componentIs","value":"OpEx-1_TESFuelHatch-3_Mechanic-1_Structural-2_Panels-2_PNL1-MRSHLDS0007","types":["FunctionalProperty","ObjectProperty"]}},{"property":{"name":"pairIs","value":"OpEx-1_TESFuelHatch-3_Mechanic-1_Structural-2_Beams-1_BM2-MRSHLDS0008","types":["FunctionalProperty","ObjectProperty"]}}]};
+    // Properties to check
+    const individualPropertiesArray = individualExample["properties"];
+    // Properties to check against
+    const classUriElement = ontologiesURI + "rtrbau" + "#" + "Assembly";
+    //let classPropertiesArray = [];
+    var promises = [];
+
+    session
+        .run(`MATCH (a:owl__Class{uri:"${classUriElement}"})<-[m:rdfs__domain]-(b)-[n:rdfs__range]->(c) WHERE b:owl__ObjectProperty OR b:owl__DatatypeProperty RETURN a.uri,labels(b),b.uri,c.uri`)
+        .then(function(result){
+            let propertyTypesArray = [];
+            let propertiesArray = [];
+            result.records.forEach(function(record){
+                record._fields[1].forEach(function(type){
+                    if(returnNeo4jNameElement('owl',type) !== null ) {
+                        propertyTypesArray.push(returnNeo4jNameElement('owl',type));
+                    } else {}
+                });
+                propertiesArray.push({
+                    property: {
+                        // Record fields are declared according to cypher response structure
+                        name: returnUriElement(record._fields[2]),
+                        range: returnUriElement(record._fields[3]),
+                        types: propertyTypesArray
+                    }
+                });
+                // Regenerate propertyTypesArray for new property to be pushed into the array
+                propertyTypesArray =[];
+            });
+            // Start comparing class versus individual properties
+            //console.log(propertiesArray);
+            classPropertiesArrays = propertiesArray;
+            console.log(classPropertiesArrays);
+            // Obtain properties names in arrays
+            classPropertiesArray.forEach(function(property){
+               console.log(property.name);
+            });
+        })
+        .catch(function(err){
+            res.json(err);
+        });
+
+
+
+
+    // const arrayA = ['A','B','C','J','K'];
+    // const arrayB = ['A','B','C','D'];
+    //
+    // let extraElements = arrayA.filter(function (elA){return !arrayB.includes(elA);});
+    // let missingElements = arrayB.filter(function (elB){return !arrayA.includes(elB);});
+    //  res.json({extraElements: extraElements, missingElements: missingElements});
+
+    // console.log(arrayB.filter(function (elB){
+    //     return !arrayA.includes(elB);
+    // }));
+
+    //res.send(compareArrays(arrayA,arrayB) + compareArrays(arrayB,arrayA));
+
+    // function compareArrays(arr1,arr2){
+    //     const finalArray = [];
+    //     arr1.forEach(function (el1){
+    //        arr2.forEach (function (el2){
+    //          if (el1 === el2) finalArray.push(el1);
+    //          console.log(el1,el2);
+    //        });
+    //     });
+    //     return finalArray;
+    // }
+
+    // console.log(arrayA.filter(arrayB).toString());
+    // console.log(arrayB.filter(arrayA).toString());
 });
 // View-related GET requests
 // Ontology view-related GET requests
