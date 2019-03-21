@@ -49,6 +49,7 @@
 
     <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/ontologies/rtrbau#componentIs">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#is"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#Assembly"/>
         <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#Component"/>
         <rdfs:comment>relationship of being component to assemble</rdfs:comment>
@@ -105,6 +106,7 @@
 
     <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasActionValue">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasValue"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#Message"/>
         <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#MessageAction"/>
         <rdfs:comment>relationship of message action declaration</rdfs:comment>
@@ -117,6 +119,7 @@
 
     <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasCategoryValue">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasValue"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#Message"/>
         <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#MessageCategory"/>
         <rdfs:comment>relationship of message category declaration</rdfs:comment>
@@ -151,6 +154,7 @@
 
     <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasComponentParent">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasParent"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#Component"/>
         <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#System"/>
         <rdfs:comment>relationship of component child having a system parent</rdfs:comment>
@@ -163,6 +167,7 @@
 
     <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasConfirmation">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#has"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#Message"/>
         <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#Confirmation"/>
         <rdfs:comment>relatiomship of message reception confirmation</rdfs:comment>
@@ -175,6 +180,7 @@
 
     <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasMatingValue">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasValue"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#Assembly"/>
         <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#MatingRelation"/>
         <rdfs:comment>relationship of mating declaration</rdfs:comment>
@@ -187,6 +193,7 @@
 
     <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasMessage">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#has"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#Confirmation"/>
         <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#Message"/>
         <rdfs:comment>relatiomship of message being confirmed</rdfs:comment>
@@ -209,6 +216,7 @@
 
     <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasPreformValue">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasValue"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#Indicator"/>
         <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#Preform"/>
         <rdfs:comment>relationship of preform declaration</rdfs:comment>
@@ -221,6 +229,7 @@
 
     <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasSpatialValue">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasValue"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#Assembly"/>
         <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#SpatialRelation"/>
         <rdfs:comment>relationship of space declaration</rdfs:comment>
@@ -245,6 +254,7 @@
 
     <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasSystemParent">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasParent"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#System"/>
         <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#System"/>
         <rdfs:comment>relationship of system child having a system parent</rdfs:comment>
@@ -257,6 +267,7 @@
 
     <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasTypeValue">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasValue"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#Message"/>
         <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#MessageType"/>
         <rdfs:comment>relationship of message type declaration</rdfs:comment>
@@ -437,6 +448,7 @@
 
     <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasCallDescription">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasDescription"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#Call"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:comment>describes textually the reason for a call</rdfs:comment>
@@ -449,6 +461,7 @@
 
     <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasComponentModel">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasModel"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#Component"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
         <rdfs:comment>reference to a component 3D model</rdfs:comment>
@@ -461,6 +474,7 @@
 
     <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasComponentName">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasName"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#Component"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:comment>declares a component name</rdfs:comment>
@@ -473,6 +487,7 @@
 
     <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasConfirmationObject">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#rtrbauData"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#Confirmation"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:comment>additional information to completely describe the purpose of a message</rdfs:comment>
@@ -495,6 +510,7 @@
 
     <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasEnded">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#rtrbauData"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#Call"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
         <rdfs:comment>time when a call is finished</rdfs:comment>
@@ -507,6 +523,7 @@
 
     <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasInstructionDescription">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasDescription"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#Instruction"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:comment>describes textually an instruction</rdfs:comment>
@@ -519,6 +536,7 @@
 
     <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasInverseMovement">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#rtrbauData"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#Assembly"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
         <rdfs:comment>movement occurs in the oposite direction of common axis translation and rotation</rdfs:comment>
@@ -563,6 +581,7 @@
 
     <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasOperationDescription">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasDescription"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#Operation"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:comment>describes textually an operation</rdfs:comment>
@@ -575,6 +594,7 @@
 
     <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasRecipient">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#rtrbauData"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#Message"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:comment>recipient of a message</rdfs:comment>
@@ -587,6 +607,7 @@
 
     <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasSender">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#rtrbauData"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#Message"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:comment>transmitter of a message</rdfs:comment>
@@ -599,6 +620,7 @@
 
     <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasStarted">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#rtrbauData"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#Call"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
         <rdfs:comment>time when a call is started</rdfs:comment>
@@ -611,6 +633,7 @@
 
     <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasSystemModel">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasModel"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#System"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
         <rdfs:comment>reference to a system 3D model</rdfs:comment>
@@ -623,6 +646,7 @@
 
     <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasSystemName">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasName"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#System"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:comment>declares a system name</rdfs:comment>
@@ -647,6 +671,7 @@
 
     <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasXLocation">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#rtrbauData"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#Indicator"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
         <rdfs:comment>measurable location of X cartesian coordinate (mm) according to system origin</rdfs:comment>
@@ -659,6 +684,7 @@
 
     <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasXRotation">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#rtrbauData"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#Indicator"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
         <rdfs:comment>measurable rotation of X cartesian coordinate (°) according to system origin</rdfs:comment>
@@ -671,6 +697,7 @@
 
     <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasXRotationFreedomDegree">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#rtrbauData"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#Assembly"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
         <rdfs:comment>can rotate in the x axis</rdfs:comment>
@@ -683,6 +710,7 @@
 
     <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasXTranslationFreedomDegree">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#rtrbauData"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#Assembly"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
         <rdfs:comment>can translate in the x axis</rdfs:comment>
@@ -695,6 +723,7 @@
 
     <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasYLocation">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#rtrbauData"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#Indicator"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
         <rdfs:comment>measurable location of Y cartesian coordinate (mm) according to system origin</rdfs:comment>
@@ -707,6 +736,7 @@
 
     <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasYRotation">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#rtrbauData"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#Indicator"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
         <rdfs:comment>measurable rotation of Y cartesian coordinate (°) according to system origin</rdfs:comment>
@@ -719,6 +749,7 @@
 
     <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasYRotationFreedomDegree">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#rtrbauData"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#Assembly"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
         <rdfs:comment>can rotate in the y axis</rdfs:comment>
@@ -731,6 +762,7 @@
 
     <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasYTranslationFreedomDegree">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#rtrbauData"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#Assembly"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
         <rdfs:comment>can translate in the y axis</rdfs:comment>
@@ -743,6 +775,7 @@
 
     <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasZLocation">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#rtrbauData"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#Indicator"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
         <rdfs:comment>measurable location of Z cartesian coordinate (mm) according to system origin</rdfs:comment>
@@ -755,6 +788,7 @@
 
     <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasZRotation">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#rtrbauData"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#Indicator"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
         <rdfs:comment>measurable rotation of Z cartesian coordinate (°) according to system origin</rdfs:comment>
@@ -767,6 +801,7 @@
 
     <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasZRotationFreedomDegree">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#rtrbauData"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#Assembly"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
         <rdfs:comment>can rotate in the z axis</rdfs:comment>
@@ -779,6 +814,7 @@
 
     <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/ontologies/rtrbau#hasZTranslationFreedomDegree">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#rtrbauData"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#Assembly"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
         <rdfs:comment>can translate in the z axis</rdfs:comment>
@@ -791,6 +827,7 @@
 
     <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/ontologies/rtrbau#needsItems">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#rtrbauData"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#Operation"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:comment>list of objects necessary</rdfs:comment>
@@ -803,6 +840,7 @@
 
     <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/ontologies/rtrbau#needsPrecautions">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#rtrbauData"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#Operation"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:comment>contermeasures to avoid issues</rdfs:comment>
@@ -815,6 +853,7 @@
 
     <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/ontologies/rtrbau#needsTools">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#rtrbauData"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#Operation"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:comment>list of resources necessary</rdfs:comment>
@@ -1158,7 +1197,8 @@
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/ontologies/rtrbau#OpEx-1_TESFuelHatch-3_">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#System"/>
         <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/ontologies/rtrbau#OpEx-1_TESFuelHatch-3_Mechanic-1_"/>
-        <hasSystemModel rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://138.250.108.1:3003/api/files/models/OpEx-1_TESFuelHatch-3_.obj</hasSystemModel>
+        <hasSystemModel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://138.250.108.1:3003/api/files/models/OpEx-1_TESFuelHatch-3_.obj</hasSystemModel>
+        <hasSystemModel rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://138.250.108.1:3003/api/models/OpEx-1_TESFuelHatch-3_</hasSystemModel>
         <hasSystemName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">OpEx-1_TESFuelHatch-3_</hasSystemName>
     </owl:NamedIndividual>
     
