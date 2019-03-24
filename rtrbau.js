@@ -16,7 +16,7 @@
 const fs = require('fs');
 const express = require('express');
 const path = require('path');
-const logger = require('morgan');
+const logger = require('morgan'); // ?? Is this one being used?
 const bodyParser = require('body-parser');
 const neo4j = require('neo4j-driver').v1;
 
@@ -25,6 +25,7 @@ const neo4j = require('neo4j-driver').v1;
 const port = 8008;
 // To be changed once server becomes complete
 const ontologiesURI = "http://138.250.108.1:3003/api/files/ontologies/";
+const datatypeOntologyURI = "http://www.w3.org/2001/XMLSchema";
 // Ontology prefixes excluded from retrieval
 const ontologiesDisabled = ['xml','rdf','rdfs','owl','xsd'];
 
@@ -90,7 +91,7 @@ app.get('/api/ontologies/:ontologyName/class/:className/subclasses', function(re
     let uriElement = ontologiesURI + req.params.ontologyName + "#" + req.params.className;
     let subclassesArray = [];
     session
-        .run(`MATCH (a:owl__Class{uri:"${uriElement}"})<-[m:rdfs__subClassOf]-(b:owl__Class) RETURN a.uri, b.uri`)
+        .run(`MATCH (a:owl__Class{uri:"${uriElement}"})<-[r:rdfs__subClassOf]-(b:owl__Class) RETURN a.uri, b.uri`)
         .then(function(result){
             result.records.forEach(function(record){
                subclassesArray.push(returnUriElement(record._fields[1]));
@@ -120,7 +121,7 @@ app.get('/api/ontologies/:ontologyName/class/:className/individuals', function(r
 app.get('/api/ontologies/:ontologyName/class/:className/properties', function(req,res){
     let uriElement = ontologiesURI + req.params.ontologyName + "#" + req.params.className;
     session
-        .run(`MATCH (a:owl__Class{uri:"${uriElement}"})<-[m:rdfs__domain]-(b)-[n:rdfs__range]->(c) WHERE b:owl__ObjectProperty OR b:owl__DatatypeProperty RETURN a.uri,labels(b),b.uri,c.uri`)
+        .run(`MATCH (a:owl__Class{uri:"${uriElement}"})<-[r:rdfs__domain]-(b)-[s:rdfs__range]->(c) WHERE b:owl__ObjectProperty OR b:owl__DatatypeProperty RETURN a.uri,labels(b),b.uri,c.uri`)
         .then(function(result){
             let propertyTypesArray = [];
             let propertiesArray = [];
@@ -155,7 +156,7 @@ app.get('/api/ontologies/:ontologyName/individual/:individualName/properties', f
     let dataPropertiesArray = [];
     let objectPropertiesArray = [];
     session
-        .run(`MATCH (a:owl__NamedIndividual{uri:"${uriElement}"})-[m]->(b) RETURN a.uri, labels(a), properties(a), type(m), b.uri`)
+        .run(`MATCH (a:owl__NamedIndividual{uri:"${uriElement}"})-[r]->(b) RETURN a.uri, labels(a), properties(a), type(r), b.uri`)
         .then(function(result){
             result.records.forEach(function(record, index, array){
                 // Some fields in each record include repeated data, these need pre-processing
@@ -204,81 +205,216 @@ app.get('/api/files/:fileType/:fileName', function(req,res){
     res.sendFile(path.join(__dirname,"files",req.params.fileType,req.params.fileName));
 });
 
-app.get('/api/filterArrays', function(req,res){
 
-    const individualExample = {"individual":"assembly_1-3-1-2-2_1","class":"Assembly","properties":[{"property":{"name":"hasMatingValue","value":"planar","types":["FunctionalProperty","ObjectProperty"]}},{"property":{"name":"hasSpatialValue","value":"perpendicular","types":["FunctionalProperty","ObjectProperty"]}},{"property":{"name":"hasXTranslationFreedomDegree","value":"true","types":["FunctionalProperty","DatatypeProperty"]}},{"property":{"name":"hasYTranslationFreedomDegree","value":"false","types":["FunctionalProperty","DatatypeProperty"]}},{"property":{"name":"hasZTranslationFreedomDegree","value":"false","types":["FunctionalProperty","DatatypeProperty"]}},{"property":{"name":"hasXRotationFreedomDegree","value":"false","types":["FunctionalProperty","DatatypeProperty"]}},{"property":{"name":"hasYRotationFreedomDegree","value":"false","types":["FunctionalProperty","DatatypeProperty"]}},{"property":{"name":"hasZRotationFreedomDegree","value":"false","types":["FunctionalProperty","DatatypeProperty"]}},{"property":{"name":"hasInverseMovement","value":"false","types":["FunctionalProperty","DatatypeProperty"]}},{"property":{"name":"nextAssemblyIs","value":"","types":["FunctionalProperty","ObjectProperty"]}},{"property":{"name":"previousAssemblyIs","value":"","types":["FunctionalProperty","ObjectProperty"]}},{"property":{"name":"componentIs","value":"OpEx-1_TESFuelHatch-3_Mechanic-1_Structural-2_Panels-2_PNL1-MRSHLDS0007","types":["FunctionalProperty","ObjectProperty"]}},{"property":{"name":"pairIs","value":"OpEx-1_TESFuelHatch-3_Mechanic-1_Structural-2_Beams-1_BM2-MRSHLDS0008","types":["FunctionalProperty","ObjectProperty"]}}]};
-    // Properties to check
-    const individualPropertiesArray = individualExample["properties"];
-    // Properties to check against
-    const classUriElement = ontologiesURI + "rtrbau" + "#" + "Assembly";
-    //let classPropertiesArray = [];
-    var promises = [];
+app.get('/api/inputIndividual', function(req,res){
 
-    session
-        .run(`MATCH (a:owl__Class{uri:"${classUriElement}"})<-[m:rdfs__domain]-(b)-[n:rdfs__range]->(c) WHERE b:owl__ObjectProperty OR b:owl__DatatypeProperty RETURN a.uri,labels(b),b.uri,c.uri`)
-        .then(function(result){
-            let propertyTypesArray = [];
-            let propertiesArray = [];
-            result.records.forEach(function(record){
-                record._fields[1].forEach(function(type){
-                    if(returnNeo4jNameElement('owl',type) !== null ) {
-                        propertyTypesArray.push(returnNeo4jNameElement('owl',type));
-                    } else {}
+    // Example features before turning into a post request
+    const individualExample = {"individual":"","class":"Assembly","properties":[{"name":"hasNoMatingValue","value":"planar","domain":"Assembly","range":"MatingRelation","types":["Resource","owl__ObjectProperty"]},{"name":"hasSpatialValue","value":"perpendiculare","domain":"Assembly","range":"SpatialRelation","types":["Resource","owl__ObjectProperty"]},{"name":"hasXTranslationFreedomDegree","value":"true","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasYTranslationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasZTranslationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasXRotationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasYRotationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasZRotationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasInverseMovement","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"componentIs","value":"OpEx-1_TESFuelHatch-3_Mechanic-1_Structural-2_Panels-2_PNL1-MRSHLDS0007","domain":"Assembly","range":"Component","types":["Resource","owl__ObjectProperty"]},{"name":"pairIs","value":"OpEx-1_TESFuelHatch-3_Mechanic-1_Structural-2_Beams-1_BM2-MRSHLDS0008","domain":"Assembly","range":"Component","types":["Resource","owl__ObjectProperty"]}]};
+    // const individualExampleProperties = individualExample["properties"];
+    const uriElement = ontologiesURI + "rtrbau" + "#";
+
+    // FINISH DESCRIBING CODE
+    // Consistency evaluation:
+    // To evaluate individual consistency with ontology schema
+    // Evaluations are:
+    // At class level: class existence, class properties lack,
+    // At property level: property existence, property domain correctness, property range correctness, object property value existence
+    // Evaluations work with promises, each evaluation requires to return either a promise.resolve or a promise.reject function
+    // Class level evaluations:
+    // Class existence evaluation
+    let classExistence = function(individual){
+      return new Promise(function(resolve, reject){
+          const classURI = uriElement + individual["class"];
+          console.log("classExistence: " + individual["class"]);
+          session
+              .run(`MATCH (n{uri:"${classURI}"}) RETURN n`)
+              .then(function(results){
+                  if (results.records.length !== 0) {
+                      resolve ({success: {class: individual["class"]}});
+                  } else {
+                      resolve ({error: {class: individual["class"]}});
+                  }
+              })
+              .catch(function(error){
+                  reject(error);
+              });
+      });
+    };
+    // Class properties lack evaluation
+    let classPropertiesLack = function(individual){
+        return new Promise(function(resolve, reject){
+            const classURI = uriElement + individual["class"];
+            console.log("classPropertiesLack: " + individual["class"]);
+            session
+                .run(`MATCH (a:owl__Class{uri:"${classURI}"})<-[r:rdfs__domain]-(b) WHERE b:owl__ObjectProperty OR b:owl__DatatypeProperty RETURN a.uri,b.uri`)
+                .then(function(results){
+                    let individualPropertiesNames = [];
+                    let classPropertiesNames = [];
+                    individual["properties"].forEach(function(individualProperty){individualPropertiesNames.push(individualProperty["name"])});
+                    results.records.forEach(function(record){classPropertiesNames.push(returnUriElement(record._fields[1]))});
+                    let missingPropertiesNames = classPropertiesNames.filter(function(propertyName){return !individualPropertiesNames.includes(propertyName)});
+                    resolve({warning: {missingProperties: missingPropertiesNames}});
+                })
+                .catch(function(error){
+                    reject(error);
                 });
-                propertiesArray.push({
-                    property: {
-                        // Record fields are declared according to cypher response structure
-                        name: returnUriElement(record._fields[2]),
-                        range: returnUriElement(record._fields[3]),
-                        types: propertyTypesArray
-                    }
-                });
-                // Regenerate propertyTypesArray for new property to be pushed into the array
-                propertyTypesArray =[];
-            });
-            // Start comparing class versus individual properties
-            //console.log(propertiesArray);
-            classPropertiesArrays = propertiesArray;
-            console.log(classPropertiesArrays);
-            // Obtain properties names in arrays
-            classPropertiesArray.forEach(function(property){
-               console.log(property.name);
-            });
-        })
-        .catch(function(err){
-            res.json(err);
         });
+    };
+    // Property level evaluations:
+    // Property existence evaluation
+    let propertyExistence = function(individualProperty){
+        return new Promise(function(resolve, reject){
+            const propertyURI = uriElement + individualProperty["name"];
+            console.log("propertyExistence: " + individualProperty["name"]);
+            session
+                .run(`MATCH (n{uri:"${propertyURI}"}) RETURN n`)
+                .then(function(results){
+                    if (results.records.length !== 0) {
+                        resolve ({success: {name: individualProperty["name"]}});
+                    } else {
+                        resolve ({error: {name: individualProperty["name"]}});
+                    }
+                })
+                .catch(function(error){
+                    reject(error);
+                });
+        });
+    };
+    // Property domain correctness evaluation
+    let propertyDomain = function(individualProperty){
+        return new Promise(function(resolve, reject){
+            const propertyURI = uriElement + individualProperty["name"];
+            const domainURI = uriElement + individualProperty["domain"];
+            console.log("domainExistence: " + individualProperty["name"]);
+            session
+                .run(`MATCH (a{uri:"${propertyURI}"})-[r:rdfs__domain]->(b{uri:"${domainURI}"}) RETURN a.uri,b.uri`)
+                .then(function(results){
+                    if (results.records.length !== 0) {
+                        resolve ({success: {domain: individualProperty["domain"]}});
+                    } else {
+                        resolve ({error: {domain: individualProperty["domain"]}});
+                    }
+                })
+                .catch(function(error){
+                    reject(error);
+                });
+        });
+    };
+    // Property range correctness evaluation
+    let propertyRange = function(individualProperty){
+        return new Promise(function(resolve, reject){
+            const propertyURI = uriElement + individualProperty["name"];
+            let rangeURI = returnURI(individualProperty["range"]);
 
+            function returnURI(element){
+                const xsdRanges = ["anyURI","base64binary","boolean","byte","dateTime","dateTimeStamp","decimal","double","float","hexBinary","int","integer","language","long","Name","NCName","negativeInteger","NMTOKEN","nonNegativeInteger","nonPositiveInteger","normalizedString","positiveInteger","short","string","token","unsignedByte","unsignedInt","unsignedLong","unsignedShort"];
+                if(xsdRanges.includes(element)){
+                    return datatypeOntologyURI + "#" + element;
+                } else {
+                    return uriElement + element;
+                }
+            }
 
+            console.log("rangeExistence: " + individualProperty["name"]);
+            session
+                .run(`MATCH (a{uri:"${propertyURI}"})-[r:rdfs__range]->(b{uri:"${rangeURI}"}) RETURN a.uri,b.uri`)
+                .then(function(results){
+                    if (results.records.length !== 0) {
+                        resolve ({success: {range: individualProperty["range"]}});
+                    } else {
+                        resolve ({error: {range: individualProperty["range"]}});
+                    }
+                })
+                .catch(function(error){
+                    reject(error);
+                });
+        });
+    };
+    // Property value existence (only for object properties)
+    let propertyValue = function(individualProperty){
+        return new Promise(function(resolve, reject){
+            const valueURI = uriElement + individualProperty["value"];
+            const propertyTypes = [];
+            console.log("valueExistence: " + individualProperty["name"]);
+            individualProperty["types"].forEach(function(type){
+                if(returnNeo4jNameElement('owl',type) !== null ) {
+                    propertyTypes.push(returnNeo4jNameElement('owl',type));
+                } else {}
+            });
+            if (propertyTypes.includes("ObjectProperty")) {
+                session
+                    .run(`MATCH (n{uri:"${valueURI}"}) RETURN n`)
+                    .then(function(results){
+                        if (results.records.length !== 0) {
+                            resolve ({success: {value: individualProperty["value"]}});
+                        } else {
+                            resolve ({error: {value: individualProperty["value"]}});
+                        }
+                    })
+                    .catch(function(error){
+                        reject(error);
+                    });
+            } else {
+                if (individualProperty["value"]!==null) {
+                    resolve ({success: {value: individualProperty["value"]}});
+                } else {
+                    resolve ({error: {value: individualProperty["value"]}});
+                }
+            }
+        });
+    };
+    // Consistency evaluation
+    // Evaluate results of individual evaluations and return errors, successes and warnings
+    // Property evaluation
+    let propertyConsistency = async function (individualProperty) {
+        console.log("propertyConsistency");
+        return await Promise.all([propertyExistence(individualProperty),propertyDomain(individualProperty),propertyRange(individualProperty),propertyValue(individualProperty)].map(p => p.catch(error => error)));
+    };
+    // Individual properties evaluation
+    let individualPropertiesConsistency = async function (individual) {
+        console.log("individualPropertiesConsistency");
+        return await Promise.all(individual["properties"].map(propertyConsistency));
+    };
+    // Individual evaluation
+    let individualConsistency = async function (individual) {
+        console.log("individualConsistency");
+        return await Promise.all([classExistence(individual),classPropertiesLack(individual),individualPropertiesConsistency(individual)]);
+    };
+    // Individual instantiation
+    individualConsistency(individualExample)
+        .then(function(results) {
+            let successes = [];
+            let errors = [];
+            let warnings = [];
 
+            evaluateSuccess(results[0],successes,errors,warnings);
+            evaluateSuccess(results[1],successes,errors,warnings);
+            results[2].forEach(function(property){
+                property.forEach(function(element){
+                    evaluateSuccess(element,successes,errors,warnings);
+                });
+            });
 
-    // const arrayA = ['A','B','C','J','K'];
-    // const arrayB = ['A','B','C','D'];
-    //
-    // let extraElements = arrayA.filter(function (elA){return !arrayB.includes(elA);});
-    // let missingElements = arrayB.filter(function (elB){return !arrayA.includes(elB);});
-    //  res.json({extraElements: extraElements, missingElements: missingElements});
+            res.send({success: successes, error: errors, warning: warnings});
 
-    // console.log(arrayB.filter(function (elB){
-    //     return !arrayA.includes(elB);
-    // }));
+            function evaluateSuccess (item,successes,errors,warnings) {
+                if (item["success"]) {
+                    return successes.push(item["success"]);
+                } else if (item["error"]) {
+                    return errors.push(item["error"]);
+                } else if (item["warning"]) {
+                    return warnings.push(item["warning"]);
+                } else {}
+            }
+        })
+        .catch(function(error) {
+            res.send(error);
+        })
 
-    //res.send(compareArrays(arrayA,arrayB) + compareArrays(arrayB,arrayA));
-
-    // function compareArrays(arr1,arr2){
-    //     const finalArray = [];
-    //     arr1.forEach(function (el1){
-    //        arr2.forEach (function (el2){
-    //          if (el1 === el2) finalArray.push(el1);
-    //          console.log(el1,el2);
-    //        });
-    //     });
-    //     return finalArray;
-    // }
-
-    // console.log(arrayA.filter(arrayB).toString());
-    // console.log(arrayB.filter(arrayA).toString());
+    // Input individual into ontology and return warnings
+    // Otherwise returns errors and warnings
 });
+
 // View-related GET requests
 // Ontology view-related GET requests
 // Given an ontology name, retrieve the ontology
