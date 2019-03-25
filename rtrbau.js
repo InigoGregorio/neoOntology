@@ -206,16 +206,21 @@ app.get('/api/files/:fileType/:fileName', function(req,res){
     //res.send(returnAvailable(`files/${req.params.fileType}`, req.params.fileType).toString());
     res.sendFile(path.join(__dirname,"files",req.params.fileType,req.params.fileName));
 });
+// View-related GET requests
+// Ontology view-related GET requests
+// Given an ontology name, retrieve the ontology
+// TO BE COMPLETED ONCE SERVER FINISHED: "http://138.250.108.1:3003/api/files/ontologies/rtrbau#"
+// Given an ontology element name, retrieve the element
+// TO BE COMPLETED ONCE SERVER FINISHED: "http://138.250.108.1:3003/api/files/ontologies/rtrbau#element"
 
-
-app.get('/api/inputIndividual', function(req,res){
-
-    // Example features before turning into a post request
-    //const individualExample = {"individual":"","class":"Assembly","properties":[{"name":"hasNoMatingValue","value":"planar","domain":"Assembly","range":"MatingRelation","types":["Resource","owl__ObjectProperty"]},{"name":"hasSpatialValue","value":"perpendiculare","domain":"Assembly","range":"SpatialRelation","types":["Resource","owl__ObjectProperty"]},{"name":"hasXTranslationFreedomDegree","value":"true","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasYTranslationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasZTranslationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasXRotationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasYRotationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasZRotationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasInverseMovement","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"componentIs","value":"OpEx-1_TESFuelHatch-3_Mechanic-1_Structural-2_Panels-2_PNL1-MRSHLDS0007","domain":"Assembly","range":"Component","types":["Resource","owl__ObjectProperty"]},{"name":"pairIs","value":"OpEx-1_TESFuelHatch-3_Mechanic-1_Structural-2_Beams-1_BM2-MRSHLDS0008","domain":"Assembly","range":"Component","types":["Resource","owl__ObjectProperty"]}]};
-    const individualExample = {"name":"assembly_1-3-1-2-2_1","ontology":"rtrbau","class":"Assembly","properties":[{"name":"hasMatingValue","value":"planar","domain":"Assembly","range":"MatingRelation","types":["Resource","owl__ObjectProperty"]},{"name":"hasSpatialValue","value":"perpendicular","domain":"Assembly","range":"SpatialRelation","types":["Resource","owl__ObjectProperty"]},{"name":"hasXTranslationFreedomDegree","value":"true","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasYTranslationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasZTranslationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasXRotationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasYRotationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasZRotationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasInverseMovement","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"componentIs","value":"OpEx-1_TESFuelHatch-3_Mechanic-1_Structural-2_Panels-2_PNL1-MRSHLDS0007","domain":"Assembly","range":"Component","types":["Resource","owl__ObjectProperty"]},{"name":"pairIs","value":"OpEx-1_TESFuelHatch-3_Mechanic-1_Structural-2_Beams-1_BM2-MRSHLDS0008","domain":"Assembly","range":"Component","types":["Resource","owl__ObjectProperty"]}]};
-    // const individualExampleProperties = individualExample["properties"];
-    const uriElement = ontologiesURI + individualExample["ontology"] + "#";
-
+// POST
+// Ontology-related POST requests
+// Ontology-level ontology-related POST requests
+// Class-level ontology-related POST requests
+// Individual-level ontology-related POST requests
+// Given an individual, evaluate consistency and return input and warnings or errors and warnings
+app.post('/api/ontologies/:ontologyName/individual/:individualName/input', function(req,res){
+    let uriElement = ontologiesURI + req.params.ontologyName + "#";
     // FINISH DESCRIBING CODE
     // Consistency evaluation:
     // To evaluate individual consistency with ontology schema
@@ -226,10 +231,20 @@ app.get('/api/inputIndividual', function(req,res){
     // *Not necessary from ontology-schema perspective but keeps certain control
     // Evaluations work with promises, each evaluation requires to return either a promise.resolve or a promise.reject function
     // Individual level evaluations:
+    // Ontology name correctness
+    let ontologyName = function(individual) {
+        return new Promise(function(resolve){
+            if (individual["ontology"]===req.params.ontologyName){
+                resolve ({success:{level:"individual",name:individual["name"],evaluation:"ontologyCorrectness",value:individual["ontology"]}});
+            } else {
+                resolve ({error:{level:"individual",name:individual["name"],evaluation:"ontologyCorrectness",value:individual["ontology"]}});
+            }
+        });
+    };
     // Individual name correctness
     let individualName = function(individual) {
         return new Promise(function(resolve){
-            if (individual["name"]!==""){
+            if (individual["name"]===req.params.individualName){
                 resolve ({success:{level:"individual",name:individual["name"],evaluation:"nameCorrectness",value:individual["name"]}});
             } else {
                 resolve ({error:{level:"individual",name:individual["name"],evaluation:"nameCorrectness",value:individual["name"]}});
@@ -239,22 +254,22 @@ app.get('/api/inputIndividual', function(req,res){
     // Class level evaluations:
     // Class existence evaluation
     let classExistence = function(individual){
-      return new Promise(function(resolve, reject){
-          const classURI = uriElement + individual["class"];
-          console.log("classExistence: " + individual["class"]);
-          session
-              .run(`MATCH (n{uri:"${classURI}"}) RETURN n`)
-              .then(function(results){
-                  if (results.records.length !== 0) {
-                      resolve ({success:{level:"individual",name:individual["name"],evaluation:"classExistence",value:individual["class"]}});
-                  } else {
-                      resolve ({error:{level:"individual",name:individual["name"],evaluation:"classExistence",value:individual["class"]}});
-                  }
-              })
-              .catch(function(error){
-                  reject(error);
-              });
-      });
+        return new Promise(function(resolve, reject){
+            const classURI = uriElement + individual["class"];
+            console.log("classExistence: " + individual["class"]);
+            session
+                .run(`MATCH (n{uri:"${classURI}"}) RETURN n`)
+                .then(function(results){
+                    if (results.records.length !== 0) {
+                        resolve ({success:{level:"individual",name:individual["name"],evaluation:"classExistence",value:individual["class"]}});
+                    } else {
+                        resolve ({error:{level:"individual",name:individual["name"],evaluation:"classExistence",value:individual["class"]}});
+                    }
+                })
+                .catch(function(error){
+                    reject(error);
+                });
+        });
     };
     // Class properties lack evaluation
     let classPropertiesLack = function(individual){
@@ -394,7 +409,7 @@ app.get('/api/inputIndividual', function(req,res){
     // Individual consistency
     let individualConsistency = async function (individual) {
         console.log("individualConsistency");
-        return await Promise.all([individualName(individual),classExistence(individual),classPropertiesLack(individual),individualPropertiesConsistency(individual)].map(p => p.catch(error => error)));
+        return await Promise.all([ontologyName(individual),individualName(individual),classExistence(individual),classPropertiesLack(individual),individualPropertiesConsistency(individual)].map(p => p.catch(error => error)));
     };
     // Individual evaluation
     let individualEvaluation = function(individual) {
@@ -405,11 +420,11 @@ app.get('/api/inputIndividual', function(req,res){
                     let successes = [];
                     let errors = [];
                     let warnings = [];
-
                     evaluateSuccess(results[0],successes,errors,warnings);
                     evaluateSuccess(results[1],successes,errors,warnings);
                     evaluateSuccess(results[2],successes,errors,warnings);
-                    results[3].forEach(function(property){
+                    evaluateSuccess(results[3],successes,errors,warnings);
+                    results[4].forEach(function(property){
                         property.forEach(function(element){
                             evaluateSuccess(element,successes,errors,warnings);
                         });
@@ -434,8 +449,8 @@ app.get('/api/inputIndividual', function(req,res){
     };
     // Individual review
     let individualReview = async function (individual) {
-      console.log("individual");
-      return await individualEvaluation(individual);
+        console.log("individual");
+        return await individualEvaluation(individual);
     };
     // Individual generation:
     // Node generation
@@ -481,8 +496,8 @@ app.get('/api/inputIndividual', function(req,res){
     };
     // Properties instantiation
     let individualPropertiesInstantiation = async function (individual) {
-      console.log("individualPropertiesInstantiation");
-      return await Promise.all(individual["properties"].map(function(property){return individualPropertyCreation(individual["name"],individual["ontology"],property)}));
+        console.log("individualPropertiesInstantiation");
+        return await Promise.all(individual["properties"].map(function(property){return individualPropertyCreation(individual["name"],individual["ontology"],property)}));
     };
     // Individual instantiation
     let individualInstantiation = async function (individual) {
@@ -492,14 +507,14 @@ app.get('/api/inputIndividual', function(req,res){
         return await [individualNodeInstantiation,individualPropsInstantiation];
     };
     // Individual resolution (review and instantiation)
-    individualReview(individualExample)
+    individualReview(req.body)
         .then(function(reviewResults){
             if (reviewResults["errors"].length!==0){
                 console.log("Errors");
                 res.send({warnings:reviewResults["warnings"],errors:reviewResults["errors"]});
             } else {
                 console.log("No errors");
-                individualInstantiation(individualExample)
+                individualInstantiation(req.body)
                     .then(function(inputResults){
                         let inputResolution = [];
                         inputResolution.push(inputResults[0]["records"]);
@@ -515,19 +530,6 @@ app.get('/api/inputIndividual', function(req,res){
             res.send(reviewError);
         });
 });
-
-// View-related GET requests
-// Ontology view-related GET requests
-// Given an ontology name, retrieve the ontology
-// TO BE COMPLETED ONCE SERVER FINISHED: "http://138.250.108.1:3003/api/files/ontologies/rtrbau#"
-// Given an ontology element name, retrieve the element
-// TO BE COMPLETED ONCE SERVER FINISHED: "http://138.250.108.1:3003/api/files/ontologies/rtrbau#element"
-
-// POST
-// Ontology-related POST requests
-// Ontology-level ontology-related POST requests
-// Class-level ontology-related POST requests
-// Individual-level ontology-related POST requests
 // File-related POST requests
 // Ontology file-related POST requests
 // Image file-related POST requests
