@@ -12,6 +12,8 @@
 // When functions and variables are reused, they are only described at first point of use.
 // All var declarations changed by let (when updated) or const (when fixed)
 
+// REMEMBER TO ADD close session to all session variables
+
 // NAMESPACES
 const fs = require('fs');
 const express = require('express');
@@ -210,9 +212,9 @@ app.get('/api/inputIndividual', function(req,res){
 
     // Example features before turning into a post request
     //const individualExample = {"individual":"","class":"Assembly","properties":[{"name":"hasNoMatingValue","value":"planar","domain":"Assembly","range":"MatingRelation","types":["Resource","owl__ObjectProperty"]},{"name":"hasSpatialValue","value":"perpendiculare","domain":"Assembly","range":"SpatialRelation","types":["Resource","owl__ObjectProperty"]},{"name":"hasXTranslationFreedomDegree","value":"true","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasYTranslationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasZTranslationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasXRotationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasYRotationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasZRotationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasInverseMovement","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"componentIs","value":"OpEx-1_TESFuelHatch-3_Mechanic-1_Structural-2_Panels-2_PNL1-MRSHLDS0007","domain":"Assembly","range":"Component","types":["Resource","owl__ObjectProperty"]},{"name":"pairIs","value":"OpEx-1_TESFuelHatch-3_Mechanic-1_Structural-2_Beams-1_BM2-MRSHLDS0008","domain":"Assembly","range":"Component","types":["Resource","owl__ObjectProperty"]}]};
-    const individualExample = {"name":"assembly_1-3-1-2-2_1","class":"Assembly","properties":[{"name":"hasMatingValue","value":"planar","domain":"Assembly","range":"MatingRelation","types":["Resource","owl__ObjectProperty"]},{"name":"hasSpatialValue","value":"perpendicular","domain":"Assembly","range":"SpatialRelation","types":["Resource","owl__ObjectProperty"]},{"name":"hasXTranslationFreedomDegree","value":"true","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasYTranslationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasZTranslationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasXRotationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasYRotationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasZRotationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasInverseMovement","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"componentIs","value":"OpEx-1_TESFuelHatch-3_Mechanic-1_Structural-2_Panels-2_PNL1-MRSHLDS0007","domain":"Assembly","range":"Component","types":["Resource","owl__ObjectProperty"]},{"name":"pairIs","value":"OpEx-1_TESFuelHatch-3_Mechanic-1_Structural-2_Beams-1_BM2-MRSHLDS0008","domain":"Assembly","range":"Component","types":["Resource","owl__ObjectProperty"]}]};
+    const individualExample = {"name":"assembly_1-3-1-2-2_1","ontology":"rtrbau","class":"Assembly","properties":[{"name":"hasMatingValue","value":"planar","domain":"Assembly","range":"MatingRelation","types":["Resource","owl__ObjectProperty"]},{"name":"hasSpatialValue","value":"perpendicular","domain":"Assembly","range":"SpatialRelation","types":["Resource","owl__ObjectProperty"]},{"name":"hasXTranslationFreedomDegree","value":"true","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasYTranslationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasZTranslationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasXRotationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasYRotationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasZRotationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasInverseMovement","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"componentIs","value":"OpEx-1_TESFuelHatch-3_Mechanic-1_Structural-2_Panels-2_PNL1-MRSHLDS0007","domain":"Assembly","range":"Component","types":["Resource","owl__ObjectProperty"]},{"name":"pairIs","value":"OpEx-1_TESFuelHatch-3_Mechanic-1_Structural-2_Beams-1_BM2-MRSHLDS0008","domain":"Assembly","range":"Component","types":["Resource","owl__ObjectProperty"]}]};
     // const individualExampleProperties = individualExample["properties"];
-    const uriElement = ontologiesURI + "rtrbau" + "#";
+    const uriElement = ontologiesURI + individualExample["ontology"] + "#";
 
     // FINISH DESCRIBING CODE
     // Consistency evaluation:
@@ -435,25 +437,83 @@ app.get('/api/inputIndividual', function(req,res){
       console.log("individual");
       return await individualEvaluation(individual);
     };
+    // Individual generation:
+    // Node generation
+    let individualNodeCreation = function (individual) {
+        return new Promise(function(resolve, reject){
+            console.log("individualNodeCreation");
+            console.log(`MERGE (n:Resource:owl__NamedIndividual:${individual["ontology"]}__${individual["class"]}{uri:"${uriElement+individual["name"]}"}) RETURN n`);
+            session
+                .run(`MERGE (n:Resource:owl__NamedIndividual:${individual["ontology"]}__${individual["class"]}{uri:"${uriElement+individual["name"]}"}) RETURN n`)
+                .then(function(results){
+                    resolve (results);
+                })
+                .catch(function(error){
+                    reject (error);
+                })
+        });
+    };
+    // Properties generation
+    let individualPropertyCreation = function (individualName,individualOntology,individualProperty) {
+        return new Promise(function(resolve, reject){
+            console.log("individualPropertyCreation");
+            let propertyTypes = [];
+            let sessionQuery;
+            individualProperty["types"].forEach(function(type){
+                if(returnNeo4jNameElement('owl',type) !== null ) {
+                    propertyTypes.push(returnNeo4jNameElement('owl',type));
+                } else {}
+            });
+            if (propertyTypes.includes("DatatypeProperty")) {
+                sessionQuery = `MATCH (n{uri:"${uriElement+individualName}"}) SET n.${individualOntology}__${individualProperty["name"]}="${individualProperty["value"]}" RETURN n`;
+            } else if (propertyTypes.includes("ObjectProperty")) {
+                sessionQuery = `MATCH (a{uri:"${uriElement+individualName}"}),(b{uri:"${uriElement+individualProperty["value"]}"}) MERGE (a)-[r:${individualOntology}__${individualProperty["name"]}]->(b) RETURN a,r,b`
+            } else {}
+            session
+                .run(sessionQuery)
+                .then(function(results){
+                    resolve(results);
+                })
+                .catch(function(error){
+                    reject (error);
+                });
+        });
+    };
+    // Properties instantiation
+    let individualPropertiesInstantiation = async function (individual) {
+      console.log("individualPropertiesInstantiation");
+      return await Promise.all(individual["properties"].map(function(property){return individualPropertyCreation(individual["name"],individual["ontology"],property)}));
+    };
     // Individual instantiation
+    let individualInstantiation = async function (individual) {
+        console.log("individualInstantiation");
+        let individualNodeInstantiation = await individualNodeCreation(individual);
+        let individualPropsInstantiation = await individualPropertiesInstantiation(individual);
+        return await [individualNodeInstantiation,individualPropsInstantiation];
+    };
+    // Individual resolution (review and instantiation)
     individualReview(individualExample)
-        .then(function(results){
-            if (results["errors"].length!==0){
+        .then(function(reviewResults){
+            if (reviewResults["errors"].length!==0){
                 console.log("Errors");
-                res.send(results);
+                res.send({warnings:reviewResults["warnings"],errors:reviewResults["errors"]});
             } else {
                 console.log("No errors");
-                res.send(results["warnings"]);
+                individualInstantiation(individualExample)
+                    .then(function(inputResults){
+                        let inputResolution = [];
+                        inputResolution.push(inputResults[0]["records"]);
+                        inputResults[1].forEach(function(result){inputResolution.push(result["records"])});
+                        res.send({warnings:reviewResults["warnings"],input:inputResolution});
+                    })
+                    .catch(function(inputError){
+                        res.send(inputError);
+                    });
             }
         })
-        .catch(function(error){
-            res.send(error);
+        .catch(function(reviewError){
+            res.send(reviewError);
         });
-    // Input individual into ontology and return warnings
-    // Generate node with labels [Resource,owl__NamedIndividual,ontologyName__ontologyClass]
-    // Generate datatype properties (node properties)
-    // Generate object properties
-    // Otherwise returns errors and warnings
 });
 
 // View-related GET requests
