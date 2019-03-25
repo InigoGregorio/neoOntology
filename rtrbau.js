@@ -209,7 +209,8 @@ app.get('/api/files/:fileType/:fileName', function(req,res){
 app.get('/api/inputIndividual', function(req,res){
 
     // Example features before turning into a post request
-    const individualExample = {"individual":"","class":"Assembly","properties":[{"name":"hasNoMatingValue","value":"planar","domain":"Assembly","range":"MatingRelation","types":["Resource","owl__ObjectProperty"]},{"name":"hasSpatialValue","value":"perpendiculare","domain":"Assembly","range":"SpatialRelation","types":["Resource","owl__ObjectProperty"]},{"name":"hasXTranslationFreedomDegree","value":"true","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasYTranslationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasZTranslationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasXRotationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasYRotationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasZRotationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasInverseMovement","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"componentIs","value":"OpEx-1_TESFuelHatch-3_Mechanic-1_Structural-2_Panels-2_PNL1-MRSHLDS0007","domain":"Assembly","range":"Component","types":["Resource","owl__ObjectProperty"]},{"name":"pairIs","value":"OpEx-1_TESFuelHatch-3_Mechanic-1_Structural-2_Beams-1_BM2-MRSHLDS0008","domain":"Assembly","range":"Component","types":["Resource","owl__ObjectProperty"]}]};
+    //const individualExample = {"individual":"","class":"Assembly","properties":[{"name":"hasNoMatingValue","value":"planar","domain":"Assembly","range":"MatingRelation","types":["Resource","owl__ObjectProperty"]},{"name":"hasSpatialValue","value":"perpendiculare","domain":"Assembly","range":"SpatialRelation","types":["Resource","owl__ObjectProperty"]},{"name":"hasXTranslationFreedomDegree","value":"true","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasYTranslationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasZTranslationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasXRotationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasYRotationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasZRotationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasInverseMovement","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"componentIs","value":"OpEx-1_TESFuelHatch-3_Mechanic-1_Structural-2_Panels-2_PNL1-MRSHLDS0007","domain":"Assembly","range":"Component","types":["Resource","owl__ObjectProperty"]},{"name":"pairIs","value":"OpEx-1_TESFuelHatch-3_Mechanic-1_Structural-2_Beams-1_BM2-MRSHLDS0008","domain":"Assembly","range":"Component","types":["Resource","owl__ObjectProperty"]}]};
+    const individualExample = {"name":"assembly_1-3-1-2-2_1","class":"Assembly","properties":[{"name":"hasMatingValue","value":"planar","domain":"Assembly","range":"MatingRelation","types":["Resource","owl__ObjectProperty"]},{"name":"hasSpatialValue","value":"perpendicular","domain":"Assembly","range":"SpatialRelation","types":["Resource","owl__ObjectProperty"]},{"name":"hasXTranslationFreedomDegree","value":"true","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasYTranslationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasZTranslationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasXRotationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasYRotationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasZRotationFreedomDegree","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"hasInverseMovement","value":"false","domain":"Assembly","range":"boolean","types":["Resource","owl__DatatypeProperty"]},{"name":"componentIs","value":"OpEx-1_TESFuelHatch-3_Mechanic-1_Structural-2_Panels-2_PNL1-MRSHLDS0007","domain":"Assembly","range":"Component","types":["Resource","owl__ObjectProperty"]},{"name":"pairIs","value":"OpEx-1_TESFuelHatch-3_Mechanic-1_Structural-2_Beams-1_BM2-MRSHLDS0008","domain":"Assembly","range":"Component","types":["Resource","owl__ObjectProperty"]}]};
     // const individualExampleProperties = individualExample["properties"];
     const uriElement = ontologiesURI + "rtrbau" + "#";
 
@@ -217,9 +218,22 @@ app.get('/api/inputIndividual', function(req,res){
     // Consistency evaluation:
     // To evaluate individual consistency with ontology schema
     // Evaluations are:
-    // At class level: class existence, class properties lack,
-    // At property level: property existence, property domain correctness, property range correctness, object property value existence
+    // At individual level: name correctness*
+    // At class level: class existence, class properties lack*
+    // At property level: property existence, property domain correctness, property range correctness, object property value existence*
+    // *Not necessary from ontology-schema perspective but keeps certain control
     // Evaluations work with promises, each evaluation requires to return either a promise.resolve or a promise.reject function
+    // Individual level evaluations:
+    // Individual name correctness
+    let individualName = function(individual) {
+        return new Promise(function(resolve){
+            if (individual["name"]!==""){
+                resolve ({success:{level:"individual",name:individual["name"],evaluation:"nameCorrectness",value:individual["name"]}});
+            } else {
+                resolve ({error:{level:"individual",name:individual["name"],evaluation:"nameCorrectness",value:individual["name"]}});
+            }
+        });
+    };
     // Class level evaluations:
     // Class existence evaluation
     let classExistence = function(individual){
@@ -230,9 +244,9 @@ app.get('/api/inputIndividual', function(req,res){
               .run(`MATCH (n{uri:"${classURI}"}) RETURN n`)
               .then(function(results){
                   if (results.records.length !== 0) {
-                      resolve ({success: {class: individual["class"]}});
+                      resolve ({success:{level:"individual",name:individual["name"],evaluation:"classExistence",value:individual["class"]}});
                   } else {
-                      resolve ({error: {class: individual["class"]}});
+                      resolve ({error:{level:"individual",name:individual["name"],evaluation:"classExistence",value:individual["class"]}});
                   }
               })
               .catch(function(error){
@@ -253,7 +267,7 @@ app.get('/api/inputIndividual', function(req,res){
                     individual["properties"].forEach(function(individualProperty){individualPropertiesNames.push(individualProperty["name"])});
                     results.records.forEach(function(record){classPropertiesNames.push(returnUriElement(record._fields[1]))});
                     let missingPropertiesNames = classPropertiesNames.filter(function(propertyName){return !individualPropertiesNames.includes(propertyName)});
-                    resolve({warning: {missingProperties: missingPropertiesNames}});
+                    resolve ({warning:{level:"individual",name:individual["name"],evaluation:"propertiesLack",value:missingPropertiesNames}})
                 })
                 .catch(function(error){
                     reject(error);
@@ -270,9 +284,9 @@ app.get('/api/inputIndividual', function(req,res){
                 .run(`MATCH (n{uri:"${propertyURI}"}) RETURN n`)
                 .then(function(results){
                     if (results.records.length !== 0) {
-                        resolve ({success: {name: individualProperty["name"]}});
+                        resolve ({success:{level:"property",name:individualProperty["name"],evaluation:"propertyExistence",value:individualProperty["name"]}});
                     } else {
-                        resolve ({error: {name: individualProperty["name"]}});
+                        resolve ({error:{level:"property",name:individualProperty["name"],evaluation:"propertyExistence",value:individualProperty["name"]}});
                     }
                 })
                 .catch(function(error){
@@ -290,9 +304,9 @@ app.get('/api/inputIndividual', function(req,res){
                 .run(`MATCH (a{uri:"${propertyURI}"})-[r:rdfs__domain]->(b{uri:"${domainURI}"}) RETURN a.uri,b.uri`)
                 .then(function(results){
                     if (results.records.length !== 0) {
-                        resolve ({success: {domain: individualProperty["domain"]}});
+                        resolve ({success:{level:"property",name:individualProperty["name"],evaluation:"domainCorrectness",value:individualProperty["domain"]}});
                     } else {
-                        resolve ({error: {domain: individualProperty["domain"]}});
+                        resolve ({error:{level:"property",name:individualProperty["name"],evaluation:"domainCorrectness",value:individualProperty["domain"]}});
                     }
                 })
                 .catch(function(error){
@@ -320,9 +334,9 @@ app.get('/api/inputIndividual', function(req,res){
                 .run(`MATCH (a{uri:"${propertyURI}"})-[r:rdfs__range]->(b{uri:"${rangeURI}"}) RETURN a.uri,b.uri`)
                 .then(function(results){
                     if (results.records.length !== 0) {
-                        resolve ({success: {range: individualProperty["range"]}});
+                        resolve ({success:{level:"property",name:individualProperty["name"],evaluation:"rangeCorrectness",value:individualProperty["range"]}});
                     } else {
-                        resolve ({error: {range: individualProperty["range"]}});
+                        resolve ({error:{level:"property",name:individualProperty["name"],evaluation:"rangeCorrectness",value:individualProperty["range"]}});
                     }
                 })
                 .catch(function(error){
@@ -346,9 +360,9 @@ app.get('/api/inputIndividual', function(req,res){
                     .run(`MATCH (n{uri:"${valueURI}"}) RETURN n`)
                     .then(function(results){
                         if (results.records.length !== 0) {
-                            resolve ({success: {value: individualProperty["value"]}});
+                            resolve ({success:{level:"property",name:individualProperty["name"],evaluation:"valueExistence",value:individualProperty["value"]}});
                         } else {
-                            resolve ({error: {value: individualProperty["value"]}});
+                            resolve ({error:{level:"property",name:individualProperty["name"],evaluation:"valueExistence",value:individualProperty["value"]}});
                         }
                     })
                     .catch(function(error){
@@ -356,9 +370,9 @@ app.get('/api/inputIndividual', function(req,res){
                     });
             } else {
                 if (individualProperty["value"]!==null) {
-                    resolve ({success: {value: individualProperty["value"]}});
+                    resolve ({success:{level:"property",name:individualProperty["name"],evaluation:"valueExistence",value:individualProperty["value"]}});
                 } else {
-                    resolve ({error: {value: individualProperty["value"]}});
+                    resolve ({error:{level:"property",name:individualProperty["name"],evaluation:"valueExistence",value:individualProperty["value"]}});
                 }
             }
         });
@@ -375,43 +389,70 @@ app.get('/api/inputIndividual', function(req,res){
         console.log("individualPropertiesConsistency");
         return await Promise.all(individual["properties"].map(propertyConsistency));
     };
-    // Individual evaluation
+    // Individual consistency
     let individualConsistency = async function (individual) {
         console.log("individualConsistency");
-        return await Promise.all([classExistence(individual),classPropertiesLack(individual),individualPropertiesConsistency(individual)]);
+        return await Promise.all([individualName(individual),classExistence(individual),classPropertiesLack(individual),individualPropertiesConsistency(individual)].map(p => p.catch(error => error)));
+    };
+    // Individual evaluation
+    let individualEvaluation = function(individual) {
+        return new Promise(function(resolve, reject){
+            console.log("individualEvaluation");
+            individualConsistency(individual)
+                .then(function(results) {
+                    let successes = [];
+                    let errors = [];
+                    let warnings = [];
+
+                    evaluateSuccess(results[0],successes,errors,warnings);
+                    evaluateSuccess(results[1],successes,errors,warnings);
+                    evaluateSuccess(results[2],successes,errors,warnings);
+                    results[3].forEach(function(property){
+                        property.forEach(function(element){
+                            evaluateSuccess(element,successes,errors,warnings);
+                        });
+                    });
+
+                    resolve({successes: successes, errors: errors, warnings: warnings});
+
+                    function evaluateSuccess (item,successes,errors,warnings) {
+                        if (item["success"]) {
+                            return successes.push(item["success"]);
+                        } else if (item["error"]) {
+                            return errors.push(item["error"]);
+                        } else if (item["warning"]) {
+                            return warnings.push(item["warning"]);
+                        } else {}
+                    }
+                })
+                .catch(function(error) {
+                    reject(error);
+                });
+        });
+    };
+    // Individual review
+    let individualReview = async function (individual) {
+      console.log("individual");
+      return await individualEvaluation(individual);
     };
     // Individual instantiation
-    individualConsistency(individualExample)
-        .then(function(results) {
-            let successes = [];
-            let errors = [];
-            let warnings = [];
-
-            evaluateSuccess(results[0],successes,errors,warnings);
-            evaluateSuccess(results[1],successes,errors,warnings);
-            results[2].forEach(function(property){
-                property.forEach(function(element){
-                    evaluateSuccess(element,successes,errors,warnings);
-                });
-            });
-
-            res.send({success: successes, error: errors, warning: warnings});
-
-            function evaluateSuccess (item,successes,errors,warnings) {
-                if (item["success"]) {
-                    return successes.push(item["success"]);
-                } else if (item["error"]) {
-                    return errors.push(item["error"]);
-                } else if (item["warning"]) {
-                    return warnings.push(item["warning"]);
-                } else {}
+    individualReview(individualExample)
+        .then(function(results){
+            if (results["errors"].length!==0){
+                console.log("Errors");
+                res.send(results);
+            } else {
+                console.log("No errors");
+                res.send(results["warnings"]);
             }
         })
-        .catch(function(error) {
+        .catch(function(error){
             res.send(error);
-        })
-
+        });
     // Input individual into ontology and return warnings
+    // Generate node with labels [Resource,owl__NamedIndividual,ontologyName__ontologyClass]
+    // Generate datatype properties (node properties)
+    // Generate object properties
     // Otherwise returns errors and warnings
 });
 
