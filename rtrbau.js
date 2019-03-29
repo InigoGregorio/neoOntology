@@ -40,9 +40,11 @@ const path = require('path');
 // 1.2. Third-party Modules:
 // 1.2.1. To code web applications (http requests)
 const express = require('express');
-// 1.2.2. To parse and handle errors in data before use
+// 1.2.2. To log sever usage and console messages
+const morgan = require ('morgan');
+// 1.2.3. To parse and handle errors in data before use
 const bodyParser = require('body-parser');
-// 1.2.3. To connect to neo4j graphical databases
+// 1.2.4. To connect to neo4j graphical databases
 const neo4j = require('neo4j-driver').v1;
 
 // 2. INITIALISATION
@@ -62,7 +64,9 @@ app.set('views', path.join(__dirname,'views'));
 // 3.3. Setup directory for static files (file sharing)
 // IMP: directory is structured according to file types [ontologies, 3Dmodels, images]
 app.use(express.static(path.join(__dirname,'files')));
-// 3.4. Setup body parsing method {standard}
+// 3.4. Setup logger method
+app.use(morgan('dev'));
+// 3.5. Setup body parsing method {standard}
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 
