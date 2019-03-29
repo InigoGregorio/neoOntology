@@ -1,66 +1,169 @@
-// File purpose:
-// To generate a server that can provide interaction between ontologies
-// in a standard format and the rtrbau expert system embedded in AR apps.
+// I. SERVER DESCRIPTION:
+// Maintenance Ontology Reasoner:
+// An ontology-elements and files server to feed data into RTRBAU applications.
+// Code below is described in terms of theoretical (THE), implementation (IMP) and error handling (ERR) descriptors.
+// Potential upgrades (UPG) and maintainability (MAN) issues are also declared.
 
-// File creation:
-// Dependencies for this project have been set up manually in json file,
-// according to the following tutorial: https://www.youtube.com/watch?v=snjnJCZhXUM
-// neo4j-driver needs v1 because documentation says so: https://neo4j.com/developer/javascript/
-// neo4j-driver session structure session {.run()/.then()/.catch()/.close()}
+// II. SERVER STRUCTURE:
+// 1. Namespaces
+// 2. Initialisation
+// 3. Middleware
+// 4. Ad-hoc
+// 4.1. Variables
+// 4.2. Functions
+// 5. HTTP methods:
+// 5.1. Get requests: [file,ontology] {view}
+// 5.2. Post requests: [ontology] {file,view}
+// 5.3. Put requests: []
+// 5.4. Delete requests: []
+// 6. Port
+// 7. Export
 
-// Code description:
-// When functions and variables are reused, they are only described at first point of use.
-// All var declarations changed by let (when updated) or const (when fixed)
+// III. MISCELLANEOUS:
+// A. File creation:
+// A.1. Dependencies created manually in json file according to: https://www.youtube.com/watch?v=snjnJCZhXUM
+// B. Server setup:
+// B.1. neo4j-driver for nodejs and neo4j:
+// B.1.1. Requires v1 according to: https://neo4j.com/developer/javascript/
+// B.1.2. Query structure: session (Promise) .run().then({...close()}).catch({...close()})
+// B.1.3. Remember to close all session variables when programming queries
+// C. Code description:
+// C.1. Uses nomenclature identified in server description
+// C.2. Description is made at first point of use
 
-// REMEMBER TO ADD close session to all session variables
-
-// NAMESPACES
+// 1. NAMESPACES:
+// 1.1. Nodejs Modules:
+// 1.1.1. To read files and directories
 const fs = require('fs');
-const express = require('express');
+// 1.1.2. To work with file and directory paths
 const path = require('path');
-const logger = require('morgan'); // ?? Is this one being used?
+// 1.2. Third-party Modules:
+// 1.2.1. To code web applications (http requests)
+const express = require('express');
+// 1.2.2. To parse and handle errors in data before use
 const bodyParser = require('body-parser');
+// 1.2.3. To connect to neo4j graphical databases
 const neo4j = require('neo4j-driver').v1;
 
-// VARIABLES
-// const port = process.env.PORT || 8008;
-const port = 8008;
-// To be changed once server becomes complete
-const ontologiesURI = "http://138.250.108.1:3003/api/files/ontologies/";
-const datatypeOntologyURI = "http://www.w3.org/2001/XMLSchema";
-// Ontology prefixes excluded from retrieval
-const ontologiesDisabled = ['xml','rdf','rdfs','owl','xsd'];
-
-// INITIALISATION
-// Open express
+// 2. INITIALISATION
+// 2.1. Instantiate web application framework
 const app = express();
-// Connect to neo4j
-// Declare a driver to connect
+// 2.2. Declare route to neo4j server
 const driver = neo4j.driver('bolt://localhost', neo4j.auth.basic('neo4j','opexcellence'));
-// Open a session: REMEMBER ALWAYS TO CLOSE THE SESSION
-var session = driver.session();
+// 2.3. Instantiate connection to neo4j server
+let session = driver.session();
 
-// MIDDLEWARE
-// Setup for engine view and view files folder
-app.set('views', path.join(__dirname,'views'));
+// 3. MIDDLEWARE
+// 3.1. Setup engine view for dynamic files (e.g. html, ejs)
 app.set('view engine', 'ejs');
-// Standard setup for body parsing
-app.use(logger('dev'));
+// 3.2. Setup directory for dynamic files
+// UPG: to include plain view of ontologies elements
+app.set('views', path.join(__dirname,'views'));
+// 3.3. Setup directory for static files (file sharing)
+// IMP: directory is structured according to file types [ontologies, 3Dmodels, images]
+app.use(express.static(path.join(__dirname,'files')));
+// 3.4. Setup body parsing method {standard}
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
-// Static folder setup for file sharing
-// Folder structured according to file types (ontologies, images, 3D models, etc.)
-app.use(express.static(path.join(__dirname,'files')));
 
-// GET
-// Ontology-related GET requests
-// Ontology-level ontology-related GET requests
-// Retrieve all ontologies available to be consulted
+// 4. AD-HOC
+// 4.1. VARIABLES
+// 4.1.1. Port management (considers existence of environmental variables):
+// UPG: to add environmental variable for server machine to move port for listening
+// IMP: for raspberry pi to have a specific port in case environmental variable not implemented
+const port = process.env.PORT || 3003;
+// 4.1.2. Ontologies uri management (considers limited number of ontologies and so prefixes)
+// UPG: to re-write server functionality considering existence of non-proprietary ontologies
+// IMP: to consider that only ontologies declared by the server are available
+const ontologiesURI = "http://138.250.108.1:3003/api/files/ontologies/";
+// IMP: to manage only non-propietary ontology required for rdfs reasoning
+const datatypeOntologyURI = "http://www.w3.org/2001/XMLSchema";
+// IMP: to manage non-used ontology prefixes declared in neo4j
+const ontologiesDisabled = ['xml','rdf','rdfs','owl','xsd'];
+// 4.2. FUNCTIONS
+// UPG: to export as middleware when number of functions becomes considerable
+// 4.2.1. Read file names: to work with files for sharing
+function returnAvailable (dirname,filename) {
+    // Returns true if filename can be found in dirname directory
+    let filesAvailable = fs.readdirSync(dirname);
+    // Avoids 'hidden' directories '.'
+    filesAvailable = filesAvailable.filter(item => !(/(^|\/)\.[^\/\.]/g).test(item));
+    return filesAvailable.includes(filename);
+}
+// 4.2.2. Abbreviate uri: to work with rdfs naming convention
+// UPG: to serve uri prefix and name as independent variables for managing
+// UPG: to manage external, non-proprietary ontologies
+// IMP: splits uri as it considers all prefixes are the same "ontologiesURI"
+function returnUriElement (uri) {
+    // For parsing uri elements generically
+    // If not null
+    if (uri != null) {
+        // Returns element name splitted from uri after "#"
+        return uri.split("#")[1];
+    } else {
+        // Otherwise returns null
+        return null;
+    }
+}
+// 4.2.3. Abbreviate neo4j: to work with neo4j-neosemantics naming convention
+// UPG: to serve uri prefix and name as independent variables for managing
+// UPG: to manage external, non-proprietary ontologies
+function returnNeo4jNameElement (prefix, element) {
+    // For parsing prefixed names in neo4j
+    // If not null
+    if (element.includes("__") === true && element.split("__")[0] === prefix) {
+        // Retrieves element name that matches the ontology prefix
+        return element.split("__")[1];
+    } else {
+        // Otherwise returns null
+        return null;
+    }
+}
+// 5. HTTP METHODS
+// 5.1. GET REQUESTS
+// 5.1.1. File GET requests:
+// 5.1.1.1. Files retrieval
+// IMP: given a file type, retrieve files available
+app.get('/api/files/:fileType', function(req,res){
+    // ERR: if fileType is not available
+    if(!returnAvailable(path.join(__dirname,"files"), req.params.fileType)) {
+        res.status(404).send('File type not available');
+    } else {
+        let filesNames = fs.readdirSync(`files/${req.params.fileType}`);
+        // Avoids '.' 'hidden' directories
+        res.send(filesNames.filter(item => !(/(^|\/)\.[^\/\.]/g).test(item)));
+    }
+});
+// 5.1.1.2. File download
+// IMP: given a file full-name and type, send file
+app.get('/api/files/:fileType/:fileName', function(req,res){
+    // ERR: if fileType is not found
+    if(!returnAvailable(path.join(__dirname,"files"),req.params.fileType)) {
+        res.status(404).send('File type not available');
+    }
+    // ERR: if fileName is not found
+    else if(!returnAvailable(path.join(__dirname,"files",req.params.fileType),req.params.fileName)) {
+        res.status(404).send('File not available');
+    }
+    else {
+        res.sendFile(path.join(__dirname,"files",req.params.fileType,req.params.fileName));
+    }
+});
+// 5.1.2. Ontology GET requests
+// THE: uses rdfs language to identify all possible inferences that can be done for an ontology, a class or an individual
+// THE: requests implement so far are [ontology, class[subClasses,individuals,properties], individual[properties]]
+// UPG: to include also reasoning about properties {datatype,object}
+// UPG: to extend from rdfs to owl (REQUIRES of upgrading neosemantics)
+// 5.1.2.1. Ontology-level GET requests:
+// 5.1.2.1.1. Namespace: to retrieve all proprietary ontologies available in neo4j graph
+// THE: rdf:RDF | to consult what knowledge domains can be queried
+// IMP: returns prefixes and names in json format
 app.get('/api/ontologies', function(req,res){
     // Variable to capture parts of message being read in loop
-    let ontologiesArray = [];
-    // neo4j query session
+    let ontologies = [];
+    // neo4j query session: uses cypher language to consult graphical database
     session
+        // returns namespaces prefixes according to neosemantics declaration
         .run(`MATCH (n:NamespacePrefixDefinition) RETURN properties(n)`)
         .then(function(result){
             // Review each record sent by neo4j
@@ -72,7 +175,7 @@ app.get('/api/ontologies', function(req,res){
                     // Process key to check if it is a common ontology to avoid
                     if (ontologiesDisabled.includes(record._fields[0][ontologyKey]) !== true){
                         // Obtain elements from neo4j record and pass them over sending message
-                        ontologiesArray.push({
+                        ontologies.push({
                             prefix: record._fields[0][ontologyKey],
                             uri: ontologyKey
                         });
@@ -80,59 +183,63 @@ app.get('/api/ontologies', function(req,res){
                 });
             });
             // All to be sent through json objects
-            res.json(ontologiesArray);
+            res.json(ontologies);
         })
+        // Handles neo4j errors
         .catch(function(err){
             res.json(err);
         });
 });
-// Class-level ontology-related GET requests
-// Given a class name, retrieve its subclasses in json format
+// 5.1.2.2. Class-level GET requests:
+// 5.1.2.2.1. Class subclasses: to retrieve classes and subclasses within an ontology
+// THE: rdfs:subClassOf | to navigate through ontology classes
+// IMP: ontology policy development ensures all classes belong to the namespace class
+// IMP: given an ontology and a class name, returns subclasses in json format
+// UPG: rdfs:subPropertyOf | to extend queries to subProperties
+// UPG: to manage ontology prefixes, maybe update ontologiesURI to a function to retrieve prefix?
+// UPG: that will require to maintain a list of available prefixes similar to the one in neo4j node, maybe consult?
 app.get('/api/ontologies/:ontologyName/class/:className/subclasses', function(req,res){
     // Variable to identify relevant uri to look for
     let uriElement = ontologiesURI + req.params.ontologyName + "#" + req.params.className;
+    // Variable to capture subclasses names
     let subclassesArray = [];
     session
+        // Matches owl__Class nodes by uri and return other owl__Class nodes through rdfs__subClassOf relationships
         .run(`MATCH (a:owl__Class{uri:"${uriElement}"})<-[r:rdfs__subClassOf]-(b:owl__Class) RETURN a.uri, b.uri`)
         .then(function(result){
+            // Captures each subclass name from results retrieved from neo4j
             result.records.forEach(function(record){
                subclassesArray.push(returnUriElement(record._fields[1]));
             });
+            // Formats results in a json object
             res.json({class: req.params.className, subclasses: subclassesArray});
         })
         .catch(function(err){
             res.json(err);
         });
 });
-// Given a class name, retrieve all individuals that belong to it in json format
-app.get('/api/ontologies/:ontologyName/class/:className/individuals', function(req,res){
-    let individualsArray = [];
-    session
-        .run(`MATCH (n) WHERE n:owl__NamedIndividual AND n:${req.params.ontologyName}__${req.params.className} RETURN n.uri`)
-        .then(function(result){
-            result.records.forEach(function(record){
-                individualsArray.push(returnUriElement(record._fields[0]));
-            });
-            res.json({class: req.params.className, individuals: individualsArray});
-        })
-        .catch(function(err){
-            res.json(err);
-        });
-});
-// Given a class name, retrieve its properties in json format
+// 5.1.2.2.2. Class properties: to retrieve properties that identify individuals of a class
+// THE: rdfs:domain, rdfs:range, owl:datatypeProperty, owl:objectProperty
+// THE: to identify how to instantiate an individual to a class
+// IMP: given a class name, returns properties in json format
+// UPG: to extend class declaration with owl language elements (e.g. owl:cardinality, owl:functionality, etc.)
+// UPG: to use owl elements to infer all superclasses a class belong to identify the properties to instantiate an individual to the class
 app.get('/api/ontologies/:ontologyName/class/:className/properties', function(req,res){
     let uriElement = ontologiesURI + req.params.ontologyName + "#" + req.params.className;
     session
+        // Matches owl__Class nodes with owl__ObjectProperty and owl__DatatypeProperty nodes and with other class nodes by rdfs:domain and rdfs:range
         .run(`MATCH (a:owl__Class{uri:"${uriElement}"})<-[r:rdfs__domain]-(b)-[s:rdfs__range]->(c) WHERE b:owl__ObjectProperty OR b:owl__DatatypeProperty RETURN a.uri,labels(b),b.uri,c.uri`)
         .then(function(result){
             let propertyTypesArray = [];
             let propertiesArray = [];
+            // Returns the rdfs and owl types of a given property
             result.records.forEach(function(record){
                 record._fields[1].forEach(function(type){
                     if(returnNeo4jNameElement('owl',type) !== null ) {
                         propertyTypesArray.push(returnNeo4jNameElement('owl',type));
                     } else {}
                 });
+                // Captures additional property data in json format
                 propertiesArray.push({
                     // Record fields are declared according to cypher response structure
                     name: returnUriElement(record._fields[2]),
@@ -142,36 +249,67 @@ app.get('/api/ontologies/:ontologyName/class/:className/properties', function(re
                 // Regenerate propertyTypesArray for new property to be pushed into the array
                 propertyTypesArray =[];
             });
+            // Returns class and properties in json format
             res.json({class: req.params.className, properties: propertiesArray});
         })
         .catch(function(err){
             res.json(err);
         });
 });
-// Individual-level ontology-related GET requests
-// Given an individual name, retrieve its properties in json format
+// 5.1.2.2.3. Class individuals: to retrieve individuals that belong to a class
+// THE: owl:NamedIndividual | to identify individuals instantiated to a class
+// IMP: uses neosemantics notation (ontology__element) to identify a class
+// IMP: given an ontology and a class name, returns its individuals in json format
+// UPG: to extend identification of class and individuals that may be replicated in other ontologies
+app.get('/api/ontologies/:ontologyName/class/:className/individuals', function(req,res){
+    // Variable to identify individuals names
+    let individualsArray = [];
+    session
+        // Matches nodes with owl__NamedIndividual and ontology__class labels to retrieve class individuals
+        .run(`MATCH (n) WHERE n:owl__NamedIndividual AND n:${req.params.ontologyName}__${req.params.className} RETURN n.uri`)
+        .then(function(result){
+            // Captures individual names retrieved by neo4j
+            result.records.forEach(function(record){
+                individualsArray.push(returnUriElement(record._fields[0]));
+            });
+            // Returns individuals names of class name in json format
+            res.json({class: req.params.className, individuals: individualsArray});
+        })
+        .catch(function(err){
+            res.json(err);
+        });
+});
+// 5.1.2.3. Individual-level GET requests:
+// 5.1.2.3.1. Individual properties: to identify the properties that describe an individual in an ontology
+// THE: owl:NamedIndividual | to identify an individual by the properties and values used to declare it
+// IMP: given an ontology and an individual name, returns its properties in json format
+// IMP: evaluates datatype (properties) and object (relationship) properties using neosemantics notation
+// UPG: to extend property declaration including domain and range of each property returned
+// UPG: to extend evaluation of properties retrieved by the ontology being consulted (ontology__Property)
 app.get('/api/ontologies/:ontologyName/individual/:individualName/properties', function(req,res){
     let uriElement = ontologiesURI + req.params.ontologyName + "#" + req.params.individualName;
-    // To capture elements independently due to the message structure retrieved by the cypher query
-    // Object properties are stored differently than data properties so they require different capture methods
+    // Variables to capture elements independently due to the message structure retrieved by the cypher query
     let classArray;
+    // Object properties are stored differently than data properties as they require different capture methods
     let dataPropertiesArray = [];
     let objectPropertiesArray = [];
     session
+    // Matches node by uri and owl__NamedIndividual label and returns classes (labels), and datatype (properties) and object (relations{type}) properties
         .run(`MATCH (a:owl__NamedIndividual{uri:"${uriElement}"})-[r]->(b) RETURN a.uri, labels(a), properties(a), type(r), b.uri`)
         .then(function(result){
+            // Evaluates neo4j results using their array indexes
             result.records.forEach(function(record, index, array){
                 // Some fields in each record include repeated data, these need pre-processing
                 // Pre-processing is not elegant as it repeats the same operation more than needed
                 // Conditional clause included to avoid replication, only get results from first record
                 if (Object.is(array.length - 1, index)) {
-                    // Pre-processing of an array
+                    // Returns class name only from first property as it is always the same
                     record._fields[1].forEach(function(label) {
                         if (returnNeo4jNameElement(req.params.ontologyName, label) !== null) {
                             classArray = returnNeo4jNameElement(req.params.ontologyName, label);
                         } else {}
                     });
-                    // Pre-processing of a json object using keys as an array to maintain forEach use
+                    // Returns datatype property name and value for each property retrieved by neo4j
                     let dataPropertiesKeys = Object.keys(record._fields[2]);
                     dataPropertiesKeys.forEach(function(dataPropertyKey){
                        if(returnNeo4jNameElement(req.params.ontologyName,dataPropertyKey) !== null) {
@@ -182,82 +320,212 @@ app.get('/api/ontologies/:ontologyName/individual/:individualName/properties', f
                        } else {}
                     });
                 }
-                // Then objects which determine the record length list are processed
+                // Returns object property name and value for each property retrieved by neo4j
                 objectPropertiesArray.push({
                     name: returnNeo4jNameElement(req.params.ontologyName,record._fields[3]),
                     value: returnUriElement(record._fields[4])
                 });
             });
-            // Because data and object properties are similar in nature, they are concatenated to be sent
+            // Returns individual name, class name, and properties (datatype and object concatenated) name and value in json format
             res.json({individual: req.params.individualName, class: classArray, properties: dataPropertiesArray.concat(objectPropertiesArray)});
         })
         .catch(function(err){
             res.json(err);
         });
 });
-// File-related GET requests
-// Given a file type and name, retrieve the file
-app.get('/api/files/:fileType/:fileName', function(req,res){
-    // Error handling: if fileType is not available
-    if(!returnAvailable(path.join(__dirname,"files"), req.params.fileType)) res.status(404).send('File type not available');
-    // Error handling: if fileName is not available
-    if(!returnAvailable(path.join(__dirname,"files",req.params.fileType), req.params.fileName)) res.status(404).send('File not available');
-    //console.log(filenames);
-    //res.send(returnAvailable(`files/${req.params.fileType}`, req.params.fileType).toString());
-    res.sendFile(path.join(__dirname,"files",req.params.fileType,req.params.fileName));
-});
-// View-related GET requests
-// Ontology view-related GET requests
-// Given an ontology name, retrieve the ontology
-// TO BE COMPLETED ONCE SERVER FINISHED: "http://138.250.108.1:3003/api/files/ontologies/rtrbau#"
-// Given an ontology element name, retrieve the element
-// TO BE COMPLETED ONCE SERVER FINISHED: "http://138.250.108.1:3003/api/files/ontologies/rtrbau#element"
-
-// POST
-// Ontology-related POST requests
-// Ontology-level ontology-related POST requests
-// Class-level ontology-related POST requests
-// Individual-level ontology-related POST requests
-// Given an individual, evaluate consistency and return input and warnings or errors and warnings
+// 5.1.3. Ontology view GET requests
+// UPG: to visualise ontology in web browsers in a friendly manner and meet normal semantic web visualisations ("#")
+// UPG: given an ontology name, retrieve the ontology ("http://138.250.108.1:3003/api/files/ontologies/rtrbau#")
+// UPG: given an ontology element name, retrieve the element ("http://138.250.108.1:3003/api/files/ontologies/rtrbau#element")
+// 5.2. POST REQUESTS
+// 5.2.1. File POST requests
+// UPG: to include upload of files {ontologies, images, 3Dmodels} with user authentication
+// 5.2.3. Ontology view POST requests
+// UPG: to include upload of complete ontologies with consistency evaluation
+// 5.2.2. Ontology POST requests
+// 5.2.2.1. Ontology-level POST requests:
+// UPG: to input a new ontology in neo4j ontology schema graph, including namespace prefix definition, and class, datatype and object nodes
+// 5.2.2.2. Class-level POST requests:
+// UPG: to input a new class in neo4j graphs, including nodes in schema graph and class, datatype and object property labels
+// 5.2.2.3. Individual-level POST requests:
+// 5.2.2.3.1. Individual input: to input an individual in the ontology graph after consistency evaluation
+// THE: rdfs:domain, rdfs:range, owl:NamedIndividual
+// THE: evaluates individual to instantiate by properties based on current implemented rdfs language rules
+// THE: consistency evaluation | rdfs rules: class existence, domain correctness, range correctness
+// IMP: consistency evaluation | additional rules: name correctness, class properties lack, object property value existence
+// IMP: additional rules are not required from a theoretical perspective but helps with ontology maintainability
+// IMP: given a complete individual, evaluate consistency against schema, input individual in ontology schema and return input and warnings or errors and warnings
+// IMP: implements promises to make sure all consistency evaluations are satisfied (resolved or rejected) before instantiating individual
+// IMP: user cypher "MERGE" instruction to avoid individual re-instantiation
+// UPG: to extend individual instantiation to classes of other ontologies where the individual has been replicated
+// UPG: to extend consistency evaluation with owl language elements once implemented with neosemantics notation
 app.post('/api/ontologies/:ontologyName/individual/:individualName/input', function(req,res){
     let uriElement = ontologiesURI + req.params.ontologyName + "#";
-    // FINISH DESCRIBING CODE
-    // Consistency evaluation:
-    // To evaluate individual consistency with ontology schema
-    // Evaluations are:
-    // At individual level: name correctness*
-    // At class level: class existence, class properties lack*
-    // At property level: property existence, property domain correctness, property range correctness, object property value existence*
-    // *Not necessary from ontology-schema perspective but keeps certain control
-    // Evaluations work with promises, each evaluation requires to return either a promise.resolve or a promise.reject function
-    // Individual level evaluations:
-    // Ontology name correctness
-    let ontologyName = function(individual) {
-        return new Promise(function(resolve){
-            if (individual["ontology"]===req.params.ontologyName){
-                resolve ({success:{level:"individual",name:individual["name"],evaluation:"ontologyCorrectness",value:individual["ontology"]}});
+    // Individual input consists of several procedures:
+    // A. Consistency evaluation: to assess if the individual matches the class schema to which being instantiated
+    // B. Individual instantiation: to input the individual within the neo4j ontology graph
+    // C. Resolution: returns the input success and warnings, or the errors and warnings found
+    // IMP: the code uses promises to ensure all evaluations are conducted before resolving or rejecting the instantiation
+    // IMP: considers as input an individual in json format: {name:,class:,ontology:,properties:[{name:,value:,domain:,range:}]}
+    // IMP: a final promise is run to resolve or reject instantiation based on consistency results
+    // IMP: promises are run in concurrency, avoiding rejection of some promises to affect others
+    // UPG: to manage rejection of promises which theoretically may affect other evaluations
+    // UPG: to modify consistency evaluation results for simplifying their evaluation
+    // A. CONSISTENCY EVALUATION
+    // THE: evaluations have been classified according to compliance with rdfs rules or maintainability
+    // IMP: evaluations can be made at individual or property level, this classification is used to present the code
+    // IMP: evaluations all return same json object {success/error/warning:{level:,name:,evaluation:,value:}}
+    // UPG: to extend evaluations to cover owl ontology description
+    // A.1. Property-level consistency evaluations:
+    // IMP: uses a property json object as declared for the post method
+    // A.1.1. RDFS rules evaluation:
+    // A.1.1.1. Domain correctness: to evaluate if the property domain in the ontology schema is as declared by the individual
+    // THE: rdfs:domain | compares the individual declaration against the class as described in the ontology schema
+    // IMP: promises to return as a json object the result of the evaluation
+    let propertyDomain = function(individualProperty){
+        return new Promise(function(resolve, reject){
+            // Variables to identify the uri's of the elements involved
+            const propertyURI = uriElement + individualProperty["name"];
+            const domainURI = uriElement + individualProperty["domain"];
+            // console.log("domainExistence: " + individualProperty["name"]);
+            session
+                // Matches the existence of the domain for the property
+                .run(`MATCH (a{uri:"${propertyURI}"})-[r:rdfs__domain]->(b{uri:"${domainURI}"}) RETURN a.uri,b.uri`)
+                .then(function(results){
+                    // Resolves with a success or an error json object
+                    if (results.records.length !== 0) {
+                        resolve ({success:{level:"property",name:individualProperty["name"],evaluation:"domainCorrectness",value:individualProperty["domain"]}});
+                    } else {
+                        resolve ({error:{level:"property",name:individualProperty["name"],evaluation:"domainCorrectness",value:individualProperty["domain"]}});
+                    }
+                })
+                // Rejection is used to cope with neo4j related errors
+                .catch(function(error){
+                    reject(error);
+                });
+        });
+    };
+    // A.1.1.2. Range correctness: to evaluate if the property range in the ontology schema is as declared by the individual
+    // THE: rdfs:range | compares the individual declaration against the class as described in the ontology schema
+    // IMP: promises to return as a json object the result of the evaluation
+    let propertyRange = function(individualProperty){
+        return new Promise(function(resolve, reject){
+            const propertyURI = uriElement + individualProperty["name"];
+            let rangeURI = returnURI(individualProperty["range"]);
+            // For datatype properties, built-in datatypes (outside ontology) to be given the correct uri
+            // UPG: to include additional datatypes from other ontologies rather than xsd
+            function returnURI(element){
+                const xsdRanges = ["anyURI","base64binary","boolean","byte","dateTime","dateTimeStamp","decimal","double","float","hexBinary","int","integer","language","long","Name","NCName","negativeInteger","NMTOKEN","nonNegativeInteger","nonPositiveInteger","normalizedString","positiveInteger","short","string","token","unsignedByte","unsignedInt","unsignedLong","unsignedShort"];
+                if(xsdRanges.includes(element)){
+                    return datatypeOntologyURI + "#" + element;
+                } else {
+                    return uriElement + element;
+                }
+            }
+            // console.log("rangeExistence: " + individualProperty["name"]);
+            session
+                // Matches the existence of the property range
+                .run(`MATCH (a{uri:"${propertyURI}"})-[r:rdfs__range]->(b{uri:"${rangeURI}"}) RETURN a.uri,b.uri`)
+                .then(function(results){
+                    // Resolves for the property range according to evaluation json object
+                    if (results.records.length !== 0) {
+                        resolve ({success:{level:"property",name:individualProperty["name"],evaluation:"rangeCorrectness",value:individualProperty["range"]}});
+                    } else {
+                        resolve ({error:{level:"property",name:individualProperty["name"],evaluation:"rangeCorrectness",value:individualProperty["range"]}});
+                    }
+                })
+                .catch(function(error){
+                    reject(error);
+                });
+        });
+    };
+    // A.1.2. Maintainability evaluation:
+    // A.1.2.1. Property existence: to evaluate if the property to be instantiated exists
+    // THE: rdfs:Resource | compares the uri's element agains those existing in the knowledge base
+    // IMP: uses the element's uri to identify it is has been declared in the neo4j graph
+    // UPG: to check if it exists for the specific ontology to which the class being instantiated belongs
+    let propertyExistence = function(individualProperty){
+        return new Promise(function(resolve, reject){
+            const propertyURI = uriElement + individualProperty["name"];
+            //console.log("propertyExistence: " + individualProperty["name"]);
+            session
+                // Matches the existence of the property by URI
+                .run(`MATCH (n{uri:"${propertyURI}"}) RETURN n`)
+                .then(function(results){
+                    // Resolves for the property name according to evaluation json object
+                    if (results.records.length !== 0) {
+                        resolve ({success:{level:"property",name:individualProperty["name"],evaluation:"propertyExistence",value:individualProperty["name"]}});
+                    } else {
+                        resolve ({error:{level:"property",name:individualProperty["name"],evaluation:"propertyExistence",value:individualProperty["name"]}});
+                    }
+                })
+                .catch(function(error){
+                    reject(error);
+                });
+        });
+    };
+    // A.1.2.2. Property value existence: to evaluate if the individual value to be instantiated exists
+    // THE: rdfs:Resource | compares the uri's element agains those existing in the knowledge base
+    // IMP: evaluates only object type property values
+    // UPG: to extend to datatype property values using generic rules (e.g. int or double)
+    let propertyValue = function(individualProperty){
+        return new Promise(function(resolve, reject){
+            const valueURI = uriElement + individualProperty["value"];
+            const propertyTypes = [];
+            // console.log("valueExistence: " + individualProperty["name"]);
+            // Identifies the types of the property being evaluated
+            individualProperty["types"].forEach(function(type){
+                if(returnNeo4jNameElement('owl',type) !== null ) {
+                    propertyTypes.push(returnNeo4jNameElement('owl',type));
+                } else {}
+            });
+            // Evaluates only if the property is of object type
+            if (propertyTypes.includes("ObjectProperty")) {
+                session
+                    // Matches the existence of the property value by URI
+                    .run(`MATCH (n{uri:"${valueURI}"}) RETURN n`)
+                    .then(function(results){
+                        if (results.records.length !== 0) {
+                            resolve ({success:{level:"property",name:individualProperty["name"],evaluation:"valueExistence",value:individualProperty["value"]}});
+                        } else {
+                            resolve ({error:{level:"property",name:individualProperty["name"],evaluation:"valueExistence",value:individualProperty["value"]}});
+                        }
+                    })
+                    .catch(function(error){
+                        reject(error);
+                    });
             } else {
-                resolve ({error:{level:"individual",name:individual["name"],evaluation:"ontologyCorrectness",value:individual["ontology"]}});
+                // Evaluates if property value exists (is not null) when is not of object type
+                // UPG: to include a rejection for the promise as it is missing
+                if (individualProperty["value"]!==null) {
+                    resolve ({success:{level:"property",name:individualProperty["name"],evaluation:"valueExistence",value:individualProperty["value"]}});
+                } else {
+                    resolve ({error:{level:"property",name:individualProperty["name"],evaluation:"valueExistence",value:individualProperty["value"]}});
+                }
             }
         });
     };
-    // Individual name correctness
-    let individualName = function(individual) {
-        return new Promise(function(resolve){
-            if (individual["name"]===req.params.individualName){
-                resolve ({success:{level:"individual",name:individual["name"],evaluation:"nameCorrectness",value:individual["name"]}});
-            } else {
-                resolve ({error:{level:"individual",name:individual["name"],evaluation:"nameCorrectness",value:individual["name"]}});
-            }
-        });
+    // A.1.3. Property evaluation: to run all consistency evaluations for a given property
+    // IMP: promises are run concurrently without affecting each to return all evaluation results
+    // IMP: catches rejections of embedded properties to avoid next promise stopping
+    // UPG: to run promises sequentially when results can affect but retrieving all results at the end
+    // UPG: to modify order of promises to comply with sequential evaluation rules
+    let propertyConsistency = async function (individualProperty) {
+        // console.log("propertyConsistency");
+        return await Promise.all([propertyDomain(individualProperty),propertyRange(individualProperty),propertyExistence(individualProperty),propertyValue(individualProperty)].map(p => p.catch(error => error)));
     };
-    // Class level evaluations:
-    // Class existence evaluation
+    // A.2. Individual-level consistency evaluations:
+    // IMP: uses an individual json object as declared for the post method
+    // A.2.1. RDFS rules evaluation:
+    // IMP: includes evaluations of maintainability consistency issues to allow promises to be run for each property
+    // UPG: to extend individual-level consistency evaluations regarding owl rules
+    // A.2.2.1. Class existence evaluation: to evaluate existence of class being instantiated
     let classExistence = function(individual){
         return new Promise(function(resolve, reject){
             const classURI = uriElement + individual["class"];
-            console.log("classExistence: " + individual["class"]);
+            // console.log("classExistence: " + individual["class"]);
             session
+                // Matches the existence of the class by URI
                 .run(`MATCH (n{uri:"${classURI}"}) RETURN n`)
                 .then(function(results){
                     if (results.records.length !== 0) {
@@ -271,19 +539,59 @@ app.post('/api/ontologies/:ontologyName/individual/:individualName/input', funct
                 });
         });
     };
-    // Class properties lack evaluation
+    // A.2.1.2. Properties evaluation: to evaluate correctness of individual properties being instantiated
+    // IMP: maps the property evaluation promise to all properties declared by the individual
+    let individualPropertiesConsistency = async function (individual) {
+        // console.log("individualPropertiesConsistency");
+        return await Promise.all(individual["properties"].map(propertyConsistency));
+    };
+    // A.2.2. Maintainability evaluation:
+    // A.2.2.1. Ontology name correctness: to evaluate the correctness of the individual being instantiated
+    // IMP: compares the ontology name given by the post body and the post request parameters
+    let ontologyName = function(individual) {
+        return new Promise(function(resolve){
+            if (individual["ontology"]===req.params.ontologyName){
+                resolve ({success:{level:"individual",name:individual["name"],evaluation:"ontologyCorrectness",value:individual["ontology"]}});
+            } else {
+                resolve ({error:{level:"individual",name:individual["name"],evaluation:"ontologyCorrectness",value:individual["ontology"]}});
+            }
+        });
+    };
+    // A.2.2.2. Individual name correctness: to evaluate the correctness of the individual being instantiated
+    // IMP: compares the individual name given by the post body and the post request parameters
+    // UPG: to extend name evaluation to specific naming conventions of certain classes
+    let individualName = function(individual) {
+        return new Promise(function(resolve){
+            if (individual["name"]===req.params.individualName){
+                resolve ({success:{level:"individual",name:individual["name"],evaluation:"nameCorrectness",value:individual["name"]}});
+            } else {
+                resolve ({error:{level:"individual",name:individual["name"],evaluation:"nameCorrectness",value:individual["name"]}});
+            }
+        });
+    };
+    // A.2.2.3. Class properties lack: to warn about class properties not being instantiated by the individual
+    // THE: owl:Cardinality | to evaluate if class properties are missing in individual instantiation
+    // THE: antagonist evaluation of domain correctness at individual level (missing <-> extra)
+    // IMP: does not resolve errors, only warnings on missing properties
+    // UPG: to extend to error resolve using owl rules (e.g. owl:cardinality)
     let classPropertiesLack = function(individual){
         return new Promise(function(resolve, reject){
             const classURI = uriElement + individual["class"];
-            console.log("classPropertiesLack: " + individual["class"]);
+            // console.log("classPropertiesLack: " + individual["class"]);
             session
+                // Matches properties declared for the class
                 .run(`MATCH (a:owl__Class{uri:"${classURI}"})<-[r:rdfs__domain]-(b) WHERE b:owl__ObjectProperty OR b:owl__DatatypeProperty RETURN a.uri,b.uri`)
                 .then(function(results){
+                    // Variables to manage individual and class properties names
                     let individualPropertiesNames = [];
                     let classPropertiesNames = [];
+                    // Returns individual properties names
                     individual["properties"].forEach(function(individualProperty){individualPropertiesNames.push(individualProperty["name"])});
+                    // Returns class properties names
                     results.records.forEach(function(record){classPropertiesNames.push(returnUriElement(record._fields[1]))});
+                    // Filters class properties missing at individual declaration
                     let missingPropertiesNames = classPropertiesNames.filter(function(propertyName){return !individualPropertiesNames.includes(propertyName)});
+                    // Resolves a warning with missing properties for the individual
                     resolve ({warning:{level:"individual",name:individual["name"],evaluation:"propertiesLack",value:missingPropertiesNames}})
                 })
                 .catch(function(error){
@@ -291,147 +599,43 @@ app.post('/api/ontologies/:ontologyName/individual/:individualName/input', funct
                 });
         });
     };
-    // Property level evaluations:
-    // Property existence evaluation
-    let propertyExistence = function(individualProperty){
-        return new Promise(function(resolve, reject){
-            const propertyURI = uriElement + individualProperty["name"];
-            console.log("propertyExistence: " + individualProperty["name"]);
-            session
-                .run(`MATCH (n{uri:"${propertyURI}"}) RETURN n`)
-                .then(function(results){
-                    if (results.records.length !== 0) {
-                        resolve ({success:{level:"property",name:individualProperty["name"],evaluation:"propertyExistence",value:individualProperty["name"]}});
-                    } else {
-                        resolve ({error:{level:"property",name:individualProperty["name"],evaluation:"propertyExistence",value:individualProperty["name"]}});
-                    }
-                })
-                .catch(function(error){
-                    reject(error);
-                });
-        });
-    };
-    // Property domain correctness evaluation
-    let propertyDomain = function(individualProperty){
-        return new Promise(function(resolve, reject){
-            const propertyURI = uriElement + individualProperty["name"];
-            const domainURI = uriElement + individualProperty["domain"];
-            console.log("domainExistence: " + individualProperty["name"]);
-            session
-                .run(`MATCH (a{uri:"${propertyURI}"})-[r:rdfs__domain]->(b{uri:"${domainURI}"}) RETURN a.uri,b.uri`)
-                .then(function(results){
-                    if (results.records.length !== 0) {
-                        resolve ({success:{level:"property",name:individualProperty["name"],evaluation:"domainCorrectness",value:individualProperty["domain"]}});
-                    } else {
-                        resolve ({error:{level:"property",name:individualProperty["name"],evaluation:"domainCorrectness",value:individualProperty["domain"]}});
-                    }
-                })
-                .catch(function(error){
-                    reject(error);
-                });
-        });
-    };
-    // Property range correctness evaluation
-    let propertyRange = function(individualProperty){
-        return new Promise(function(resolve, reject){
-            const propertyURI = uriElement + individualProperty["name"];
-            let rangeURI = returnURI(individualProperty["range"]);
-
-            function returnURI(element){
-                const xsdRanges = ["anyURI","base64binary","boolean","byte","dateTime","dateTimeStamp","decimal","double","float","hexBinary","int","integer","language","long","Name","NCName","negativeInteger","NMTOKEN","nonNegativeInteger","nonPositiveInteger","normalizedString","positiveInteger","short","string","token","unsignedByte","unsignedInt","unsignedLong","unsignedShort"];
-                if(xsdRanges.includes(element)){
-                    return datatypeOntologyURI + "#" + element;
-                } else {
-                    return uriElement + element;
-                }
-            }
-
-            console.log("rangeExistence: " + individualProperty["name"]);
-            session
-                .run(`MATCH (a{uri:"${propertyURI}"})-[r:rdfs__range]->(b{uri:"${rangeURI}"}) RETURN a.uri,b.uri`)
-                .then(function(results){
-                    if (results.records.length !== 0) {
-                        resolve ({success:{level:"property",name:individualProperty["name"],evaluation:"rangeCorrectness",value:individualProperty["range"]}});
-                    } else {
-                        resolve ({error:{level:"property",name:individualProperty["name"],evaluation:"rangeCorrectness",value:individualProperty["range"]}});
-                    }
-                })
-                .catch(function(error){
-                    reject(error);
-                });
-        });
-    };
-    // Property value existence (only for object properties)
-    let propertyValue = function(individualProperty){
-        return new Promise(function(resolve, reject){
-            const valueURI = uriElement + individualProperty["value"];
-            const propertyTypes = [];
-            console.log("valueExistence: " + individualProperty["name"]);
-            individualProperty["types"].forEach(function(type){
-                if(returnNeo4jNameElement('owl',type) !== null ) {
-                    propertyTypes.push(returnNeo4jNameElement('owl',type));
-                } else {}
-            });
-            if (propertyTypes.includes("ObjectProperty")) {
-                session
-                    .run(`MATCH (n{uri:"${valueURI}"}) RETURN n`)
-                    .then(function(results){
-                        if (results.records.length !== 0) {
-                            resolve ({success:{level:"property",name:individualProperty["name"],evaluation:"valueExistence",value:individualProperty["value"]}});
-                        } else {
-                            resolve ({error:{level:"property",name:individualProperty["name"],evaluation:"valueExistence",value:individualProperty["value"]}});
-                        }
-                    })
-                    .catch(function(error){
-                        reject(error);
-                    });
-            } else {
-                if (individualProperty["value"]!==null) {
-                    resolve ({success:{level:"property",name:individualProperty["name"],evaluation:"valueExistence",value:individualProperty["value"]}});
-                } else {
-                    resolve ({error:{level:"property",name:individualProperty["name"],evaluation:"valueExistence",value:individualProperty["value"]}});
-                }
-            }
-        });
-    };
-    // Consistency evaluation
-    // Evaluate results of individual evaluations and return errors, successes and warnings
-    // Property evaluation
-    let propertyConsistency = async function (individualProperty) {
-        console.log("propertyConsistency");
-        return await Promise.all([propertyExistence(individualProperty),propertyDomain(individualProperty),propertyRange(individualProperty),propertyValue(individualProperty)].map(p => p.catch(error => error)));
-    };
-    // Individual properties evaluation
-    let individualPropertiesConsistency = async function (individual) {
-        console.log("individualPropertiesConsistency");
-        return await Promise.all(individual["properties"].map(propertyConsistency));
-    };
-    // Individual consistency
+    // A.2.3. Individual evaluation:
+    // A.2.3.1. Individual assessment: to run all consistency evaluation promises for a given individual
+    // IMP: runs promises concurrently according to declaration order
+    // IMP: catches rejections to avoid next promises to stop working
+    // UPG: to modify sequential order for running promises that may affect others
     let individualConsistency = async function (individual) {
-        console.log("individualConsistency");
-        return await Promise.all([ontologyName(individual),individualName(individual),classExistence(individual),classPropertiesLack(individual),individualPropertiesConsistency(individual)].map(p => p.catch(error => error)));
+        // console.log("individualConsistency");
+        return await Promise.all([classExistence(individual),individualPropertiesConsistency(individual),ontologyName(individual),individualName(individual),classPropertiesLack(individual)].map(p => p.catch(error => error)));
     };
-    // Individual evaluation
+    // A.2.3.2. Individual evaluation: to assess results of concurrent promises run at individual and property levels
+    // IMP: awaits for resolve evaluation results and organises them according to success, errors and warnings
+    // IMP: considers concurrent order in which previous promise returns results
     let individualEvaluation = function(individual) {
         return new Promise(function(resolve, reject){
-            console.log("individualEvaluation");
+            // console.log("individualEvaluation");
             individualConsistency(individual)
                 .then(function(results) {
                     let successes = [];
                     let errors = [];
                     let warnings = [];
+                    // Class existence
                     evaluateSuccess(results[0],successes,errors,warnings);
-                    evaluateSuccess(results[1],successes,errors,warnings);
-                    evaluateSuccess(results[2],successes,errors,warnings);
-                    evaluateSuccess(results[3],successes,errors,warnings);
-                    results[4].forEach(function(property){
+                    // Individual properties
+                    results[1].forEach(function(property){
                         property.forEach(function(element){
                             evaluateSuccess(element,successes,errors,warnings);
                         });
                     });
-
+                    // Ontology name
+                    evaluateSuccess(results[2],successes,errors,warnings);
+                    // Individual name
+                    evaluateSuccess(results[3],successes,errors,warnings);
+                    // Class properties lack
+                    evaluateSuccess(results[4],successes,errors,warnings);
+                    // Resolves a json object including success, errors and warning results of consistency evaluations
                     resolve({successes: successes, errors: errors, warnings: warnings});
-
+                    // IMP: evaluates results according to promise return json objects for each evaluation
                     function evaluateSuccess (item,successes,errors,warnings) {
                         if (item["success"]) {
                             return successes.push(item["success"]);
@@ -447,44 +651,37 @@ app.post('/api/ontologies/:ontologyName/individual/:individualName/input', funct
                 });
         });
     };
-    // Individual review
-    let individualReview = async function (individual) {
-        console.log("individual");
-        return await individualEvaluation(individual);
-    };
-    // Individual generation:
-    // Node generation
-    let individualNodeCreation = function (individual) {
-        return new Promise(function(resolve, reject){
-            console.log("individualNodeCreation");
-            console.log(`MERGE (n:Resource:owl__NamedIndividual:${individual["ontology"]}__${individual["class"]}{uri:"${uriElement+individual["name"]}"}) RETURN n`);
-            session
-                .run(`MERGE (n:Resource:owl__NamedIndividual:${individual["ontology"]}__${individual["class"]}{uri:"${uriElement+individual["name"]}"}) RETURN n`)
-                .then(function(results){
-                    resolve (results);
-                })
-                .catch(function(error){
-                    reject (error);
-                })
-        });
-    };
-    // Properties generation
+    // B. INDIVIDUAL INSTANTIATION
+    // THE: to generate an individual and then assign all the values to the properties being instantiated
+    // IMP: follows same code structure as individual evaluation (property and individual levels)
+    // IMP: instantiation follows neo4j-neosemantics structure and notation
+    // IMP: generates a node, including class labels, and then instantiate properties
+    // IMP: properties are instantiated as node properties (data type) or as nodes with ontology relations (object type)
+    // B.1. Property-level instantiations: to instantiate a property value to an individual
+    // IMP: given the individual name, ontology name and the property (json object) instantiates the property to the individual
+    // IMP: differentiates between datatype (node property) and object type (relation and node) properties
     let individualPropertyCreation = function (individualName,individualOntology,individualProperty) {
         return new Promise(function(resolve, reject){
-            console.log("individualPropertyCreation");
+            // console.log("individualPropertyCreation");
+            // Variable to manage property types
             let propertyTypes = [];
+            // Variable to manage cypher instantiation query
             let sessionQuery;
+            // Evaluates property types
             individualProperty["types"].forEach(function(type){
                 if(returnNeo4jNameElement('owl',type) !== null ) {
                     propertyTypes.push(returnNeo4jNameElement('owl',type));
                 } else {}
             });
             if (propertyTypes.includes("DatatypeProperty")) {
+                // Matches individual by URI and sets a new node property
                 sessionQuery = `MATCH (n{uri:"${uriElement+individualName}"}) SET n.${individualOntology}__${individualProperty["name"]}="${individualProperty["value"]}" RETURN n`;
             } else if (propertyTypes.includes("ObjectProperty")) {
+                // Matches individual by URI and merges new relation with existing individual
                 sessionQuery = `MATCH (a{uri:"${uriElement+individualName}"}),(b{uri:"${uriElement+individualProperty["value"]}"}) MERGE (a)-[r:${individualOntology}__${individualProperty["name"]}]->(b) RETURN a,r,b`
             } else {}
             session
+                // Runs cypher query and resolve results
                 .run(sessionQuery)
                 .then(function(results){
                     resolve(results);
@@ -494,26 +691,53 @@ app.post('/api/ontologies/:ontologyName/individual/:individualName/input', funct
                 });
         });
     };
-    // Properties instantiation
+    // B.2. Individual-level instantiations:
+    // B.2.1. Individual instantiation: to generate the node in knowledge base graph representing the new individual
+    // IMP: uses neosemantics notation to merge node as owl:NamedIndividual and as of ontology class
+    let individualNodeCreation = function (individual) {
+        return new Promise(function(resolve, reject){
+            // console.log("individualNodeCreation");
+            // console.log(`MERGE (n:Resource:owl__NamedIndividual:${individual["ontology"]}__${individual["class"]}{uri:"${uriElement+individual["name"]}"}) RETURN n`);
+            session
+                // Merges individual as node by URI
+                .run(`MERGE (n:Resource:owl__NamedIndividual:${individual["ontology"]}__${individual["class"]}{uri:"${uriElement+individual["name"]}"}) RETURN n`)
+                .then(function(results){
+                    resolve (results);
+                })
+                .catch(function(error){
+                    reject (error);
+                })
+        });
+    };
+    // B.2.2. Properties instantiations: to generate all properties that identifies the new individual
+    // IMP: promises instantiation of all individual properties
     let individualPropertiesInstantiation = async function (individual) {
-        console.log("individualPropertiesInstantiation");
+        // console.log("individualPropertiesInstantiation");
         return await Promise.all(individual["properties"].map(function(property){return individualPropertyCreation(individual["name"],individual["ontology"],property)}));
     };
-    // Individual instantiation
+    // C. RESOLUTION
+    // C.1. Individual review: promises to assess individual and its properties against all consistency evaluations
+    let individualReview = async function (individual) {
+        // console.log("individual");
+        return await individualEvaluation(individual);
+    };
+    // C.2. Individual instantiation: promises to instantiate individual and its properties in neo4j knowledge base graph
     let individualInstantiation = async function (individual) {
-        console.log("individualInstantiation");
+        // console.log("individualInstantiation");
         let individualNodeInstantiation = await individualNodeCreation(individual);
         let individualPropsInstantiation = await individualPropertiesInstantiation(individual);
         return await [individualNodeInstantiation,individualPropsInstantiation];
     };
-    // Individual resolution (review and instantiation)
+    // C.3. Individual input: to input individual into knowledge base graph according to evaluation results
+    // IMP: awaits for individual review resolution to run promise on individual instantiation and return successes/errors/warnings
+    // UPG: to modify function as a new promise that can be easily exported
     individualReview(req.body)
         .then(function(reviewResults){
             if (reviewResults["errors"].length!==0){
-                console.log("Errors");
+                // console.log("Errors");
                 res.send({warnings:reviewResults["warnings"],errors:reviewResults["errors"]});
             } else {
-                console.log("No errors");
+                // console.log("No errors");
                 individualInstantiation(req.body)
                     .then(function(inputResults){
                         let inputResolution = [];
@@ -530,47 +754,12 @@ app.post('/api/ontologies/:ontologyName/individual/:individualName/input', funct
             res.send(reviewError);
         });
 });
-// File-related POST requests
-// Ontology file-related POST requests
-// Image file-related POST requests
-// 3D Model file-related POST requests
-
-// PUT
-
-// DELETE
-
-// PORT
+// 5.3. PUT REQUESTS
+// 5.4. DELETE REQUESTS
+// 6. PORT
+// IMP: Initialise port for the server to start listen in
 app.listen(port, function(){console.log(`Server listening on port: ${port}`)});
-
-// EXPORTING METHOD
-// To export the functions declare as a single class
+// 7. EXPORT
+// IMP: to export the app (express) functions declare as a class
+// UPG: when functions declared more generically, class can be exported to be used by other servers
 module.export = app;
-
-// FUNCTIONS
-// Specific functions created to add data processing support to server exchange
-// This can be exported as middleware independently afterwards if too many
-function returnUriElement (uri) {
-    // For parsing uri elements generically
-    // If not null, returns element name splitted from uri after "#"
-    if (uri != null) {
-        return uri.split("#")[1];
-    } else {
-        return null;
-    }
-}
-function returnNeo4jNameElement (prefix, element) {
-    // For parsing prefixed names in neo4j
-    // If not null, retrieve elements name that match the ontology prefix
-    if (element.includes("__") === true && element.split("__")[0] === prefix) {
-        return element.split("__")[1];
-    } else {
-        return null;
-    }
-}
-function returnAvailable (dirname,filename) {
-    // Returns true if filename can be found in dirname directory
-    // Avoids 'hidden' directories '.'
-    let filesAvailable = fs.readdirSync(dirname);
-    filesAvailable = filesAvailable.filter(item => !(/(^|\/)\.[^\/\.]/g).test(item));
-    return filesAvailable.includes(filename);
-}
