@@ -79,7 +79,7 @@ const port = process.env.PORT || 3003;
 // 4.1.2. Ontologies uri management (considers limited number of ontologies and so prefixes)
 // UPG: to re-write server functionality considering existence of non-proprietary ontologies
 // IMP: to consider that only ontologies declared by the server are available
-const ontologiesURI = "http://138.250.108.1:3003/api/files/ontologies/";
+const ontologiesURI = "http://138.250.108.1:3003/api/files/owl/";
 // IMP: to manage only non-propietary ontology required for rdfs reasoning
 const datatypeOntologyURI = "http://www.w3.org/2001/XMLSchema";
 // IMP: to manage non-used ontology prefixes declared in neo4j
