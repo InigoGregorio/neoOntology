@@ -81,7 +81,7 @@ const port = process.env.PORT || 3003;
 // UPG: to re-write server functionality to read ontologies available from neo4j database
 // IMP: to consider that only ontologies declared in the server are available
 const ontologiesURI = "http://138.250.108.1:3003/api/files/owl/";
-// IMP: to manage non-propietary ontologies required for rdfs reasoning
+// IMP: to manage non-proprietary ontologies required for rdfs reasoning
 const classOntologyURI = "http://www.w3.org/2002/07/owl";
 // const datatypeOntologyURI = "http://www.w3.org/2001/XMLSchema";
 // IMP: to manage non-used ontology prefixes declared in neo4j
