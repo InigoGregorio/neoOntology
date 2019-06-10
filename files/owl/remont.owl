@@ -269,6 +269,18 @@
     
 
 
+    <!-- http://138.250.108.1:3003/api/files/owl/remont#hasConfirmationPicture -->
+
+    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/remont#hasConfirmationPicture">
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/remont#remontData"/>
+        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/remont#Confirmation"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+        <rdfs:comment>additional picture to completely describe the quality of the task conducted relative to the message</rdfs:comment>
+        <rdfs:label>hasConfirmationPicture</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://138.250.108.1:3003/api/files/owl/remont#hasDescription -->
 
     <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/remont#hasDescription">
