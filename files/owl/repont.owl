@@ -528,7 +528,7 @@
 
     <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/repont#repont">
         <rdfs:comment>set of all concepts presented for rtrbau validation</rdfs:comment>
-        <rdfs:label>Rtrbau</rdfs:label>
+        <rdfs:label>repont</rdfs:label>
     </owl:Class>
     
 

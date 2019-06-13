@@ -515,7 +515,7 @@
 
     <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#orgont">
         <rdfs:comment>set of all concepts presented for rtrbau validation</rdfs:comment>
-        <rdfs:label>Orgont</rdfs:label>
+        <rdfs:label>orgont</rdfs:label>
     </owl:Class>
     
 

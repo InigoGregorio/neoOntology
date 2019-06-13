@@ -598,7 +598,7 @@
 
     <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/remont#remont">
         <rdfs:comment>set of all concepts about remote diagnosis presented for rtrbau validation</rdfs:comment>
-        <rdfs:label>Remont</rdfs:label>
+        <rdfs:label>remont</rdfs:label>
     </owl:Class>
     
 
