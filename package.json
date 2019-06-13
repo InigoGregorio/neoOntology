@@ -1,8 +1,8 @@
 {
-  "name": "rtrbau_v.0.1",
-  "version": "1.0.0",
-  "description": "Neo4j-Nodejs server for rtrbau experimentation",
-  "main": "rtrbau.js",
+  "name": "neoOntology",
+  "version": "0.0.1",
+  "description": "data storage service for ontologies and related files",
+  "main": "neoOntology.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
