@@ -447,7 +447,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/repont#Datatype -->
 
     <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/repont#Datatype">
-        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/repont#Repont"/>
+        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/repont#repont"/>
         <rdfs:comment>set of all elements to declare specific datatypes</rdfs:comment>
         <rdfs:label>Datatype</rdfs:label>
     </owl:Class>
@@ -477,7 +477,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/repont#Maintenance -->
 
     <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/repont#Maintenance">
-        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/repont#Repont"/>
+        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/repont#repont"/>
         <rdfs:comment>set of all concepts related to maintenance operations</rdfs:comment>
         <rdfs:label>Maintenance</rdfs:label>
     </owl:Class>
@@ -514,21 +514,21 @@
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/repont#Repont -->
-
-    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/repont#Repont">
-        <rdfs:comment>set of all concepts presented for rtrbau validation</rdfs:comment>
-        <rdfs:label>Rtrbau</rdfs:label>
-    </owl:Class>
-    
-
-
     <!-- http://138.250.108.1:3003/api/files/owl/repont#SpatialRelation -->
 
     <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/repont#SpatialRelation">
         <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/repont#Datatype"/>
         <rdfs:comment>class of spatial relation between pairs</rdfs:comment>
         <rdfs:label>SpatialRelation</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/repont#repont -->
+
+    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/repont#repont">
+        <rdfs:comment>set of all concepts presented for rtrbau validation</rdfs:comment>
+        <rdfs:label>Rtrbau</rdfs:label>
     </owl:Class>
     
 

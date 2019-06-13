@@ -444,7 +444,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/orgont#Agent -->
 
     <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#Agent">
-        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Orgont"/>
+        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#orgont"/>
         <rdfs:comment>human being that works for an organisation</rdfs:comment>
         <rdfs:label>Agent</rdfs:label>
     </owl:Class>
@@ -454,7 +454,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/orgont#AgentType -->
 
     <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AgentType">
-        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Orgont"/>
+        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#orgont"/>
         <rdfs:comment>kind of work for which an agent is employed by an organisation</rdfs:comment>
         <rdfs:label>AgentType</rdfs:label>
     </owl:Class>
@@ -464,7 +464,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/orgont#Asset -->
 
     <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#Asset">
-        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Orgont"/>
+        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#orgont"/>
         <rdfs:comment>real-life item that has a value for an organisation</rdfs:comment>
         <rdfs:label>Asset</rdfs:label>
     </owl:Class>
@@ -474,7 +474,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/orgont#Component -->
 
     <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#Component">
-        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Orgont"/>
+        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#orgont"/>
         <rdfs:comment>constituent part of a system that provides a specific functionality</rdfs:comment>
         <rdfs:label>Component</rdfs:label>
     </owl:Class>
@@ -484,7 +484,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/orgont#Location -->
 
     <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#Location">
-        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Orgont"/>
+        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#orgont"/>
         <rdfs:comment>position of a real-life item</rdfs:comment>
         <rdfs:label>Location</rdfs:label>
     </owl:Class>
@@ -494,18 +494,9 @@
     <!-- http://138.250.108.1:3003/api/files/owl/orgont#Organisation -->
 
     <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#Organisation">
-        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Orgont"/>
+        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#orgont"/>
         <rdfs:comment>group of people and objects that belong or work for the same entity</rdfs:comment>
         <rdfs:label>Organisation</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#Orgont -->
-
-    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#Orgont">
-        <rdfs:comment>set of all concepts presented for rtrbau validation</rdfs:comment>
-        <rdfs:label>Orgont</rdfs:label>
     </owl:Class>
     
 
@@ -513,9 +504,18 @@
     <!-- http://138.250.108.1:3003/api/files/owl/orgont#System -->
 
     <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#System">
-        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Orgont"/>
+        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#orgont"/>
         <rdfs:comment>interdependent set of components that provides a unique service to an asset or a system</rdfs:comment>
         <rdfs:label>System</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#orgont -->
+
+    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#orgont">
+        <rdfs:comment>set of all concepts presented for rtrbau validation</rdfs:comment>
+        <rdfs:label>Orgont</rdfs:label>
     </owl:Class>
     
 

@@ -497,7 +497,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/remont#Datatype -->
 
     <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/remont#Datatype">
-        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/remont#Remont"/>
+        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/remont#remont"/>
         <rdfs:comment>set of all elements to declare specific datatypes</rdfs:comment>
         <rdfs:label>Datatype</rdfs:label>
     </owl:Class>
@@ -527,7 +527,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/remont#Maintenance -->
 
     <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/remont#Maintenance">
-        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/remont#Remont"/>
+        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/remont#remont"/>
         <rdfs:comment>set of all concepts related to maintenance operations</rdfs:comment>
         <rdfs:label>Maintenance</rdfs:label>
     </owl:Class>
@@ -584,21 +584,21 @@
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/remont#Remont -->
-
-    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/remont#Remont">
-        <rdfs:comment>set of all concepts about remote diagnosis presented for rtrbau validation</rdfs:comment>
-        <rdfs:label>Remont</rdfs:label>
-    </owl:Class>
-    
-
-
     <!-- http://138.250.108.1:3003/api/files/owl/remont#RemoteDiagnosis -->
 
     <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/remont#RemoteDiagnosis">
         <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/remont#Maintenance"/>
         <rdfs:comment>set of all concepts related to maintenance remote diagnosis operations</rdfs:comment>
         <rdfs:label>RemoteDiagnosis</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/remont#remont -->
+
+    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/remont#remont">
+        <rdfs:comment>set of all concepts about remote diagnosis presented for rtrbau validation</rdfs:comment>
+        <rdfs:label>Remont</rdfs:label>
     </owl:Class>
     
 
