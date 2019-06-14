@@ -147,6 +147,12 @@ function returnURIfromNeo4jElement (element) {
         return null;
     }
 }
+// 4.2.2.4. Construct uri from ontology name: to convert names in uri notiation
+// IMP: returns the uri of given ontology prefix and class name
+function constructURI (prefix,name) {
+    // Concatenates ontological names to create the uri resource
+    return ontologiesURI + prefix + "#" + name;
+}
 // 5. HTTP METHODS
 // 5.1. GET REQUESTS
 // 5.1.1. File GET requests:
@@ -228,7 +234,8 @@ app.get('/api/ontologies', function(req,res){
 // UPG: that will require to maintain a list of available prefixes similar to the one in neo4j node, maybe consult?
 app.get('/api/ontologies/:ontologyName/class/:className/subclasses', function(req,res){
     // Variable to identify relevant uri to look for
-    let uriElement = ontologiesURI + req.params.ontologyName + "#" + req.params.className;
+    // let uriElement = ontologiesURI + req.params.ontologyName + "#" + req.params.className;
+    let uriElement = constructURI(req.params.ontologyName, req.params.className);
     // Variable to capture subclasses names
     let subclassesArray = [];
     session
@@ -255,7 +262,7 @@ app.get('/api/ontologies/:ontologyName/class/:className/subclasses', function(re
 // UPG: to extend class declaration with owl language elements (e.g. owl:cardinality, owl:functionality, etc.)
 // UPG: to use owl elements to infer all superclasses a class belong to identify the properties to instantiate an individual to the class
 app.get('/api/ontologies/:ontologyName/class/:className/properties', function(req,res){
-    let uriElement = ontologiesURI + req.params.ontologyName + "#" + req.params.className;
+    let uriElement = constructURI(req.params.ontologyName, req.params.className);
     session
         // Matches owl__Class nodes with owl__ObjectProperty and owl__DatatypeProperty nodes and with other class nodes by rdfs:domain and rdfs:range
         .run(`MATCH (a:owl__Class{uri:"${uriElement}"})<-[r:rdfs__domain]-(b)-[s:rdfs__range]->(c) WHERE b:owl__ObjectProperty OR b:owl__DatatypeProperty RETURN a.uri,labels(b),b.uri,c.uri`)
@@ -295,7 +302,7 @@ app.get('/api/ontologies/:ontologyName/class/:className/properties', function(re
 // IMP: given an ontology and a class name, returns its individuals in json format
 // UPG: to extend identification of class and individuals that may be replicated in other ontologies
 app.get('/api/ontologies/:ontologyName/class/:className/individuals', function(req,res){
-    let uriElement = ontologiesURI + req.params.ontologyName + "#" + req.params.className;
+    let uriElement = constructURI(req.params.ontologyName, req.params.className);
     // Variable to identify individuals names
     let individualsArray = [];
     session
@@ -315,6 +322,33 @@ app.get('/api/ontologies/:ontologyName/class/:className/individuals', function(r
             res.json(err);
         });
 });
+// 5.1.2.2.4. Classes distance: to retrieve minimum distance between two classes
+// THE: owl:ObjectProperty | to identify relationships between two classes and calculate their distance
+// IMP: uses neosemantics notation (ontology__element) to identify classes and object properties
+// IMP: assumes all object properties considered belong to a specific ontology
+// UPG: to extend to different type of distances being calculated
+app.get('/api/ontologies/:ontologyStartName/class/:classStartName/distance/:ontologyDistanceName/:ontologyEndName/class/:classEndName', function(req,res){
+    session
+        // Matches all individual nodes instantiated by the given classes
+        // Return the minimum length of the shortest paths found between those two sets of nodes
+        .run(`MATCH (a:${req.params.ontologyStartName}__${req.params.classStartName}),
+        (b:${req.params.ontologyEndName}__${req.params.classEndName}),p = shortestPath((a)-[*]-(b)) 
+        WHERE ALL (r in relationships(p) WHERE type(r) STARTS WITH "${req.params.ontologyDistanceName}")
+        RETURN min(length(p))`)
+        .then(function(result){
+            // Builds uri resources for classes constructed
+            let classStartURI = constructURI(req.params.ontologyStartName, req.params.classStartName);
+            let classEndURI = constructURI(req.params.ontologyEndName, req.params.classEndName);
+            // Parses number retrieved from neo4j to string
+            let classesDistance = result.records[0]._fields[0].low.toString();
+            // Builds json object to send distance between two classes
+            res.json({startClass: classStartURI, endClass: classEndURI, distance: classesDistance});
+        })
+        .catch(function(err){
+            res.json(err);
+        });
+});
+
 // 5.1.2.3. Individual-level GET requests:
 // 5.1.2.3.1. Individual properties: to identify the properties that describe an individual in an ontology
 // THE: owl:NamedIndividual | to identify an individual by the properties and values used to declare it
@@ -323,14 +357,14 @@ app.get('/api/ontologies/:ontologyName/class/:className/individuals', function(r
 // UPG: to extend property declaration including domain and range of each property returned
 // UPG: to extend evaluation of properties retrieved by the ontology being consulted (ontology__Property)
 app.get('/api/ontologies/:ontologyName/individual/:individualName/properties', function(req,res){
-    let uriElement = ontologiesURI + req.params.ontologyName + "#" + req.params.individualName;
+    let uriElement = constructURI(req.params.ontologyName, req.params.individualName);
     // Variables to capture elements independently due to the message structure retrieved by the cypher query
     let classArray;
     // Object properties are stored differently than data properties as they require different capture methods
     let dataPropertiesArray = [];
     let objectPropertiesArray = [];
     session
-    // Matches node by uri and owl__NamedIndividual label and returns classes (labels), and datatype (properties) and object (relations{type}) properties
+        // Matches node by uri and owl__NamedIndividual label and returns classes (labels), and datatype (properties) and object (relations{type}) properties
         .run(`MATCH (a:owl__NamedIndividual{uri:"${uriElement}"})-[r]->(b) RETURN a.uri, labels(a), properties(a), type(r), b.uri`)
         .then(function(result){
             // Evaluates neo4j results using their array indexes
@@ -493,7 +527,7 @@ app.post('/api/ontologies/:ontologyName/individual/:individualName/input', funct
     let propertyExistence = function(individualProperty){
         return new Promise(function(resolve, reject){
             // const propertyURI = uriElement + individualProperty["name"];
-            //console.log("propertyExistence: " + individualProperty["name"]);
+            // console.log("propertyExistence: " + individualProperty["name"]);
             session
                 // Matches the existence of the property by URI
                 // .run(`MATCH (n{uri:"${propertyURI}"}) RETURN n`)
@@ -619,7 +653,8 @@ app.post('/api/ontologies/:ontologyName/individual/:individualName/input', funct
     let individualName = function(individual) {
         return new Promise(function(resolve){
             // if (individual["name"]===req.params.individualName){
-            const uriElement = ontologiesURI + req.params.ontologyName + "#" + req.params.individualName;
+            // const uriElement = ontologiesURI + req.params.ontologyName + "#" + req.params.individualName;
+            let uriElement = constructURI(req.params.ontologyName, req.params.individualName);
             if (individual["name"]===uriElement){
                 resolve ({success:{level:"individual",name:individual["name"],evaluation:"nameCorrectness",value:individual["name"]}});
             } else {
