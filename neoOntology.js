@@ -210,8 +210,8 @@ app.get('/api/ontologies', function(req,res){
                     if (ontologiesDisabled.includes(record._fields[0][ontologyKey]) !== true){
                         // Obtain elements from neo4j record and pass them over sending message
                         ontologies.push({
-                            prefix: record._fields[0][ontologyKey],
-                            uri: ontologyKey
+                            ontprefix: record._fields[0][ontologyKey],
+                            onturi: ontologyKey
                         });
                     } else {}
                 });
@@ -249,7 +249,7 @@ app.get('/api/ontologies/:ontologyName/class/:className/subclasses', function(re
             });
             // Formats results in a json object
             // res.json({class: req.params.className, subclasses: subclassesArray});
-            res.json({class: uriElement, subclasses: subclassesArray});
+            res.json({ontclass: uriElement, ontsubclasses: subclassesArray});
         })
         .catch(function(err){
             res.json(err);
@@ -282,15 +282,15 @@ app.get('/api/ontologies/:ontologyName/class/:className/properties', function(re
                     // Record fields are declared according to cypher response structure
                     // name: returnUriElement(record._fields[2]),
                     // range: returnUriElement(record._fields[3]),
-                    name: record._fields[2],
-                    range: record._fields[3],
-                    types: propertyTypesArray
+                    ontname: record._fields[2],
+                    ontrange: record._fields[3],
+                    onttypes: propertyTypesArray
                 });
                 // Regenerate propertyTypesArray for new property to be pushed into the array
                 propertyTypesArray = [];
             });
             // Returns class and properties in json format
-            res.json({class: uriElement, properties: propertiesArray});
+            res.json({ontclass: uriElement, ontproperties: propertiesArray});
         })
         .catch(function(err){
             res.json(err);
@@ -316,7 +316,7 @@ app.get('/api/ontologies/:ontologyName/class/:className/individuals', function(r
             });
             // Returns individuals names of class name in json format
             // res.json({class: req.params.className, individuals: individualsArray});
-            res.json({class: uriElement, individuals: individualsArray});
+            res.json({ontclass: uriElement, ontindividuals: individualsArray});
         })
         .catch(function(err){
             res.json(err);
@@ -342,7 +342,7 @@ app.get('/api/ontologies/:ontologyStartName/class/:classStartName/distance/:onto
             // Parses number retrieved from neo4j to string
             let classesDistance = result.records[0]._fields[0].low.toString();
             // Builds json object to send distance between two classes
-            res.json({startClass: classStartURI, endClass: classEndURI, distance: classesDistance});
+            res.json({ontstartClass: classStartURI, ontendClass: classEndURI, ontdistance: classesDistance});
         })
         .catch(function(err){
             res.json(err);
@@ -387,9 +387,9 @@ app.get('/api/ontologies/:ontologyName/individual/:individualName/properties', f
                            dataPropertiesArray.push({
                                // name: returnNeo4jNameElement(req.params.ontologyName,dataPropertyKey),
                                // value: record._fields[2][dataPropertyKey]
-                               name: returnURIfromNeo4jElement(dataPropertyKey),
-                               value: record._fields[2][dataPropertyKey],
-                               types: classOntologyURI + "#" + "DatatypeProperty"
+                               ontname: returnURIfromNeo4jElement(dataPropertyKey),
+                               ontvalue: record._fields[2][dataPropertyKey],
+                               onttypes: classOntologyURI + "#" + "DatatypeProperty"
                            });
                        } else {}
                     });
@@ -398,14 +398,14 @@ app.get('/api/ontologies/:ontologyName/individual/:individualName/properties', f
                 objectPropertiesArray.push({
                     // name: returnNeo4jNameElement(req.params.ontologyName,record._fields[3]),
                     // value: returnUriElement(record._fields[4])
-                    name: returnURIfromNeo4jElement(record._fields[3]),
-                    value: (record._fields[4]),
-                    types: classOntologyURI + "#" + "ObjectProperty"
+                    ontname: returnURIfromNeo4jElement(record._fields[3]),
+                    ontvalue: (record._fields[4]),
+                    onttypes: classOntologyURI + "#" + "ObjectProperty"
                 });
             });
             // Returns individual name, class name, and properties (datatype and object concatenated) name and value in json format
             // res.json({individual: req.params.individualName, class: classArray, properties: dataPropertiesArray.concat(objectPropertiesArray)});
-            res.json({individual: uriElement, class: classArray, properties: dataPropertiesArray.concat(objectPropertiesArray)});
+            res.json({ontindividual: uriElement, ontclass: classArray, ontproperties: dataPropertiesArray.concat(objectPropertiesArray)});
         })
         .catch(function(err){
             res.json(err);
@@ -469,13 +469,13 @@ app.post('/api/ontologies/:ontologyName/individual/:individualName/input', funct
             session
                 // Matches the existence of the domain for the property
                 // .run(`MATCH (a{uri:"${propertyURI}"})-[r:rdfs__domain]->(b{uri:"${domainURI}"}) RETURN a.uri,b.uri`)
-                .run(`MATCH (a{uri:"${individualProperty["name"]}"})-[r:rdfs__domain]->(b{uri:"${individualProperty["domain"]}"}) RETURN a.uri,b.uri`)
+                .run(`MATCH (a{uri:"${individualProperty["ontname"]}"})-[r:rdfs__domain]->(b{uri:"${individualProperty["ontdomain"]}"}) RETURN a.uri,b.uri`)
                 .then(function(results){
                     // Resolves with a success or an error json object
                     if (results.records.length !== 0) {
-                        resolve ({success:{level:"property",name:individualProperty["name"],evaluation:"domainCorrectness",value:individualProperty["domain"]}});
+                        resolve ({ontsuccess:{level:"property",ontname:individualProperty["ontname"],ontevaluation:"domainCorrectness",ontvalue:individualProperty["ontdomain"]}});
                     } else {
-                        resolve ({error:{level:"property",name:individualProperty["name"],evaluation:"domainCorrectness",value:individualProperty["domain"]}});
+                        resolve ({onterror:{level:"property",ontname:individualProperty["ontname"],ontevaluation:"domainCorrectness",ontvalue:individualProperty["ontdomain"]}});
                     }
                 })
                 // Rejection is used to cope with neo4j related errors
@@ -505,13 +505,13 @@ app.post('/api/ontologies/:ontologyName/individual/:individualName/input', funct
             session
                 // Matches the existence of the property range
                 // .run(`MATCH (a{uri:"${propertyURI}"})-[r:rdfs__range]->(b{uri:"${rangeURI}"}) RETURN a.uri,b.uri`)
-                .run(`MATCH (a{uri:"${individualProperty["name"]}"})-[r:rdfs__range]->(b{uri:"${individualProperty["range"]}"}) RETURN a.uri,b.uri`)
+                .run(`MATCH (a{uri:"${individualProperty["ontname"]}"})-[r:rdfs__range]->(b{uri:"${individualProperty["ontrange"]}"}) RETURN a.uri,b.uri`)
                 .then(function(results){
                     // Resolves for the property range according to evaluation json object
                     if (results.records.length !== 0) {
-                        resolve ({success:{level:"property",name:individualProperty["name"],evaluation:"rangeCorrectness",value:individualProperty["range"]}});
+                        resolve ({ontsuccess:{ontlevel:"property",ontname:individualProperty["ontname"],ontevaluation:"rangeCorrectness",ontvalue:individualProperty["ontrange"]}});
                     } else {
-                        resolve ({error:{level:"property",name:individualProperty["name"],evaluation:"rangeCorrectness",value:individualProperty["range"]}});
+                        resolve ({onterror:{ontlevel:"property",ontname:individualProperty["ontname"],ontevaluation:"rangeCorrectness",ontvalue:individualProperty["ontrange"]}});
                     }
                 })
                 .catch(function(error){
@@ -531,13 +531,13 @@ app.post('/api/ontologies/:ontologyName/individual/:individualName/input', funct
             session
                 // Matches the existence of the property by URI
                 // .run(`MATCH (n{uri:"${propertyURI}"}) RETURN n`)
-                .run(`MATCH (n{uri:"${individualProperty["name"]}"}) RETURN n`)
+                .run(`MATCH (n{uri:"${individualProperty["ontname"]}"}) RETURN n`)
                 .then(function(results){
                     // Resolves for the property name according to evaluation json object
                     if (results.records.length !== 0) {
-                        resolve ({success:{level:"property",name:individualProperty["name"],evaluation:"propertyExistence",value:individualProperty["name"]}});
+                        resolve ({ontsuccess:{ontlevel:"property",ontname:individualProperty["ontname"],ontevaluation:"propertyExistence",ontvalue:individualProperty["ontname"]}});
                     } else {
-                        resolve ({error:{level:"property",name:individualProperty["name"],evaluation:"propertyExistence",value:individualProperty["name"]}});
+                        resolve ({onterror:{ontlevel:"property",ontname:individualProperty["ontname"],ontevaluation:"propertyExistence",ontvalue:individualProperty["ontname"]}});
                     }
                 })
                 .catch(function(error){
@@ -560,7 +560,7 @@ app.post('/api/ontologies/:ontologyName/individual/:individualName/input', funct
             //         propertyTypes.push(returnNeo4jNameElement('owl',type));
             //     } else {}
             // });
-            individualProperty["types"].forEach(function(type){
+            individualProperty["onttypes"].forEach(function(type){
                 if(returnUriElement(type) !== null ) {
                     propertyTypes.push(returnUriElement(type));
                 } else {}
@@ -570,12 +570,12 @@ app.post('/api/ontologies/:ontologyName/individual/:individualName/input', funct
                 session
                     // Matches the existence of the property value by URI
                     // .run(`MATCH (n{uri:"${valueURI}"}) RETURN n`)
-                    .run(`MATCH (n{uri:"${individualProperty["value"]}"}) RETURN n`)
+                    .run(`MATCH (n{uri:"${individualProperty["ontvalue"]}"}) RETURN n`)
                     .then(function(results){
                         if (results.records.length !== 0) {
-                            resolve ({success:{level:"property",name:individualProperty["name"],evaluation:"valueExistence",value:individualProperty["value"]}});
+                            resolve ({ontsuccess:{ontlevel:"property",ontname:individualProperty["ontname"],ontevaluation:"valueExistence",ontvalue:individualProperty["ontvalue"]}});
                         } else {
-                            resolve ({error:{level:"property",name:individualProperty["name"],evaluation:"valueExistence",value:individualProperty["value"]}});
+                            resolve ({onterror:{ontlevel:"property",ontname:individualProperty["ontname"],ontevaluation:"valueExistence",ontvalue:individualProperty["ontvalue"]}});
                         }
                     })
                     .catch(function(error){
@@ -584,10 +584,10 @@ app.post('/api/ontologies/:ontologyName/individual/:individualName/input', funct
             } else {
                 // Evaluates if property value exists (is not null) when is not of object type
                 // UPG: to include a rejection for the promise as it is missing
-                if (individualProperty["value"]!==null) {
-                    resolve ({success:{level:"property",name:individualProperty["name"],evaluation:"valueExistence",value:individualProperty["value"]}});
+                if (individualProperty["ontvalue"]!==null) {
+                    resolve ({ontsuccess:{ontlevel:"property",ontname:individualProperty["ontname"],ontevaluation:"valueExistence",ontvalue:individualProperty["ontvalue"]}});
                 } else {
-                    resolve ({error:{level:"property",name:individualProperty["name"],evaluation:"valueExistence",value:individualProperty["value"]}});
+                    resolve ({onterror:{ontlevel:"property",ontname:individualProperty["ontname"],ontevaluation:"valueExistence",ontvalue:individualProperty["ontvalue"]}});
                 }
             }
         });
@@ -614,12 +614,12 @@ app.post('/api/ontologies/:ontologyName/individual/:individualName/input', funct
             session
                 // Matches the existence of the class by URI
                 // .run(`MATCH (n{uri:"${classURI}"}) RETURN n`)
-                .run(`MATCH (n{uri:"${individual["class"]}"}) RETURN n`)
+                .run(`MATCH (n{uri:"${individual["ontclass"]}"}) RETURN n`)
                 .then(function(results){
                     if (results.records.length !== 0) {
-                        resolve ({success:{level:"individual",name:individual["name"],evaluation:"classExistence",value:individual["class"]}});
+                        resolve ({ontsuccess:{ontlevel:"individual",ontname:individual["ontname"],ontevaluation:"classExistence",ontvalue:individual["ontclass"]}});
                     } else {
-                        resolve ({error:{level:"individual",name:individual["name"],evaluation:"classExistence",value:individual["class"]}});
+                        resolve ({onterror:{ontlevel:"individual",ontname:individual["ontname"],ontevaluation:"classExistence",ontvalue:individual["ontclass"]}});
                     }
                 })
                 .catch(function(error){
@@ -631,7 +631,7 @@ app.post('/api/ontologies/:ontologyName/individual/:individualName/input', funct
     // IMP: maps the property evaluation promise to all properties declared by the individual
     let individualPropertiesConsistency = async function (individual) {
         // console.log("individualPropertiesConsistency");
-        return await Promise.all(individual["properties"].map(propertyConsistency));
+        return await Promise.all(individual["ontproperties"].map(propertyConsistency));
     };
     // A.2.2. Maintainability evaluation:
     // A.2.2.1. Ontology name correctness: to evaluate the correctness of the individual being instantiated
@@ -640,10 +640,10 @@ app.post('/api/ontologies/:ontologyName/individual/:individualName/input', funct
         return new Promise(function(resolve){
             // if (individual["ontology"]===req.params.ontologyName){
             const uriElement = ontologiesURI + req.params.ontologyName + "#";
-            if (individual["ontology"]===uriElement){
-                resolve ({success:{level:"individual",name:individual["name"],evaluation:"ontologyCorrectness",value:individual["ontology"]}});
+            if (individual["ontontology"]===uriElement){
+                resolve ({ontsuccess:{ontlevel:"individual",ontname:individual["ontname"],ontevaluation:"ontologyCorrectness",ontvalue:individual["ontontology"]}});
             } else {
-                resolve ({error:{level:"individual",name:individual["name"],evaluation:"ontologyCorrectness",value:individual["ontology"]}});
+                resolve ({onterror:{ontlevel:"individual",ontname:individual["ontname"],ontevaluation:"ontologyCorrectness",ontvalue:individual["ontontology"]}});
             }
         });
     };
@@ -655,10 +655,10 @@ app.post('/api/ontologies/:ontologyName/individual/:individualName/input', funct
             // if (individual["name"]===req.params.individualName){
             // const uriElement = ontologiesURI + req.params.ontologyName + "#" + req.params.individualName;
             let uriElement = constructURI(req.params.ontologyName, req.params.individualName);
-            if (individual["name"]===uriElement){
-                resolve ({success:{level:"individual",name:individual["name"],evaluation:"nameCorrectness",value:individual["name"]}});
+            if (individual["ontname"]===uriElement){
+                resolve ({ontsuccess:{ontlevel:"individual",ontname:individual["ontname"],ontevaluation:"nameCorrectness",ontvalue:individual["ontname"]}});
             } else {
-                resolve ({error:{level:"individual",name:individual["name"],evaluation:"nameCorrectness",value:individual["name"]}});
+                resolve ({onterror:{ontlevel:"individual",ontname:individual["ontname"],ontevaluation:"nameCorrectness",ontvalue:individual["ontname"]}});
             }
         });
     };
@@ -674,20 +674,20 @@ app.post('/api/ontologies/:ontologyName/individual/:individualName/input', funct
             session
                 // Matches properties declared for the class
                 // .run(`MATCH (a:owl__Class{uri:"${classURI}"})<-[r:rdfs__domain]-(b) WHERE b:owl__ObjectProperty OR b:owl__DatatypeProperty RETURN a.uri,b.uri`)
-                .run(`MATCH (a:owl__Class{uri:"${individual["class"]}"})<-[r:rdfs__domain]-(b) WHERE b:owl__ObjectProperty OR b:owl__DatatypeProperty RETURN a.uri,b.uri`)
+                .run(`MATCH (a:owl__Class{uri:"${individual["ontclass"]}"})<-[r:rdfs__domain]-(b) WHERE b:owl__ObjectProperty OR b:owl__DatatypeProperty RETURN a.uri,b.uri`)
                 .then(function(results){
                     // Variables to manage individual and class properties names
                     let individualPropertiesNames = [];
                     let classPropertiesNames = [];
                     // Returns individual properties names
-                    individual["properties"].forEach(function(individualProperty){individualPropertiesNames.push(individualProperty["name"])});
+                    individual["ontproperties"].forEach(function(individualProperty){individualPropertiesNames.push(individualProperty["ontname"])});
                     // Returns class properties names
                     // results.records.forEach(function(record){classPropertiesNames.push(returnUriElement(record._fields[1]))});
                     results.records.forEach(function(record){classPropertiesNames.push(record._fields[1])});
                     // Filters class properties missing at individual declaration
                     let missingPropertiesNames = classPropertiesNames.filter(function(propertyName){return !individualPropertiesNames.includes(propertyName)});
                     // Resolves a warning with missing properties for the individual
-                    resolve ({warning:{level:"individual",name:individual["name"],evaluation:"propertiesLack",value:missingPropertiesNames}})
+                    resolve ({ontwarning:{ontlevel:"individual",ontname:individual["ontname"],ontevaluation:"propertiesLack",ontvalue:missingPropertiesNames}})
                 })
                 .catch(function(error){
                     reject(error);
@@ -729,15 +729,15 @@ app.post('/api/ontologies/:ontologyName/individual/:individualName/input', funct
                     // Class properties lack
                     evaluateSuccess(results[4],successes,errors,warnings);
                     // Resolves a json object including success, errors and warning results of consistency evaluations
-                    resolve({successes: successes, errors: errors, warnings: warnings});
+                    resolve({ontsuccesses: successes, onterrors: errors, ontwarnings: warnings});
                     // IMP: evaluates results according to promise return json objects for each evaluation
                     function evaluateSuccess (item,successes,errors,warnings) {
-                        if (item["success"]) {
-                            return successes.push(item["success"]);
-                        } else if (item["error"]) {
-                            return errors.push(item["error"]);
-                        } else if (item["warning"]) {
-                            return warnings.push(item["warning"]);
+                        if (item["ontsuccess"]) {
+                            return successes.push(item["ontsuccess"]);
+                        } else if (item["onterror"]) {
+                            return errors.push(item["onterror"]);
+                        } else if (item["ontwarning"]) {
+                            return warnings.push(item["ontwarning"]);
                         } else {}
                     }
                 })
@@ -760,7 +760,7 @@ app.post('/api/ontologies/:ontologyName/individual/:individualName/input', funct
             // console.log("individualPropertyCreation");
             // Variables to manage uri names
             let ontologyName = req.params.ontologyName;
-            let propertyName = returnUriElement(individualProperty["name"]);
+            let propertyName = returnUriElement(individualProperty["ontname"]);
             // Variable to manage property types
             let propertyTypes = [];
             // Variable to manage cypher instantiation query
@@ -771,7 +771,7 @@ app.post('/api/ontologies/:ontologyName/individual/:individualName/input', funct
             //         propertyTypes.push(returnNeo4jNameElement('owl',type));
             //     } else {}
             // });
-            individualProperty["types"].forEach(function(type){
+            individualProperty["onttypes"].forEach(function(type){
                 if(returnUriElement(type) !== null ) {
                     propertyTypes.push(returnUriElement(type));
                 } else {}
@@ -779,11 +779,11 @@ app.post('/api/ontologies/:ontologyName/individual/:individualName/input', funct
             if (propertyTypes.includes("DatatypeProperty")) {
                 // Matches individual by URI and sets a new node property
                 // sessionQuery = `MATCH (n{uri:"${uriElement+individualName}"}) SET n.${individualOntology}__${individualProperty["name"]}="${individualProperty["value"]}" RETURN n`;
-                sessionQuery = `MATCH (n{uri:"${individualName}"}) SET n.${ontologyName}__${propertyName}="${individualProperty["value"]}" RETURN n`;
+                sessionQuery = `MATCH (n{uri:"${individualName}"}) SET n.${ontologyName}__${propertyName}="${individualProperty["ontvalue"]}" RETURN n`;
             } else if (propertyTypes.includes("ObjectProperty")) {
                 // Matches individual by URI and merges new relation with existing individual
                 // sessionQuery = `MATCH (a{uri:"${uriElement+individualName}"}),(b{uri:"${uriElement+individualProperty["value"]}"}) MERGE (a)-[r:${individualOntology}__${individualProperty["name"]}]->(b) RETURN a,r,b`
-                sessionQuery = `MATCH (a{uri:"${individualName}"}),(b{uri:"${individualProperty["value"]}"}) MERGE (a)-[r:${ontologyName}__${propertyName}]->(b) RETURN a,r,b`
+                sessionQuery = `MATCH (a{uri:"${individualName}"}),(b{uri:"${individualProperty["ontvalue"]}"}) MERGE (a)-[r:${ontologyName}__${propertyName}]->(b) RETURN a,r,b`
 
             } else {}
             session
@@ -806,11 +806,11 @@ app.post('/api/ontologies/:ontologyName/individual/:individualName/input', funct
             // console.log(`MERGE (n:Resource:owl__NamedIndividual:${individual["ontology"]}__${individual["class"]}{uri:"${uriElement+individual["name"]}"}) RETURN n`);
             // Variables to manage uri names
             let ontologyName = req.params.ontologyName;
-            let className = returnUriElement(individual["class"]);
+            let className = returnUriElement(individual["ontclass"]);
             session
                 // Merges individual as node by URI
                 // .run(`MERGE (n:Resource:owl__NamedIndividual:${individual["ontology"]}__${individual["class"]}{uri:"${uriElement+individual["name"]}"}) RETURN n`)
-                .run(`MERGE (n:Resource:owl__NamedIndividual:${ontologyName}__${className}{uri:"${individual["name"]}"}) RETURN n`)
+                .run(`MERGE (n:Resource:owl__NamedIndividual:${ontologyName}__${className}{uri:"${individual["ontname"]}"}) RETURN n`)
                 .then(function(results){
                     resolve (results);
                 })
@@ -823,7 +823,7 @@ app.post('/api/ontologies/:ontologyName/individual/:individualName/input', funct
     // IMP: promises instantiation of all individual properties
     let individualPropertiesInstantiation = async function (individual) {
         // console.log("individualPropertiesInstantiation");
-        return await Promise.all(individual["properties"].map(function(property){return individualPropertyCreation(individual["name"],individual["ontology"],property)}));
+        return await Promise.all(individual["ontproperties"].map(function(property){return individualPropertyCreation(individual["ontname"],individual["ontontology"],property)}));
     };
     // C. RESOLUTION
     // C.1. Individual review: promises to assess individual and its properties against all consistency evaluations
@@ -843,9 +843,9 @@ app.post('/api/ontologies/:ontologyName/individual/:individualName/input', funct
     // UPG: to modify function as a new promise that can be easily exported
     individualReview(req.body)
         .then(function(reviewResults){
-            if (reviewResults["errors"].length!==0){
+            if (reviewResults["onterrors"].length!==0){
                 // console.log("Errors");
-                res.send({warnings:reviewResults["warnings"],errors:reviewResults["errors"]});
+                res.send({ontwarnings:reviewResults["ontwarnings"],onterrors:reviewResults["onterrors"]});
             } else {
                 // console.log("No errors");
                 individualInstantiation(req.body)
@@ -853,7 +853,7 @@ app.post('/api/ontologies/:ontologyName/individual/:individualName/input', funct
                         let inputResolution = [];
                         inputResolution.push(inputResults[0]["records"]);
                         inputResults[1].forEach(function(result){inputResolution.push(result["records"])});
-                        res.send({warnings:reviewResults["warnings"],input:inputResolution});
+                        res.send({ontwarnings:reviewResults["ontwarnings"],ontinput:inputResolution});
                     })
                     .catch(function(inputError){
                         res.send(inputError);
