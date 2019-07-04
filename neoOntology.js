@@ -297,41 +297,49 @@ app.get('/api/ontologies/:ontologyName/class/:className/individuals', function(r
 // THE: rdfs:domain, rdfs:range, owl:datatypeProperty, owl:objectProperty
 // THE: to identify how to instantiate an individual to a class
 // IMP: given a class name, returns properties in json format
+// IMP: returns empty properties if do not exist
 // UPG: to extend class declaration with owl language elements (e.g. owl:cardinality, owl:functionality, etc.)
 // UPG: to use owl elements to infer all superclasses a class belong to identify the properties to instantiate an individual to the class
 app.get('/api/ontologies/:ontologyName/class/:className/properties', function(req,res){
     let uriElement = constructURI(req.params.ontologyName, req.params.className);
     session
     // Matches owl__Class nodes with owl__ObjectProperty and owl__DatatypeProperty nodes and with other class nodes by rdfs:domain and rdfs:range
-        .run(`MATCH (a:owl__Class{uri:"${uriElement}"})<-[r:rdfs__domain]-(b)-[s:rdfs__range]->(c) WHERE b:owl__ObjectProperty OR b:owl__DatatypeProperty RETURN a.uri,labels(b),b.uri,c.uri`)
+        .run(`MATCH (a:owl__Class{uri:"${uriElement}"}) OPTIONAL MATCH (a)<-[r:rdfs__domain]-(b)-[s:rdfs__range]->(c) WHERE b:owl__ObjectProperty OR b:owl__DatatypeProperty RETURN a.uri,labels(b),b.uri,c.uri`)
         .then(function(result){
             // Evaluates if the server contains nodes that match the class
             if (result.records.length !== 0) {
-                let propertyTypesArray = [];
-                let propertiesArray = [];
-                // Returns the rdfs and owl types of a given property
-                result.records.forEach(function(record){
-                    record._fields[1].forEach(function(type){
-                        if(returnNeo4jNameElement('owl',type) !== null ) {
-                            // propertyTypesArray.push(returnNeo4jNameElement('owl',type));
-                            propertyTypesArray.push(returnURIfromNeo4jElement(type));
-                        } else {}
+                // Evaluates if class has properties assigned
+                if (result.records[0]._fields[1] !== null) {
+                    let propertyTypesArray = [];
+                    let propertiesArray = [];
+                    // Returns the rdfs and owl types of a given property
+                    result.records.forEach(function(record){
+                        record._fields[1].forEach(function(type){
+                            if(returnNeo4jNameElement('owl',type) !== null ) {
+                                // propertyTypesArray.push(returnNeo4jNameElement('owl',type));
+                                propertyTypesArray.push(returnURIfromNeo4jElement(type));
+                            } else {}
+                        });
+                        // Captures additional property data in json format
+                        propertiesArray.push({
+                            // Record fields are declared according to cypher response structure
+                            // name: returnUriElement(record._fields[2]),
+                            // range: returnUriElement(record._fields[3]),
+                            // UPG: assumes only one property type is found [0], needs to be ensured
+                            ontName: record._fields[2],
+                            ontRange: record._fields[3],
+                            ontType: propertyTypesArray[0]
+                        });
+                        // Regenerate propertyTypesArray for new property to be pushed into the array
+                        propertyTypesArray = [];
                     });
-                    // Captures additional property data in json format
-                    propertiesArray.push({
-                        // Record fields are declared according to cypher response structure
-                        // name: returnUriElement(record._fields[2]),
-                        // range: returnUriElement(record._fields[3]),
-                        // UPG: assumes only one property type is found [0], needs to be ensured
-                        ontName: record._fields[2],
-                        ontRange: record._fields[3],
-                        ontType: propertyTypesArray[0]
-                    });
-                    // Regenerate propertyTypesArray for new property to be pushed into the array
-                    propertyTypesArray = [];
-                });
-                // Returns class and properties in json format
-                res.json({ontClass: uriElement, ontProperties: propertiesArray});
+                    // Returns class and properties in json format
+                    res.json({ontClass: uriElement, ontProperties: propertiesArray});
+                } else {
+                    // Otherwise returns a class with empty properties
+                    res.json({ontClass: uriElement, ontProperties: []});
+                }
+
             } else {
                 // Otherwise sends 404 error
                 res.status(404).send({ontError:"Properties not found"});
@@ -379,7 +387,9 @@ app.get('/api/ontologies/:ontologyStartName/class/:classStartName/distance/:onto
 // 5.1.2.3.1. Individual properties: to identify the properties that describe an individual in an ontology
 // THE: owl:NamedIndividual | to identify an individual by the properties and values used to declare it
 // IMP: given an ontology and an individual name, returns its properties in json format
+// IMP: returns empty properties if do not exist
 // IMP: evaluates datatype (properties) and object (relationship) properties using neosemantics notation
+// UPG: to extent evaluation of properties being declared by other ontologies
 // UPG: to extend property declaration including domain and range of each property returned
 // UPG: to extend evaluation of properties retrieved by the ontology being consulted (ontology__Property)
 app.get('/api/ontologies/:ontologyName/individual/:individualName/properties', function(req,res){
@@ -391,7 +401,7 @@ app.get('/api/ontologies/:ontologyName/individual/:individualName/properties', f
     let objectPropertiesArray = [];
     session
         // Matches node by uri and owl__NamedIndividual label and returns classes (labels), and datatype (properties) and object (relations{type}) properties
-        .run(`MATCH (a:owl__NamedIndividual{uri:"${uriElement}"})-[r]->(b) RETURN a.uri, labels(a), properties(a), type(r), b.uri`)
+        .run(`MATCH (a:owl__NamedIndividual{uri:"${uriElement}"}) OPTIONAL MATCH (a)-[r]->(b) RETURN a.uri, labels(a), properties(a), type(r), b.uri`)
         .then(function(result){
             // Evaluates if the server contains nodes that match the class
             if (result.records.length !== 0) {
@@ -411,6 +421,8 @@ app.get('/api/ontologies/:ontologyName/individual/:individualName/properties', f
                         // Returns datatype property name and value for each property retrieved by neo4j
                         let dataPropertiesKeys = Object.keys(record._fields[2]);
                         dataPropertiesKeys.forEach(function(dataPropertyKey){
+                            // Considers the case where data properties are null
+                            // Avoids data properties which do not belong to the ontology being queried
                             if(returnNeo4jNameElement(req.params.ontologyName,dataPropertyKey) !== null) {
                                 dataPropertiesArray.push({
                                     // name: returnNeo4jNameElement(req.params.ontologyName,dataPropertyKey),
@@ -423,13 +435,16 @@ app.get('/api/ontologies/:ontologyName/individual/:individualName/properties', f
                         });
                     }
                     // Returns object property name and value for each property retrieved by neo4j
-                    objectPropertiesArray.push({
-                        // name: returnNeo4jNameElement(req.params.ontologyName,record._fields[3]),
-                        // value: returnUriElement(record._fields[4])
-                        ontName: returnURIfromNeo4jElement(record._fields[3]),
-                        ontValue: (record._fields[4]),
-                        ontType: classOntologyURI + "#" + "ObjectProperty"
-                    });
+                    // Considers the case where object properties are null
+                    if (record._fields[3] !== null ) {
+                        objectPropertiesArray.push({
+                            // name: returnNeo4jNameElement(req.params.ontologyName,record._fields[3]),
+                            // value: returnUriElement(record._fields[4])
+                            ontName: returnURIfromNeo4jElement(record._fields[3]),
+                            ontValue: (record._fields[4]),
+                            ontType: classOntologyURI + "#" + "ObjectProperty"
+                        });
+                    } else {}
                 });
                 // Returns individual name, class name, and properties (datatype and object concatenated) name and value in json format
                 // res.json({individual: req.params.individualName, class: classArray, properties: dataPropertiesArray.concat(objectPropertiesArray)});
