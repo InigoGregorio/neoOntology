@@ -308,9 +308,10 @@ app.get('/api/ontologies/:ontologyName/class/:className/properties', function(re
                     // Record fields are declared according to cypher response structure
                     // name: returnUriElement(record._fields[2]),
                     // range: returnUriElement(record._fields[3]),
+                    // UPG: assumes only one property type is found [0], needs to be ensured
                     ontName: record._fields[2],
                     ontRange: record._fields[3],
-                    ontType: propertyTypesArray
+                    ontType: propertyTypesArray[0]
                 });
                 // Regenerate propertyTypesArray for new property to be pushed into the array
                 propertyTypesArray = [];
@@ -552,21 +553,23 @@ app.post('/api/ontologies/:ontologyName/individual/:individualName/input', funct
     let propertyValue = function(individualProperty){
         return new Promise(function(resolve, reject){
             // const valueURI = uriElement + individualProperty["value"];
-            const propertyTypes = [];
+            // const propertyTypes = [];
             // console.log("valueExistence: " + individualProperty["name"]);
+            // console.log("valueExistence: " + returnUriElement(individualProperty["ontType"]).includes("ObjectProperty"));
             // Identifies the types of the property being evaluated
             // individualProperty["types"].forEach(function(type){
             //     if(returnNeo4jNameElement('owl',type) !== null ) {
             //         propertyTypes.push(returnNeo4jNameElement('owl',type));
             //     } else {}
             // });
-            individualProperty["ontType"].forEach(function(type){
-                if(returnUriElement(type) !== null ) {
-                    propertyTypes.push(returnUriElement(type));
-                } else {}
-            });
-            // Evaluates only if the property is of object type
-            if (propertyTypes.includes("ObjectProperty")) {
+            // individualProperty["ontTypes"].forEach(function(type){
+            //     if(returnUriElement(type) !== null ) {
+            //         propertyTypes.push(returnUriElement(type));
+            //     } else {}
+            // });
+            // Evaluates only if the property is of object or datatype types, otherwise error
+            // if (propertyTypes.includes("ObjectProperty")) {
+            if (returnUriElement(individualProperty["ontType"]).includes("ObjectProperty")) {
                 session
                     // Matches the existence of the property value by URI
                     // .run(`MATCH (n{uri:"${valueURI}"}) RETURN n`)
@@ -581,7 +584,7 @@ app.post('/api/ontologies/:ontologyName/individual/:individualName/input', funct
                     .catch(function(error){
                         reject(error);
                     });
-            } else {
+            } else if (returnUriElement(individualProperty["ontType"]).includes("DatatypeProperty")) {
                 // Evaluates if property value exists (is not null) when is not of object type
                 // UPG: to include a rejection for the promise as it is missing
                 if (individualProperty["ontValue"]!==null) {
@@ -589,6 +592,9 @@ app.post('/api/ontologies/:ontologyName/individual/:individualName/input', funct
                 } else {
                     resolve ({ontError:{ontLevel:"property",ontName:individualProperty["ontName"],ontEvaluation:"valueExistence",ontValue:individualProperty["ontValue"]}});
                 }
+            } else {
+                // Returns error because no support property ype has been found
+                resolve ({ontError:{ontLevel:"property",ontName:individualProperty["ontName"],ontEvaluation:"supportedType",ontValue:individualProperty["ontValue"]}});
             }
         });
     };
@@ -762,7 +768,7 @@ app.post('/api/ontologies/:ontologyName/individual/:individualName/input', funct
             let ontologyName = req.params.ontologyName;
             let propertyName = returnUriElement(individualProperty["ontName"]);
             // Variable to manage property types
-            let propertyTypes = [];
+            // let propertyTypes = [];
             // Variable to manage cypher instantiation query
             let sessionQuery;
             // Evaluates property types
@@ -771,20 +777,21 @@ app.post('/api/ontologies/:ontologyName/individual/:individualName/input', funct
             //         propertyTypes.push(returnNeo4jNameElement('owl',type));
             //     } else {}
             // });
-            individualProperty["ontType"].forEach(function(type){
-                if(returnUriElement(type) !== null ) {
-                    propertyTypes.push(returnUriElement(type));
-                } else {}
-            });
-            if (propertyTypes.includes("DatatypeProperty")) {
+            // individualProperty["ontType"].forEach(function(type){
+            //     if(returnUriElement(type) !== null ) {
+            //         propertyTypes.push(returnUriElement(type));
+            //     } else {}
+            // });
+            // if (propertyTypes.includes("DatatypeProperty")) {
+            if (returnUriElement(individualProperty["ontType"]).includes("ObjectProperty")) {
+                // Matches individual by URI and merges new relation with existing individual
+                // sessionQuery = `MATCH (a{uri:"${uriElement+individualName}"}),(b{uri:"${uriElement+individualProperty["value"]}"}) MERGE (a)-[r:${individualOntology}__${individualProperty["name"]}]->(b) RETURN a,r,b`
+                sessionQuery = `MATCH (a{uri:"${individualName}"}),(b{uri:"${individualProperty["ontValue"]}"}) MERGE (a)-[r:${ontologyName}__${propertyName}]->(b) RETURN a,r,b`;
+            // } else if (propertyTypes.includes("ObjectProperty")) {
+            } else if (returnUriElement(individualProperty["ontType"]).includes("DatatypeProperty")) {
                 // Matches individual by URI and sets a new node property
                 // sessionQuery = `MATCH (n{uri:"${uriElement+individualName}"}) SET n.${individualOntology}__${individualProperty["name"]}="${individualProperty["value"]}" RETURN n`;
                 sessionQuery = `MATCH (n{uri:"${individualName}"}) SET n.${ontologyName}__${propertyName}="${individualProperty["ontValue"]}" RETURN n`;
-            } else if (propertyTypes.includes("ObjectProperty")) {
-                // Matches individual by URI and merges new relation with existing individual
-                // sessionQuery = `MATCH (a{uri:"${uriElement+individualName}"}),(b{uri:"${uriElement+individualProperty["value"]}"}) MERGE (a)-[r:${individualOntology}__${individualProperty["name"]}]->(b) RETURN a,r,b`
-                sessionQuery = `MATCH (a{uri:"${individualName}"}),(b{uri:"${individualProperty["ontValue"]}"}) MERGE (a)-[r:${ontologyName}__${propertyName}]->(b) RETURN a,r,b`
-
             } else {}
             session
                 // Runs cypher query and resolve results
