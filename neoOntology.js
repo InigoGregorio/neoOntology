@@ -155,6 +155,26 @@ function constructURI (prefix,name) {
 }
 // 5. HTTP METHODS
 // 5.1. GET REQUESTS
+// 5.1.0. Homepage GET request:
+// 5.1.0.1. Homepage
+// UPG: to implement a homepage for the server where files can be accessed
+// 5.1.0.2. Ping
+// IMP: a ping request to ensure server is up and running
+// UPG: upgrade to a more inventive ping
+app.get('/api/ping', function(req,res){
+    // neo4j query session: uses cypher language to consult graphical database
+    session
+    // returns if neosemantics is installed on the server
+    // implies that neo4j is up and running
+        .run(`MATCH (n) RETURN n LIMIT 1`)
+        .then(function(result){
+            res.json(result.records);
+        })
+        .catch(function(err){
+            res.json(err);
+        });
+});
+// IMP: homepage to ensure
 // 5.1.1. File GET requests:
 // 5.1.1.1. Files retrieval
 // IMP: given a file type, retrieve files available
