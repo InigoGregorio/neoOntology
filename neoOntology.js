@@ -174,7 +174,6 @@ app.get('/api/ping', function(req,res){
             res.json(err);
         });
 });
-// IMP: homepage to ensure
 // 5.1.1. File GET requests:
 // 5.1.1.1. Files retrieval
 // IMP: given a file type, retrieve files available
