@@ -272,8 +272,8 @@ app.get('/api/ontologies/:ontologyName/class/:className/subclasses', function(re
                 // res.json({class: req.params.className, subclasses: subclassesArray});
                 res.json({ontClass: uriElement, ontSubclasses: subclassesArray});
             } else {
-                // Otherwise sends 404 error
-                res.status(404).send({ontError:"Subclasses not found"});
+                // Otherwise sends an error
+                res.json({ontError:"Subclasses not found"});
             }
         })
         .catch(function(err){
@@ -304,8 +304,8 @@ app.get('/api/ontologies/:ontologyName/class/:className/individuals', function(r
                 // res.json({class: req.params.className, individuals: individualsArray});
                 res.json({ontClass: uriElement, ontIndividuals: individualsArray});
             } else {
-                // Otherwise sends 404 error
-                res.status(404).send({ontError:"Individuals not found"});
+                // Otherwise sends an error
+                res.json({ontError:"Individuals not found"});
             }
         })
         .catch(function(err){
@@ -360,8 +360,8 @@ app.get('/api/ontologies/:ontologyName/class/:className/properties', function(re
                 }
 
             } else {
-                // Otherwise sends 404 error
-                res.status(404).send({ontError:"Properties not found"});
+                // Otherwise sends an error
+                res.json({ontError:"Properties not found"});
             }
         })
         .catch(function(err){
@@ -392,8 +392,8 @@ app.get('/api/ontologies/:ontologyStartName/class/:classStartName/distance/:onto
                 // Builds json object to send distance between two classes
                 res.json({ontStartClass: classStartURI, ontEndClass: classEndURI, ontDistance: classesDistance});
             } else {
-                // Otherwise sends 404 error
-                res.status(404).send({ontError:"Distance not found"});
+                // Otherwise sends an error
+                res.json({ontError:"Distance not found"});
             }
 
         })
@@ -469,8 +469,8 @@ app.get('/api/ontologies/:ontologyName/individual/:individualName/properties', f
                 // res.json({individual: req.params.individualName, class: classArray, properties: dataPropertiesArray.concat(objectPropertiesArray)});
                 res.json({ontIndividual: uriElement, ontClass: classArray, ontProperties: dataPropertiesArray.concat(objectPropertiesArray)});
             } else {
-                // Otherwise sends 404 error
-                res.status(404).send({ontError:"Individual not found"});
+                // Otherwise sends an error
+                res.json({ontError:"Individual not found"});
                 // res.error()
             }
         })
