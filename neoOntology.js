@@ -266,7 +266,7 @@ app.get('/api/ontologies/:ontologyName/class/:className/subclasses', function(re
                 // Captures each subclass name from results retrieved from neo4j
                 result.records.forEach(function(record){
                     // subclassesArray.push(returnUriElement(record._fields[1]));
-                    subclassesArray.push(record._fields[1]);
+                    subclassesArray.push({ontSubclass: record._fields[1]});
                 });
                 // Formats results in a json object
                 // res.json({class: req.params.className, subclasses: subclassesArray});
@@ -298,7 +298,7 @@ app.get('/api/ontologies/:ontologyName/class/:className/individuals', function(r
                 // Captures individual names retrieved by neo4j
                 result.records.forEach(function(record){
                     // individualsArray.push(returnUriElement(record._fields[0]));
-                    individualsArray.push(record._fields[0]);
+                    individualsArray.push({ontIndividual: record._fields[0]});
                 });
                 // Returns individuals names of class name in json format
                 // res.json({class: req.params.className, individuals: individualsArray});
