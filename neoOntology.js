@@ -236,7 +236,7 @@ app.get('/api/ontologies', function(req,res){
                 });
             });
             // All to be sent through json objects
-            res.json(ontologies);
+            res.json({ontOntologies: ontologies});
         })
         // Handles neo4j errors
         .catch(function(err){
