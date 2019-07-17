@@ -1015,6 +1015,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/repont#error_1-1-2-2-2_3 -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/repont#error_1-1-2-2-2_3">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/repont#Error"/>
         <hasErrorDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Check the brake is the correct one</hasErrorDescription>
         <hasErrorPicture rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://138.250.108.1:3003/api/files/jpg/error_1-1-2-2-2_3.jpg</hasErrorPicture>
     </owl:NamedIndividual>
@@ -1024,6 +1025,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/repont#error_1-1-2-2-2_4 -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/repont#error_1-1-2-2-2_4">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/repont#Error"/>
         <hasErrorDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Check the brake is aligned</hasErrorDescription>
         <hasErrorPicture rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://138.250.108.1:3003/api/files/png/error_1-1-2-2-2_4.png</hasErrorPicture>
     </owl:NamedIndividual>
