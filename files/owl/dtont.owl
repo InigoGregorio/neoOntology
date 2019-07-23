@@ -70,9 +70,9 @@
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/dtont#hasMeasureNumerical -->
+    <!-- http://138.250.108.1:3003/api/files/owl/dtont#hasMeasureNumeric -->
 
-    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/dtont#hasMeasureNumerical">
+    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/dtont#hasMeasureNumeric">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#hasMeasure"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#MeasureNumeric"/>
         <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Property"/>
@@ -81,13 +81,13 @@
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/dtont#hasMeasureTextual -->
+    <!-- http://138.250.108.1:3003/api/files/owl/dtont#hasMeasureText -->
 
-    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/dtont#hasMeasureTextual">
+    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/dtont#hasMeasureText">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#hasMeasure"/>
-        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#MeasureTextual"/>
+        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#MeasureText"/>
         <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Property"/>
-        <rdfs:label>hasMeasureTextual</rdfs:label>
+        <rdfs:label>hasMeasureText</rdfs:label>
     </owl:ObjectProperty>
     
 
@@ -153,11 +153,11 @@
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/dtont#hasUnitTextual -->
+    <!-- http://138.250.108.1:3003/api/files/owl/dtont#hasUnitText -->
 
-    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/dtont#hasUnitTextual">
+    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/dtont#hasUnitText">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#hasUnit"/>
-        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#MeasureTextual"/>
+        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#MeasureText"/>
         <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Unit"/>
     </owl:ObjectProperty>
     
@@ -237,9 +237,9 @@
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/dtont#hasDateNumerical -->
+    <!-- http://138.250.108.1:3003/api/files/owl/dtont#hasDateNumeric -->
 
-    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/dtont#hasDateNumerical">
+    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/dtont#hasDateNumeric">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#hasDate"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#MeasureNumeric"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
@@ -248,13 +248,12 @@
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/dtont#hasDateTextual -->
+    <!-- http://138.250.108.1:3003/api/files/owl/dtont#hasDateText -->
 
-    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/dtont#hasDateTextual">
+    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/dtont#hasDateText">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#hasDate"/>
-        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#MeasureTextual"/>
+        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#MeasureText"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
-        <rdfs:label>hasDateTextual</rdfs:label>
     </owl:DatatypeProperty>
     
 
@@ -278,9 +277,9 @@
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/dtont#hasValueNumerical -->
+    <!-- http://138.250.108.1:3003/api/files/owl/dtont#hasValueNumeric -->
 
-    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/dtont#hasValueNumerical">
+    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/dtont#hasValueNumeric">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#hasValue"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#MeasureNumeric"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
@@ -289,13 +288,12 @@
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/dtont#hasValueTextual -->
+    <!-- http://138.250.108.1:3003/api/files/owl/dtont#hasValueText -->
 
-    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/dtont#hasValueTextual">
+    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/dtont#hasValueText">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#hasValue"/>
-        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#MeasureTextual"/>
+        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#MeasureText"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:label>hasValueTextual</rdfs:label>
     </owl:DatatypeProperty>
     
 
@@ -370,11 +368,11 @@
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/dtont#MeasureTextual -->
+    <!-- http://138.250.108.1:3003/api/files/owl/dtont#MeasureText -->
 
-    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/dtont#MeasureTextual">
+    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/dtont#MeasureText">
         <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Measure"/>
-        <rdfs:label>Textual</rdfs:label>
+        <rdfs:label>Text</rdfs:label>
     </owl:Class>
     
 
@@ -843,5 +841,5 @@ e.g. tire that is 120-60-17H which is three-dimensional and textual in the same 
 
 
 
-<!-- Generated by the OWL API (version 4.5.6.2018-09-06T00:27:41Z) https://github.com/owlcs/owlapi -->
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
 
