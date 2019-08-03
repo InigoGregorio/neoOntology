@@ -12,7 +12,7 @@
 // 4.1. Variables
 // 4.2. Functions
 // 5. HTTP methods:
-// 5.1. Get requests: [file,ontology] {view}
+// 5.1. Get requests: [file,ontology,controlmonitoring] {view}
 // 5.2. Post requests: [ontology] {file,view}
 // 5.3. Put requests: []
 // 5.4. Delete requests: []
@@ -482,6 +482,39 @@ app.get('/api/ontologies/:ontologyName/individual/:individualName/properties', f
 // UPG: to visualise ontology in web browsers in a friendly manner and meet normal semantic web visualisations ("#")
 // UPG: given an ontology name, retrieve the ontology ("http://138.250.108.1:3003/api/files/ontologies/rtrbau#")
 // UPG: given an ontology element name, retrieve the element ("http://138.250.108.1:3003/api/files/ontologies/rtrbau#element")
+// 5.1.4. ControlMonitoring GET requests:
+// IMP: since SPARQL endpoint is not done, we need specific interfaces for each module to query data properly
+// IMP: given an ontology, two classes, one relation and one attribute of datetime type
+// IMP: retrieves latest individual from the second class with the latest datetime attribute
+// UPG: add a SPARQL query system that acts as interface between modules and ontology database
+app.get('/api/cm/:ontologyName/class/:firstClassName/individual/:individualName/relation/:relationshipName/class/:secondClassName/attribute/:orderingAttributeName/attribute/:requiredAttribute', function(req,res) {
+    let uriElement = constructURI(req.params.ontologyName, req.params.individualName);
+    session
+        .run(`MATCH (n:${req.params.ontologyName}__${req.params.firstClassName}{uri:"${uriElement}"})-[r:${req.params.ontologyName}__${req.params.relationshipName}]->(m:${req.params.ontologyName}__${req.params.secondClassName}) 
+        RETURN m.${req.params.ontologyName}__${req.params.orderingAttributeName},m.${req.params.ontologyName}__${req.params.requiredAttribute} 
+        ORDER BY datetime(m.${req.params.ontologyName}__${req.params.orderingAttributeName}) DESC LIMIT 1`)
+        .then(function(result){
+            if (result.records[0]._fields[0] !== null) {
+                res.json({
+                    ontProperty: req.params.firstClassName,
+                    ontOntology: req.params.ontologyName,
+                    ontMeasure: req.params.secondClassName,
+                    ontResults: [{
+                        ontName: req.params.orderingAttributeName,
+                        ontValue: result.records[0]._fields[0]
+                    }, {
+                        ontName: req.params.requiredAttribute,
+                        ontValue: result.records[0]._fields[1]
+                    }]
+                })
+            } else {
+                res.json({ontError:"Not found"});
+            }
+        })
+        .catch(function(err){
+            res.json(err);
+        });
+});
 // 5.2. POST REQUESTS
 // 5.2.1. File POST requests
 // UPG: to include upload of files {ontologies, images, 3Dmodels} with user authentication
