@@ -490,7 +490,7 @@ app.get('/api/ontologies/:ontologyName/individual/:individualName/properties', f
 app.get('/api/cm/:ontologyName/class/:firstClassName/individual/:individualName/relation/:relationshipName/class/:secondClassName/attribute/:orderingAttributeName/attribute/:requiredAttribute', function(req,res) {
     let uriElement = constructURI(req.params.ontologyName, req.params.individualName);
     session
-        .run(`MATCH (n:${req.params.ontologyName}__${req.params.firstClassName}{uri:"${uriElement}"})-[r:${req.params.ontologyName}__${req.params.relationshipName}]->(m:${req.params.ontologyName}__${req.params.secondClassName}) 
+        .run(`MATCH (n:${req.params.ontologyName}__${req.params.firstClassName}{uri:"${uriElement}"})<-[r:${req.params.ontologyName}__${req.params.relationshipName}]-(m:${req.params.ontologyName}__${req.params.secondClassName}) 
         RETURN m.${req.params.ontologyName}__${req.params.orderingAttributeName},m.${req.params.ontologyName}__${req.params.requiredAttribute} 
         ORDER BY datetime(m.${req.params.ontologyName}__${req.params.orderingAttributeName}) DESC LIMIT 1`)
         .then(function(result){

@@ -64,8 +64,8 @@
 
     <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/dtont#hasMeasureBoolean">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#hasMeasure"/>
-        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Property"/>
-        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#MeasureBoolean"/>
+        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#MeasureBoolean"/>
+        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Property"/>
     </owl:ObjectProperty>
     
 
@@ -74,8 +74,8 @@
 
     <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/dtont#hasMeasureNumeric">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#hasMeasure"/>
-        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Property"/>
-        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#MeasureNumeric"/>
+        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#MeasureNumeric"/>
+        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Property"/>
         <rdfs:label>hasMeasureNumeric</rdfs:label>
     </owl:ObjectProperty>
     
@@ -85,8 +85,8 @@
 
     <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/dtont#hasMeasureText">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#hasMeasure"/>
-        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Property"/>
-        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#MeasureText"/>
+        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#MeasureText"/>
+        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Property"/>
         <rdfs:label>hasMeasureText</rdfs:label>
     </owl:ObjectProperty>
     
