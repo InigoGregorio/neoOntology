@@ -374,32 +374,42 @@ app.get('/api/ontologies/:ontologyName/class/:className/properties', function(re
 // IMP: assumes all object properties considered belong to a specific ontology
 // UPG: to extend to different type of distances being calculated
 app.get('/api/ontologies/:ontologyStartName/class/:classStartName/distance/:ontologyDistanceName/:ontologyEndName/class/:classEndName', function(req,res){
-    session
+    // Check the cases when classes are equal and distance should be zero.
+    if (req.params.ontologyStartName === req.params.ontologyEndName && req.params.classStartName === req.params.classEndName) {
+        // Builds uri resources for classes constructed
+        let classStartURI = constructURI(req.params.ontologyStartName, req.params.classStartName);
+        let classEndURI = constructURI(req.params.ontologyEndName, req.params.classEndName);
+        // Builds json object to send distance between two classes
+        res.json({ontStartClass: classStartURI, ontEndClass: classEndURI, ontDistance: "0"});
+    }
+    else {
+        session
         // Matches all individual nodes instantiated by the given classes
         // Return the minimum length of the shortest paths found between those two sets of nodes
-        .run(`MATCH (a:${req.params.ontologyStartName}__${req.params.classStartName}),
+            .run(`MATCH (a:${req.params.ontologyStartName}__${req.params.classStartName}),
         (b:${req.params.ontologyEndName}__${req.params.classEndName}),p = shortestPath((a)-[*]-(b)) 
         WHERE ALL (r in relationships(p) WHERE type(r) STARTS WITH "${req.params.ontologyDistanceName}")
         RETURN min(length(p))`)
-        .then(function(result){
-            // Evaluates if query result is null
-            if (result.records[0]._fields[0] !== null) {
-                // Builds uri resources for classes constructed
-                let classStartURI = constructURI(req.params.ontologyStartName, req.params.classStartName);
-                let classEndURI = constructURI(req.params.ontologyEndName, req.params.classEndName);
-                // Parses number retrieved from neo4j to string
-                let classesDistance = result.records[0]._fields[0].low.toString();
-                // Builds json object to send distance between two classes
-                res.json({ontStartClass: classStartURI, ontEndClass: classEndURI, ontDistance: classesDistance});
-            } else {
-                // Otherwise sends an error
-                res.json({ontError:"Distance not found"});
-            }
+            .then(function(result){
+                // Evaluates if query result is null
+                if (result.records[0]._fields[0] !== null) {
+                    // Builds uri resources for classes constructed
+                    let classStartURI = constructURI(req.params.ontologyStartName, req.params.classStartName);
+                    let classEndURI = constructURI(req.params.ontologyEndName, req.params.classEndName);
+                    // Parses number retrieved from neo4j to string
+                    let classesDistance = result.records[0]._fields[0].low.toString();
+                    // Builds json object to send distance between two classes
+                    res.json({ontStartClass: classStartURI, ontEndClass: classEndURI, ontDistance: classesDistance});
+                } else {
+                    // Otherwise sends an error
+                    res.json({ontError:"Distance not found"});
+                }
 
-        })
-        .catch(function(err){
-            res.json(err);
-        });
+            })
+            .catch(function(err){
+                res.json(err);
+            });
+    }
 });
 
 // 5.1.2.3. Individual-level GET requests:
