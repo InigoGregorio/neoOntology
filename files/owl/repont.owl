@@ -868,7 +868,7 @@
         <hasSpatialValue rdf:resource="http://138.250.108.1:3003/api/files/owl/repont#inclusion"/>
         <nextStepIs rdf:resource="http://138.250.108.1:3003/api/files/owl/repont#assembly_1-1-2-2-2_2"/>
         <pairIs rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_PLT-AluminiumPlate017_1"/>
-        <hasInverseMovement rdf:datatype="http://www.w3.org/2001/XMLSchema#string">true</hasInverseMovement>
+        <hasInverseMovement rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</hasInverseMovement>
         <hasXRotationFreedomDegree rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</hasXRotationFreedomDegree>
         <hasXTranslationFreedomDegree rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</hasXTranslationFreedomDegree>
         <hasYRotationFreedomDegree rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</hasYRotationFreedomDegree>
@@ -889,7 +889,7 @@
         <hasSpatialValue rdf:resource="http://138.250.108.1:3003/api/files/owl/repont#inclusion"/>
         <pairIs rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_PLT-AluminiumPlate017_1"/>
         <previousStepIs rdf:resource="http://138.250.108.1:3003/api/files/owl/repont#assembly_1-1-2-2-2_1"/>
-        <hasInverseMovement rdf:datatype="http://www.w3.org/2001/XMLSchema#string">true</hasInverseMovement>
+        <hasInverseMovement rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</hasInverseMovement>
         <hasXRotationFreedomDegree rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</hasXRotationFreedomDegree>
         <hasXTranslationFreedomDegree rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</hasXTranslationFreedomDegree>
         <hasYRotationFreedomDegree rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</hasYRotationFreedomDegree>
@@ -970,7 +970,7 @@
         <hasSpatialValue rdf:resource="http://138.250.108.1:3003/api/files/owl/repont#inclusion"/>
         <nextStepIs rdf:resource="http://138.250.108.1:3003/api/files/owl/repont#assembly_1-1-2-2-2_7"/>
         <pairIs rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_PLT-AluminiumPlate017_1"/>
-        <hasInverseMovement rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</hasInverseMovement>
+        <hasInverseMovement rdf:datatype="http://www.w3.org/2001/XMLSchema#string">true</hasInverseMovement>
         <hasXRotationFreedomDegree rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</hasXRotationFreedomDegree>
         <hasXTranslationFreedomDegree rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</hasXTranslationFreedomDegree>
         <hasYRotationFreedomDegree rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</hasYRotationFreedomDegree>
@@ -992,7 +992,7 @@
         <pairIs rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_PLT-AluminiumPlate017_1"/>
         <previousStepIs rdf:resource="http://138.250.108.1:3003/api/files/owl/repont#assembly_1-1-2-2-2_6"/>
         <hasInverseMovement rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</hasInverseMovement>
-        <hasXRotationFreedomDegree rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</hasXRotationFreedomDegree>
+        <hasXRotationFreedomDegree rdf:datatype="http://www.w3.org/2001/XMLSchema#string">true</hasXRotationFreedomDegree>
         <hasXTranslationFreedomDegree rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</hasXTranslationFreedomDegree>
         <hasYRotationFreedomDegree rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</hasYRotationFreedomDegree>
         <hasYTranslationFreedomDegree rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</hasYTranslationFreedomDegree>
