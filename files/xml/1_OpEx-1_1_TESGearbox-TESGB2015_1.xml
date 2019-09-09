@@ -5,9 +5,9 @@
 
 </Tracking>
 
-<Assembly name="1_OpEx-1_1_TESGearbox-TESGB2015_1s_assembly" assemblyId="50d6ba1e4c5c44fd87711bb17bcdfc66">
+<Assembly name="1_OpEx-1_1_TESGearbox-TESGB2015_1s_assembly" assemblyId="dc529870f7ac48d582e206a03aec4ad0">
 <Part name="1_OpEx-1_1_TESGearbox-TESGB2015_1" translation="0 0 0" rotation="AD: 0 0 1 0"/>
-<EntryPoint name="viewpoint_0000" translation="-0.204403 -0.121988 0.781743" rotation="AD: 1 -6.555980928484811e-17 2.067092846664975e-17 215">
+<EntryPoint name="viewpoint_0000" translation="-0.207 -0.134833 0.753538" rotation="AD: 1 0 0 210">
 
 </EntryPoint>
 
