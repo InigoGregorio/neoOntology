@@ -488,12 +488,100 @@ app.get('/api/ontologies/:ontologyName/individual/:individualName/properties', f
             res.json(err);
         });
 });
-// 5.1.3. Ontology view GET requests
-// UPG: to visualise ontology in web browsers in a friendly manner and meet normal semantic web visualisations ("#")
+// 5.1.3. SPARQL endpoint GET requests
+// IMP: initial stages for creating a SPARQL endpoint
+// 5.1.3.1. Visualisation GET requests:
+// IMP: to visualise ontology in web browsers in a friendly manner and meet normal semantic web visualisations ("#")
 // UPG: given an ontology name, retrieve the ontology ("http://138.250.108.1:3003/api/files/ontologies/rtrbau#")
 // UPG: given an ontology element name, retrieve the element ("http://138.250.108.1:3003/api/files/ontologies/rtrbau#element")
-// 5.1.4. ControlMonitoring GET requests:
-// IMP: since SPARQL endpoint is not done, we need specific interfaces for each module to query data properly
+// 5.1.3.2. Carar GET requests:
+// IMP: since SPARQL endpoint is not done, specific interfaces are required for each module to query data properly
+// IMP: given an ontology and a class name, returns an individual with the biggest number of object properties
+// IMP: it assumes that using rdfs language number of datatype properties will always be the same for a given class
+// UPG: to sort individuals by number of object and datatype properties
+// UPG: to unnest session loops using a promise (only if convenient - being only two might not be necessary)
+// UPG: to recommend individuals from a specific class, given contextual parameters
+app.get('/api/ontologies/:ontologyName/class/:className/example', function(req,res){
+    // Promise to identify individual name
+    let individual = function (ontologyName, className) {
+        return new Promise(function(resolve, reject) {
+            session
+            // Matches nodes with owl__NamedIndividual and ontology__class labels and returns the one with the most relationships
+                .run(`MATCH (n)-[r]-() WHERE n:owl__NamedIndividual AND n:${ontologyName}__${className} RETURN n.uri, count(r) ORDER BY count(r) DESC LIMIT 1`)
+                .then(function(result){
+                    // Evaluates if the server contains nodes that match the class
+                    if (result.records.length !== 0) {
+                        // Captures individual uri retrieved by neo4j
+                        result.records.forEach(function(record){
+                            resolve(returnUriElement(record._fields[0]));
+                        });
+                    } else {
+                        // Otherwise sends an error
+                        reject({ontError:"Individuals not found"});
+                    }
+                })
+                .catch(function(err){
+                    reject(err);
+                });
+        });
+    };
+    // IMP: retrieves individual properties given its name, code is copy of 5.1.2.3.1.
+    // UPG: to retrieve as a call to a generic function from original GET request
+    async function individualProperties() {
+        // Call to the promise given to find the example individual
+        let individualURI = await individual(req.params.ontologyName, req.params.className);
+        let uriElement = constructURI(req.params.ontologyName, individualURI);
+        // Variables to capture elements independently due to the message structure retrieved by the cypher query
+        let classArray;
+        // Object properties are stored differently than data properties as they require different capture methods
+        let dataPropertiesArray = [];
+        let objectPropertiesArray = [];
+        session
+            .run(`MATCH (a:owl__NamedIndividual{uri:"${uriElement}"}) OPTIONAL MATCH (a)-[r]->(b) RETURN a.uri, labels(a), properties(a), type(r), b.uri`)
+            .then(function(result) {
+                if (result.records.length !== 0) {
+                    result.records.forEach(function(record, index, array) {
+                        if (Object.is(array.length - 1, index)) {
+                            record._fields[1].forEach(function(label) {
+                                if (returnNeo4jNameElement(req.params.ontologyName, label) !== null) {
+                                    classArray = returnURIfromNeo4jElement(label);
+                                } else {}
+                            });
+                            let dataPropertiesKeys = Object.keys(record._fields[2]);
+                            dataPropertiesKeys.forEach(function(dataPropertyKey){
+                                if(returnNeo4jNameElement(req.params.ontologyName,dataPropertyKey) !== null) {
+                                    dataPropertiesArray.push({
+                                        ontName: returnURIfromNeo4jElement(dataPropertyKey),
+                                        ontValue: record._fields[2][dataPropertyKey],
+                                        ontType: classOntologyURI + "#" + "DatatypeProperty"
+                                    });
+                                } else {}
+                            });
+                        }
+                        if (record._fields[3] !== null ) {
+                            objectPropertiesArray.push({
+                                ontName: returnURIfromNeo4jElement(record._fields[3]),
+                                ontValue: (record._fields[4]),
+                                ontType: classOntologyURI + "#" + "ObjectProperty"
+                            });
+                        } else {}
+                    });
+                    res.json({ontIndividual: uriElement, ontClass: classArray, ontProperties: dataPropertiesArray.concat(objectPropertiesArray)});
+                } else {
+                    res.json({ontError:"Individual not found"});
+                }
+            })
+            .catch(function(err){
+                res.json(err);
+            });
+    }
+    // Make use of the async function create to wait for the first neo4j response
+    individualProperties()
+        .then()
+        .catch();
+});
+// 5.1.3.3. Cmdtont GET requests:
+// IMP: since SPARQL endpoint is not done, specific interfaces are required for each module to query data properly
 // IMP: given an ontology, two classes, one relation and one attribute of datetime type
 // IMP: retrieves latest individual from the second class with the latest datetime attribute
 // UPG: add a SPARQL query system that acts as interface between modules and ontology database
