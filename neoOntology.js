@@ -745,7 +745,7 @@ app.post('/api/ontologies/:ontologyName/individual/:individualName/input', funct
     };
     // A.1.2.2. Property value existence: to evaluate if the individual value to be instantiated exists
     // THE: rdfs:Resource | compares the uri's element against those existing in the knowledge base
-    // IMP: evaluates only object type property values
+    // IMP: evaluates only object type property values and sends a warning but not an error
     // UPG: to extend to datatype property values using generic rules (e.g. int or double)
     let propertyValue = function(individualProperty){
         return new Promise(function(resolve, reject){
@@ -775,7 +775,7 @@ app.post('/api/ontologies/:ontologyName/individual/:individualName/input', funct
                         if (results.records.length !== 0) {
                             resolve ({ontSuccess:{ontLevel:"property",ontName:individualProperty["ontName"],ontEvaluation:"valueExistence",ontValue:individualProperty["ontValue"]}});
                         } else {
-                            resolve ({ontError:{ontLevel:"property",ontName:individualProperty["ontName"],ontEvaluation:"valueExistence",ontValue:individualProperty["ontValue"]}});
+                            resolve ({ontWarning:{ontLevel:"property",ontName:individualProperty["ontName"],ontEvaluation:"valueExistence",ontValue:individualProperty["ontValue"]}});
                         }
                     })
                     .catch(function(error){
