@@ -101,10 +101,10 @@ function returnFilesAvailable (dirname,filename) {
 // IMP: to re-write server functionality according to UPG2 of variable 4.1.2
 // function returnOntologiesAvailable () {}
 // 4.2.2. Abbreviate: functions to manage items names according to uri and neosemantics
-// 4.2.2.1. Abbreviate uri: to work with rdfs naming convention
+// 4.2.2.1. Abbreviate uri name: to work with rdfs naming convention
 // UPG: to serve uri prefix and name as independent variables for managing
 // UPG: to manage external, non-proprietary ontologies
-// IMP: splits uri as it considers all prefixes are the same "ontologiesURI"
+// IMP: splits uri as it considers all prefixes are the same "ontologiesURI" and returns name
 function returnUriElement (uri) {
     // For parsing uri elements generically
     // If not null
@@ -116,7 +116,21 @@ function returnUriElement (uri) {
         return null;
     }
 }
-// 4.2.2.2. Abbreviate neo4j: to work with neo4j-neosemantics naming convention
+// 4.2.2.2. Abbreviate uri ontology: to work with rdfs naming convention
+// UPG: to merge with 4.2.2.1 as it returns the ontology's name
+// IMP: splits uri and returns ontology name
+function returnUriOntology (uri) {
+    // For parsing uri elements generically
+    // If not null
+    if (uri != null) {
+        // Returns element ontology splitted from uri before "#" and after last "/"
+        return uri.split("/").pop().split("#")[0];
+    } else {
+        // Otherwise return null
+        return null;
+    }
+}
+// 4.2.2.3. Abbreviate neo4j: to work with neo4j-neosemantics naming convention
 // UPG: to serve uri prefix and name as independent variables for managing
 // UPG: to manage external, non-proprietary ontologies
 function returnNeo4jNameElement (prefix, element) {
@@ -130,7 +144,7 @@ function returnNeo4jNameElement (prefix, element) {
         return null;
     }
 }
-// 4.2.2.3. Abbreviate neo4j into uri: to convert neo4j-neosemantics notation in uri notation
+// 4.2.2.4. Abbreviate neo4j into uri: to convert neo4j-neosemantics notation in uri notation
 // UPG: to manage all neo4j implemented ontologies independently
 // IMP: returns the uri of a given element coded by neo4j-neosemantics
 function returnURIfromNeo4jElement (element) {
@@ -147,7 +161,7 @@ function returnURIfromNeo4jElement (element) {
         return null;
     }
 }
-// 4.2.2.4. Construct uri from ontology name: to convert names in uri notiation
+// 4.2.2.5. Construct uri from ontology name: to convert names in uri notiation
 // IMP: returns the uri of given ontology prefix and class name
 function constructURI (prefix,name) {
     // Concatenates ontological names to create the uri resource
@@ -958,6 +972,7 @@ app.post('/api/ontologies/:ontologyName/individual/:individualName/input', funct
     // B.1. Property-level instantiations: to instantiate a property value to an individual
     // IMP: given the individual name, ontology name and the property (json object) instantiates the property to the individual
     // IMP: differentiates between datatype (node property) and object type (relation and node) properties
+    // IMP: when object type merges with individual node as given by individualProperty["ontRange"]
     let individualPropertyCreation = function (individualName,individualOntology,individualProperty) {
         return new Promise(function(resolve, reject){
             // console.log("individualPropertyCreation");
@@ -982,8 +997,10 @@ app.post('/api/ontologies/:ontologyName/individual/:individualName/input', funct
             // if (propertyTypes.includes("DatatypeProperty")) {
             if (returnUriElement(individualProperty["ontType"]).includes("ObjectProperty")) {
                 // Matches individual by URI and merges new relation with existing individual
+                // Matches individual by URI and merges new relation with existing or new individual
                 // sessionQuery = `MATCH (a{uri:"${uriElement+individualName}"}),(b{uri:"${uriElement+individualProperty["value"]}"}) MERGE (a)-[r:${individualOntology}__${individualProperty["name"]}]->(b) RETURN a,r,b`
-                sessionQuery = `MATCH (a{uri:"${individualName}"}),(b{uri:"${individualProperty["ontValue"]}"}) MERGE (a)-[r:${ontologyName}__${propertyName}]->(b) RETURN a,r,b`;
+                // sessionQuery = `MATCH (a{uri:"${individualName}"}),(b{uri:"${individualProperty["ontValue"]}"}) MERGE (a)-[r:${ontologyName}__${propertyName}]->(b) RETURN a,r,b`;
+                sessionQuery = `MATCH (a{uri:"${individualName}"}) MERGE (b:Resource:owl__NamedIndividual:${returnUriOntology(individualProperty["ontRange"])}__${returnUriElement(individualProperty["ontRange"])}{uri:"${individualProperty["ontValue"]}"}) MERGE (a)-[r:${ontologyName}__${propertyName}]->(b) RETURN a,r,b`;
             // } else if (propertyTypes.includes("ObjectProperty")) {
             } else if (returnUriElement(individualProperty["ontType"]).includes("DatatypeProperty")) {
                 // Matches individual by URI and sets a new node property
