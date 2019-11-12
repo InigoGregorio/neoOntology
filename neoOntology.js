@@ -1060,7 +1060,8 @@ app.post('/api/ontologies/:ontologyName/individual/:individualName/input', funct
         return await [individualNodeInstantiation,individualPropsInstantiation];
     };
     // C.3. Individual input: to input individual into knowledge base graph according to evaluation results
-    // IMP: awaits for individual review resolution to run promise on individual instantiation and return successes/errors/warnings
+    // IMP: awaits for individual review resolution to run promise on individual instantiation and return warnings/errors
+    // UPG: to modify function to return successes as well
     // UPG: to modify function as a new promise that can be easily exported
     individualReview(req.body)
         .then(function(reviewResults){
@@ -1074,7 +1075,8 @@ app.post('/api/ontologies/:ontologyName/individual/:individualName/input', funct
                         let inputResolution = [];
                         inputResolution.push(inputResults[0]["records"]);
                         inputResults[1].forEach(function(result){inputResolution.push(result["records"])});
-                        res.send({ontWarnings:reviewResults["ontWarnings"],ontInput:inputResolution});
+                        // res.send({ontWarnings:reviewResults["ontWarnings"],ontInput:inputResolution});
+                        res.send({ontWarnings:reviewResults["ontWarnings"]});
                     })
                     .catch(function(inputError){
                         res.send(inputError);
