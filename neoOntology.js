@@ -1,6 +1,6 @@
 // I. SERVER DESCRIPTION:
 // Maintenance Ontology Reasoner:
-// An ontology-elements and files server to feed data into RTRBAU applications.
+// An ontology-elements and files server to feed data into rtrbau applications.
 // Code below is described in terms of theoretical (THE), implementation (IMP) and error handling (ERR) descriptors.
 // Potential upgrades (UPG) and maintainability (MAN) issues are also declared.
 
@@ -12,7 +12,7 @@
 // 4.1. Variables
 // 4.2. Functions
 // 5. HTTP methods:
-// 5.1. Get requests: [file,ontology,controlmonitoring] {view}
+// 5.1. Get requests: [file,ontology,control-monitoring, carar] {view}
 // 5.2. Post requests: [ontology] {file,view}
 // 5.3. Put requests: []
 // 5.4. Delete requests: []
@@ -46,6 +46,8 @@ const morgan = require ('morgan');
 const bodyParser = require('body-parser');
 // 1.2.4. To connect to neo4j graphical databases
 const neo4j = require('neo4j-driver').v1;
+// 1.2.5. To enable files upload
+const multer = require('multer');
 
 // 2. INITIALISATION
 // 2.1. Instantiate web application framework
@@ -54,6 +56,33 @@ const app = express();
 const driver = neo4j.driver('bolt://localhost', neo4j.auth.basic('neo4j','opexcellence'));
 // 2.3. Instantiate connection to neo4j server
 let session = driver.session();
+// 2.4. Instantiate file storage
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, path.join(__dirname, 'files', req.params.fileType));
+    },
+    filename: function(req, file, cb) {
+        cb(null, file.originalname);
+    }
+});
+// 2.5. Instantiate upload engine
+// UPG: to enable multiple file upload
+const upload = multer({
+    storage: storage,
+    fileFilter: function (req, file, cb) {
+        // Accept existing file types only
+        // UPG: to dynamically find available file types and return
+        if (!file.originalname.match(/\.(jpg|png|wav|mp4|obj|owl|dat|xml)$/)) {
+            req.fileValidationError = 'File type is not allowed';
+            return cb(new Error('File type is not allowed'), false);
+        }
+        else if (!path.extname(file.originalname).match(req.params.fileType)) {
+            req.fileValidationError = 'File type does not match url';
+            return cb(new Error('File type does not match url'), false);
+        }
+        cb(null, true);
+    }
+}).single('file');
 
 // 3. MIDDLEWARE
 // 3.1. Setup engine view for dynamic files (e.g. html, ejs)
@@ -167,6 +196,9 @@ function constructURI (prefix,name) {
     // Concatenates ontological names to create the uri resource
     return ontologiesURI + prefix + "#" + name;
 }
+// 4.2.3. Store: functions to manage file upload storage
+// UPG: functions created accordingly to multer storage engine (https://github.com/expressjs/multer/blob/master/StorageEngine.md)
+
 // 5. HTTP METHODS
 // 5.1. GET REQUESTS
 // 5.1.0. Homepage GET request:
@@ -193,7 +225,7 @@ app.get('/api/ping', function(req,res){
 // IMP: given a file type, retrieve files available
 app.get('/api/files/:fileType', function(req,res){
     // ERR: if fileType is not available
-    if(!returnFilesAvailable(path.join(__dirname,"files"), req.params.fileType)) {
+    if(!returnFilesAvailable(path.join(__dirname,'files'), req.params.fileType)) {
         res.status(404).send('File type not available');
     } else {
         let filesNames = fs.readdirSync(`files/${req.params.fileType}`);
@@ -205,15 +237,15 @@ app.get('/api/files/:fileType', function(req,res){
 // IMP: given a file full-name and type, send file
 app.get('/api/files/:fileType/:fileName', function(req,res){
     // ERR: if fileType is not found
-    if(!returnFilesAvailable(path.join(__dirname,"files"),req.params.fileType)) {
+    if(!returnFilesAvailable(path.join(__dirname,'files'),req.params.fileType)) {
         res.status(404).send('File type not available');
     }
     // ERR: if fileName is not found
-    else if(!returnFilesAvailable(path.join(__dirname,"files",req.params.fileType),req.params.fileName)) {
+    else if(!returnFilesAvailable(path.join(__dirname,'files',req.params.fileType),req.params.fileName)) {
         res.status(404).send('File not available');
     }
     else {
-        res.sendFile(path.join(__dirname,"files",req.params.fileType,req.params.fileName));
+        res.sendFile(path.join(__dirname,'files',req.params.fileType,req.params.fileName));
     }
 });
 // 5.1.2. Ontology GET requests
@@ -629,7 +661,30 @@ app.get('/api/cm/:ontologyName/class/:firstClassName/individual/:individualName/
 });
 // 5.2. POST REQUESTS
 // 5.2.1. File POST requests
-// UPG: to include upload of files {ontologies, images, 3Dmodels} with user authentication
+// UPG: to include upload of multiple files with user authentication
+// 5.2.1.1. Single file input: to upload single file by type
+app.post('/api/files/:fileType/upload', function(req,res) {
+    upload(req, res, function(err){
+        // req.file contains information of uploaded file
+        // req.body contains information of text fields, if there were any
+        if (req.fileValidationError) {
+            return res.send(req.fileValidationError);
+        }
+        else if (!req.file) {
+            return res.send('Please select a file to upload');
+        }
+        else if (err instanceof multer.MulterError) {
+            return res.send(err);
+        }
+        else if (err) {
+            return res.send(err);
+        }
+        else {
+
+        }
+        res.send('File uploaded successfully');
+    });
+});
 // 5.2.3. Ontology view POST requests
 // UPG: to include upload of complete ontologies with consistency evaluation
 // 5.2.2. Ontology POST requests
@@ -1089,9 +1144,11 @@ app.post('/api/ontologies/:ontologyName/individual/:individualName/input', funct
 });
 // 5.3. PUT REQUESTS
 // 5.4. DELETE REQUESTS
+
 // 6. PORT
 // IMP: Initialise port for the server to start listen in
 app.listen(port, function(){console.log(`Server listening on port: ${port}`)});
+
 // 7. EXPORT
 // IMP: to export the app (express) functions declare as a class
 // UPG: when functions declared more generically, class can be exported to be used by other servers
