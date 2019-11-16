@@ -9,11 +9,11 @@
   "author": "Iñigo Fernández del Amo",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "ejs": "^2.7.2",
-    "express": "^4.17.1",
+    "body-parser": "*",
+    "ejs": "*",
+    "express": "*",
     "morgan": "*",
     "multer": "*",
-    "neo4j-driver": "^1.7.6"
+    "neo4j-driver": "*"
   }
 }
