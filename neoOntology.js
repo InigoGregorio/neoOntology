@@ -12,8 +12,8 @@
 // 4.1. Variables
 // 4.2. Functions
 // 5. HTTP methods:
-// 5.1. Get requests: [file,ontology,control-monitoring, carar] {view}
-// 5.2. Post requests: [ontology] {file,view}
+// 5.1. Get requests: [file, ontology, sparql] {view}
+// 5.2. Post requests: [file, ontology] {sparql, view}
 // 5.3. Put requests: []
 // 5.4. Delete requests: []
 // 6. Port
@@ -457,7 +457,6 @@ app.get('/api/ontologies/:ontologyStartName/class/:classStartName/distance/:onto
             });
     }
 });
-
 // 5.1.2.3. Individual-level GET requests:
 // 5.1.2.3.1. Individual properties: to identify the properties that describe an individual in an ontology
 // THE: owl:NamedIndividual | to identify an individual by the properties and values used to declare it
@@ -534,8 +533,9 @@ app.get('/api/ontologies/:ontologyName/individual/:individualName/properties', f
             res.json(err);
         });
 });
-// 5.1.3. SPARQL endpoint GET requests
+// 5.1.3. SPARQL GET requests
 // IMP: initial stages for creating a SPARQL endpoint
+// UPG: to create a full comprehensive SPARQL endpoint
 // 5.1.3.1. Visualisation GET requests:
 // IMP: to visualise ontology in web browsers in a friendly manner and meet normal semantic web visualisations ("#")
 // UPG: given an ontology name, retrieve the ontology ("http://138.250.108.1:3003/api/files/ontologies/rtrbau#")
@@ -659,6 +659,11 @@ app.get('/api/cm/:ontologyName/class/:firstClassName/individual/:individualName/
             res.json(err);
         });
 });
+// 5.1.4. View GET requests:
+// IMP: to show ontologies entities using pre-determine ejs views
+// 5.1.4.1. Ontology class view:
+// 5.1.4.2. Ontology individual view:
+
 // 5.2. POST REQUESTS
 // 5.2.1. File POST requests
 // UPG: to include upload of multiple files with user authentication
