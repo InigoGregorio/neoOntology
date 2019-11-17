@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -7,6 +6,22 @@
     <meta name="author" content="">
 </head>
 <body>
-<script src=""></script>
+<% if (result["ontError"]) { %>
+    <h1><%= result.ontError%></h1>
+<% } else { %>
+    <h1><%= result.ontClass.split("#")[1] %></h1>
+    <h2><%= result.ontIndividual.split("#")[1] %></h2>
+    <% result.ontProperties.forEach(function(value){ %>
+        <% if (value.ontType.split("#")[1] === "ObjectProperty") { %>
+            <li><%= value.ontName.split("#")[1] %>:
+                <a href="/view/<%=value.ontValue.split("/").pop().split("#")[0]%>/individual/<%=value.ontValue.split("#")[1]%>">
+                    <%=value.ontValue.split("#")[1]%></a>
+            </li>
+        <% } else { %>
+            <li><%= value.ontName.split("#")[1] %>: <%= value.ontValue.split("#")[1]%></li>
+        <% }%>
+    <% }); %>
+<% } %>
+<script>src="neoOntology.js"</script>
 </body>
 </html>
