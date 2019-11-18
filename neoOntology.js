@@ -277,7 +277,6 @@ let ontologies = function () {
 let ontologyNameCorrectness = function(individual, ontologyName) {
     return new Promise(function(resolve){
         const uriElement = neontURL + ontologyName + "#";
-        console.log(uriElement);
         if (individual["ontOntology"]===uriElement){
             resolve ({ontSuccess:{ontLevel:"individual",ontName:individual["ontName"],
                     ontEvaluation:"ontologyCorrectness",ontValue:individual["ontOntology"]}});
@@ -316,16 +315,13 @@ let classExistence = function(individual) {
 // UPG: rdfs:subPropertyOf | to extend queries to subProperties
 // UPG: to manage ontology prefixes, maybe update ontologiesURI to a function to retrieve prefix?
 // UPG: that will require to maintain a list of available prefixes similar to the one in neo4j node, maybe consult?
-let classSubclasses = function(ontologyName, className) {
+let classSubclasses = function(uri) {
   return new Promise(function(resolve, reject) {
-      // Variable to identify relevant uri to look for
-      // let uriElement = ontologiesURI + req.params.ontologyName + "#" + req.params.className;
-      let uriElement = constructURI(ontologyName, className);
       // Variable to capture subclasses names
       let subclassesArray = [];
       session
       // Matches owl__Class nodes by uri and return other owl__Class nodes through rdfs__subClassOf relationships
-          .run(`MATCH (a:owl__Class{uri:"${uriElement}"})<-[r:rdfs__subClassOf]-(b:owl__Class) 
+          .run(`MATCH (a:owl__Class{uri:"${uri}"})<-[r:rdfs__subClassOf]-(b:owl__Class) 
           RETURN a.uri, b.uri`)
           .then(function(result){
               // Evaluates if the server contains nodes that match the uri
@@ -335,10 +331,11 @@ let classSubclasses = function(ontologyName, className) {
                       subclassesArray.push({ontSubclass: record._fields[1]});
                   });
                   // Formats results in a json object
-                  resolve({ontClass: uriElement, ontSubclasses: subclassesArray});
+                  resolve({ontClass: uri, ontSubclasses: subclassesArray});
               } else {
                   // Otherwise sends an error
-                  resolve({ontError:"Subclasses not found"});
+                  //resolve({ontError:"Subclasses not found"});
+                  resolve({ontClass: uri, ontSubclasses: []});
               }
           })
           .catch(function(error){
@@ -350,7 +347,9 @@ let classSubclasses = function(ontologyName, className) {
 // IMP: it assumes datatype properties will always be the same for a given class (due to rdfs nomenclature)
 // UPG: to recommend individuals from a specific class, given contextual parameters
 // Promise to identify individual name
-let classExample = function (ontologyName, className) {
+let classExample = function (uri) {
+    let ontologyName = returnUriOntology(uri);
+    let className = returnUriElement(uri);
     return new Promise(function(resolve, reject) {
         session
         // Matches nodes with owl__NamedIndividual and ontology__class labels
@@ -362,7 +361,7 @@ let classExample = function (ontologyName, className) {
                 if (result.records.length !== 0) {
                     // Captures individual uri retrieved by neo4j
                     result.records.forEach(function(record){
-                        resolve(returnUriElement(record._fields[0]));
+                        resolve(record._fields[0]);
                     });
                 } else {
                     // Otherwise sends an error
@@ -379,9 +378,10 @@ let classExample = function (ontologyName, className) {
 // IMP: uses neosemantics notation (ontology__element) to identify a class
 // IMP: given an ontology and a class name, returns its individuals in json format
 // UPG: to extend identification of class and individuals that may be replicated in other ontologies
-let classIndividuals = function(ontologyName, className) {
+let classIndividuals = function(uri) {
   return new Promise(function(resolve,reject) {
-      let uriElement = constructURI(ontologyName, className);
+      let ontologyName = returnUriOntology(uri);
+      let className = returnUriElement(uri);
       // Variable to identify individuals names
       let individualsArray = [];
       session
@@ -395,10 +395,11 @@ let classIndividuals = function(ontologyName, className) {
                       individualsArray.push({ontIndividual: record._fields[0]});
                   });
                   // Returns individuals names of class name in json format
-                  resolve({ontClass: uriElement, ontIndividuals: individualsArray});
+                  resolve({ontClass: uri, ontIndividuals: individualsArray});
               } else {
                   // Otherwise sends an error
-                  resolve({ontError:"Individuals not found"});
+                  // resolve({ontError:"Individuals not found"});
+                  resolve({ontClass: uri, ontIndividuals: []});
               }
           })
           .catch(function(err){
@@ -413,14 +414,12 @@ let classIndividuals = function(ontologyName, className) {
 // IMP: returns empty properties if do not exist
 // UPG: to extend class declaration with owl language elements (e.g. owl:cardinality, owl:functionality, etc.)
 // UPG: to use owl elements to infer all class superclasses to identify instantiation properties for an individual
-let classProperties = function(ontologyName, className) {
+let classProperties = function(uri) {
   return new Promise(function(resolve, reject) {
-      let uriElement = constructURI(ontologyName, className);
       session
       // Matches owl__Class nodes with owl__ObjectProperty and owl__DatatypeProperty nodes
       // and with other class nodes by rdfs:domain and rdfs:range
-          .run(`MATCH (a:owl__Class{uri:"${uriElement}"}) 
-          OPTIONAL MATCH (a)<-[r:rdfs__domain]-(b)-[s:rdfs__range]->(c) 
+          .run(`MATCH (a:owl__Class{uri:"${uri}"}) OPTIONAL MATCH (a)<-[r:rdfs__domain]-(b)-[s:rdfs__range]->(c) 
           WHERE b:owl__ObjectProperty OR b:owl__DatatypeProperty RETURN a.uri,labels(b),b.uri,c.uri`)
           .then(function(result){
               // Evaluates if the server contains nodes that match the class
@@ -447,15 +446,15 @@ let classProperties = function(ontologyName, className) {
                           propertyTypesArray = [];
                       });
                       // Returns class and properties in json format
-                      resolve({ontClass: uriElement, ontProperties: propertiesArray});
+                      resolve({ontClass: uri, ontProperties: propertiesArray});
                   } else {
                       // Otherwise returns a class with empty properties
-                      resolve({ontClass: uriElement, ontProperties: []});
+                      resolve({ontClass: uri, ontProperties: []});
                   }
 
               } else {
                   // Otherwise sends an error
-                  resolve({ontError:"Properties not found"});
+                  resolve({ontError:"Class not found"});
               }
           })
           .catch(function(err){
@@ -553,9 +552,10 @@ let classDistance = function(ontologyStartName, classStartName, ontologyDistance
 // UPG: to extent evaluation of properties being declared by other ontologies
 // UPG: to extend property declaration including domain and range of each property returned
 // UPG: to extend evaluation of properties retrieved by the ontology being consulted (ontology__Property)
-let individualProperties = function(ontologyName, individualName) {
+let individualProperties = function(uri) {
     return new Promise(function(resolve,reject) {
-        let uriElement = constructURI(ontologyName, individualName);
+        let ontologyName = returnUriOntology(uri);
+        let className = returnUriElement(uri);
         // Variables to capture elements independently due to the message structure retrieved by the cypher query
         let classArray;
         // Object properties are stored differently than data properties as they require different capture methods
@@ -564,7 +564,7 @@ let individualProperties = function(ontologyName, individualName) {
         session
         // Matches node by uri and owl__NamedIndividual label
         // and returns classes (labels), and datatype (properties) and object (relations{type}) properties
-            .run(`MATCH (a:owl__NamedIndividual{uri:"${uriElement}"}) 
+            .run(`MATCH (a:owl__NamedIndividual{uri:"${uri}"}) 
             OPTIONAL MATCH (a)-[r]->(b) RETURN a.uri, labels(a), properties(a), type(r), b.uri`)
             .then(function(result){
                 // Evaluates if the server contains nodes that match the class
@@ -607,7 +607,7 @@ let individualProperties = function(ontologyName, individualName) {
                     });
                     // Returns individual name, class name, and properties name, value and type in json format
                     resolve({
-                        ontIndividual: uriElement,
+                        ontIndividual: uri,
                         ontClass: classArray,
                         ontProperties: dataPropertiesArray.concat(objectPropertiesArray)});
                 } else {
@@ -689,7 +689,6 @@ let individualPropertiesConsistency = async function (individual) {
 let individualNameCorrecteness = function(individual, ontologyName, individualName) {
     return new Promise(function(resolve) {
         let uriElement = constructURI(ontologyName, individualName);
-        console.log(uriElement);
         if (individual["ontName"]===uriElement){
             resolve ({ontSuccess:{ontLevel:"individual",ontName:individual["ontName"],
                     ontEvaluation:"nameCorrectness",ontValue:individual["ontName"]}});
@@ -907,10 +906,10 @@ let individualPropertyCreation = function (individualName,individualOntology,ind
         session
         // Runs cypher query and resolve results
             .run(sessionQuery)
-            .then(function(results){
+            .then(function(results) {
                 resolve(results);
             })
-            .catch(function(error){
+            .catch(function(error) {
                 reject (error);
             });
     });
@@ -971,7 +970,8 @@ app.get('/api/ontologies', function (req,res) {
 // Class subclasses: to retrieve classes and subclasses within an ontology in json format
 app.get('/api/ontologies/:ontologyName/class/:className/subclasses', function(req,res){
     async function classSubclassesJSON() {
-        return await classSubclasses(req.params.ontologyName,req.params.className);
+        let uri = constructURI(req.params.ontologyName,req.params.className);
+        return await classSubclasses(uri);
     }
     classSubclassesJSON()
         .then(function(result) {
@@ -984,7 +984,8 @@ app.get('/api/ontologies/:ontologyName/class/:className/subclasses', function(re
 // Class individuals: to retrieve individuals that belong to a class in json format
 app.get('/api/ontologies/:ontologyName/class/:className/individuals', function(req,res){
     async function classIndividualsJSON() {
-        return await classIndividuals(req.params.ontologyName,req.params.className);
+        let uri = constructURI(req.params.ontologyName,req.params.className);
+        return await classIndividuals(uri);
     }
     classIndividualsJSON()
         .then(function(result) {
@@ -997,7 +998,8 @@ app.get('/api/ontologies/:ontologyName/class/:className/individuals', function(r
 // Class properties: to retrieve properties that identify individuals of a class in json format
 app.get('/api/ontologies/:ontologyName/class/:className/properties', function(req,res){
     async function classPropertiesJSON() {
-        return await classProperties(req.params.ontologyName,req.params.className);
+        let uri = constructURI(req.params.ontologyName,req.params.className);
+        return await classProperties(uri);
     }
     classPropertiesJSON()
         .then(function(result) {
@@ -1024,7 +1026,8 @@ app.get('/api/ontologies/:ontologyStartName/class/:classStartName/distance/:onto
 // Individual properties: to return the properties that describe an individual in an ontology in json format
 app.get('/api/ontologies/:ontologyName/individual/:individualName/properties', function(req,res){
     async function individualPropertiesJSON() {
-        return await individualProperties(req.params.ontologyName,req.params.individualName);
+        let uri = constructURI(req.params.ontologyName,req.params.individualName);
+        return await individualProperties(uri);
     }
     individualPropertiesJSON()
         .then(function(result) {
@@ -1036,11 +1039,12 @@ app.get('/api/ontologies/:ontologyName/individual/:individualName/properties', f
 });
 // Individual example: to retrieve class individual with most number of relationships
 app.get('/api/ontologies/:ontologyName/class/:className/example', function(req,res){
-    async function individualPropertiesJson() {
-        let individualName = await classExample(req.params.ontologyName, req.params.className);
-        return await individualProperties(req.params.ontologyName, individualName);
+    async function classExampleJSON() {
+        let classUri = constructURI(req.params.ontologyName,req.params.className);
+        let individualUri = await classExample(classUri);
+        return await individualProperties(individualUri);
     }
-    individualPropertiesJson()
+    classExampleJSON()
         .then(function(result) {
             res.json(result);
         })
@@ -1087,7 +1091,15 @@ app.get('/api/cm/:ontologyName/class/:firstClassName/individual/:individualName/
 /*====================================================================================================================*/
 // C. Views
 /*====================================================================================================================*/
-// File type: retrieve files available for a given type
+app.get('/', function(req,res) {
+   res.render('index');
+});
+// File namespace view: to render files types available
+app.get('/view/files', function(req,res) {
+    res.render('filetypes', {result:fs.readdirSync(path.join(__dirname,"files"))});
+});
+// File type view: to render files available for a given type
+// IMP: includes button to upload new file
 app.get('/view/files/:fileType', function(req,res) {
     // ERR: if fileType is not available
     if(!returnFilesAvailable(path.join(__dirname,'files'), req.params.fileType)) {
@@ -1096,17 +1108,101 @@ app.get('/view/files/:fileType', function(req,res) {
         let filesNames = fs.readdirSync(`files/${req.params.fileType}`)
             .filter(item => !(/(^|\/)\.[^\/\.]/g).test(item));
         // Avoids '.' 'hidden' directories
-        res.render('files',{result:{fileType:req.params.fileType,filesNames: filesNames}});
+        res.render('filetypeFiles',{result:{fileType:req.params.fileType,filesNames: filesNames}});
     }
 });
-// Ontology individual view: retrieve ontology individual and its properties to render in individual.ejs
-app.get('/view/:ontologyName/individual/:individualName', function(req,res) {
+// Ontologies namespace view: to render existing proprietary ontologies in json format
+app.get('/view/ontologies', function (req,res) {
+    async function ontologiesJSON() {
+        return await ontologies();
+    }
+    ontologiesJSON()
+        .then(function(result) {
+            res.render('ontologies',{result:result});
+        })
+        .catch(function(err) {
+            res.json(err);
+        });
+});
+// Class subclasses view: to render classes and subclasses within an ontology in json format
+// IMP: points to subclasses if found, otherwise points to properties if also found
+// IMP: includes buttons to report those classes with attributes and buttons to individuals if found
+// UPG: to consider the situation where superclasses may also have individuals (owl upgrade)
+app.get('/view/ontologies/:ontologyName/class/:className/subclasses', function(req,res) {
+    let classUri = constructURI(req.params.ontologyName, req.params.className);
+    let subclassesUris = function(uri) {
+        return new Promise(function(resolve,reject) {
+            classSubclasses(uri)
+                .then(function(result) {
+                    let subclassesUris = [];
+                    result.ontSubclasses.forEach(function(subclass) {
+                       subclassesUris.push(subclass.ontSubclass);
+                    });
+                    resolve(subclassesUris);
+                })
+                .catch(function(err) {
+                    reject(err);
+                });
+        })
+    };
+    let subclassesSubclassesIndividualsProperties = async function(uri) {
+        return await Promise.all([classSubclasses(uri), classProperties(uri), classIndividuals(uri)]
+              .map(p => p.catch(error => error)));
+    };
+    let subclassesJSON = async function(uri) {
+        let subclassesList = await subclassesUris(uri);
+        return await Promise.all(subclassesList.map(subclassesSubclassesIndividualsProperties));
+    };
+    subclassesJSON(classUri)
+        .then(function(result) {
+            //res.json(result);
+            res.render('classSubclasses',{uri:classUri,result:result});
+        })
+        .catch(function(err) {
+            res.json(err);
+        });
+});
+// Class individuals view: to render ontology class and individuals in json format
+// IMP: includes links to individuals and button to report similar class individuals
+app.get('/view/ontologies/:ontologyName/class/:className/individuals', function(req,res) {
+    async function classIndividualsJSON() {
+        let uri = constructURI(req.params.ontologyName,req.params.className);
+        return await classIndividuals(uri);
+    }
+    classIndividualsJSON()
+        .then(function(result) {
+            res.render('classIndividuals',{result:result});
+        })
+        .catch(function(err) {
+            res.json(err);
+        });
+});
+// Class properties view: to render ontology class properties
+// IMP: includes buttons to report individual if properties found and to check existing individuals if found
+// IMP: includes links to object properties
+app.get('/view/ontologies/:ontologyName/class/:className/properties', function(req,res) {
+    let classUri = constructURI(req.params.ontologyName,req.params.className);
+    async function classPropertiesIndividualsJSON(uri) {
+        return await Promise.all([classProperties(uri),classIndividuals(uri)].map(p => p.catch(error => error)));
+    }
+    classPropertiesIndividualsJSON(classUri)
+        .then(function(result) {
+            res.render('classProperties',{result:result});
+        })
+        .catch(function(err) {
+            res.json(err);
+        });
+});
+// Individual properties view: to render ontology individual and its properties
+// IMP: includes links to other individuals and button to report similar class individual
+app.get('/view/ontologies/:ontologyName/individual/:individualName/properties', function(req,res) {
     async function individualPropertiesJSON() {
-        return await individualProperties(req.params.ontologyName,req.params.individualName);
+        let uri = constructURI(req.params.ontologyName,req.params.individualName);
+        return await individualProperties(uri);
     }
     individualPropertiesJSON()
         .then(function(result) {
-            res.render('individual',{result:result});
+            res.render('individualProperties',{result:result});
         })
         .catch(function(err) {
             res.json(err);

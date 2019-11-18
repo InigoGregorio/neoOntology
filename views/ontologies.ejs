@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="author" content="">
+</head>
+<body>
+<h1>Ontologies</h1>
+<% if (result["ontError"]) { %>
+    <h1><%= result.ontError%></h1>
+<% } else { %>
+    <% result.ontOntologies.forEach(function(value) { %>
+        <h2><a href="/view/ontologies/<%=value.ontPrefix%>/class/<%=value.ontPrefix%>/subclasses">
+                <%=value.ontPrefix%></a></h2>
+    <% }); %>
+<% } %>
+<script>src="neoOntology.js"</script>
+</body>
+</html>

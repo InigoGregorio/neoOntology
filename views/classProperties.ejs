@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="author" content="">
+</head>
+<body>
+<h1>Class: <%=result[0].ontClass.split("#")[1]%></h1>
+<!--Button to reportIndividual-->
+<form action="/view/ontologies/<%=result[0].ontClass.split("/").pop().split("#")[0]%>/class/<%=result[0].ontClass.split("#")[1]%>/input" method="get">
+    <button>Report new instance</button>
+</form>
+<% if (result[1].ontIndividuals.length !== 0) { %>
+    <!--Button to individuals-->
+    <form action="/view/ontologies/<%=result[0].ontClass.split("/").pop().split("#")[0]%>/class/<%=result[0].ontClass.split("#")[1]%>/individuals" method="get">
+        <button>Check existing instances</button>
+    </form>
+<% } else {} %>
+<h2>Properties: </h2>
+<% result[0].ontProperties.forEach(function(property) { %>
+    <% if (property.ontType.split("#")[1] === "ObjectProperty") { %>
+        <!--Link to property definition-->
+        <li><a href="/view/ontologies/<%=result[0].ontClass.split("/").pop().split("#")[0]%>/property/<%=property.ontName.split("#")[1]%>"><%=property.ontName.split("#")[1]%></a>: <%=property.ontType.split("#")[1]%></li>
+    <% } else if (property.ontType.split("#")[1] === "DatatypeProperty") { %>
+        <li><%=property.ontName.split("#")[1]%>: <%=property.ontRange.split("#")[1]%></li>
+    <% } else {%>
+        <li><%=property.ontName.split("#")[1]%>: <%=property.ontType.split("#")[1]%></li>
+    <% } %>
+<% }); %>
+<script>src="neoOntology.js"</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="author" content="">
+</head>
+<body>
+<h1>Class: <%=uri.split("#")[1]%></h1>
+<h2>Subclasses: </h2>
+<% result.forEach(function(subclass) { %>
+    <!--Assumes that if class has subclasses, then does not have properties and vice versa-->
+    <% if (subclass[0].ontSubclasses.length !== 0) { %>
+        <!--Link to classSubclasses-->
+        <li><a href="/view/ontologies/<%=subclass[0].ontClass.split("/").pop().split("#")[0]%>/class/<%=subclass[0].ontClass.split("#")[1]%>/subclasses"><%=subclass[0].ontClass.split("#")[1]%></a></li>
+    <% } else { %>
+        <% if (subclass[1].ontProperties.length !== 0) { %>
+            <!--Link to classProperties-->
+            <li><a href="/view/ontologies/<%=subclass[0].ontClass.split("/").pop().split("#")[0]%>/class/<%=subclass[0].ontClass.split("#")[1]%>/properties"><%=subclass[0].ontClass.split("#")[1]%></a></li>
+            <!--Button to reportIndividual-->
+            <form action="/view/ontologies/<%=subclass[0].ontClass.split("/").pop().split("#")[0]%>/class/<%=subclass[0].ontClass.split("#")[1]%>/input" method="get">
+                <button>Report new instance</button>
+            </form>
+            <!--MISSING-->
+            <% if (subclass[2].ontIndividuals.length !== 0) { %>
+                <!--Button to individuals-->
+                <form action="/view/ontologies/<%=subclass[0].ontClass.split("/").pop().split("#")[0]%>/class/<%=subclass[0].ontClass.split("#")[1]%>/individuals" method="get">
+                    <button>Check existing instances</button>
+                </form>
+                <!--MISSING-->
+            <% } else { %>
+                <!--Do nothing-->
+            <% } %>
+        <% } else { %>
+            <!--Do nothing-->
+        <% } %>
+    <% } %>
+<% }); %>
+<script>src="neoOntology.js"</script>
+</body>
+</html>

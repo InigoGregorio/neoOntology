@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="author" content="">
+</head>
+<body>
+<h1>File types</h1>
+<% result.forEach(function(value){ %>
+    <h2><a href="/view/files/<%=value%>"><%=value%></a></h2>
+<% }); %>
+<script>src="neoOntology.js"</script>
+</body>
+</html>
