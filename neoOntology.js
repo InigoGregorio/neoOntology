@@ -1091,6 +1091,7 @@ app.get('/api/cm/:ontologyName/class/:firstClassName/individual/:individualName/
 /*====================================================================================================================*/
 // C. Views
 /*====================================================================================================================*/
+// Home view: to render index page to enable web navigation
 app.get('/', function(req,res) {
    res.render('index');
 });
@@ -1155,7 +1156,6 @@ app.get('/view/ontologies/:ontologyName/class/:className/subclasses', function(r
     };
     subclassesJSON(classUri)
         .then(function(result) {
-            //res.json(result);
             res.render('classSubclasses',{uri:classUri,result:result});
         })
         .catch(function(err) {
@@ -1188,6 +1188,64 @@ app.get('/view/ontologies/:ontologyName/class/:className/properties', function(r
     classPropertiesIndividualsJSON(classUri)
         .then(function(result) {
             res.render('classProperties',{result:result});
+        })
+        .catch(function(err) {
+            res.json(err);
+        });
+});
+// Class individual input view: to render class properties and properties classes and individuals to input individual
+// IMP: includes button to redirect to the individual input view POST request (equal to json with HTTP referer)
+// IMP: requests class properties as well as properties classes individuals to enable correct input
+app.get('/view/ontologies/:ontologyName/class/:className/individual/input', function(req,res) {
+    let classUri = constructURI(req.params.ontologyName, req.params.className);
+    let opClassProperties = function(property) {
+        return new Promise(function(resolve,reject) {
+            if (returnUriElement(property["ontType"]).includes("ObjectProperty")) {
+                classProperties(property["ontRange"])
+                    .then(function(result) {
+                        property["ontProperties"] = result;
+                        resolve(property);
+                    })
+                    .catch(function(err) {
+                        reject(err);
+                    });
+            } else {
+                resolve(property);
+            }
+
+        });
+    };
+    let opClassIndividuals = function(property) {
+        return new Promise(function(resolve,reject) {
+            if (returnUriElement(property["ontType"]).includes("ObjectProperty")) {
+                classIndividuals(property["ontRange"])
+                    .then(function(result) {
+                        property["ontIndividuals"] = result;
+                        resolve(property);
+                    })
+                    .catch(function(err) {
+                        reject(err);
+                    })
+            } else {
+                resolve(property);
+            }
+        });
+    };
+    let opClasses = async function(classProps) {
+        return await Promise.all(classProps.map(opClassProperties));
+    };
+    let opIndividuals = async function(classProps) {
+      return await Promise.all(classProps.map(opClassIndividuals));
+    };
+    let classProps = async function(uri) {
+        let props = await classProperties(uri);
+        let propsClasses = await opClasses(props["ontProperties"]);
+        let propsClassesIndividuals = await opIndividuals(propsClasses);
+        return await propsClassesIndividuals;
+    };
+    classProps(classUri)
+        .then(function(result) {
+            res.render('classIndividualInput', {ontClass: classUri, ontProperties: result});
         })
         .catch(function(err) {
             res.json(err);
@@ -1230,14 +1288,14 @@ app.post('/api/files/:fileType/upload', function(req,res) {
 /*====================================================================================================================*/
 // B. Json
 /*====================================================================================================================*/
-// Individual input: to input an individual in the ontology graph after consistency evaluation
+// Class individual input: to input an individual in the ontology graph after consistency evaluation with a given class
 // IMP: {headers:null}
 // IMP: body:{{ontName:,ontOntology:,ontClass:,ontProperties:[{ontName:,ontValue:,ontDomain:,ontRange:,ontType:}]}}
 app.post('/api/ontologies/:ontologyName/individual/:individualName/input', function(req,res) {
     // Awaits for individual review resolution to run promise on individual instantiation and return warnings/errors
     individualReview(req.body, req.params.ontologyName, req.params.individualName)
         .then(function(reviewResults) {
-            if (reviewResults["ontErrors"].length!==0) {
+            if (reviewResults["ontErrors"].length !== 0) {
                 res.send({ontWarnings:reviewResults["ontWarnings"],ontErrors:reviewResults["ontErrors"]});
             } else {
                 individualInstantiation(req.body)
@@ -1260,6 +1318,11 @@ app.post('/api/ontologies/:ontologyName/individual/:individualName/input', funct
 /*====================================================================================================================*/
 // C. Views
 /*====================================================================================================================*/
+// Class individual input: to input a given individual using the class individual json post and redirecting afterwards
+// IMP:
+
+// Another view post:
+// IMP:
 
 /*====================================================================================================================*/
 
