@@ -15,7 +15,7 @@
 <h2><%=result.fileType %></h2>
 <% result.filesNames.forEach(function(value){ %>
 <!--Link to file download-->
-<li><a href="/api/files/<%=result.fileType%>/<%=value%>"><%=value%></a></li>
+<p><a href="/api/files/<%=result.fileType%>/<%=value%>"><%=value%></a></p>
 <% }); %>
 <script>src="neoOntology.js"</script>
 </body>

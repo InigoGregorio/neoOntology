@@ -14,7 +14,7 @@
 </form>
 <hr>
 <% if (result[1].ontIndividuals.length !== 0) { %>
-    <!--Button to individuals-->
+    <!--Button to individuals views-->
     <form action="/view/ontologies/<%=result[0].ontClass.split("/").pop().split("#")[0]%>/class/<%=result[0].ontClass.split("#")[1]%>/individuals" method="get">
         <button>Check existing instances</button>
     </form>

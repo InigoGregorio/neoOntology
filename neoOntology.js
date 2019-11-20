@@ -81,7 +81,8 @@ app.use(express.static(path.join(__dirname,'files')));
 app.use(morgan('dev'));
 // Setup body parsing method (standard)
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:false}));
+//app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.urlencoded({extended:true}));
 /*====================================================================================================================*/
 // B. Database driver initialisation (neo4j)
 /*====================================================================================================================*/
@@ -1196,7 +1197,7 @@ app.get('/view/ontologies/:ontologyName/class/:className/properties', function(r
 // Class individual input view: to render class properties and properties classes and individuals to input individual
 // IMP: includes button to redirect to the individual input view POST request (equal to json with HTTP referer)
 // IMP: requests class properties as well as properties classes individuals to enable correct input
-app.get('/view/ontologies/:ontologyName/class/:className/individual/:individualName/input', function(req,res) {
+app.get('/view/ontologies/:ontologyName/class/:className/individual/:individualName/input/form', function(req,res) {
     let classUri = constructURI(req.params.ontologyName, req.params.className);
     let indUri = constructURI(req.params.ontologyName, req.params.individualName);
     let opClassProperties = function(property) {
@@ -1261,19 +1262,19 @@ app.get('/view/ontologies/:ontologyName/class/:className/individual/:individualN
                     if (property["ontProperties"]["ontProperties"].length === 0) {}
                     else { link = returnUriElement(property["ontProperties"]["ontClass"]); }
                     formProps.push({
-                        type: "select",
-                        name: returnUriElement(property["ontName"]),
-                        format: returnUriElement(property["ontRange"]),
-                        link: link,
-                        options: options
+                        propType: "select",
+                        propName: returnUriElement(property["ontName"]),
+                        propFormat: returnUriElement(property["ontRange"]),
+                        propLink: link,
+                        propOptions: options
                     });
                 } else if (returnUriElement(property["ontType"]).includes("DatatypeProperty")) {
                     formProps.push({
-                        type: "text",
-                        name: returnUriElement(property["ontName"]),
-                        format: returnUriElement(property["ontRange"]),
-                        link: "",
-                        options: []
+                        propType: "text",
+                        propName: returnUriElement(property["ontName"]),
+                        propFormat: returnUriElement(property["ontRange"]),
+                        propLink: "",
+                        propOptions: []
                     });
                 } else {}
             });
@@ -1287,9 +1288,10 @@ app.get('/view/ontologies/:ontologyName/class/:className/individual/:individualN
     };
     form(classUri)
         .then(function(result) {
-            res.render('classIndividualInput', {
-                indClass: returnUriElement(classUri),
-                indName: returnUriElement(indUri),
+            res.render('classIndividualInputForm', {
+                indOnt: req.params.ontologyName,
+                indClass: req.params.className,
+                indName: req.params.individualName,
                 indProps: result});})
         .catch(function(err) {res.json(err);})
 });
@@ -1333,6 +1335,7 @@ app.post('/api/files/:fileType/upload', function(req,res) {
 // Class individual input: to input an individual in the ontology graph after consistency evaluation with a given class
 // IMP: {headers:null}
 // IMP: body:{{ontName:,ontOntology:,ontClass:,ontProperties:[{ontName:,ontValue:,ontDomain:,ontRange:,ontType:}]}}
+// UPG: to create one single function so it can be re-used in the view POST request
 app.post('/api/ontologies/:ontologyName/individual/:individualName/input', function(req,res) {
     // Awaits for individual review resolution to run promise on individual instantiation and return warnings/errors
     individualReview(req.body, req.params.ontologyName, req.params.individualName)
@@ -1360,14 +1363,197 @@ app.post('/api/ontologies/:ontologyName/individual/:individualName/input', funct
 /*====================================================================================================================*/
 // C. Views
 /*====================================================================================================================*/
-// Class individual input: to input a given individual using the class individual json post and redirecting afterwards
-// IMP:
-
+// Class individual input: to input a given individual using the result from the view input form
+app.post('/view/ontologies/:ontologyName/class/:className/individual/:individualName/input',function(req,res) {
+    // Uses post request body to generate class individual formatted for individualInstantiation
+    let ontOntUri = neontURL + req.params.ontologyName + "#";
+    let ontClassUri = constructURI(req.params.ontologyName,req.params.className);
+    let ontIndUri = constructURI(req.params.ontologyName, req.params.individualName);
+    let indPropsForm = function(indForm) {
+        return new Promise(function(resolve,reject) {
+            let indProps = [];
+            for(var prop in indForm) {
+                indProps.push({
+                    propOnt: req.params.ontologyName,
+                    propClass: req.params.className,
+                    propName: prop,
+                    propValue: indForm[prop]
+                });
+            }
+            // console.log(indProps);
+            resolve(indProps);
+        });
+    };
+    let indPropEval = async function(indProp) {
+        let classUri = constructURI(indProp["propOnt"],indProp["propClass"]);
+        let classProps = await classProperties(classUri);
+        return new Promise(function(resolve,reject) {
+            let prop;
+            classProps["ontProperties"].forEach(function(classProp) {
+                let classPropName = returnUriElement(classProp["ontName"]);
+                // Check if class property name coincides with inputted individual property
+                // Ensures the right structure and array size is returned
+                if (classPropName === indProp["propName"]) {
+                    // If value is empty, then do not consider ontInput = false, ontNew = false
+                    if (indProp["propValue"] !== "") {
+                        // Check if class property type is object or datatype, otherwise do not consider
+                        let classPropType = returnUriElement(classProp["ontType"]);
+                        //console.log(classProp["ontType"]);
+                        //console.log(indProp["propValue"].includes("__New"));
+                        if (classPropType.includes("ObjectProperty")) {
+                            // Check if individual property value is new
+                            if (indProp["propValue"].includes("__New")) {
+                                // "yyyy'-'MM'-'dd'T'HH'-'mm'-'ss''zz"
+                                let now = new Date();
+                                let date = now.getFullYear()+'-'+(now.getMonth()+1)+'-'+now.getDate();
+                                let time = now.getHours()+'-'+now.getMinutes()+'-'+now.getSeconds()+(now.getTimezoneOffset()/60);
+                                let indValue = classProp["ontRange"]+"_"+date+"T"+time;
+                                // console.log(indValue);
+                                prop = {
+                                    ontInput: true,
+                                    ontNew: true,
+                                    ontName: classProp["ontName"],
+                                    ontValue: indValue,
+                                    ontDomain: classProps["ontClass"],
+                                    ontRange: classProp["ontRange"],
+                                    ontType: classProp["ontType"]
+                                };
+                            } else {
+                                let indValue = classProp["ontRange"].split("#")[0] + "#" + indProp["propValue"];
+                                prop = {
+                                    ontInput: true,
+                                    ontNew: false,
+                                    ontName: classProp["ontName"],
+                                    ontValue: indValue,
+                                    ontDomain: classProps["ontClass"],
+                                    ontRange: classProp["ontRange"],
+                                    ontType: classProp["ontType"]
+                                };
+                            }
+                        } else if (classPropType.includes("DatatypeProperty")) {
+                            prop = {
+                                ontInput: true,
+                                ontNew: false,
+                                ontName: classProp["ontName"],
+                                ontValue: indProp["propValue"],
+                                ontDomain: classProps["ontClass"],
+                                ontRange: classProp["ontRange"],
+                                ontType: classProp["ontType"]
+                            };
+                        } else {
+                            reject("ontType " + classProp["ontType"] + " not supported");
+                        }
+                    } else {
+                        prop = {
+                            ontInput: false,
+                            ontNew: false,
+                            ontName: classProp["ontName"],
+                            ontValue: indProp["propValue"],
+                            ontDomain: classProps["ontClass"],
+                            ontRange: classProp["ontRange"],
+                            ontType: classProp["ontType"]
+                        };
+                    }
+                } else {}
+            });
+            resolve(prop);
+        });
+    };
+    let indPropsEval = async function(indForm) {
+        let indProps = await indPropsForm(indForm);
+        return await Promise.all(indProps.map(indPropEval).map(p => p.catch(error => error)));
+    };
+    let indEvalResult = async function(indForm) {
+        let indEval = await indPropsEval(indForm);
+        return new Promise(function(resolve,reject) {
+            let ontProperties = [];
+            let newIndividuals = [];
+            indEval.forEach(function(attribute) {
+                if (attribute.ontInput === true) {
+                    ontProperties.push({
+                        ontName: attribute.ontName,
+                        ontValue: attribute.ontValue,
+                        ontDomain: attribute.ontDomain,
+                        ontRange: attribute.ontRange,
+                        ontType: attribute.ontType
+                    });
+                } else {}
+                if (attribute.ontNew === true) {
+                    newIndividuals.push({
+                        ontIndividual: returnUriElement(attribute.ontValue),
+                        ontClass: returnUriElement(attribute.ontRange),
+                        ontOntology: returnUriOntology(attribute.ontRange)
+                    });
+                } else {}
+            });
+            resolve({
+                ontIndividual: {
+                    ontName: ontIndUri,
+                    ontOntology: ontOntUri,
+                    ontClass: ontClassUri,
+                    ontProperties: ontProperties
+                },
+                newIndividuals: newIndividuals});
+        });
+    };
+    let indResult = async function(indForm, ontName, indName) {
+        // console.log(indForm);
+        let indFormResult = await indEvalResult(indForm);
+        let indReviewResult = await individualEvaluation(indFormResult["ontIndividual"], ontName, indName);
+        return await [indFormResult,indReviewResult];
+    };
+    indResult(req.body,req.params.ontologyName,req.params.individualName)
+        .then(function(result) {
+            if (result[1]["ontErrors"].length !== 0) {
+                res.render('classIndividualInputResult',{
+                    indClass: returnUriElement(result[0]["ontIndividual"]["ontClass"]),
+                    indName: returnUriElement(result[0]["ontIndividual"]["ontName"]),
+                    indWarnings: result[1]["ontWarnings"],
+                    indErrors: result[1]["ontErrors"],
+                    newIndividuals: result[0]["newIndividuals"]
+                });
+                // res.json({
+                //     indClass: returnUriElement(result[0]["ontIndividual"]["ontClass"]),
+                //     indName: returnUriElement(result[0]["ontIndividual"]["ontName"]),
+                //     indWarnings: result[1]["ontWarnings"],
+                //     indErrors: result[1]["ontErrors"],
+                //     newIndividuals: result[0]["newIndividuals"]
+                // });
+            } else {
+                individualInstantiation(result[0]["ontIndividual"])
+                    .then(function(inputResults) {
+                        let inputResolution = [];
+                        inputResolution.push(inputResults[0]["records"]);
+                        inputResults[1].forEach(function(result){inputResolution.push(result["records"])});
+                        // res.send({ontWarnings:reviewResults["ontWarnings"],ontInput:inputResolution});
+                        res.render('classIndividualInputResult',{
+                            indClass: returnUriElement(result[0]["ontIndividual"]["ontClass"]),
+                            indName: returnUriElement(result[0]["ontIndividual"]["ontName"]),
+                            indWarnings: [],
+                            indErrors: [],
+                            newIndividuals: result[0]["newIndividuals"]
+                        });
+                        // res.json({
+                        //     indClass: returnUriElement(result[0]["ontIndividual"]["ontClass"]),
+                        //     indName: returnUriElement(result[0]["ontIndividual"]["ontName"]),
+                        //     indWarnings: [],
+                        //     indErrors: [],
+                        //     newIndividuals: result[0]["newIndividuals"]
+                        // });
+                    })
+                    .catch(function(inputError) {
+                        res.json(inputError);
+                    });
+            }
+        })
+        .catch(function(err) {res.json(err);})
+});
 // Another view post:
 // IMP:
-app.post('/api/view',function(req,res) {
-    res.send(req);
-});
+// Another view post:
+// IMP:
+
+
 /*====================================================================================================================*/
 
 /*====================================================================================================================*/

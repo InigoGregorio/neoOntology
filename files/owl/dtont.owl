@@ -500,7 +500,7 @@
         <hasName rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Temperature"/>
         <hasStage rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Working"/>
         <isFromComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_1"/>
-        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isPermanent>
+        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</isPermanent>
     </owl:NamedIndividual>
     
 
@@ -514,7 +514,7 @@
         <hasName rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Temperature"/>
         <hasStage rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Working"/>
         <isFromComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_Systel_EB7001_CPU"/>
-        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isPermanent>
+        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</isPermanent>
     </owl:NamedIndividual>
     
 
@@ -528,7 +528,7 @@
         <hasName rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Temperature"/>
         <hasStage rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Working"/>
         <isFromComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_ClientMissionComputer_CPU"/>
-        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isPermanent>
+        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</isPermanent>
     </owl:NamedIndividual>
     
 
@@ -542,7 +542,7 @@
         <hasName rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Temperature"/>
         <hasStage rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Working"/>
         <isFromComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_GetacLaptop_CPU"/>
-        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isPermanent>
+        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</isPermanent>
     </owl:NamedIndividual>
     
 
@@ -556,7 +556,7 @@
         <hasName rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Temperature"/>
         <hasStage rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Working"/>
         <isFromComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_2"/>
-        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isPermanent>
+        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</isPermanent>
     </owl:NamedIndividual>
     
 
@@ -570,7 +570,7 @@
         <hasName rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Usage"/>
         <hasStage rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Working"/>
         <isFromComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_1"/>
-        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isPermanent>
+        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</isPermanent>
     </owl:NamedIndividual>
     
 
@@ -584,7 +584,7 @@
         <hasName rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Usage"/>
         <hasStage rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Working"/>
         <isFromComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_Systel_EB7001_CPU"/>
-        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isPermanent>
+        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</isPermanent>
     </owl:NamedIndividual>
     
 
@@ -598,7 +598,7 @@
         <hasName rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Usage"/>
         <hasStage rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Working"/>
         <isFromComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_ClientMissionComputer_CPU"/>
-        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isPermanent>
+        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</isPermanent>
     </owl:NamedIndividual>
     
 
@@ -612,7 +612,7 @@
         <hasName rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Usage"/>
         <hasStage rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Working"/>
         <isFromComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_GetacLaptop_CPU"/>
-        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isPermanent>
+        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</isPermanent>
     </owl:NamedIndividual>
     
 
@@ -626,7 +626,7 @@
         <hasName rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Usage"/>
         <hasStage rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Working"/>
         <isFromComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_2"/>
-        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isPermanent>
+        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</isPermanent>
     </owl:NamedIndividual>
     
 
@@ -649,7 +649,7 @@
         <hasName rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Connection"/>
         <hasStage rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Working"/>
         <isFromSystem rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-2_2_ClientMissionComputer-BBCKTSHBCDT2019_2"/>
-        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isPermanent>
+        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</isPermanent>
     </owl:NamedIndividual>
     
 
@@ -663,7 +663,7 @@
         <hasName rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Connection"/>
         <hasStage rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Working"/>
         <isFromSystem rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_ClientMissionComputer"/>
-        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isPermanent>
+        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</isPermanent>
     </owl:NamedIndividual>
     
 
@@ -677,7 +677,7 @@
         <hasName rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Connection"/>
         <hasStage rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Working"/>
         <isFromSystem rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_GetacLaptop"/>
-        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isPermanent>
+        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</isPermanent>
     </owl:NamedIndividual>
     
 
@@ -691,7 +691,7 @@
         <hasName rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Connection"/>
         <hasStage rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Working"/>
         <isFromSystem rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_CameraTFU-Main"/>
-        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isPermanent>
+        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</isPermanent>
     </owl:NamedIndividual>
     
 
@@ -705,7 +705,7 @@
         <hasName rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Connection"/>
         <hasStage rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Working"/>
         <isFromSystem rdf:resource="http://138.250.108.1:3003/api/files/owl/orgontt#1_CameraTFU-Internal"/>
-        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isPermanent>
+        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</isPermanent>
     </owl:NamedIndividual>
     
 
@@ -719,7 +719,7 @@
         <hasName rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Connection"/>
         <hasStage rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Working"/>
         <isFromSystem rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_MakitoEncoder"/>
-        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isPermanent>
+        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</isPermanent>
     </owl:NamedIndividual>
     
 
@@ -733,7 +733,7 @@
         <hasName rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Connection"/>
         <hasStage rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Working"/>
         <isFromSystem rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_Regil_POS_Unit"/>
-        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isPermanent>
+        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</isPermanent>
     </owl:NamedIndividual>
     
 
@@ -747,7 +747,7 @@
         <hasName rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Connection"/>
         <hasStage rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Working"/>
         <isFromSystem rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_Terrafix"/>
-        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isPermanent>
+        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</isPermanent>
     </owl:NamedIndividual>
     
 
@@ -761,7 +761,7 @@
         <hasName rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Connection"/>
         <hasStage rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Working"/>
         <isFromSystem rdf:resource="http://138.250.108.1:3003/api/files/owl/orgontt#1_CameraIFU"/>
-        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isPermanent>
+        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</isPermanent>
     </owl:NamedIndividual>
     
 
@@ -775,7 +775,7 @@
         <hasName rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Connection"/>
         <hasStage rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Working"/>
         <isFromSystem rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_Regil_RiTRIG"/>
-        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isPermanent>
+        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</isPermanent>
     </owl:NamedIndividual>
     
 
@@ -789,7 +789,7 @@
         <hasName rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Connection"/>
         <hasStage rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Working"/>
         <isFromSystem rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_Regil_Scanner"/>
-        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isPermanent>
+        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</isPermanent>
     </owl:NamedIndividual>
     
 
@@ -803,7 +803,7 @@
         <hasName rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Connection"/>
         <hasStage rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Working"/>
         <isFromSystem rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-2_4_Camera-BBCKCDT2019_1"/>
-        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isPermanent>
+        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</isPermanent>
     </owl:NamedIndividual>
     
 
@@ -817,7 +817,7 @@
         <hasName rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Connection"/>
         <hasStage rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Working"/>
         <isFromSystem rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-2_3_Monitor-BBCKTSHBCDT2019_3"/>
-        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isPermanent>
+        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</isPermanent>
     </owl:NamedIndividual>
     
 
@@ -941,7 +941,7 @@ e.g. tire that is 120-60-17H which is three-dimensional and textual in the same 
         <hasName rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Usage"/>
         <hasStage rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Working"/>
         <isFromComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_2_RAM-BBCKTSHBRAMDT2019_1"/>
-        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isPermanent>
+        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</isPermanent>
     </owl:NamedIndividual>
     
 
@@ -955,7 +955,7 @@ e.g. tire that is 120-60-17H which is three-dimensional and textual in the same 
         <hasName rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Usage"/>
         <hasStage rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Working"/>
         <isFromComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_Systel_EB7001_RAM"/>
-        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isPermanent>
+        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</isPermanent>
     </owl:NamedIndividual>
     
 
@@ -969,7 +969,7 @@ e.g. tire that is 120-60-17H which is three-dimensional and textual in the same 
         <hasName rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Usage"/>
         <hasStage rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Working"/>
         <isFromComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_ClientMissionComputer_RAM"/>
-        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isPermanent>
+        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</isPermanent>
     </owl:NamedIndividual>
     
 
@@ -983,7 +983,7 @@ e.g. tire that is 120-60-17H which is three-dimensional and textual in the same 
         <hasName rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Usage"/>
         <hasStage rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Working"/>
         <isFromComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_GetacLaptop_RAM"/>
-        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isPermanent>
+        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</isPermanent>
     </owl:NamedIndividual>
     
 
@@ -997,7 +997,7 @@ e.g. tire that is 120-60-17H which is three-dimensional and textual in the same 
         <hasName rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Usage"/>
         <hasStage rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Working"/>
         <isFromComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_2_RAM-BBCKTSHBRAMDT2019_2"/>
-        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isPermanent>
+        <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</isPermanent>
     </owl:NamedIndividual>
     
 
@@ -1299,5 +1299,5 @@ e.g. tire that is 120-60-17H which is three-dimensional and textual in the same 
 
 
 
-<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+<!-- Generated by the OWL API (version 4.5.6.2018-09-06T00:27:41Z) https://github.com/owlcs/owlapi -->
 

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+<h1>Class: <%=indClass%></h1>
+<hr>
+<h2>Individual Report Form: </h2>
+<h3>Individual Name: <%=indName%></h3>
+<% if (indErrors.length !== 0) { %>
+    <h3>Warnings:</h3>
+        <% indWarnings.forEach(function(warning) { %>
+            <p><%=warning.toString()%></p>
+        <% }); %>
+    <hr>
+    <h3>Errors:</h3>
+        <% indErrors.forEach(function(error) { %>
+            <p><%=error.toString()%></p>
+        <% }); %>
+<% } else { %>
+    <h3>Individual uploaded successfully</h3>
+        <% if (newIndividuals.length !== 0) { %>
+            <h3>New individuals to be reported</h3>
+                <!-- MISSING: buttons to file upload when DatatypeProperty = xsd:anyURI-->
+                <% newIndividuals.forEach(function(newInd) { %>
+                    <p><%=newInd.ontClass%>: <%=newInd.ontIndividual%></p>
+                    <!--Button to new individual input form-->
+                    <form action="/view/ontologies/<%=newInd.ontOntology%>/class/<%=newInd.ontClass%>/individual/<%=newInd.ontIndividual%>/input/form" method="get">
+                        <button>Report</button>
+                    </form>
+                    <hr>
+                <% }); %>
+        <% } else {} %>
+<% } %>
+<hr>
+<!--Button to class properties-->
+<!--MISSING-->
+<!--Button to home-->
+<!--MISSING-->
+<script>src="neoOntology.js"</script>
+</body>
+</html>
