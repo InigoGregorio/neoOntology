@@ -1196,8 +1196,9 @@ app.get('/view/ontologies/:ontologyName/class/:className/properties', function(r
 // Class individual input view: to render class properties and properties classes and individuals to input individual
 // IMP: includes button to redirect to the individual input view POST request (equal to json with HTTP referer)
 // IMP: requests class properties as well as properties classes individuals to enable correct input
-app.get('/view/ontologies/:ontologyName/class/:className/individual/input', function(req,res) {
+app.get('/view/ontologies/:ontologyName/class/:className/individual/:individualName/input', function(req,res) {
     let classUri = constructURI(req.params.ontologyName, req.params.className);
+    let indUri = constructURI(req.params.ontologyName, req.params.individualName);
     let opClassProperties = function(property) {
         return new Promise(function(resolve,reject) {
             if (returnUriElement(property["ontType"]).includes("ObjectProperty")) {
@@ -1235,21 +1236,62 @@ app.get('/view/ontologies/:ontologyName/class/:className/individual/input', func
         return await Promise.all(classProps.map(opClassProperties));
     };
     let opIndividuals = async function(classProps) {
-      return await Promise.all(classProps.map(opClassIndividuals));
+        return await Promise.all(classProps.map(opClassIndividuals));
     };
     let classProps = async function(uri) {
         let props = await classProperties(uri);
         let propsClasses = await opClasses(props["ontProperties"]);
         let propsClassesIndividuals = await opIndividuals(propsClasses);
-        return await propsClassesIndividuals;
+        // return await propsClassesIndividuals;
+        return await props;
     };
-    classProps(classUri)
-        .then(function(result) {
-            res.render('classIndividualInput', {ontClass: classUri, ontProperties: result});
-        })
-        .catch(function(err) {
-            res.json(err);
+    let classForm = function(props) {
+        return new Promise(function(resolve, reject) {
+            let formProps = [];
+            props["ontProperties"].forEach(function(property) {
+                if (returnUriElement(property["ontType"]).includes("ObjectProperty")) {
+                    let link = "";
+                    let options = [];
+                    if (property["ontIndividuals"]["ontIndividuals"].length === 0) {}
+                    else {
+                        property["ontIndividuals"]["ontIndividuals"].forEach(function(p) {
+                            options.push(returnUriElement(p["ontIndividual"]));
+                        });
+                    }
+                    if (property["ontProperties"]["ontProperties"].length === 0) {}
+                    else { link = returnUriElement(property["ontProperties"]["ontClass"]); }
+                    formProps.push({
+                        type: "select",
+                        name: returnUriElement(property["ontName"]),
+                        format: returnUriElement(property["ontRange"]),
+                        link: link,
+                        options: options
+                    });
+                } else if (returnUriElement(property["ontType"]).includes("DatatypeProperty")) {
+                    formProps.push({
+                        type: "text",
+                        name: returnUriElement(property["ontName"]),
+                        format: returnUriElement(property["ontRange"]),
+                        link: "",
+                        options: []
+                    });
+                } else {}
+            });
+            resolve(formProps);
         });
+    };
+    let form = async function(uri) {
+        let props = await classProps(uri);
+        let propsForm = await classForm(props);
+        return await propsForm;
+    };
+    form(classUri)
+        .then(function(result) {
+            res.render('classIndividualInput', {
+                indClass: returnUriElement(classUri),
+                indName: returnUriElement(indUri),
+                indProps: result});})
+        .catch(function(err) {res.json(err);})
 });
 // Individual properties view: to render ontology individual and its properties
 // IMP: includes links to other individuals and button to report similar class individual
@@ -1323,7 +1365,9 @@ app.post('/api/ontologies/:ontologyName/individual/:individualName/input', funct
 
 // Another view post:
 // IMP:
-
+app.post('/api/view',function(req,res) {
+    res.send(req);
+});
 /*====================================================================================================================*/
 
 /*====================================================================================================================*/

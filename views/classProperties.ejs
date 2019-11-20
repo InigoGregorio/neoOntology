@@ -7,27 +7,33 @@
 </head>
 <body>
 <h1>Class: <%=result[0].ontClass.split("#")[1]%></h1>
+<hr>
 <!--Button to reportIndividual-->
 <form action="/view/ontologies/<%=result[0].ontClass.split("/").pop().split("#")[0]%>/class/<%=result[0].ontClass.split("#")[1]%>/input" method="get">
     <button>Report new instance</button>
 </form>
+<hr>
 <% if (result[1].ontIndividuals.length !== 0) { %>
     <!--Button to individuals-->
     <form action="/view/ontologies/<%=result[0].ontClass.split("/").pop().split("#")[0]%>/class/<%=result[0].ontClass.split("#")[1]%>/individuals" method="get">
         <button>Check existing instances</button>
     </form>
+<hr>
 <% } else {} %>
 <h2>Properties: </h2>
+<hr>
 <% result[0].ontProperties.forEach(function(property) { %>
     <% if (property.ontType.split("#")[1] === "ObjectProperty") { %>
         <!--Link to property definition-->
-        <li><a href="/view/ontologies/<%=result[0].ontClass.split("/").pop().split("#")[0]%>/property/<%=property.ontName.split("#")[1]%>"><%=property.ontName.split("#")[1]%></a>: <%=property.ontType.split("#")[1]%></li>
+        <p><a href="/view/ontologies/<%=result[0].ontClass.split("/").pop().split("#")[0]%>/property/<%=property.ontName.split("#")[1]%>"><%=property.ontName.split("#")[1]%></a>: <%=property.ontType.split("#")[1]%></p>
+        <!--MISSING-->
     <% } else if (property.ontType.split("#")[1] === "DatatypeProperty") { %>
-        <li><%=property.ontName.split("#")[1]%>: <%=property.ontRange.split("#")[1]%></li>
+        <p><%=property.ontName.split("#")[1]%>: <%=property.ontRange.split("#")[1]%></p>
     <% } else {%>
-        <li><%=property.ontName.split("#")[1]%>: <%=property.ontType.split("#")[1]%></li>
+        <p><%=property.ontName.split("#")[1]%>: <%=property.ontType.split("#")[1]%></p>
     <% } %>
 <% }); %>
+<hr>
 <script>src="neoOntology.js"</script>
 </body>
 </html>

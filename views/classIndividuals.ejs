@@ -7,15 +7,19 @@
 </head>
 <body>
     <h1>Class: <%=result.ontClass.split("#")[1]%></h1>
+    <hr>
     <!--Button to reportIndividual-->
     <form action="/view/ontologies/<%=result.ontClass.split("/").pop().split("#")[0]%>/class/<%=result.ontClass.split("#")[1]%>/input" method="get">
         <button>Report new instance</button>
     </form>
+    <hr>
     <h2>Individuals:</h2>
+    <hr>
     <% result.ontIndividuals.forEach(function(value) { %>
         <!--Link to individualProperties-->
-        <li><a href="/view/ontologies/<%=value.ontIndividual.split("/").pop().split("#")[0]%>/individual/<%=value.ontIndividual.split("#")[1]%>/properties"><%=value.ontIndividual.split("#")[1]%></a></li>
+        <p><a href="/view/ontologies/<%=value.ontIndividual.split("/").pop().split("#")[0]%>/individual/<%=value.ontIndividual.split("#")[1]%>/properties"><%=value.ontIndividual.split("#")[1]%></a></p>
     <% }); %>
+    <hr>
 <script>src="neoOntology.js"</script>
 </body>
 </html>

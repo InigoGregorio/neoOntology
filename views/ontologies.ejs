@@ -7,14 +7,18 @@
 </head>
 <body>
 <h1>Ontologies</h1>
+<hr>
 <% if (result["ontError"]) { %>
     <h1><%= result.ontError%></h1>
 <% } else { %>
     <% result.ontOntologies.forEach(function(value) { %>
+        <!--Link to ontologies classes-->
         <h2><a href="/view/ontologies/<%=value.ontPrefix%>/class/<%=value.ontPrefix%>/subclasses">
                 <%=value.ontPrefix%></a></h2>
+    <hr>
     <% }); %>
 <% } %>
+<hr>
 <script>src="neoOntology.js"</script>
 </body>
 </html>

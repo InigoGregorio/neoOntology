@@ -7,12 +7,14 @@
 </head>
 <body>
 <h1>Files available</h1>
+<!--Link to file upload-->
 <form action="/api/files/<%=result.fileType %>/upload" enctype="multipart/form-data" method="POST">
     <input type="file" name="file" />
     <input type="submit" value="Upload file"/>
 </form>
 <h2><%=result.fileType %></h2>
 <% result.filesNames.forEach(function(value){ %>
+<!--Link to file download-->
 <li><a href="/api/files/<%=result.fileType%>/<%=value%>"><%=value%></a></li>
 <% }); %>
 <script>src="neoOntology.js"</script>
