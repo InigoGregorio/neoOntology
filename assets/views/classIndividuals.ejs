@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="®IFDAB">
+        <title>neoOntology - Ontology class individuals</title>
+    </head>
+    <header>
+        <h1>neoOntology</h1>
+        <a href="/">Home</a>
+        <a href="/view/files">Files</a>
+        <a href="/view/ontologies">Ontologies</a>
+        <hr>
+    </header>
+    <body>
+        <% let ontClassOnt = result.ontClass.split("/").pop().split("#")[0]%>
+        <% let ontClassName = result.ontClass.split("#")[1]%>
+        <% let now = new Date() %>
+        <% let date = now.getFullYear()+'-'+(now.getMonth()+1)+'-'+now.getDate() %>
+        <% let time = now.getHours()+'-'+now.getMinutes()+'-'+now.getSeconds()+(now.getTimezoneOffset()/60) %>
+        <% let ontClassNewIndName = ontClassName + "_" + date + "T" + time %>
+        <h1>Class: <%=ontClassName%></h1>
+        <hr>
+        <!--Button to classProperties-->
+        <form action="/view/ontologies/<%=ontClassOnt%>/class/<%=ontClassName%>/properties" method="get">
+            <button>Class properties</button>
+        </form>
+        <!--Button to reportIndividual-->
+        <form action="/view/ontologies/<%=ontClassOnt%>/class/<%=ontClassName%>/individual/<%=ontClassNewIndName%>/input/form" method="get">
+            <button>New individual</button>
+        </form>
+        <hr>
+        <h2>Individuals</h2>
+        <hr>
+        <% result.ontIndividuals.forEach(function(value) { %>
+            <% let ontIndOnt = value.ontIndividual.split("/").pop().split("#")[0] %>
+            <% let ontIndName = value.ontIndividual.split("#")[1] %>
+            <!--Link to individualProperties-->
+            <p><a href="/view/ontologies/<%=ontIndOnt%>/individual/<%=ontIndName%>/properties"><%=ontIndName%></a></p>
+        <% }); %>
+        <hr>
+    </body>
+    <footer>®2019 neoOntology</footer>
+    <script>src="neoOntology.js"</script>
+</html>

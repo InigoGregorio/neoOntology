@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="®IFDAB">
+        <title>neoOntology - Ontology class properties</title>
+    </head>
+    <header>
+        <h1>neoOntology</h1>
+        <a href="/">Home</a>
+        <a href="/view/files">Files</a>
+        <a href="/view/ontologies">Ontologies</a>
+        <hr>
+    </header>
+    <body>
+        <% let ontClassOnt = result[0].ontClass.split("/").pop().split("#")[0]%>
+        <% let ontClassName = result[0].ontClass.split("#")[1]%>
+        <% let now = new Date() %>
+        <% let date = now.getFullYear()+'-'+(now.getMonth()+1)+'-'+now.getDate() %>
+        <% let time = now.getHours()+'-'+now.getMinutes()+'-'+now.getSeconds()+(now.getTimezoneOffset()/60) %>
+        <% let ontClassNewIndName = ontClassName + "_" + date + "T" + time %>
+        <h1>Class: <%=ontClassName%></h1>
+        <hr>
+        <!--If owl:NamedIndividual exist-->
+        <% if (result[1].ontIndividuals.length !== 0) { %>
+            <!--Button to classIndividuals-->
+            <form action="/view/ontologies/<%=result[0].ontClass.split("/").pop().split("#")[0]%>/class/<%=result[0].ontClass.split("#")[1]%>/individuals" method="get">
+                <button>Class individuals</button>
+            </form>
+        <% } else {} %>
+        <!--If owl:datatypeProperty || owl:objectProperty exist-->
+        <% if (result[0].ontProperties.length !== 0) { %>
+            <!--Button to reportIndividual-->
+            <form action="/view/ontologies/<%=ontClassOnt%>/class/<%=ontClassName%>/individual/<%=ontClassNewIndName%>/input/form" method="get">
+                <button>New individual</button>
+            </form>
+        <% } else {} %>
+        <hr>
+        <h2>Properties</h2>
+        <hr>
+        <% result[0].ontProperties.forEach(function(property) { %>
+            <% let ontPropOnt = property.ontName.split("/").pop().split("#")[0] %>
+            <% let ontPropName = property.ontName.split("#")[1] %>
+            <% let ontPropRange = property.ontRange.split("#")[1] %>
+            <% let ontPropType = property.ontType.split("#")[1] %>
+            <h3><%=ontPropName%>: <%=ontPropRange%></h3>
+            <!--UPG: Property rdfs:about description-->
+            <!--If owl:ObjectProperty exist-->
+            <% if (ontPropType.includes("ObjectProperty")) { %>
+                <% let ontPropRangeOnt = property.ontRange.split("/").pop().split("#")[0]%>
+                <!--Button to classProperties-->
+                <form action="/view/ontologies/<%=ontPropRangeOnt%>/class/<%=ontPropRange%>/properties" method="get">
+                    <button>Range properties</button>
+                </form>
+            <% } else {} %>
+        <% }); %>
+        <hr>
+    </body>
+    <footer>®2019 neoOntology</footer>
+    <script>src="neoOntology.js"</script>
+</html>

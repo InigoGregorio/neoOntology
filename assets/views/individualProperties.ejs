@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="®IFDAB">
+        <title>neoOntology - individual properties</title>
+    </head>
+    <header>
+        <h1>neoOntology</h1>
+        <a href="/">Home</a>
+        <a href="/view/files">Files</a>
+        <a href="/view/ontologies">Ontologies</a>
+        <hr>
+    </header>
+    <body>
+        <% if (result["ontError"]) { %>
+            <h1><%= result.ontError%></h1>
+        <% } else { %>
+            <% let ontClassOnt = result.ontClass.split("/").pop().split("#")[0]%>
+            <% let ontClassName = result.ontClass.split("#")[1] %>
+            <% let now = new Date() %>
+            <% let date = now.getFullYear()+'-'+(now.getMonth()+1)+'-'+now.getDate() %>
+            <% let time = now.getHours()+'-'+now.getMinutes()+'-'+now.getSeconds()+(now.getTimezoneOffset()/60) %>
+            <% let ontClassNewIndName = ontClassName + "_" + date + "T" + time %>
+            <% let ontIndName = result.ontIndividual.split("#")[1] %>
+            <h1>Class: <%=ontClassName%></h1>
+            <hr>
+            <% if (result.ontProperties.length !== 0) { %>
+                <!--Button to classProperties-->
+                <form action="/view/ontologies/<%=ontClassOnt%>/class/<%=ontClassName%>/properties" method="get">
+                    <button>Class properties</button>
+                </form>
+                <!--Button to reportIndividual-->
+                <form action="/view/ontologies/<%=ontClassOnt%>/class/<%=ontClassName%>/individual/<%=ontClassNewIndName%>/input/form" method="get">
+                    <button>New individual</button>
+                </form>
+            <% } else {} %>
+            <hr>
+            <h2>Individual: <%=ontIndName%></h2>
+            <hr>
+            <% result.ontProperties.forEach(function(value) { %>
+                <% let ontIndPropName = value.ontName.split("#")[1] %>
+                <% let ontIndPropType = value.ontType.split("#")[1] %>
+                <!--If owl:ObjectProperty-->
+                <% if (ontIndPropType.includes("ObjectProperty")) { %>
+                    <% let ontIndPropValue = value.ontValue.split("#")[1] %>
+                    <% let ontIndPropOnt = value.ontValue.split("/").pop().split("#")[0] %>
+                    <!--Link to individualProperties-->
+                        <h3>
+                            <%=ontIndPropName%>:
+                            <a href="/view/ontologies/<%=ontIndPropOnt%>/individual/<%=ontIndPropValue%>/properties">
+                                <%=ontIndPropValue%></a>
+                        </h3>
+                <!--Else if owl:DatatypeProperty-->
+                <% } else if (ontIndPropType.includes("DatatypeProperty")) { %>
+                    <!--Link to file if filetype exists-->
+                    <% if (value.ontValue.split("/").pop().match(/\.(jpg|png|wav|mp4|obj|owl|dat|xml)$/)) { %>
+                        <% let ontIndPropValueFileType = value.ontValue.split("/").pop().split(".")[1] %>
+                        <% let ontIndPropValueFileName = value.ontValue.split("/").pop()%>
+                        <!--Link to individualProperties-->
+                        <h3>
+                            <%=ontIndPropName%>:
+                            <a href="/api/files/<%=ontIndPropValueFileType%>/<%=ontIndPropValueFileName%>>">
+                                <%=ontIndPropValueFileName%></a>
+                        </h3>
+                    <% } else { %>
+                        <!--No link-->
+                        <h3><%=ontIndPropName%>: <%=value.ontValue%></h3>
+                    <% } %>
+                <!--Else-->
+                <% } else { %>
+                    <!--No link-->
+                    <h3><%=ontIndPropName%>: <%=value.ontValue%></h3>
+                <% } %>
+            <% }); %>
+        <% } %>
+        <hr>
+    </body>
+    <footer>®2019 neoOntology</footer>
+    <script>src="neoOntology.js"</script>
+</html>

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="®IFDAB">
+        <title>neoOntology - Ontologies</title>
+    </head>
+    <header>
+        <h1>neoOntology</h1>
+        <a href="/">Home</a>
+        <a href="/view/files">Files</a>
+        <a href="/view/ontologies">Ontologies</a>
+        <hr>
+    </header>
+    <body>
+        <h1>Ontologies</h1>
+        <hr>
+        <% if (result["ontError"]) { %>
+            <h1><%= result.ontError%></h1>
+        <% } else { %>
+            <% result.ontOntologies.forEach(function(value) { %>
+            <!--Link to ontologies classes-->
+            <h2><a href="/view/ontologies/<%=value.ontPrefix%>/class/<%=value.ontPrefix%>/subclasses">
+                    <%=value.ontPrefix%></a></h2>
+            <% }); %>
+        <% } %>
+        <hr>
+    </body>
+    <footer>®2019 neoOntology</footer>
+    <script>src="neoOntology.js"</script>
+</html>

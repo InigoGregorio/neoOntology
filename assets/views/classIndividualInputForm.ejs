@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="®IFDAB">
+        <title>neoOntology - New individual form</title>
+    </head>
+    <header>
+        <h1>neoOntology</h1>
+        <a href="/">Home</a>
+        <a href="/view/files">Files</a>
+        <a href="/view/ontologies">Ontologies</a>
+        <hr>
+    </header>
+    <body>
+        <h1>Class: <%=indClass%></h1>
+        <hr>
+        <h2>Individual Report Form </h2>
+        <h3>Individual Name: <%=indName%></h3>
+        <hr>
+        <!--Form to reportIndividualResult-->
+        <form action="/view/ontologies/<%=indOnt%>/class/<%=indClass%>/individual/<%=indName%>/input/result" method="post" id="individual">
+            <% indProps.forEach(function(prop) { %>
+                <% if (prop.propType === "select") { %>
+                <h3>
+                    <%=prop.propName%>:
+                    <select name="<%=prop.propName%>" form="individual">
+                        <!--Add option of none-->
+                        <option value=""> </option>
+                        <!--Add option of new-->
+                        <% if (prop.propLink !== "") { %>
+                            <option value="__New"> New <%=prop.propLink%></option>
+                        <% } else {} %>
+                        <!--Add existing ones-->
+                        <% prop.propOptions.forEach(function(value) { %>
+                            <option value="<%=value%>"> <%=value%></option>
+                        <% }); %>
+                    </select>
+                </h3>
+                <% } else if (prop.propType === "text") { %>
+                    <h3><%=prop.propName%>: <input type="text" name="<%=prop.propName%>"> <%=prop.propFormat%></h3>
+                <% } %>
+            <% }); %>
+            <hr>
+            <p><input type="submit"></p>
+            <hr>
+        </form>
+    </body>
+    <footer>®2019 neoOntology</footer>
+    <script>src="neoOntology.js"</script>
+</html>

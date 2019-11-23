@@ -73,10 +73,9 @@ const app = express();
 // Setup ejs as engine view for dynamic files
 app.set('view engine', 'ejs');
 // Setup directory for ejs rendering files
-app.set('views', path.join(__dirname,'views'));
-// Setup directory for file sharing
-// IMP: directory is structured according to file types
-app.use(express.static(path.join(__dirname,'files')));
+app.set('views', path.join(__dirname,'assets','views'));
+// Setup directory for file sharing (includes folder for user files storage)
+app.use(express.static(path.join(__dirname,'assets')));
 // Setup logger method
 app.use(morgan('dev'));
 // Setup body parsing method (standard)
@@ -96,7 +95,7 @@ let session = driver.session();
 // Instantiate file storage engine
 // UPG: to manage multiple versions of same file
 const storage = multer.diskStorage({
-    destination: function(req, file, cb) { cb(null, path.join(__dirname, 'files', req.params.fileType)); },
+    destination: function(req, file, cb) { cb(null, path.join(__dirname, 'assets', 'files', req.params.fileType)); },
     filename: function(req, file, cb) { cb(null, file.originalname);}
 });
 // Instantiate upload engine
@@ -224,6 +223,14 @@ function returnURIfromNeo4jElement(element) {
 function constructURI(prefix,name) {
     // Concatenates ontological names to create the uri resource
     return neontURL + prefix + "#" + name;
+}
+// Return new individual uri given class and ontology names
+function constructNewIndividualURI(ontologyName,className) {
+    // "yyyy'-'MM'-'dd'T'HH'-'mm'-'ss''zz"
+    let now = new Date();
+    let date = now.getFullYear()+'-'+(now.getMonth()+1)+'-'+now.getDate();
+    let time = now.getHours()+'-'+now.getMinutes()+'-'+now.getSeconds()+(now.getTimezoneOffset()/60);
+    return neontURL + ontologyName + "#" + className + "_" + date + "T" + time;
 }
 /*====================================================================================================================*/
 // C. Ontologies query
@@ -926,15 +933,15 @@ let individualPropertyCreation = function (individualName,individualOntology,ind
 // File download: given a file full-name and type, send file
 app.get('/api/files/:fileType/:fileName', function(req,res) {
     // ERR: if fileType is not found
-    if(!returnFilesAvailable(path.join(__dirname,'files'),req.params.fileType)) {
+    if(!returnFilesAvailable(path.join(__dirname,'assets','files'),req.params.fileType)) {
         res.status(404).send('File type not available');
     }
     // ERR: if fileName is not found
-    else if(!returnFilesAvailable(path.join(__dirname,'files',req.params.fileType),req.params.fileName)) {
+    else if(!returnFilesAvailable(path.join(__dirname,'assets','files',req.params.fileType),req.params.fileName)) {
         res.status(404).send('File not available');
     }
     else {
-        res.sendFile(path.join(__dirname,'files',req.params.fileType,req.params.fileName));
+        res.sendFile(path.join(__dirname,'assets','files',req.params.fileType,req.params.fileName));
     }
 });
 /*====================================================================================================================*/
@@ -1098,16 +1105,16 @@ app.get('/', function(req,res) {
 });
 // File namespace view: to render files types available
 app.get('/view/files', function(req,res) {
-    res.render('filetypes', {result:fs.readdirSync(path.join(__dirname,"files"))});
+    res.render('filetypes', {result:fs.readdirSync(path.join(__dirname,'assets','files'))});
 });
 // File type view: to render files available for a given type
 // IMP: includes button to upload new file
 app.get('/view/files/:fileType', function(req,res) {
     // ERR: if fileType is not available
-    if(!returnFilesAvailable(path.join(__dirname,'files'), req.params.fileType)) {
+    if(!returnFilesAvailable(path.join(__dirname,'assets','files'), req.params.fileType)) {
         res.status(404).send('File type not available');
     } else {
-        let filesNames = fs.readdirSync(`files/${req.params.fileType}`)
+        let filesNames = fs.readdirSync(`assets/files/${req.params.fileType}`)
             .filter(item => !(/(^|\/)\.[^\/\.]/g).test(item));
         // Avoids '.' 'hidden' directories
         res.render('filetypeFiles',{result:{fileType:req.params.fileType,filesNames: filesNames}});
@@ -1364,7 +1371,7 @@ app.post('/api/ontologies/:ontologyName/individual/:individualName/input', funct
 // C. Views
 /*====================================================================================================================*/
 // Class individual input: to input a given individual using the result from the view input form
-app.post('/view/ontologies/:ontologyName/class/:className/individual/:individualName/input',function(req,res) {
+app.post('/view/ontologies/:ontologyName/class/:className/individual/:individualName/input/result',function(req,res) {
     // Uses post request body to generate class individual formatted for individualInstantiation
     let ontOntUri = neontURL + req.params.ontologyName + "#";
     let ontClassUri = constructURI(req.params.ontologyName,req.params.className);
@@ -1403,12 +1410,10 @@ app.post('/view/ontologies/:ontologyName/class/:className/individual/:individual
                         if (classPropType.includes("ObjectProperty")) {
                             // Check if individual property value is new
                             if (indProp["propValue"].includes("__New")) {
-                                // "yyyy'-'MM'-'dd'T'HH'-'mm'-'ss''zz"
-                                let now = new Date();
-                                let date = now.getFullYear()+'-'+(now.getMonth()+1)+'-'+now.getDate();
-                                let time = now.getHours()+'-'+now.getMinutes()+'-'+now.getSeconds()+(now.getTimezoneOffset()/60);
-                                let indValue = classProp["ontRange"]+"_"+date+"T"+time;
-                                // console.log(indValue);
+                                let propClassName = returnUriElement(classProp["ontRange"]);
+                                let propClassOntology = returnUriOntology(classProp["ontRange"]);
+                                let indValue = constructNewIndividualURI(propClassOntology, propClassName);
+                                //console.log(indValue);
                                 prop = {
                                     ontInput: true,
                                     ontNew: true,
@@ -1419,7 +1424,9 @@ app.post('/view/ontologies/:ontologyName/class/:className/individual/:individual
                                     ontType: classProp["ontType"]
                                 };
                             } else {
-                                let indValue = classProp["ontRange"].split("#")[0] + "#" + indProp["propValue"];
+                                let propClassOntology = returnUriOntology(classProp["ontRange"]);
+                                let indValue = neontURL + propClassOntology + "#" + indProp["propValue"];
+                                //console.log(indValue);
                                 prop = {
                                     ontInput: true,
                                     ontNew: false,
@@ -1506,19 +1513,13 @@ app.post('/view/ontologies/:ontologyName/class/:className/individual/:individual
         .then(function(result) {
             if (result[1]["ontErrors"].length !== 0) {
                 res.render('classIndividualInputResult',{
-                    indClass: returnUriElement(result[0]["ontIndividual"]["ontClass"]),
                     indName: returnUriElement(result[0]["ontIndividual"]["ontName"]),
+                    indOntology: returnUriElement(result[0]["ontIndividual"]["ontOntology"]),
+                    indClass: returnUriElement(result[0]["ontIndividual"]["ontClass"]),
                     indWarnings: result[1]["ontWarnings"],
                     indErrors: result[1]["ontErrors"],
                     newIndividuals: result[0]["newIndividuals"]
                 });
-                // res.json({
-                //     indClass: returnUriElement(result[0]["ontIndividual"]["ontClass"]),
-                //     indName: returnUriElement(result[0]["ontIndividual"]["ontName"]),
-                //     indWarnings: result[1]["ontWarnings"],
-                //     indErrors: result[1]["ontErrors"],
-                //     newIndividuals: result[0]["newIndividuals"]
-                // });
             } else {
                 individualInstantiation(result[0]["ontIndividual"])
                     .then(function(inputResults) {
@@ -1527,19 +1528,13 @@ app.post('/view/ontologies/:ontologyName/class/:className/individual/:individual
                         inputResults[1].forEach(function(result){inputResolution.push(result["records"])});
                         // res.send({ontWarnings:reviewResults["ontWarnings"],ontInput:inputResolution});
                         res.render('classIndividualInputResult',{
-                            indClass: returnUriElement(result[0]["ontIndividual"]["ontClass"]),
                             indName: returnUriElement(result[0]["ontIndividual"]["ontName"]),
+                            indOntology: returnUriElement(result[0]["ontIndividual"]["ontOntology"]),
+                            indClass: returnUriElement(result[0]["ontIndividual"]["ontClass"]),
                             indWarnings: [],
                             indErrors: [],
                             newIndividuals: result[0]["newIndividuals"]
                         });
-                        // res.json({
-                        //     indClass: returnUriElement(result[0]["ontIndividual"]["ontClass"]),
-                        //     indName: returnUriElement(result[0]["ontIndividual"]["ontName"]),
-                        //     indWarnings: [],
-                        //     indErrors: [],
-                        //     newIndividuals: result[0]["newIndividuals"]
-                        // });
                     })
                     .catch(function(inputError) {
                         res.json(inputError);

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="®IFDAB">
+        <title>neoOntology - Ontology class subclasses</title>
+    </head>
+    <header>
+        <h1>neoOntology</h1>
+        <a href="/">Home</a>
+        <a href="/view/files">Files</a>
+        <a href="/view/ontologies">Ontologies</a>
+        <hr>
+    </header>
+    <body>
+    <h1>Class: <%=uri.split("#")[1]%></h1>
+    <h2>Subclasses</h2>
+    <hr>
+    <% result.forEach(function(subclass) { %>
+        <% let ontSubClassOnt = subclass[0].ontClass.split("/").pop().split("#")[0] %>
+        <% let ontSubClassName = subclass[0].ontClass.split("#")[1] %>
+        <% let now = new Date() %>
+        <% let date = now.getFullYear()+'-'+(now.getMonth()+1)+'-'+now.getDate() %>
+        <% let time = now.getHours()+'-'+now.getMinutes()+'-'+now.getSeconds()+(now.getTimezoneOffset()/60) %>
+        <% let ontSubClassNewIndName = ontSubClassName + "_" + date + "T" + time %>
+        <!-- Subclass name-->
+        <h3><%=ontSubClassName%></h3>
+        <!--UPG: Subclass rdfs:about description-->
+        <!--If rdfs:subClassOf exist-->
+        <% if (subclass[0].ontSubclasses.length !== 0) { %>
+            <form action="/view/ontologies/<%=ontSubClassOnt%>/class/<%=ontSubClassName%>/subclasses" method="get">
+                <button>Subclasses</button>
+            </form>
+        <% } else { %>
+            <!--If owl:datatypeProperty || owl:objectProperty exist-->
+            <% if (subclass[1].ontProperties.length !== 0) { %>
+                <!--Button to classProperties-->
+                <form action="/view/ontologies/<%=ontSubClassOnt%>/class/<%=ontSubClassName%>/properties" method="get">
+                    <button>Properties</button>
+                </form>
+                <!--Button to reportIndividual-->
+                <form action="/view/ontologies/<%=ontSubClassOnt%>/class/<%=ontSubClassName%>/individual/<%=ontSubClassNewIndName%>/input/form" method="get">
+                    <button>New individual</button>
+                </form>
+            <% } else {} %>
+            <!--If owl:NamedIndividual exist-->
+            <% if (subclass[2].ontIndividuals.length !== 0) { %>
+                <!--Button to classIndividuals-->
+                <form action="/view/ontologies/<%=ontSubClassOnt%>/class/<%=ontSubClassName%>/individuals" method="get">
+                    <button>Existing individuals</button>
+                </form>
+            <% } else { } %>
+        <% } %>
+        <hr>
+    <% }); %>
+    <hr>
+    </body>
+    <footer>®2019 neoOntology</footer>
+    <script>src="neoOntology.js"</script>
+</html>

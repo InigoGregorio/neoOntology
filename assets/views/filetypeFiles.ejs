@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="®IFDAB">
+        <title>neoOntology - <%=result.fileType%> files</title>
+    </head>
+    <header>
+        <h1>neoOntology</h1>
+        <a href="/">Home</a>
+        <a href="/view/files">Files</a>
+        <a href="/view/ontologies">Ontologies</a>
+        <hr>
+    </header>
+    <body>
+        <h1><%=result.fileType %></h1>
+        <hr>
+        <!--Link to file upload-->
+        <form action="/api/files/<%=result.fileType %>/upload" enctype="multipart/form-data" method="POST">
+            <h2>File upload</h2>
+            <input type="file" name="file" />
+            <input type="submit" value="Upload file"/>
+        </form>
+        <hr>
+        <h2>Files available</h2>
+        <% result.filesNames.forEach(function(value){ %>
+            <!--Link to file download-->
+            <p><a href="/api/files/<%=result.fileType%>/<%=value%>"><%=value%></a></p>
+        <% }); %>
+        <hr>
+    </body>
+    <footer>®2019 neoOntology</footer>
+    <script>src="neoOntology.js"</script>
+</html>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="®IFDAB">
+        <title>neoOntology - New individual result</title>
+    </head>
+    <header>
+        <h1>neoOntology</h1>
+        <a href="/">Home</a>
+        <a href="/view/files">Files</a>
+        <a href="/view/ontologies">Ontologies</a>
+        <hr>
+    </header>
+    <body>
+        <h1>Class: <%=indClass%></h1>
+        <hr>
+        <% let now = new Date() %>
+        <% let date = now.getFullYear()+'-'+(now.getMonth()+1)+'-'+now.getDate() %>
+        <% let time = now.getHours()+'-'+now.getMinutes()+'-'+now.getSeconds()+(now.getTimezoneOffset()/60) %>
+        <% let newIndName = indClass + "_" + date + "T" + time %>
+        <!--Button to classProperties-->
+        <form action="/view/ontologies/<%=indOntology%>/class/<%=indClass%>/properties" method="get">
+            <button>Class properties</button>
+        </form>
+        <!--Button to reportIndividual-->
+        <form action="/view/ontologies/<%=indOntology%>/class/<%=indClass%>/individual/<%=newIndName%>/input/form" method="get">
+            <button>New individual</button>
+        </form>
+        <hr>
+        <h2>Individual Report Result: </h2>
+        <h3>Individual Name: <%=indName%></h3>
+        <hr>
+        <% if (indErrors.length !== 0) { %>
+            <h3>Warnings:</h3>
+            <% indWarnings.forEach(function(warning) { %>
+                <h4><%=warning.toString()%></h4>
+            <% }); %>
+            <hr>
+            <h3>Errors:</h3>
+            <% indErrors.forEach(function(error) { %>
+                <h4><%=error.toString()%></h4>
+            <% }); %>
+        <% } else { %>
+            <h3>Individual uploaded successfully</h3>
+            <% if (newIndividuals.length !== 0) { %>
+                <h3>New individuals to be reported</h3>
+                <hr>
+                <!-- MISSING: buttons to file upload when DatatypeProperty = xsd:anyURI-->
+                <% newIndividuals.forEach(function(newInd) { %>
+                    <h4><%=newInd.ontClass%>: <%=newInd.ontIndividual%></h4>
+                    <!--Button to new individual input form-->
+                    <form action="/view/ontologies/<%=newInd.ontOntology%>/class/<%=newInd.ontClass%>/individual/<%=newInd.ontIndividual%>/input/form" method="get">
+                        <button>Report</button>
+                    </form>
+                    <hr>
+                <% }); %>
+            <% } else {} %>
+        <% } %>
+        <hr>
+    </body>
+    <footer>®2019 neoOntology</footer>
+    <script>src="neoOntology.js"</script>
+</html>
