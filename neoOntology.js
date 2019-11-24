@@ -1513,9 +1513,9 @@ app.post('/view/ontologies/:ontologyName/class/:className/individual/:individual
         .then(function(result) {
             if (result[1]["ontErrors"].length !== 0) {
                 res.render('classIndividualInputResult',{
-                    indName: returnUriElement(result[0]["ontIndividual"]["ontName"]),
-                    indOntology: returnUriElement(result[0]["ontIndividual"]["ontOntology"]),
+                    indOnt: returnUriElement(result[0]["ontIndividual"]["ontOntology"]),
                     indClass: returnUriElement(result[0]["ontIndividual"]["ontClass"]),
+                    indName: returnUriElement(result[0]["ontIndividual"]["ontName"]),
                     indWarnings: result[1]["ontWarnings"],
                     indErrors: result[1]["ontErrors"],
                     newIndividuals: result[0]["newIndividuals"]
@@ -1528,9 +1528,9 @@ app.post('/view/ontologies/:ontologyName/class/:className/individual/:individual
                         inputResults[1].forEach(function(result){inputResolution.push(result["records"])});
                         // res.send({ontWarnings:reviewResults["ontWarnings"],ontInput:inputResolution});
                         res.render('classIndividualInputResult',{
-                            indName: returnUriElement(result[0]["ontIndividual"]["ontName"]),
-                            indOntology: returnUriElement(result[0]["ontIndividual"]["ontOntology"]),
+                            indOnt: returnUriElement(result[0]["ontIndividual"]["ontOntology"]),
                             indClass: returnUriElement(result[0]["ontIndividual"]["ontClass"]),
+                            indName: returnUriElement(result[0]["ontIndividual"]["ontName"]),
                             indWarnings: [],
                             indErrors: [],
                             newIndividuals: result[0]["newIndividuals"]
@@ -1547,8 +1547,6 @@ app.post('/view/ontologies/:ontologyName/class/:className/individual/:individual
 // IMP:
 // Another view post:
 // IMP:
-
-
 /*====================================================================================================================*/
 
 /*====================================================================================================================*/

@@ -1,64 +1,82 @@
 <!doctype html>
 <html lang="en">
+    <% let now = new Date() %>
+    <% let date = now.getFullYear()+'-'+(now.getMonth()+1)+'-'+now.getDate() %>
+    <% let time = now.getHours()+'-'+now.getMinutes()+'-'+now.getSeconds()+(now.getTimezoneOffset()/60) %>
+    <% let newIndName = indClass + "_" + date + "T" + time %>
     <head>
         <meta charset="utf-8">
         <meta name="author" content="®IFDAB">
-        <title>neoOntology - New individual result</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="/styles/css/main.css">
+        <title>neont - <%=indName%> report</title>
     </head>
-    <header>
-        <h1>neoOntology</h1>
-        <a href="/">Home</a>
-        <a href="/view/files">Files</a>
-        <a href="/view/ontologies">Ontologies</a>
-        <hr>
+    <header id="header">
+        <nav class="left">
+            <a href="/" class="logo">neoOntology</a>
+        </nav>
+        <nav class="right">
+            <a href="/view/files" class="button alt">Files</a>
+            <a href="/view/ontologies" class="button alt">Ontologies</a>
+            <a href="/view/ontologies/<%=indOnt%>/class/<%=indClass%>/properties" class="button alt">Properties</a>
+            <a href="/view/ontologies/<%=indOnt%>/class/<%=indClass%>/individuals" class="button alt">Individuals</a>
+            <a href="/view/ontologies/<%=indOnt%>/class/<%=indClass%>/individual/<%=newIndName%>/input/form" class="button alt">Report</a>
+        </nav>
     </header>
-    <body>
-        <h1>Class: <%=indClass%></h1>
-        <hr>
-        <% let now = new Date() %>
-        <% let date = now.getFullYear()+'-'+(now.getMonth()+1)+'-'+now.getDate() %>
-        <% let time = now.getHours()+'-'+now.getMinutes()+'-'+now.getSeconds()+(now.getTimezoneOffset()/60) %>
-        <% let newIndName = indClass + "_" + date + "T" + time %>
-        <!--Button to classProperties-->
-        <form action="/view/ontologies/<%=indOntology%>/class/<%=indClass%>/properties" method="get">
-            <button>Class properties</button>
-        </form>
-        <!--Button to reportIndividual-->
-        <form action="/view/ontologies/<%=indOntology%>/class/<%=indClass%>/individual/<%=newIndName%>/input/form" method="get">
-            <button>New individual</button>
-        </form>
-        <hr>
-        <h2>Individual Report Result: </h2>
-        <h3>Individual Name: <%=indName%></h3>
-        <hr>
-        <% if (indErrors.length !== 0) { %>
-            <h3>Warnings:</h3>
-            <% indWarnings.forEach(function(warning) { %>
-                <h4><%=warning.toString()%></h4>
-            <% }); %>
-            <hr>
-            <h3>Errors:</h3>
-            <% indErrors.forEach(function(error) { %>
-                <h4><%=error.toString()%></h4>
-            <% }); %>
-        <% } else { %>
-            <h3>Individual uploaded successfully</h3>
-            <% if (newIndividuals.length !== 0) { %>
-                <h3>New individuals to be reported</h3>
-                <hr>
-                <!-- MISSING: buttons to file upload when DatatypeProperty = xsd:anyURI-->
-                <% newIndividuals.forEach(function(newInd) { %>
-                    <h4><%=newInd.ontClass%>: <%=newInd.ontIndividual%></h4>
-                    <!--Button to new individual input form-->
-                    <form action="/view/ontologies/<%=newInd.ontOntology%>/class/<%=newInd.ontClass%>/individual/<%=newInd.ontIndividual%>/input/form" method="get">
-                        <button>Report</button>
-                    </form>
-                    <hr>
-                <% }); %>
-            <% } else {} %>
-        <% } %>
-        <hr>
+    <body class="subpage">
+    <section id="main" class="wrapper">
+        <div class="inner">
+            <header class="align-left">
+                <h1><a href="/view/ontologies/<%=indOnt%>/class/<%=indClass%>/properties">Class: <%=indClass%></a></h1>
+            </header>
+            <h2>Individual: report form</h2>
+            <h2><%=indName%></h2>
+            <% if (indErrors.length !== 0) { %>
+                <h3>Warnings:</h3>
+                <div class="row uniform">
+                    <% indWarnings.forEach(function(warning) { %>
+                        <p><%=warning.toString()%></p>
+                    <% }); %>
+                </div>
+                <h3>Errors: </h3>
+                <div class="row uniform">
+                    <% indErrors.forEach(function(error) { %>
+                        <p><%=error.toString()%></p>
+                    <% }); %>
+                </div>
+            <% } else { %>
+                <h3>Individual reported successfully</h3>
+                <% if (newIndividuals.length !== 0) { %>
+                    <h4>New individuals to be reported</h4>
+                    <!-- MISSING: buttons to file upload when DatatypeProperty = xsd:anyURI-->
+                    <% newIndividuals.forEach(function(newInd) { %>
+                        <div class="row uniform">
+                            <div class="6u 12u$(xsmall)">
+                                <ul class="actions fit">
+                                    <li><a href="#" class="button fit"><%=newInd.ontClass%></a></li>
+                                </ul>
+                            </div>
+                            <div class="6u 12u$(xsmall)">
+                                <ul class="actions fit">
+                                    <li><a href="/view/ontologies/<%=newInd.ontOntology%>/class/<%=newInd.ontClass%>/individual/<%=newInd.ontIndividual%>/input/form" class="button special fit">
+                                            <%=newInd.ontIndividual%></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    <% }); %>
+                <% } else {} %>
+            <% } %>
+        </div>
+    </section>
     </body>
-    <footer>®2019 neoOntology</footer>
+    <footer id="footer">
+        <div class="inner">
+            <ul class="actions">
+                <li><a href="mailto:i.fernandez@cranfield.ac.uk">Iñigo Fernández del Amo</a></li>
+                <li><a href="https://www.cranfield.ac.uk/people/iigo-fernndez-del-amo-blanco-15695326">&copy; Cranfield University</a></li>
+                <li>®2019 neoOntology</li>
+            </ul>
+        </div>
+    </footer>
     <script>src="neoOntology.js"</script>
 </html>
