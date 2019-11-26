@@ -60,6 +60,8 @@ const bodyParser = require('body-parser');
 const neo4j = require('neo4j-driver').v1;
 // 5. To enable files upload
 const multer = require('multer');
+// 6. To enable favicon request
+const favicon = require('serve-favicon');
 /*====================================================================================================================*/
 
 /*====================================================================================================================*/
@@ -82,6 +84,8 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 //app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.urlencoded({extended:true}));
+// Setup favicon icon request
+app.use(favicon(path.join(__dirname,'assets','favicon.ico')));
 /*====================================================================================================================*/
 // B. Database driver initialisation (neo4j)
 /*====================================================================================================================*/

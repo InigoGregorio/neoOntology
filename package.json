@@ -10,10 +10,11 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "*",
-    "ejs": "*",
+    "ejs": "^3.0.1",
     "express": "*",
     "morgan": "*",
     "multer": "*",
-    "neo4j-driver": "*"
+    "neo4j-driver": "*",
+    "serve-favicon": "*"
   }
 }
