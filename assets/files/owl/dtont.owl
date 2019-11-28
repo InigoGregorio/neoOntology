@@ -802,7 +802,7 @@
         <hasDimensionality rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Uni-dimensional"/>
         <hasName rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Connection"/>
         <hasStage rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Working"/>
-        <isFromSystem rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-2_4_Camera-BBCKCDT2019_1"/>
+        <isFromComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-2_4_Camera-BBCKCDT2019_1"/>
         <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</isPermanent>
     </owl:NamedIndividual>
     
@@ -816,7 +816,7 @@
         <hasDimensionality rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Uni-dimensional"/>
         <hasName rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Connection"/>
         <hasStage rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Working"/>
-        <isFromSystem rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-2_3_Monitor-BBCKTSHBCDT2019_3"/>
+        <isFromComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-2_3_Monitor-BBCKTSHBCDT2019_3"/>
         <isPermanent rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</isPermanent>
     </owl:NamedIndividual>
     
@@ -1189,7 +1189,7 @@ e.g. tire that is 120-60-17H which is three-dimensional and textual in the same 
     <!-- http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-2_3_Monitor-BBCKTSHBCDT2019_3 -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-2_3_Monitor-BBCKTSHBCDT2019_3">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
     </owl:NamedIndividual>
     
 
@@ -1197,7 +1197,7 @@ e.g. tire that is 120-60-17H which is three-dimensional and textual in the same 
     <!-- http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-2_4_Camera-BBCKCDT2019_1 -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-2_4_Camera-BBCKCDT2019_1">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
     </owl:NamedIndividual>
     
 
@@ -1205,7 +1205,7 @@ e.g. tire that is 120-60-17H which is three-dimensional and textual in the same 
     <!-- http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-2_5_Switch-BBCKSDT2019_1 -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-2_5_Switch-BBCKSDT2019_1">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
     </owl:NamedIndividual>
     
 

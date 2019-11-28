@@ -45,6 +45,18 @@
     
 
 
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#componentHasAssetParent -->
+
+    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#componentHasAssetParent">
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#hasParent"/>
+        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
+        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Asset"/>
+        <rdfs:comment>relationship of component child having an asset parent</rdfs:comment>
+        <rdfs:label>hasAssetParent</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://138.250.108.1:3003/api/files/owl/orgont#has -->
 
     <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#has">
@@ -85,18 +97,6 @@
         <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Asset"/>
         <rdfs:comment>relationship of usefulness</rdfs:comment>
         <rdfs:label>hasAsset</rdfs:label>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#hasAssetParent -->
-
-    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#hasAssetParent">
-        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#hasParent"/>
-        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
-        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Asset"/>
-        <rdfs:comment>relationship of system child having an asset parent</rdfs:comment>
-        <rdfs:label>hasAssetParent</rdfs:label>
     </owl:ObjectProperty>
     
 
@@ -230,6 +230,18 @@
     <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#orgontObject">
         <rdfs:comment>set of all relationship properties that helps defining an individual for rtrbau experimentation</rdfs:comment>
         <rdfs:label>orgontObject</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#systemHasAssetParent -->
+
+    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#systemHasAssetParent">
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#hasParent"/>
+        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
+        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Asset"/>
+        <rdfs:comment>relationship of system child having an asset parent</rdfs:comment>
+        <rdfs:label>hasAssetParent</rdfs:label>
     </owl:ObjectProperty>
     
 
@@ -1979,11 +1991,11 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-1_4_TESMissionSystem-BBCKDT2019_1">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Asset"/>
+        <assetHasChildComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-2_3_Monitor-BBCKTSHBCDT2019_3"/>
+        <assetHasChildComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-2_4_Camera-BBCKCDT2019_1"/>
+        <assetHasChildComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-2_5_Switch-BBCKSDT2019_1"/>
         <assetHasChildSystem rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-2_1_MainMissionComputer-BBCKTSHBCDT2019_1"/>
         <assetHasChildSystem rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-2_2_ClientMissionComputer-BBCKTSHBCDT2019_2"/>
-        <assetHasChildSystem rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-2_3_Monitor-BBCKTSHBCDT2019_3"/>
-        <assetHasChildSystem rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-2_4_Camera-BBCKCDT2019_1"/>
-        <assetHasChildSystem rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-2_5_Switch-BBCKSDT2019_1"/>
         <hasLocationAsset rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#OpExLab"/>
         <hasAssetModel rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://138.250.108.1:3003/api/files/obj/1_OpEx-1_4_TESMissionSystem-BBCKDT2019_1.obj</hasAssetModel>
         <hasAssetName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">TES Helicopter Mission System Digital Twin</hasAssetName>
@@ -1997,7 +2009,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-2_1_Electromecanic-TESGBEM2015_1">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
-        <hasAssetParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-1_1_TESGearbox-TESGB2015_1"/>
+        <systemHasAssetParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-1_1_TESGearbox-TESGB2015_1"/>
         <hasSystemModel rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://138.250.108.1:3003/api/files/obj/1_OpEx-2_1_Electromecanic-TESGBEM2015_1.obj</hasSystemModel>
         <hasSystemName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gearbox electromechanical components</hasSystemName>
     </owl:NamedIndividual>
@@ -2008,10 +2020,9 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-2_1_MainMissionComputer-BBCKTSHBCDT2019_1">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
-        <hasAssetParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-1_4_TESMissionSystem-BBCKDT2019_1"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_1"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_2_RAM-BBCKTSHBRAMDT2019_1"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-3_2_Monitor-BBCKTSHBCDT2019_1"/>
         <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-3_1_MainBoard-BBCKTSHBMBDT2019_1"/>
+        <systemHasAssetParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-1_4_TESMissionSystem-BBCKDT2019_1"/>
         <hasSystemModel rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://138.250.108.1:3003/api/files/obj/1_OpEx-2_1_MainMissionComputer-BBCKTSHBCDT2019_1.obj</hasSystemModel>
         <hasSystemName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Helicopter Main Mission Computer Digital Twin</hasSystemName>
     </owl:NamedIndividual>
@@ -2022,7 +2033,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-2_1_Mechanic-TESFHM2018_1">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
-        <hasAssetParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-1_3_TESFuelHatch-TESFH2018_1"/>
+        <systemHasAssetParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-1_3_TESFuelHatch-TESFH2018_1"/>
         <hasSystemModel rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://138.250.108.1:3003/api/files/obj/1_OpEx-2_1_Mechanic-TESFHM2018_1.obj</hasSystemModel>
         <hasSystemName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Fuel hatch mechanical structure</hasSystemName>
     </owl:NamedIndividual>
@@ -2033,10 +2044,9 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-2_2_ClientMissionComputer-BBCKTSHBCDT2019_2">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
-        <hasAssetParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-1_4_TESMissionSystem-BBCKDT2019_1"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_2"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_2_RAM-BBCKTSHBRAMDT2019_2"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-3_2_Monitor-BBCKTSHBCDT2019_2"/>
         <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-3_1_MainBoard-BBCKTSHBMBDT2019_2"/>
+        <systemHasAssetParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-1_4_TESMissionSystem-BBCKDT2019_1"/>
         <hasSystemModel rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://138.250.108.1:3003/api/files/obj/1_OpEx-2_2_ClientMissionComputer-BBCKTSHBCDT2019_2.obj</hasSystemModel>
         <hasSystemName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Helicopter Client Mission Computer Digital Twin</hasSystemName>
     </owl:NamedIndividual>
@@ -2047,10 +2057,10 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-2_2_Mechanic-TESGBM2015_1">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
-        <hasAssetParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-1_1_TESGearbox-TESGB2015_1"/>
         <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-3_1_Housing-TESGBMH2015_1"/>
         <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-3_2_Movement-TESGBMM2015_1"/>
         <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-3_3_Structural-TESGBMST2015_1"/>
+        <systemHasAssetParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-1_1_TESGearbox-TESGB2015_1"/>
         <hasSystemModel rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://138.250.108.1:3003/api/files/obj/1_OpEx-2_2_Mechanic-TESGBM2015_1.obj</hasSystemModel>
         <hasSystemName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gearbox mechanical components</hasSystemName>
     </owl:NamedIndividual>
@@ -2060,10 +2070,10 @@
     <!-- http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-2_3_Monitor-BBCKTSHBCDT2019_3 -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-2_3_Monitor-BBCKTSHBCDT2019_3">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
-        <hasAssetParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-1_4_TESMissionSystem-BBCKDT2019_1"/>
-        <hasSystemModel rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://138.250.108.1:3003/api/files/obj/1_OpEx-2_3_Monitor-BBCKTSHBCDT2019_3.obj</hasSystemModel>
-        <hasSystemName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Helicopter Mission Computer Monitor</hasSystemName>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
+        <componentHasAssetParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-1_4_TESMissionSystem-BBCKDT2019_1"/>
+        <hasComponentModel rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://138.250.108.1:3003/api/files/obj/1_OpEx-2_3_Monitor-BBCKTSHBCDT2019_3.obj</hasComponentModel>
+        <hasComponentName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Helicopter Mission Computer Monitor</hasComponentName>
     </owl:NamedIndividual>
     
 
@@ -2071,10 +2081,10 @@
     <!-- http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-2_4_Camera-BBCKCDT2019_1 -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-2_4_Camera-BBCKCDT2019_1">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
-        <hasAssetParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-1_4_TESMissionSystem-BBCKDT2019_1"/>
-        <hasSystemModel rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://138.250.108.1:3003/api/files/obj/1_OpEx-2_4_Camera-BBCKCDT2019_1.obj</hasSystemModel>
-        <hasSystemName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Helicopter Mission System Camera Digital Twin</hasSystemName>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
+        <componentHasAssetParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-1_4_TESMissionSystem-BBCKDT2019_1"/>
+        <hasComponentModel rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://138.250.108.1:3003/api/files/obj/1_OpEx-2_4_Camera-BBCKCDT2019_1.obj</hasComponentModel>
+        <hasComponentName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Helicopter Mission System Camera Digital Twin</hasComponentName>
     </owl:NamedIndividual>
     
 
@@ -2082,10 +2092,10 @@
     <!-- http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-2_5_Switch-BBCKSDT2019_1 -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-2_5_Switch-BBCKSDT2019_1">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
-        <hasAssetParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-1_4_TESMissionSystem-BBCKDT2019_1"/>
-        <hasSystemModel rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://138.250.108.1:3003/api/files/obj/1_OpEx-2_5_Switch-BBCKSDT2019_1.obj</hasSystemModel>
-        <hasSystemName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Helicopter Mission System Ethernet Switch</hasSystemName>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
+        <componentHasAssetParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-1_4_TESMissionSystem-BBCKDT2019_1"/>
+        <hasComponentModel rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://138.250.108.1:3003/api/files/obj/1_OpEx-2_5_Switch-BBCKSDT2019_1.obj</hasComponentModel>
+        <hasComponentName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Helicopter Mission System Ethernet Switch</hasComponentName>
     </owl:NamedIndividual>
     
 
@@ -2150,6 +2160,28 @@
         <hasSystemParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-2_1_Electromecanic-TESGBEM2015_1"/>
         <hasSystemModel rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://138.250.108.1:3003/api/files/obj/1_OpEx-3_1_Motor-TESGBEMM2015_1.obj</hasSystemModel>
         <hasSystemName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gearbox motors</hasSystemName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-3_2_Monitor-BBCKTSHBCDT2019_1 -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-3_2_Monitor-BBCKTSHBCDT2019_1">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
+        <hasSystemParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-2_1_MainMissionComputer-BBCKTSHBCDT2019_1"/>
+        <hasComponentModel rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://138.250.108.1:3003/api/files/obj/1_OpEx-3_2_Monitor-BBCKTSHBCDT2019_1.obj</hasComponentModel>
+        <hasComponentName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Main Mission Computer Monitor</hasComponentName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-3_2_Monitor-BBCKTSHBCDT2019_2 -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-3_2_Monitor-BBCKTSHBCDT2019_2">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
+        <hasSystemParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-2_2_ClientMissionComputer-BBCKTSHBCDT2019_2"/>
+        <hasComponentModel rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://138.250.108.1:3003/api/files/obj/1_OpEx-3_2_Monitor-BBCKTSHBCDT2019_2.obj</hasComponentModel>
+        <hasComponentName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Client Mission Computer Monitor</hasComponentName>
     </owl:NamedIndividual>
     
 
