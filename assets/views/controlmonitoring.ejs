@@ -30,28 +30,58 @@
                 <tr>
                     <td colspan="2">Monitor</td>
                     <td colspan="2">Client Mission Computer</td>
-                    <td colspan="2">Mission Computer</td>
+                    <td colspan="2">Main Mission Computer</td>
                     <td colspan="2">Camera</td>
                 </tr>
                 <tr>
                     <td>Last checked</td>
-                    <td><%=mntCheck%></td>
+                    <td><%=mntCheck.split("T")[1]%></td>
                     <td>Last checked</td>
-                    <td><%=cmcCheck%></td>
+                    <td><%=cmcCheck.split("T")[1]%></td>
                     <td>Last checked</td>
-                    <td><%=mmcCheck%></td>
+                    <td><%=mmcCheck.split("T")[1]%></td>
                     <td>Last checked</td>
-                    <td><%=cmrCheck%></td>
+                    <td><%=cmrCheck.split("T")[1]%></td>
                 </tr>
                 <tr>
                     <td>CPU Usage</td>
-                    <td></td>
+                    <td>---</td>
                     <td>CPU Usage</td>
                     <td><%=cmcCPUUSAGE%> %</td>
                     <td>CPU Usage</td>
                     <td><%=mmcCPUUSAGE%> %</td>
                     <td>CPU Usage</td>
-                    <td></td>
+                    <td>---</td>
+                </tr>
+                <tr>
+                    <td>RAM Usage</td>
+                    <td>---</td>
+                    <td>RAM Usage</td>
+                    <td><%=cmcRAMUSAGE%> %</td>
+                    <td>RAM Usage</td>
+                    <td><%=mmcRAMUSAGE%> %</td>
+                    <td>RAM Usage</td>
+                    <td>---</td>
+                </tr>
+                <tr>
+                    <td>Temperature</td>
+                    <td>---</td>
+                    <td>Temperature</td>
+                    <td><%=cmcCPUTEMP - 273%> °C</td>
+                    <td>Temperature</td>
+                    <td><%=mmcCPUTEMP - 273%> °C</td>
+                    <td>Temperature</td>
+                    <td>---</td>
+                </tr>
+                <tr>
+                    <td>Connected</td>
+                    <td><%if(mntCON===0){%><font color="red">NO</font><%}else{%><font color="green">YES</font><%}%></td>
+                    <td>Connected</td>
+                    <td><%if(cmcCON===0){%><font color="red">NO</font><%}else{%><font color="green">YES</font><%}%></td>
+                    <td>Connected</td>
+                    <td><%if((mntCON===0)&&(cmcCON===0)&&(cmrCON===0)){%><font color="red">NO</font><%}else{%><font color="green">YES</font><%}%></td>
+                    <td>Connected</td>
+                    <td><%if(cmrCON===0){%><font color="red">NO</font><%}else{%><font color="green">YES</font><%}%></td>
                 </tr>
             </table>
         </div>
