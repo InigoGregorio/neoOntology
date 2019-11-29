@@ -632,6 +632,43 @@ let individualProperties = function(uri) {
             });
     });
 };
+// Individual last: returns the latest (time-wise) value for a given individual from a class related to another
+// IMP: SPARQL query for dtont visualisation
+// IMP: since SPARQL endpoint is not done, specific interfaces are required for each module to query data properly
+// IMP: given an ontology, two classes, one relation and one attribute of datetime type
+// UPG: add a SPARQL query system that acts as interface between modules and ontology database
+let individualLast = function(ontologyName, firstClassName, individualName, relationshipName, secondClassName,
+                              orderingAttributeName, requiredAttribute) {
+    return new Promise(function(resolve, reject) {
+        let uriElement = constructURI(ontologyName, individualName);
+        session
+            .run(`MATCH (n:${ontologyName}__${firstClassName}{uri:"${uriElement}"})
+            <-[r:${ontologyName}__${relationshipName}]-(m:${ontologyName}__${secondClassName})
+            RETURN m.${ontologyName}__${orderingAttributeName},m.${ontologyName}__${requiredAttribute} 
+            ORDER BY datetime(m.${ontologyName}__${orderingAttributeName}) DESC LIMIT 1`)
+            .then(function(result){
+                if (result.records[0]._fields[0] !== null) {
+                    resolve({
+                        ontProperty: firstClassName,
+                        ontOntology: ontologyName,
+                        ontMeasure: secondClassName,
+                        ontResults: [{
+                            ontName: orderingAttributeName,
+                            ontValue: result.records[0]._fields[0]
+                        }, {
+                            ontName: requiredAttribute,
+                            ontValue: result.records[0]._fields[1]
+                        }]
+                    });
+                } else {
+                    resolve({ontError:"Not found"});
+                }
+            })
+            .catch(function(err){
+                reject(err);
+            });
+    });
+};
 // Individual review: promises to assess individual and its properties against all consistency evaluations
 let individualReview = async function(individual, ontologyName, individualName) {
     return await individualEvaluation(individual, ontologyName, individualName);
@@ -1050,6 +1087,7 @@ app.get('/api/ontologies/:ontologyName/individual/:individualName/properties', f
         });
 });
 // Individual example: to retrieve class individual with most number of relationships
+// IMP: SPARQL query for Carar
 app.get('/api/ontologies/:ontologyName/class/:className/example', function(req,res){
     async function classExampleJSON() {
         let classUri = constructURI(req.params.ontologyName,req.params.className);
@@ -1064,39 +1102,20 @@ app.get('/api/ontologies/:ontologyName/class/:className/example', function(req,r
             res.json(err);
         });
 });
-// Last individual: to retrieve latest individual of a given class with the last datetime attribute
-// IMP: since SPARQL endpoint is not done, specific interfaces are required for each module to query data properly
-// IMP: given an ontology, two classes, one relation and one attribute of datetime type
-// UPG: add a SPARQL query system that acts as interface between modules and ontology database
+// Individual last: to retrieve latest individual of a given class with the last datetime attribute
 app.get('/api/cm/:ontologyName/class/:firstClassName/individual/:individualName/relation/:relationshipName/' +
     'class/:secondClassName/attribute/:orderingAttributeName/attribute/:requiredAttribute', function(req,res) {
-    let uriElement = constructURI(req.params.ontologyName, req.params.individualName);
-    session
-        .run(`MATCH (n:${req.params.ontologyName}__${req.params.firstClassName}{uri:"${uriElement}"})
-        <-[r:${req.params.ontologyName}__${req.params.relationshipName}]
-        -(m:${req.params.ontologyName}__${req.params.secondClassName}) 
-        RETURN m.${req.params.ontologyName}__${req.params.orderingAttributeName},
-        m.${req.params.ontologyName}__${req.params.requiredAttribute} 
-        ORDER BY datetime(m.${req.params.ontologyName}__${req.params.orderingAttributeName}) DESC LIMIT 1`)
-        .then(function(result){
-            if (result.records[0]._fields[0] !== null) {
-                res.json({
-                    ontProperty: req.params.firstClassName,
-                    ontOntology: req.params.ontologyName,
-                    ontMeasure: req.params.secondClassName,
-                    ontResults: [{
-                        ontName: req.params.orderingAttributeName,
-                        ontValue: result.records[0]._fields[0]
-                    }, {
-                        ontName: req.params.requiredAttribute,
-                        ontValue: result.records[0]._fields[1]
-                    }]
-                })
-            } else {
-                res.json({ontError:"Not found"});
-            }
+    async function individualLastJSON() {
+        let individualLastData = await individualLast(req.params.ontologyName, req.params.firstClassName,
+            req.params.individualName, req.params.relationshipName, req.params.secondClassName,
+            req.params.orderingAttributeName, req.params.requiredAttribute);
+        return await individualLastData;
+    }
+    individualLastJSON()
+        .then(function(result) {
+            res.json(result);
         })
-        .catch(function(err){
+        .catch(function(err) {
             res.json(err);
         });
 });
@@ -1320,6 +1339,42 @@ app.get('/view/ontologies/:ontologyName/individual/:individualName/properties', 
         .catch(function(err) {
             res.json(err);
         });
+});
+// Control monitoring view: to render latest values of digital twin control monitoring
+app.get('/view/controlmonitoring', function(req, res) {
+    async function lastDTData() {
+        let mmcCPUUSAGE = await individualLast("dtont", "Property", "CPUUsage1",
+            "hasMeasureNumeric", "MeasureNumeric", "hasDateNumeric",
+            "hasValueNumeric");
+        let mmcCPUTEMP = await individualLast("dtont", "Property", "CPUTemperature1",
+            "hasMeasureNumeric", "MeasureNumeric", "hasDateNumeric",
+            "hasValueNumeric");
+        let mmcRAMUSAGE = await individualLast("dtont", "Property", "RAMUsage1",
+            "hasMeasureNumeric", "MeasureNumeric", "hasDateNumeric",
+            "hasValueNumeric");
+        let cmcCON = await individualLast("dtont", "Property", "Connectivity1",
+            "hasMeasureBoolean", "MeasureBoolean", "hasDateBoolean",
+            "hasValueBoolean");
+        let cmcCPUUSAGE = await individualLast("dtont", "Property", "CPUUsage2",
+            "hasMeasureNumeric", "MeasureNumeric", "hasDateNumeric",
+            "hasValueNumeric");
+        let cmcCPUTEMP = await individualLast("dtont", "Property", "CPUTemperature2",
+            "hasMeasureNumeric", "MeasureNumeric", "hasDateNumeric",
+            "hasValueNumeric");
+        let cmcRAMUSAGE = await individualLast("dtont", "Property", "RAMUsage2",
+            "hasMeasureNumeric", "MeasureNumeric", "hasDateNumeric",
+            "hasValueNumeric");
+        let cmrCON = await individualLast("dtont", "Property", "Connectivity2",
+            "hasMeasureBoolean", "MeasureBoolean", "hasDateBoolean",
+            "hasValueBoolean");
+        let mntCON = await individualLast("dtont", "Property", "Connectivity3",
+            "hasMeasureBoolean", "MeasureBoolean", "hasDateBoolean",
+            "hasValueBoolean");
+        return await [mmcCPUUSAGE, mmcCPUTEMP, mmcRAMUSAGE, cmcCON, cmcCPUUSAGE, cmcCPUTEMP, cmcRAMUSAGE, cmrCON, mntCON];
+    }
+    lastDTData()
+        .then(function(result) { res.json(result); })
+        .catch(function(err) { res.json(err) });
 });
 /*====================================================================================================================*/
 
