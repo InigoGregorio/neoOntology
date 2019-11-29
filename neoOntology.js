@@ -1341,6 +1341,7 @@ app.get('/view/ontologies/:ontologyName/individual/:individualName/properties', 
         });
 });
 // Control monitoring view: to render latest values of digital twin control monitoring
+// UPG: to monitor each component/system/asset independently according to measures of properties found
 app.get('/view/controlmonitoring', function(req, res) {
     async function lastDTData() {
         let mmcCPUUSAGE = await individualLast("dtont", "Property", "CPUUsage1",
