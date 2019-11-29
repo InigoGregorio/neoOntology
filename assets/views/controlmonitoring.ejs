@@ -5,7 +5,7 @@
     <meta name="author" content="®IFDAB">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/styles/css/main.css">
-    <title>neont - <%=result.fileType%> files</title>
+    <title>neont - Asset Monitoring</title>
 </head>
 <header id="header">
     <nav class="left">
@@ -21,26 +21,34 @@
 <section id="main" class="wrapper">
     <div class="inner">
         <header class="align-left">
-            <h1><a href="/view/files/<%=result.fileType%>">Files .<%=result.fileType%></a></h1>
+            <h1><a href="/view/controlmonitoring">Asset Monitoring</a></h1>
+            <h2><a href="/view/ontologies/orgont/individual/1_OpEx-1_4_TESMissionSystem-BBCKDT2019_1/properties">Asset: 1_OpEx-1_4_TESMissionSystem-BBCKDT2019_1</a></h2>
         </header>
-        <h2>File upload</h2>
-        <form method="post" action="/api/files/<%=result.fileType %>/upload" enctype="multipart/form-data">
-            <div class="row uniform">
-                <div class="6u 12u$(xsmall)">
-                    <input type="file" name="file" class="fit"/>
-                </div>
-                <div class="6u$ 12u$(xsmall)">
-                    <input type="submit" value="Upload file" class="fit"/>
-                </div>
-            </div>
-        </form>
-        <h2>Files available</h2>
-        <div class="12u$">
-            <ul class="actions vertical">
-                <% result.filesNames.forEach(function(value){ %>
-                <li><a href="/api/files/<%=result.fileType%>/<%=value%>" class="button special fit"><%=value%></a></li>
-                <% }); %>
-            </ul>
+        <div class="table-wrapper">
+            <table class="alt">
+                <tr>
+                    <th>Last check</th>
+                    <th><%=checkDate.getFullYear()+'-'+(checkDate.getMonth()+1)+'-'+checkDate.getDate()%></th>
+                    <th><%=checkDate.getHours()+":"+checkDate.getMinutes()+":"+checkDate.getSeconds()%></th>
+                </tr>
+            </table>
+            <table class="alt">
+                <tr>
+                    <th colspan="2">Monitor</th>
+                    <th rowspan="4">Last checked</th>
+                    <th>Connected</th>
+                </tr>
+                <tr>
+                    <td rowspan="4"><%=cmrCheck.getHours()+":"+cmrCheck.getMinutes()+":"+cmrCheck.getSeconds()%></td>
+                    <td>
+                        <% if (cmrCON === 0) { %>
+                            <font color ="red">NO</font>
+                        <% } else { %>
+                            <font color ="green">YES</font>
+                        <% } %>
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
 </section>
