@@ -28,8 +28,7 @@
             <table class="alt">
                 <tr>
                     <th>Last check</th>
-                    <th><%=checkDate.getFullYear()+'-'+(checkDate.getMonth()+1)+'-'+checkDate.getDate()%></th>
-                    <th><%=checkDate.getHours()+":"+checkDate.getMinutes()+":"+checkDate.getSeconds()%></th>
+                    <th><%=checkDate%></th>
                 </tr>
             </table>
             <table class="alt">
@@ -39,7 +38,7 @@
                     <th>Connected</th>
                 </tr>
                 <tr>
-                    <td rowspan="4"><%=cmrCheck.getHours()+":"+cmrCheck.getMinutes()+":"+cmrCheck.getSeconds()%></td>
+                    <td rowspan="4"><%=cmrCheck%></td>
                     <td>
                         <% if (cmrCON === 0) { %>
                             <font color ="red">NO</font>
