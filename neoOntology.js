@@ -1370,7 +1370,9 @@ app.get('/view/controlmonitoring', function(req, res) {
         let mntCON = await individualLast("dtont", "Property", "Connectivity3",
             "hasMeasureBoolean", "MeasureBoolean", "hasDateBoolean",
             "hasValueBoolean");
-        return await [mmcCPUUSAGE, mmcCPUTEMP, mmcRAMUSAGE, cmcCON, cmcCPUUSAGE, cmcCPUTEMP, cmcRAMUSAGE, cmrCON, mntCON];
+        return { mmcCPUUSAGE: mmcCPUUSAGE, mmcCPUTEMP: mmcCPUTEMP, mmcRAMUSAGE: mmcRAMUSAGE,
+            cmcCON: cmcCON, cmcCPUUSAGE: cmcCPUUSAGE, cmcCPUTEMP: cmcCPUTEMP, cmcRAMUSAGE: cmcRAMUSAGE,
+            cmrCON: cmrCON, mntCON: mntCON };
     }
     lastDTData()
         .then(function(result) { res.json(result); })
