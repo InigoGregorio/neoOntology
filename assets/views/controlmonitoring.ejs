@@ -29,22 +29,28 @@
             <table class="alt">
                 <tr>
                     <td colspan="2">Monitor</td>
-                    <td rowspan="3"><img src="/files/png/1_OPEX-0_1_MNT-BBCKTSHBCDT2019_3.png" height="10" width="10" alt=""></td>
+                    <td colspan="2">Client Mission Computer</td>
+                    <td colspan="2">Mission Computer</td>
+                    <td colspan="2">Camera</td>
                 </tr>
                 <tr>
                     <td>Last checked</td>
+                    <td><%=mntCheck%></td>
+                    <td>Last checked</td>
+                    <td><%=cmcCheck%></td>
+                    <td>Last checked</td>
+                    <td><%=mmcCheck%></td>
+                    <td>Last checked</td>
                     <td><%=cmrCheck%></td>
-                    <td></td>
                 </tr>
                 <tr>
-                    <td>Connected</td>
-                    <td>
-                        <% if (cmrCON === 0) { %>
-                            <font color ="red">NO</font>
-                        <% } else { %>
-                            <font color ="green">YES</font>
-                        <% } %>
-                    </td>
+                    <td>CPU Usage</td>
+                    <td></td>
+                    <td>CPU Usage</td>
+                    <td><%=cmcCPUUSAGE%> %</td>
+                    <td>CPU Usage</td>
+                    <td><%=mmcCPUUSAGE%> %</td>
+                    <td>CPU Usage</td>
                     <td></td>
                 </tr>
             </table>
