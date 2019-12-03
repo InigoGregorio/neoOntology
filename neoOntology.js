@@ -973,6 +973,10 @@ let individualPropertyCreation = function (individualName,individualOntology,ind
 /*====================================================================================================================*/
 // File download: given a file full-name and type, send file
 app.get('/api/files/:fileType/:fileName', function(req,res) {
+    // IMP: check if file is of type owl when '.' not found
+    if (!req.params.fileName.includes('.')) {
+        req.params.fileName = req.params.fileName + ".owl";
+    } else {}
     // ERR: if fileType is not found
     if(!returnFilesAvailable(path.join(__dirname,'assets','files'),req.params.fileType)) {
         res.status(404).send('File type not available');
