@@ -986,6 +986,7 @@ app.get('/api/files/:fileType/:fileName', function(req,res) {
         res.status(404).send('File not available');
     }
     else {
+        // UPG: to include .owl when fileName did not include it in the first place
         res.sendFile(path.join(__dirname,'assets','files',req.params.fileType,req.params.fileName));
     }
 });
