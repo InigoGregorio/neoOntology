@@ -54,13 +54,19 @@
                                                 <%=ontIndPropValue%></a></li>
                                     <!--Else if owl:DatatypeProperty-->
                                     <% } else if (ontIndPropType.includes("DatatypeProperty")) { %>
-                                        <!--Link to file if filetype exists-->
-                                        <% if (value.ontValue.split("/").pop().match(/\.(jpg|png|wav|mp4|obj|owl|dat|xml)$/)) { %>
-                                            <% let ontIndPropValueFileType = value.ontValue.split("/").pop().split(".")[1] %>
-                                            <% let ontIndPropValueFileName = value.ontValue.split("/").pop()%>
-                                            <!--Link to file-->
-                                            <li><a href="/api/files/<%=ontIndPropValueFileType%>/<%=ontIndPropValueFileName%>" class="button special fit">
-                                                    <%=ontIndPropValueFileName%></a></li>
+                                        <!--If value is not empty-->
+                                        <% if (value.ontValue) { %>
+                                            <!--Link to file if filetype exists-->
+                                            <% if (value.ontValue.split("/").pop().match(/\.(jpg|png|wav|mp4|obj|owl|dat|xml)$/)) { %>
+                                                <% let ontIndPropValueFileType = value.ontValue.split("/").pop().split(".")[1] %>
+                                                <% let ontIndPropValueFileName = value.ontValue.split("/").pop()%>
+                                                <!--Link to file-->
+                                                <li><a href="/api/files/<%=ontIndPropValueFileType%>/<%=ontIndPropValueFileName%>" class="button special fit">
+                                                        <%=ontIndPropValueFileName%></a></li>
+                                            <% } else { %>
+                                                <!--No link-->
+                                                <li><a href="#" class="button fit"><%=value.ontValue%></a></li>
+                                            <% } %>
                                         <% } else { %>
                                             <!--No link-->
                                             <li><a href="#" class="button fit"><%=value.ontValue%></a></li>
