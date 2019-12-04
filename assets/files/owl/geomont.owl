@@ -30,6 +30,38 @@
     
 
 
+    <!-- http://138.250.108.1:3003/api/files/owl/geomont#hasFeatureGeometrical -->
+
+    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/geomont#hasFeatureGeometrical">
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#geomontObject"/>
+        <rdfs:comment>set of descriptors for geometrical features</rdfs:comment>
+        <rdfs:label>hasFeatureGeometrical</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/geomont#hasFeatureGeometricalOrientationAxis -->
+
+    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/geomont#hasFeatureGeometricalOrientationAxis">
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#hasFeatureGeometrical"/>
+        <rdfs:comment>set of descriptors for geometrical features orientation axis</rdfs:comment>
+        <rdfs:label>hasFeatureGeometricalOrientationAxis</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/geomont#hasFeatureGeometricalOrientationAxisHole -->
+
+    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/geomont#hasFeatureGeometricalOrientationAxisHole">
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#hasFeatureGeometricalOrientationAxis"/>
+        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#GeometricalHole"/>
+        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#GeometricalAxis"/>
+        <rdfs:comment>descriptor for geometrical hole feature orientation axis</rdfs:comment>
+        <rdfs:label>hasFeatureGeometricalOrientationAxisHole</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://138.250.108.1:3003/api/files/owl/geomont#isFeatureGeometricalFilletOf -->
 
     <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/geomont#isFeatureGeometricalFilletOf">
@@ -202,94 +234,94 @@
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeGenerated -->
+    <!-- http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeDesigned -->
 
-    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeGenerated">
+    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeDesigned">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#hasDateTime"/>
-        <rdfs:comment>set of descriptors for features update time</rdfs:comment>
-        <rdfs:label>hasDateTimeGenerated</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeGeneratedFillet -->
-
-    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeGeneratedFillet">
-        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeGenerated"/>
-        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#GeometricalFillet"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
-        <rdfs:comment>time when fillet feature was created in the component</rdfs:comment>
-        <rdfs:label>hasDateTimeGeneratedFillet</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeGeneratedHole -->
-
-    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeGeneratedHole">
-        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeGenerated"/>
-        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#GeometricalHole"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
-        <rdfs:comment>time when hole feature was created in the component</rdfs:comment>
-        <rdfs:label>hasDateTimeGeneratedHole</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeGeneratedShell -->
-
-    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeGeneratedShell">
-        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeGenerated"/>
-        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#GeometricalShell"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
-        <rdfs:comment>time when shell feature was created in the component</rdfs:comment>
-        <rdfs:label>hasDateTimeGeneratedShell</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeUpdated -->
-
-    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeUpdated">
-        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#hasDateTime"/>
-        <rdfs:comment>set of descriptors for features update time</rdfs:comment>
+        <rdfs:comment>set of descriptors for features date time when manufactured in the component</rdfs:comment>
         <rdfs:label>hasDateTimeUpdated</rdfs:label>
     </owl:DatatypeProperty>
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeUpdatedFillet -->
+    <!-- http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeDesignedFillet -->
 
-    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeUpdatedFillet">
-        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeUpdated"/>
+    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeDesignedFillet">
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeDesigned"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#GeometricalFillet"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
-        <rdfs:comment>time when fillet feature was updated in the component model</rdfs:comment>
+        <rdfs:comment>time when fillet feature was designed in the component model</rdfs:comment>
         <rdfs:label>hasDateTimeUpdatedFillet</rdfs:label>
     </owl:DatatypeProperty>
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeUpdatedHole -->
+    <!-- http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeDesignedHole -->
 
-    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeUpdatedHole">
-        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeUpdated"/>
+    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeDesignedHole">
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeDesigned"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#GeometricalHole"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
-        <rdfs:comment>time when hole feature was generated in the component model</rdfs:comment>
+        <rdfs:comment>time when hole feature was designed in the component model</rdfs:comment>
         <rdfs:label>hasDateTimeUpdatedHole</rdfs:label>
     </owl:DatatypeProperty>
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeUpdatedShell -->
+    <!-- http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeDesignedShell -->
 
-    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeUpdatedShell">
-        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeUpdated"/>
+    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeDesignedShell">
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeDesigned"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#GeometricalShell"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
-        <rdfs:comment>time when shell feature was generated in the component model</rdfs:comment>
+        <rdfs:comment>time when shell feature was designed in the component model</rdfs:comment>
         <rdfs:label>hasDateTimeUpdatedShell</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeManufactured -->
+
+    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeManufactured">
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#hasDateTime"/>
+        <rdfs:comment>set of descriptors for features date time when designed in the component</rdfs:comment>
+        <rdfs:label>hasDateTimeGenerated</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeManufacturedFillet -->
+
+    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeManufacturedFillet">
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeManufactured"/>
+        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#GeometricalFillet"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+        <rdfs:comment>time when fillet feature was manufactured in the component</rdfs:comment>
+        <rdfs:label>hasDateTimeGeneratedFillet</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeManufacturedHole -->
+
+    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeManufacturedHole">
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeManufactured"/>
+        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#GeometricalHole"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+        <rdfs:comment>time when hole feature was manufactured in the component</rdfs:comment>
+        <rdfs:label>hasDateTimeGeneratedHole</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeManufacturedShell -->
+
+    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeManufacturedShell">
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#hasDateTimeManufactured"/>
+        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#GeometricalShell"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+        <rdfs:comment>time when shell feature was manufactured in the component</rdfs:comment>
+        <rdfs:label>hasDateTimeGeneratedShell</rdfs:label>
     </owl:DatatypeProperty>
     
 
@@ -300,6 +332,28 @@
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#geomontData"/>
         <rdfs:comment>set of descriptors for geometrical features</rdfs:comment>
         <rdfs:label>hasGeometrical</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/geomont#hasGeometricalDepth -->
+
+    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/geomont#hasGeometricalDepth">
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#hasGeometrical"/>
+        <rdfs:comment>set of descriptors for geometrical feature depth</rdfs:comment>
+        <rdfs:label>hasGeometricalDepth</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/geomont#hasGeometricalDepthHole -->
+
+    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/geomont#hasGeometricalDepthHole">
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#hasGeometricalDepth"/>
+        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#GeometricalHole"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+        <rdfs:comment>descriptor for geometrical feature hole depth</rdfs:comment>
+        <rdfs:label>hasGeometricalDepthHole</rdfs:label>
     </owl:DatatypeProperty>
     
 
@@ -346,6 +400,38 @@
     
 
 
+    <!-- http://138.250.108.1:3003/api/files/owl/geomont#hasGeometricalOrientation -->
+
+    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/geomont#hasGeometricalOrientation">
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#hasGeometrical"/>
+        <rdfs:comment>set of descriptors for geometrical feature orientation</rdfs:comment>
+        <rdfs:label>hasGeometricalOrientation</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/geomont#hasGeometricalOrientationDirection -->
+
+    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/geomont#hasGeometricalOrientationDirection">
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#hasGeometricalOrientation"/>
+        <rdfs:comment>set of descriptors for geometrical feature orientation direction (true when in axis direction, false when opposite)</rdfs:comment>
+        <rdfs:label>hasGeometricalOrientationDirection</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/geomont#hasGeometricalOrientationDirectionHole -->
+
+    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/geomont#hasGeometricalOrientationDirectionHole">
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#hasGeometricalOrientationDirection"/>
+        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#GeometricalHole"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+        <rdfs:comment>set of descriptors for geometrical hole feature orientation direction (true when axis direction, false when opposite)</rdfs:comment>
+        <rdfs:label>hasGeometricalOrientationDirectionHole</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://138.250.108.1:3003/api/files/owl/geomont#hasGeometricalWidth -->
 
     <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/geomont#hasGeometricalWidth">
@@ -364,6 +450,25 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/geomont#Datatype -->
+
+    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/geomont#Datatype">
+        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#geomont"/>
+        <rdfs:comment>set of all elements to declare specific datatypes</rdfs:comment>
+        <rdfs:label>Datatype</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/geomont#GeometricalAxis -->
+
+    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/geomont#GeometricalAxis">
+        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#Datatype"/>
+        <rdfs:comment>identification of geometrical features axis</rdfs:comment>
+    </owl:Class>
     
 
 
@@ -433,12 +538,36 @@
     
 
 
+    <!-- http://138.250.108.1:3003/api/files/owl/geomont#x -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/geomont#x">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#GeometricalAxis"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/geomont#y -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/geomont#y">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#GeometricalAxis"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/geomont#z -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/geomont#z">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#GeometricalAxis"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://138.250.108.1:3003/api/files/owl/geomont#﻿Hole_20191203T190755_1_OpEx-0_1_CL-ENSP3015mmA_3 -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/geomont#﻿Hole_20191203T190755_1_OpEx-0_1_CL-ENSP3015mmA_3">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#GeometricalHole"/>
         <isFeatureGeometricalHoleOf rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CL-ENSP3015mmA_3"/>
-        <hasGeometricalDiameter rdf:datatype="http://www.w3.org/2001/XMLSchema#string">5.0</hasGeometricalDiameter>
+        <hasGeometricalDiameter rdf:datatype="http://www.w3.org/2001/XMLSchema#double">5.0</hasGeometricalDiameter>
     </owl:NamedIndividual>
     
 
@@ -447,12 +576,15 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/geomont#﻿Hole_20191203T190834_1_OpEx-0_1_CL-ENSP3015mmA_3">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#GeometricalHole"/>
-        <hasCartesianCoordinateXHole rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3.0</hasCartesianCoordinateXHole>
-        <hasCartesianCoordinateYHole rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3.0</hasCartesianCoordinateYHole>
-        <hasCartesianCoordinateZHole rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</hasCartesianCoordinateZHole>
-        <hasDateTimeGeneratedHole rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2019-12-03T19:08:34</hasDateTimeGeneratedHole>
-        <hasDateTimeUpdatedHole rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2019-12-03T19:38:52</hasDateTimeUpdatedHole>
-        <hasGeometricalDiameter rdf:datatype="http://www.w3.org/2001/XMLSchema#string">7.0</hasGeometricalDiameter>
+        <hasFeatureGeometricalOrientationAxisHole rdf:resource="http://138.250.108.1:3003/api/files/owl/geomont#y"/>
+        <hasCartesianCoordinateXHole rdf:datatype="http://www.w3.org/2001/XMLSchema#double">3.0</hasCartesianCoordinateXHole>
+        <hasCartesianCoordinateYHole rdf:datatype="http://www.w3.org/2001/XMLSchema#double">3.0</hasCartesianCoordinateYHole>
+        <hasCartesianCoordinateZHole rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</hasCartesianCoordinateZHole>
+        <hasDateTimeDesignedHole rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-12-03T19:38:52</hasDateTimeDesignedHole>
+        <hasDateTimeManufacturedHole rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-12-03T19:08:34</hasDateTimeManufacturedHole>
+        <hasGeometricalDepthHole rdf:datatype="http://www.w3.org/2001/XMLSchema#double">10.0</hasGeometricalDepthHole>
+        <hasGeometricalDiameter rdf:datatype="http://www.w3.org/2001/XMLSchema#double">7.0</hasGeometricalDiameter>
+        <hasGeometricalOrientationDirection rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</hasGeometricalOrientationDirection>
     </owl:NamedIndividual>
     
 
