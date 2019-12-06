@@ -230,9 +230,9 @@
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#hasPhysicStatus -->
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#hasStatePhysicStatus -->
 
-    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#hasPhysicStatus">
+    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#hasStatePhysicStatus">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#hasLevel"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State"/>
         <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#PhysicStatus"/>
@@ -406,18 +406,6 @@
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#measuresStateProperty -->
-
-    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#measuresStateProperty">
-        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#evaluates"/>
-        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State"/>
-        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/dtont#Property"/>
-        <rdfs:comment>property being measured by the state</rdfs:comment>
-        <rdfs:label>measuresStateProperty</rdfs:label>
-    </owl:ObjectProperty>
-    
-
-
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#operatedTaskBy -->
 
     <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#operatedTaskBy">
@@ -460,6 +448,30 @@
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#diagontObject"/>
         <rdfs:comment>relationship of action</rdfs:comment>
         <rdfs:label>works</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#hasStatePhysicDomain -->
+
+    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#hasStatePhysicDomain">
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#hasLevel"/>
+        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State"/>
+        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#PhysicDomain"/>
+        <rdfs:comment>physical domain to which belongs</rdfs:comment>
+        <rdfs:label>hasStatePhysicDomain</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#hasStatePhysicPhenomenon -->
+
+    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#hasStatePhysicPhenomenon">
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#hasLevel"/>
+        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State"/>
+        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#PhysicPhenomenon"/>
+        <rdfs:comment>phenomenon that produces it</rdfs:comment>
+        <rdfs:label>hasStatePhysicPhenomenon</rdfs:label>
     </owl:ObjectProperty>
     
 
@@ -610,6 +622,18 @@
     
 
 
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#hasMeasureValue -->
+
+    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#hasMeasureValue">
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#has"/>
+        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+        <rdfs:comment>numerical description of the quality being described</rdfs:comment>
+        <rdfs:label>hasValue</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://138.250.108.1:3003/api/files/owl/orgont#hasStateDescription -->
 
     <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#hasStateDescription">
@@ -642,18 +666,6 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:comment>additional, non-mandatory information on the task</rdfs:comment>
         <rdfs:label>hasTaskDescription</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#hasValue -->
-
-    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#hasValue">
-        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#has"/>
-        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
-        <rdfs:comment>numerical description of the quality being described</rdfs:comment>
-        <rdfs:label>hasValue</rdfs:label>
     </owl:DatatypeProperty>
     
 
