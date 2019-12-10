@@ -1603,6 +1603,7 @@ app.post('/view/ontologies/:ontologyName/class/:className/individual/:individual
                         inputResolution.push(inputResults[0]["records"]);
                         inputResults[1].forEach(function(result){inputResolution.push(result["records"])});
                         // res.send({ontWarnings:reviewResults["ontWarnings"],ontInput:inputResolution});
+                        // console.log(returnUriElement(result[0]["ontIndividual"]["ontOntology"]));
                         res.render('classIndividualInputResult',{
                             indOnt: returnUriElement(result[0]["ontIndividual"]["ontOntology"]),
                             indClass: returnUriElement(result[0]["ontIndividual"]["ontClass"]),

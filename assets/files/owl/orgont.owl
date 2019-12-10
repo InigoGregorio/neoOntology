@@ -582,6 +582,18 @@
     
 
 
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#MK8_MOD1_GUN -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#MK8_MOD1_GUN">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Asset"/>
+        <hasAssetModel rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://138.250.108.1:3003/api/files/dat/MK8_MOD1_GUN.obj</hasAssetModel>
+        <hasAssetName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mark VIII 4.5 Gun</hasAssetName>
+        <hasAssetTarget rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://138.250.108.1:3003/api/files/dat/MK8_MOD1_GUN.dat</hasAssetTarget>
+        <hasAssetTarget rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://138.250.108.1:3003/api/files/dat/MK8_MOD1_GUN.xml</hasAssetTarget>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://138.250.108.1:3003/api/files/owl/orgont#OpExLab -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#OpExLab">
