@@ -45,18 +45,6 @@
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#affectsToComponent -->
-
-    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#affectsToComponent">
-        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#affects"/>
-        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Fault"/>
-        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <rdfs:comment>component being affected by a fault</rdfs:comment>
-        <rdfs:label>affectsToComponent</rdfs:label>
-    </owl:ObjectProperty>
-    
-
-
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#affectsToSystem -->
 
     <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#affectsToSystem">
@@ -69,14 +57,38 @@
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#diagnosesStepFault -->
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#causesFailure -->
 
-    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#diagnosesStepFault">
+    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#causesFailure">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#identifies"/>
+        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State"/>
+        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Failure"/>
+        <rdfs:comment>event that caused its existence</rdfs:comment>
+        <rdfs:label>causesFailure</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#comparesToState -->
+
+    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#comparesToState">
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#evaluates"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Step"/>
-        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Fault"/>
-        <rdfs:comment>activity that investigated its existence</rdfs:comment>
-        <rdfs:label>diagnosesStepFault</rdfs:label>
+        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State"/>
+        <rdfs:comment>state of component behaviour to which compare hypothesis</rdfs:comment>
+        <rdfs:label>comparesToState</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#conductedTaskBy -->
+
+    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#conductedTaskBy">
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#works"/>
+        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Task"/>
+        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Agent"/>
+        <rdfs:comment>to be done by</rdfs:comment>
+        <rdfs:label>conductedTaskBy</rdfs:label>
     </owl:ObjectProperty>
     
 
@@ -100,50 +112,50 @@
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#evaluatesIncidentState -->
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#evaluatesState -->
 
-    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#evaluatesIncidentState">
-        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#evaluates"/>
-        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Incident"/>
-        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State"/>
-        <rdfs:comment>state of being that the incident is caused by</rdfs:comment>
-        <rdfs:label>evaluatesIncidentState</rdfs:label>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#evaluatesStepIdealState -->
-
-    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#evaluatesStepIdealState">
+    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#evaluatesState">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#evaluates"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Step"/>
         <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State"/>
-        <rdfs:comment>state of being that the step is comparing</rdfs:comment>
-        <rdfs:label>evaluatesStepIdealState</rdfs:label>
+        <rdfs:comment>state of component behaviour being hypothesised</rdfs:comment>
+        <rdfs:label>evaluatesState</rdfs:label>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#evaluatesStepState -->
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#firstStepIs -->
 
-    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#evaluatesStepState">
-        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#evaluates"/>
-        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Step"/>
-        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State"/>
-        <rdfs:comment>state of being that the step is evaluating</rdfs:comment>
-        <rdfs:label>evaluatesStepState</rdfs:label>
+    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#firstStepIs">
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#leads"/>
+        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Task"/>
+        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Step"/>
+        <rdfs:comment>activity that starts investigation of failure path</rdfs:comment>
+        <rdfs:label>firstStepIs</rdfs:label>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#hasDeviceType -->
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#hasDeviceResource -->
 
-    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#hasDeviceType">
+    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#hasDeviceResource">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#hasLevel"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Device"/>
-        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#ResourceType"/>
+        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Resource"/>
         <rdfs:comment>domain of resource being declared</rdfs:comment>
-        <rdfs:label>hasDeviceType</rdfs:label>
+        <rdfs:label>hasDeviceResource</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#hasFailureDominion -->
+
+    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#hasFailureDominion">
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#hasLevel"/>
+        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Failure"/>
+        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Dominion"/>
+        <rdfs:comment>physical domain to which belongs</rdfs:comment>
+        <rdfs:label>hasFailureDominion</rdfs:label>
     </owl:ObjectProperty>
     
 
@@ -153,57 +165,19 @@
     <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#hasFailureImpact">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#hasLevel"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Failure"/>
-        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#EventEffect"/>
+        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Impact"/>
         <rdfs:comment>boundaries within which it affects</rdfs:comment>
         <rdfs:label>hasFailureImpact</rdfs:label>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#hasFailurePhysicDomain -->
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#hasFailurePhenomenon -->
 
-    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#hasFailurePhysicDomain">
+    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#hasFailurePhenomenon">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#hasLevel"/>
-        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Failure"/>
-        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#PhysicDomain"/>
-        <rdfs:comment>physical domain to which belongs</rdfs:comment>
-        <rdfs:label>hasFailurePhysicDomain</rdfs:label>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#hasFaultImpact -->
-
-    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#hasFaultImpact">
-        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#hasLevel"/>
-        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Fault"/>
-        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#EventEffect"/>
-        <rdfs:comment>boundaries within which it affects</rdfs:comment>
-        <rdfs:label>hasFaultImpact</rdfs:label>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#hasFaultPhysicCause -->
-
-    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#hasFaultPhysicCause">
-        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#hasLevel"/>
-        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Fault"/>
-        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#PhysicPhenomenon"/>
         <rdfs:comment>phenomenon that produces it</rdfs:comment>
-        <rdfs:label>hasFaultPhysicCause</rdfs:label>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#hasFaultPhysicDomain -->
-
-    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#hasFaultPhysicDomain">
-        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#hasLevel"/>
-        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Fault"/>
-        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#PhysicDomain"/>
-        <rdfs:comment>physical domain to which belongs</rdfs:comment>
-        <rdfs:label>hasFaultPhysicDomain</rdfs:label>
+        <rdfs:label>hasFailurePhenomenon</rdfs:label>
     </owl:ObjectProperty>
     
 
@@ -223,45 +197,57 @@
     <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#hasMeasureUnit">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#hasLevel"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State"/>
-        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#SIMeasurementUnit"/>
+        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Unit"/>
         <rdfs:comment>representation of absolute value against to which it can be measured</rdfs:comment>
         <rdfs:label>hasMeasureUnit</rdfs:label>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#hasStatePhysicDomain -->
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#hasStateDominion -->
 
-    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#hasStatePhysicDomain">
+    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#hasStateDominion">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#hasLevel"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State"/>
-        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#PhysicDomain"/>
+        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Dominion"/>
         <rdfs:comment>physical domain to which belongs</rdfs:comment>
-        <rdfs:label>hasStatePhysicDomain</rdfs:label>
+        <rdfs:label>hasStateDominion</rdfs:label>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#hasStatePhysicPhenomenon -->
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#hasStateImpact -->
 
-    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#hasStatePhysicPhenomenon">
+    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#hasStateImpact">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#hasLevel"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State"/>
-        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#PhysicPhenomenon"/>
+        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Impact"/>
+        <rdfs:comment>boundaries within which it affects</rdfs:comment>
+        <rdfs:label>hasStateImpact</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#hasStatePhenomenon -->
+
+    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#hasStatePhenomenon">
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#hasLevel"/>
+        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State"/>
+        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Phenomenon"/>
         <rdfs:comment>phenomenon that produces it</rdfs:comment>
-        <rdfs:label>hasStatePhysicPhenomenon</rdfs:label>
+        <rdfs:label>hasStatePhenomenon</rdfs:label>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#hasStatePhysicStatus -->
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#hasStateStatus -->
 
-    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#hasStatePhysicStatus">
+    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#hasStateStatus">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#hasLevel"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State"/>
-        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#PhysicStatus"/>
+        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Status"/>
         <rdfs:comment>behaviour that the component being measured acquires</rdfs:comment>
-        <rdfs:label>hasPhysicStatus</rdfs:label>
+        <rdfs:label>hasStateStatus</rdfs:label>
     </owl:ObjectProperty>
     
 
@@ -271,7 +257,7 @@
     <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#hasStepComparison">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#hasLevel"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Step"/>
-        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#StepComparison"/>
+        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Comparison"/>
         <rdfs:comment>type evaluation made by the action being conducted</rdfs:comment>
         <rdfs:label>hasStepComparison</rdfs:label>
     </owl:ObjectProperty>
@@ -283,7 +269,7 @@
     <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#hasStepMethod">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#hasLevel"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Step"/>
-        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#StepMethod"/>
+        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Method"/>
         <rdfs:comment>nature of the action being conducted</rdfs:comment>
         <rdfs:label>hasStepMethod</rdfs:label>
     </owl:ObjectProperty>
@@ -295,45 +281,21 @@
     <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#hasStepObject">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#hasLevel"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Step"/>
-        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#StepObject"/>
+        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Object"/>
         <rdfs:comment>objective of the action being conducted</rdfs:comment>
         <rdfs:label>hasStepObject</rdfs:label>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#identifiedFailureByFault -->
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#identifiedByTask -->
 
-    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#identifiedFailureByFault">
-        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#identifies"/>
-        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Failure"/>
-        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Fault"/>
-        <rdfs:comment>event that caused its existence</rdfs:comment>
-        <rdfs:label>identifiedFailureByFault</rdfs:label>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#identifiedFailureByTask -->
-
-    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#identifiedFailureByTask">
+    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#identifiedByTask">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#identifies"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Failure"/>
         <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Task"/>
         <rdfs:comment>activity that investigated its existence</rdfs:comment>
-        <rdfs:label>identifiedFailureByTask</rdfs:label>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#identifiedTaskByIncident -->
-
-    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#identifiedTaskByIncident">
-        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#identifies"/>
-        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Task"/>
-        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Incident"/>
-        <rdfs:comment>event that initiated investigation</rdfs:comment>
-        <rdfs:label>identifiedTaskByIncident</rdfs:label>
+        <rdfs:label>identifiedByTask</rdfs:label>
     </owl:ObjectProperty>
     
 
@@ -358,86 +320,36 @@
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#ledFaultToFailure -->
-
-    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#ledFaultToFailure">
-        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#leads"/>
-        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Fault"/>
-        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Failure"/>
-        <rdfs:comment>event caused by the identified event</rdfs:comment>
-        <rdfs:label>ledFaultToFailure</rdfs:label>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#ledFaultToStep -->
-
-    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#ledFaultToStep">
-        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#leads"/>
-        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Fault"/>
-        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Step"/>
-        <rdfs:comment>activity that continues investigation of its cause</rdfs:comment>
-        <rdfs:label>ledFaultToStep</rdfs:label>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#ledIncidentToStep -->
-
-    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#ledIncidentToStep">
-        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#leads"/>
-        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Incident"/>
-        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Step"/>
-        <rdfs:comment>activity that continues investigation of its event</rdfs:comment>
-        <rdfs:label>ledIncidentToStep</rdfs:label>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#ledStepToStep -->
-
-    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#ledStepToStep">
-        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#leads"/>
-        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Step"/>
-        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Step"/>
-        <rdfs:comment>activity that continues investigation of its action</rdfs:comment>
-        <rdfs:label>ledStepToStep</rdfs:label>
-    </owl:ObjectProperty>
-    
-
-
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#managedTaskBy -->
 
     <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#managedTaskBy">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#works"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Task"/>
         <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Agent"/>
-        <rdfs:comment>to be advised by</rdfs:comment>
+        <rdfs:comment>to be supervised by</rdfs:comment>
         <rdfs:label>suggestedStepBy</rdfs:label>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#measuredStateWithDevice -->
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#measuredWithDevice -->
 
-    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#measuredStateWithDevice">
+    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#measuredWithDevice">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#evaluates"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State"/>
         <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Device"/>
         <rdfs:comment>device being used by the state to measure</rdfs:comment>
-        <rdfs:label>measuredStateWithDevice</rdfs:label>
+        <rdfs:label>measuredWithDevice</rdfs:label>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#operatedTaskBy -->
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#nextStepIs -->
 
-    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#operatedTaskBy">
-        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#works"/>
-        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Task"/>
-        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Agent"/>
-        <rdfs:comment>to be done by</rdfs:comment>
-        <rdfs:label>operatedTaskBy</rdfs:label>
+    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#nextStepIs">
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#leads"/>
+        <rdfs:comment>activity that continues investigation of failure path</rdfs:comment>
+        <rdfs:label>nextStepIs</rdfs:label>
     </owl:ObjectProperty>
     
 
@@ -450,18 +362,6 @@
         <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
         <rdfs:comment>component being described by a state</rdfs:comment>
         <rdfs:label>refersToComponent</rdfs:label>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#suggestedStepBy -->
-
-    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#suggestedStepBy">
-        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#works"/>
-        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Step"/>
-        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Agent"/>
-        <rdfs:comment>to be supervised by</rdfs:comment>
-        <rdfs:label>managedTaskBy</rdfs:label>
     </owl:ObjectProperty>
     
 
@@ -502,18 +402,6 @@
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#diagontData"/>
         <rdfs:comment>relationship of ownership</rdfs:comment>
         <rdfs:label>has</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#hasAudio -->
-
-    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#hasAudio">
-        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#has"/>
-        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
-        <rdfs:comment>phonical depiction of the quality being described</rdfs:comment>
-        <rdfs:label>hasAudio</rdfs:label>
     </owl:DatatypeProperty>
     
 
@@ -574,62 +462,96 @@
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#hasFaultCode -->
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#hasMeasure -->
 
-    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#hasFaultCode">
-        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#hasCode"/>
-        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Fault"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
-        <rdfs:comment>if exists, code that identifies the fault</rdfs:comment>
-        <rdfs:label>hasFaultCode</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#hasFaultDescription -->
-
-    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#hasFaultDescription">
-        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#hasDescription"/>
-        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Fault"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>additional, non-mandatory information on the fault</rdfs:comment>
-        <rdfs:label>hasFaultDescription</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#hasImage -->
-
-    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#hasImage">
+    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#hasMeasure">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#has"/>
+        <rdfs:comment>relationship of measurement</rdfs:comment>
+        <rdfs:label>hasMeasure</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#hasMeasureAcquired -->
+
+    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#hasMeasureAcquired">
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#hasMeasure"/>
+        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Device"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+        <rdfs:comment>link from where it acquires data</rdfs:comment>
+        <rdfs:label>hasMeasureAcquired</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#hasMeasureAudio -->
+
+    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#hasMeasureAudio">
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#hasMeasure"/>
+        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+        <rdfs:comment>phonical depiction of the quality being described</rdfs:comment>
+        <rdfs:label>hasMeasureAudio</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#hasMeasureBoolean -->
+
+    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#hasMeasureBoolean">
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#hasMeasure"/>
+        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+        <rdfs:comment>boolean value that represents the state</rdfs:comment>
+        <rdfs:label>hasMeasureBoolean</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#hasMeasureDescriptive -->
+
+    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#hasMeasureDescriptive">
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#hasMeasure"/>
+        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>textual value that represents the state</rdfs:comment>
+        <rdfs:label>hasMeasureDescriptive</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#hasMeasureImage -->
+
+    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#hasMeasureImage">
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#hasMeasure"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
         <rdfs:comment>pictual depiction of the quality being described</rdfs:comment>
-        <rdfs:label>hasImage</rdfs:label>
+        <rdfs:label>hasMeasureImage</rdfs:label>
     </owl:DatatypeProperty>
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#hasIncidentDescription -->
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#hasMeasureNumeric -->
 
-    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#hasIncidentDescription">
-        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#hasDescription"/>
-        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Incident"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>additional, non-mandatory information on the incident</rdfs:comment>
-        <rdfs:label>hasIncidentDescription</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#hasMeasureValue -->
-
-    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#hasMeasureValue">
-        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#has"/>
+    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#hasMeasureNumeric">
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#hasMeasure"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
         <rdfs:comment>numerical description of the quality being described</rdfs:comment>
-        <rdfs:label>hasValue</rdfs:label>
+        <rdfs:label>hasMeasureNumeric</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#hasStateCode -->
+
+    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#hasStateCode">
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#hasCode"/>
+        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+        <rdfs:comment>if exists, code that identifies the fault</rdfs:comment>
+        <rdfs:label>hasStateCode</rdfs:label>
     </owl:DatatypeProperty>
     
 
@@ -686,7 +608,7 @@
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#is"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Step"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-        <rdfs:comment>fault being evaluated has been proven to contribute to the failure</rdfs:comment>
+        <rdfs:comment>has been proven to contribute to the failure path</rdfs:comment>
         <rdfs:label>isContributory</rdfs:label>
     </owl:DatatypeProperty>
     
@@ -696,9 +618,9 @@
 
     <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#isCritical">
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#is"/>
-        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Incident"/>
+        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Step"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-        <rdfs:comment>incident found has been proven to be critical for the functionality</rdfs:comment>
+        <rdfs:comment>has been proven to be critical for the asset malfunctioning</rdfs:comment>
         <rdfs:label>isCritical</rdfs:label>
     </owl:DatatypeProperty>
     
@@ -710,7 +632,7 @@
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#is"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Step"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-        <rdfs:comment>fault being evaluated has been proven to exist</rdfs:comment>
+        <rdfs:comment>has been proven to exist</rdfs:comment>
         <rdfs:label>isValidated</rdfs:label>
     </owl:DatatypeProperty>
     
@@ -724,6 +646,16 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Comparison -->
+
+    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Comparison">
+        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Datatype"/>
+        <rdfs:comment>evaluation of an action</rdfs:comment>
+        <rdfs:label>Comparison</rdfs:label>
+    </owl:Class>
     
 
 
@@ -777,12 +709,12 @@
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#EventEffect -->
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Dominion -->
 
-    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#EventEffect">
+    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Dominion">
         <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Datatype"/>
-        <rdfs:comment>kind of consequence a subject has over its environment</rdfs:comment>
-        <rdfs:label>EventEffect</rdfs:label>
+        <rdfs:comment>behaviour of matter that is of interest</rdfs:comment>
+        <rdfs:label>Dominion</rdfs:label>
     </owl:Class>
     
 
@@ -807,22 +739,12 @@
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Fault -->
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Impact -->
 
-    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Fault">
-        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#DiagnosisEvent"/>
-        <rdfs:comment>abnormal condition or defect of a component which may lead to a failure (ISO 10303-226)</rdfs:comment>
-        <rdfs:label>Fault</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Incident -->
-
-    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Incident">
-        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#DiagnosisEvent"/>
-        <rdfs:comment>occurrence when a system does not behave as normal or planned</rdfs:comment>
-        <rdfs:label>Incident</rdfs:label>
+    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Impact">
+        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Datatype"/>
+        <rdfs:comment>kind of consequence a subject has over its environment</rdfs:comment>
+        <rdfs:label>Impact</rdfs:label>
     </owl:Class>
     
 
@@ -837,52 +759,42 @@
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#PhysicDomain -->
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Method -->
 
-    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#PhysicDomain">
+    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Method">
         <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Datatype"/>
-        <rdfs:comment>behaviour of matter that is of interest</rdfs:comment>
-        <rdfs:label>PhysicDomain</rdfs:label>
+        <rdfs:comment>course of an action</rdfs:comment>
+        <rdfs:label>Method</rdfs:label>
     </owl:Class>
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#PhysicPhenomenon -->
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Object -->
 
-    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#PhysicPhenomenon">
+    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Object">
+        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Datatype"/>
+        <rdfs:comment>aim of an action</rdfs:comment>
+        <rdfs:label>Object</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Phenomenon -->
+
+    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Phenomenon">
         <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Datatype"/>
         <rdfs:comment>physical form in which something occurs</rdfs:comment>
-        <rdfs:label>PhysicPhenomenon</rdfs:label>
+        <rdfs:label>Phenomenon</rdfs:label>
     </owl:Class>
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#PhysicStatus -->
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Resource -->
 
-    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#PhysicStatus">
-        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Datatype"/>
-        <rdfs:comment>kind of physical state acquired</rdfs:comment>
-        <rdfs:label>PhysicStatus</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#ResourceType -->
-
-    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#ResourceType">
+    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Resource">
         <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Datatype"/>
         <rdfs:comment>function of a resource</rdfs:comment>
-        <rdfs:label>ResourceType</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#SIMeasurementUnit -->
-
-    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#SIMeasurementUnit">
-        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Datatype"/>
-        <rdfs:comment>unit of measurement defined by the International System of Units</rdfs:comment>
-        <rdfs:label>SIMeasurementUnit</rdfs:label>
+        <rdfs:label>Resource</rdfs:label>
     </owl:Class>
     
 
@@ -890,9 +802,19 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#State -->
 
     <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#State">
-        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#DiagnosisProcedure"/>
+        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#DiagnosisEvent"/>
         <rdfs:comment>condition of a component acquired in a specific situation</rdfs:comment>
         <rdfs:label>State</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Status -->
+
+    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Status">
+        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Datatype"/>
+        <rdfs:comment>kind of physical state acquired</rdfs:comment>
+        <rdfs:label>Status</rdfs:label>
     </owl:Class>
     
 
@@ -907,42 +829,22 @@
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#StepComparison -->
-
-    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#StepComparison">
-        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Datatype"/>
-        <rdfs:comment>evaluation of an action</rdfs:comment>
-        <rdfs:label>StepComparison</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#StepMethod -->
-
-    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#StepMethod">
-        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Datatype"/>
-        <rdfs:comment>course of an action</rdfs:comment>
-        <rdfs:label>StepMethod</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#StepObject -->
-
-    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#StepObject">
-        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Datatype"/>
-        <rdfs:comment>aim of an action</rdfs:comment>
-        <rdfs:label>StepObject</rdfs:label>
-    </owl:Class>
-    
-
-
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#Task -->
 
     <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Task">
         <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#DiagnosisProcedure"/>
         <rdfs:comment>procedure aimed to identify a failure path</rdfs:comment>
         <rdfs:label>Task</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Unit -->
+
+    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Unit">
+        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Datatype"/>
+        <rdfs:comment>unit of measurement defined by the International System of Units</rdfs:comment>
+        <rdfs:label>Unit</rdfs:label>
     </owl:Class>
     
 
@@ -994,7 +896,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#And -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#And">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#StepComparison"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Comparison"/>
     </owl:NamedIndividual>
     
 
@@ -1003,24 +905,52 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#AudioRecorder">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Device"/>
-        <hasDeviceType rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Tool"/>
+        <hasDeviceResource rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Tool"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Blockage -->
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#CMC_CPU_Temperature_Sensor -->
 
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Blockage">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#PhysicPhenomenon"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#CameraConnectivity -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#CameraConnectivity">
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#CMC_CPU_Temperature_Sensor">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Device"/>
-        <hasDeviceType rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Sensor"/>
+        <hasDeviceResource rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Sensor"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#CMC_CPU_Usage_Sensor -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#CMC_CPU_Usage_Sensor">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Device"/>
+        <hasDeviceResource rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Sensor"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#CMC_Connectivity_Sensor -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#CMC_Connectivity_Sensor">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Device"/>
+        <hasDeviceResource rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Sensor"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#CMC_RAM_Usage_Sensor -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#CMC_RAM_Usage_Sensor">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Device"/>
+        <hasDeviceResource rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Sensor"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Camera_Connectivity_Sensor -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Camera_Connectivity_Sensor">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Device"/>
+        <hasDeviceResource rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Sensor"/>
     </owl:NamedIndividual>
     
 
@@ -1028,43 +958,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#Cause -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Cause">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#StepObject"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#ClientMissionComputerCPU -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#ClientMissionComputerCPU">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Device"/>
-        <hasDeviceType rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Sensor"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#ClientMissionComputerCPUUsage -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#ClientMissionComputerCPUUsage">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Device"/>
-        <hasDeviceType rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Sensor"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#ClientMissionComputerConnectivity -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#ClientMissionComputerConnectivity">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Device"/>
-        <hasDeviceType rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Sensor"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#ClientMissionComputerRAMUsage -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#ClientMissionComputerRAMUsage">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Device"/>
-        <hasDeviceType rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Sensor"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Object"/>
     </owl:NamedIndividual>
     
 
@@ -1072,15 +966,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#Consumable -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Consumable">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#ResourceType"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Corrosion -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Corrosion">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#PhysicPhenomenon"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Resource"/>
     </owl:NamedIndividual>
     
 
@@ -1088,7 +974,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#Document -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Document">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#ResourceType"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Resource"/>
     </owl:NamedIndividual>
     
 
@@ -1096,7 +982,15 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#DocumentError -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#DocumentError">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#PhysicPhenomenon"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Phenomenon"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#ElectricLoss -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#ElectricLoss">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Phenomenon"/>
     </owl:NamedIndividual>
     
 
@@ -1104,7 +998,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#Electrics -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Electrics">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#PhysicDomain"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Dominion"/>
     </owl:NamedIndividual>
     
 
@@ -1112,7 +1006,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#Electronics -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Electronics">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#PhysicDomain"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Dominion"/>
     </owl:NamedIndividual>
     
 
@@ -1120,7 +1014,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#EqualTo -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#EqualTo">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#StepComparison"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Comparison"/>
     </owl:NamedIndividual>
     
 
@@ -1131,39 +1025,12 @@
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Failure"/>
         <affectsToAsset rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#MK8_MOD1_GUN"/>
         <affectsToSystem rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-3_1_Motor-TESGBEMM2015_1"/>
+        <hasFailureDominion rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Humanics"/>
         <hasFailureImpact rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Global"/>
-        <hasFailurePhysicDomain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Hydraulics"/>
-        <identifiedFailureByFault rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Example_Fault"/>
-        <identifiedFailureByTask rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Example_Task"/>
-        <hasFailureCode rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3467</hasFailureCode>
-        <hasFailureDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">describes a failure in an asset or system using text</hasFailureDescription>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Example_Fault -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Example_Fault">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Fault"/>
-        <affectsToComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_05009_AF0"/>
-        <hasFaultImpact rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Global"/>
-        <hasFaultPhysicDomain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Hydraulics"/>
-        <ledFaultToFailure rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Example_Failure"/>
-        <ledFaultToStep rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Example_Step"/>
-        <hasFaultCode rdf:datatype="http://www.w3.org/2001/XMLSchema#string">describe fault using numeric value representing a measurement</hasFaultCode>
-        <hasFaultDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">describe fault using text</hasFaultDescription>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Example_Incident -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Example_Incident">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Incident"/>
-        <evaluatesIncidentState rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Example_State"/>
-        <ledIncidentToStep rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Example_Step"/>
-        <hasIncidentDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">describes an incident relating a component state using text</hasIncidentDescription>
-        <isCritical rdf:datatype="http://www.w3.org/2001/XMLSchema#string">true</isCritical>
+        <hasFailurePhenomenon rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#DocumentError"/>
+        <identifiedByTask rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Example_Task"/>
+        <hasFailureCode rdf:datatype="http://www.w3.org/2001/XMLSchema#string">456</hasFailureCode>
+        <hasFailureDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">exemplary failure for rtrbau</hasFailureDescription>
     </owl:NamedIndividual>
     
 
@@ -1172,14 +1039,20 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Example_State">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State"/>
-        <hasStatePhysicDomain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Hydraulics"/>
-        <hasStatePhysicStatus rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Faulty"/>
-        <measuredStateWithDevice rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#GunbayDisplayPanel_MK8_MOD1_GUN"/>
+        <causesFailure rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Example_Failure"/>
+        <hasStateDominion rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Humanics"/>
+        <hasStateImpact rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Local"/>
+        <hasStatePhenomenon rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#DocumentError"/>
+        <hasStateStatus rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Faulty"/>
+        <measuredWithDevice rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#AudioRecorder"/>
         <refersToComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_05009_AF0"/>
-        <hasAudio rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://138.250.108.1:3003/api/files/wav/audioexample.wav</hasAudio>
-        <hasImage rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://138.250.108.1:3003/api/files/jpg/10748A1-1(1).jpg</hasImage>
-        <hasMeasureValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">45.87</hasMeasureValue>
-        <hasStateDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">describes the state of a component using text</hasStateDescription>
+        <hasMeasureAudio rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://138.250.108.1:3003/api/files/wav/audioexample.wav</hasMeasureAudio>
+        <hasMeasureBoolean rdf:datatype="http://www.w3.org/2001/XMLSchema#string">true</hasMeasureBoolean>
+        <hasMeasureDescriptive rdf:datatype="http://www.w3.org/2001/XMLSchema#string">state description is as such</hasMeasureDescriptive>
+        <hasMeasureImage rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://138.250.108.1:3003/api/files/jpg/10748A1-1(1).jpg</hasMeasureImage>
+        <hasMeasureNumeric rdf:datatype="http://www.w3.org/2001/XMLSchema#string">34,56</hasMeasureNumeric>
+        <hasStateCode rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3425</hasStateCode>
+        <hasStateDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">exemplary state for rtrbau</hasStateDescription>
     </owl:NamedIndividual>
     
 
@@ -1188,16 +1061,15 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Example_Step">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Step"/>
-        <diagnosesStepFault rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Example_Fault"/>
-        <evaluatesStepIdealState rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Example_State"/>
-        <evaluatesStepState rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Example_State"/>
-        <hasStepComparison rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#And"/>
-        <hasStepMethod rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Measure"/>
+        <comparesToState rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Example_State"/>
+        <evaluatesState rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Example_State"/>
+        <hasStepComparison rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#GreaterThan"/>
+        <hasStepMethod rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Inspect"/>
         <hasStepObject rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Symptom"/>
-        <ledStepToStep rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Example_Step"/>
-        <suggestedStepBy rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Sam"/>
-        <hasStepDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">describe the step taken to refute a fault using text</hasStepDescription>
+        <nextStepIs rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Example_Step"/>
+        <hasStepDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">exemplary step for rtrbau</hasStepDescription>
         <isContributory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">true</isContributory>
+        <isCritical rdf:datatype="http://www.w3.org/2001/XMLSchema#string">true</isCritical>
         <isValidated rdf:datatype="http://www.w3.org/2001/XMLSchema#string">true</isValidated>
     </owl:NamedIndividual>
     
@@ -1207,18 +1079,10 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Example_Task">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Task"/>
-        <identifiedTaskByIncident rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Example_Incident"/>
+        <conductedTaskBy rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Sam"/>
+        <firstStepIs rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Example_Step"/>
         <managedTaskBy rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Sam"/>
-        <operatedTaskBy rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Sam"/>
-        <hasTaskDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">describes a diagnosis tasks using text</hasTaskDescription>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Fatigue -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Fatigue">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#PhysicPhenomenon"/>
+        <hasTaskDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">exemplary task for rtrbau</hasTaskDescription>
     </owl:NamedIndividual>
     
 
@@ -1226,15 +1090,15 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#Faulty -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Faulty">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#PhysicStatus"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Status"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Fracture -->
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#FaultySignal -->
 
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Fracture">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#PhysicPhenomenon"/>
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#FaultySignal">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Phenomenon"/>
     </owl:NamedIndividual>
     
 
@@ -1242,7 +1106,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#Global -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Global">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#EventEffect"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Impact"/>
     </owl:NamedIndividual>
     
 
@@ -1250,7 +1114,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#GreaterThan -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#GreaterThan">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#StepComparison"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Comparison"/>
     </owl:NamedIndividual>
     
 
@@ -1258,7 +1122,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#GreaterThanOrEqualTo -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#GreaterThanOrEqualTo">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#StepComparison"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Comparison"/>
     </owl:NamedIndividual>
     
 
@@ -1267,7 +1131,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#GunbayDisplayPanel_MK8_MOD1_GUN">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Device"/>
-        <hasDeviceType rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Sensor"/>
+        <hasDeviceResource rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Sensor"/>
     </owl:NamedIndividual>
     
 
@@ -1275,7 +1139,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#HumanError -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#HumanError">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#PhysicPhenomenon"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Phenomenon"/>
     </owl:NamedIndividual>
     
 
@@ -1283,7 +1147,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#Humanics -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Humanics">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#PhysicDomain"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Dominion"/>
     </owl:NamedIndividual>
     
 
@@ -1291,7 +1155,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#Hydraulics -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Hydraulics">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#PhysicDomain"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Dominion"/>
     </owl:NamedIndividual>
     
 
@@ -1300,15 +1164,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#ImageCamera">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Device"/>
-        <hasDeviceType rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Tool"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Impact -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Impact">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#PhysicPhenomenon"/>
+        <hasDeviceResource rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Tool"/>
     </owl:NamedIndividual>
     
 
@@ -1316,7 +1172,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#Inspect -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Inspect">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#StepMethod"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Method"/>
     </owl:NamedIndividual>
     
 
@@ -1324,7 +1180,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#LessThan -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#LessThan">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#StepComparison"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Comparison"/>
     </owl:NamedIndividual>
     
 
@@ -1332,7 +1188,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#LessThanOrEqualTo -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#LessThanOrEqualTo">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#StepComparison"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Comparison"/>
     </owl:NamedIndividual>
     
 
@@ -1340,43 +1196,51 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#Local -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Local">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#EventEffect"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Impact"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#MainMissionComputerCPUTemperature -->
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#MMC_CPU_Temperature_Sensor -->
 
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#MainMissionComputerCPUTemperature">
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#MMC_CPU_Temperature_Sensor">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Device"/>
-        <hasDeviceType rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Sensor"/>
+        <hasDeviceResource rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Sensor"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#MainMissionComputerCPUUsage -->
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#MMC_CPU_Usage_Sensor -->
 
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#MainMissionComputerCPUUsage">
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#MMC_CPU_Usage_Sensor">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Device"/>
-        <hasDeviceType rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Sensor"/>
+        <hasDeviceResource rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Sensor"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#MainMissionComputerConnectivity -->
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#MMC_Connectivity_Sensor -->
 
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#MainMissionComputerConnectivity">
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#MMC_Connectivity_Sensor">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Device"/>
-        <hasDeviceType rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Sensor"/>
+        <hasDeviceResource rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Sensor"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#MainMissionComputerRAMUsage -->
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#MMC_RAM_Usage_Sensor -->
 
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#MainMissionComputerRAMUsage">
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#MMC_RAM_Usage_Sensor">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Device"/>
-        <hasDeviceType rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Sensor"/>
+        <hasDeviceResource rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Sensor"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#MaterialError -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#MaterialError">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Phenomenon"/>
     </owl:NamedIndividual>
     
 
@@ -1384,7 +1248,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#Measure -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Measure">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#StepMethod"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Method"/>
     </owl:NamedIndividual>
     
 
@@ -1392,16 +1256,16 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#Mechanics -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Mechanics">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#PhysicDomain"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Dominion"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#MonitorConnectivity -->
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Monitor_Connectivity_Sensor -->
 
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#MonitorConnectivity">
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Monitor_Connectivity_Sensor">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Device"/>
-        <hasDeviceType rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Sensor"/>
+        <hasDeviceResource rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Sensor"/>
     </owl:NamedIndividual>
     
 
@@ -1409,7 +1273,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#Normal -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Normal">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#PhysicStatus"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Status"/>
     </owl:NamedIndividual>
     
 
@@ -1417,7 +1281,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#NotEqualTo -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#NotEqualTo">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#StepComparison"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Comparison"/>
     </owl:NamedIndividual>
     
 
@@ -1425,7 +1289,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#OpenCircuit -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#OpenCircuit">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#PhysicPhenomenon"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Phenomenon"/>
     </owl:NamedIndividual>
     
 
@@ -1433,7 +1297,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#Or -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Or">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#StepComparison"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Comparison"/>
     </owl:NamedIndividual>
     
 
@@ -1441,7 +1305,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#Overload -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Overload">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#PhysicPhenomenon"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Phenomenon"/>
     </owl:NamedIndividual>
     
 
@@ -1449,7 +1313,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#Pneumatics -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Pneumatics">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#PhysicDomain"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Dominion"/>
     </owl:NamedIndividual>
     
 
@@ -1457,7 +1321,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#ProcessError -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#ProcessError">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#PhysicPhenomenon"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Phenomenon"/>
     </owl:NamedIndividual>
     
 
@@ -1465,7 +1329,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#Repair -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Repair">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#StepMethod"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Method"/>
     </owl:NamedIndividual>
     
 
@@ -1473,7 +1337,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#Replace -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Replace">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#StepMethod"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Method"/>
     </owl:NamedIndividual>
     
 
@@ -1481,7 +1345,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#SafelyDegraded -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#SafelyDegraded">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#PhysicStatus"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Status"/>
     </owl:NamedIndividual>
     
 
@@ -1489,7 +1353,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#Sensor -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Sensor">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#ResourceType"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Resource"/>
     </owl:NamedIndividual>
     
 
@@ -1497,7 +1361,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#ShortCircuit -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#ShortCircuit">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#PhysicPhenomenon"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Phenomenon"/>
     </owl:NamedIndividual>
     
 
@@ -1505,15 +1369,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#Spare -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Spare">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#ResourceType"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#SupplierError -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#SupplierError">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#PhysicPhenomenon"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Resource"/>
     </owl:NamedIndividual>
     
 
@@ -1521,7 +1377,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#Symptom -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Symptom">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#StepObject"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Object"/>
     </owl:NamedIndividual>
     
 
@@ -1529,7 +1385,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#ThermalRunaway -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#ThermalRunaway">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#PhysicPhenomenon"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Phenomenon"/>
     </owl:NamedIndividual>
     
 
@@ -1537,7 +1393,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#ThermalShock -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#ThermalShock">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#PhysicPhenomenon"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Phenomenon"/>
     </owl:NamedIndividual>
     
 
@@ -1545,7 +1401,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#Tool -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Tool">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#ResourceType"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Resource"/>
     </owl:NamedIndividual>
     
 
@@ -1553,7 +1409,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#Trace -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Trace">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#StepObject"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Object"/>
     </owl:NamedIndividual>
     
 
@@ -1561,31 +1417,23 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#UnsafelyDegraded -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#UnsafelyDegraded">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#PhysicStatus"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Status"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Wear -->
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#ampere -->
 
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Wear">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#PhysicPhenomenon"/>
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#ampere">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Unit"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#WrongMaterial -->
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#degree -->
 
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#WrongMaterial">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#PhysicPhenomenon"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#boolean -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#boolean">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#SIMeasurementUnit"/>
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#degree">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Unit"/>
     </owl:NamedIndividual>
     
 
@@ -1593,7 +1441,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#degreeCelsius -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#degreeCelsius">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#SIMeasurementUnit"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Unit"/>
     </owl:NamedIndividual>
     
 
@@ -1601,15 +1449,15 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#hertz -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#hertz">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#SIMeasurementUnit"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Unit"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#kelvin -->
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#joule -->
 
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#kelvin">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#SIMeasurementUnit"/>
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#joule">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Unit"/>
     </owl:NamedIndividual>
     
 
@@ -1617,7 +1465,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#kilogram -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#kilogram">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#SIMeasurementUnit"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Unit"/>
     </owl:NamedIndividual>
     
 
@@ -1625,7 +1473,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#metre -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#metre">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#SIMeasurementUnit"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Unit"/>
     </owl:NamedIndividual>
     
 
@@ -1633,7 +1481,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#newton -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#newton">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#SIMeasurementUnit"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Unit"/>
     </owl:NamedIndividual>
     
 
@@ -1641,23 +1489,15 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#ohm -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#ohm">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#SIMeasurementUnit"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Unit"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#percentage -->
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#pascal -->
 
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#percentage">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#SIMeasurementUnit"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#radian -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#radian">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#SIMeasurementUnit"/>
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#pascal">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Unit"/>
     </owl:NamedIndividual>
     
 
@@ -1665,7 +1505,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#second -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#second">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#SIMeasurementUnit"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Unit"/>
     </owl:NamedIndividual>
     
 
@@ -1673,7 +1513,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#volt -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#volt">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#SIMeasurementUnit"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Unit"/>
     </owl:NamedIndividual>
     
 
@@ -1681,7 +1521,7 @@
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#watt -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#watt">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#SIMeasurementUnit"/>
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Unit"/>
     </owl:NamedIndividual>
     
 
