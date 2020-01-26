@@ -57,6 +57,16 @@
     
 
 
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#controls -->
+
+    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#controls">
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#orgontObject"/>
+        <rdfs:comment>relationship of control</rdfs:comment>
+        <rdfs:label>monitors</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://138.250.108.1:3003/api/files/owl/orgont#has -->
 
     <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#has">
@@ -131,6 +141,16 @@
         <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
         <rdfs:comment>relationship of component child having a system parent</rdfs:comment>
         <rdfs:label>hasComponentParent</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#hasDeviceValue -->
+
+    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#hasDeviceValue">
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#hasValue"/>
+        <rdfs:comment>relationship of a device kind</rdfs:comment>
+        <rdfs:label>hasDeviceValue</rdfs:label>
     </owl:ObjectProperty>
     
 
@@ -216,11 +236,23 @@
     <!-- http://138.250.108.1:3003/api/files/owl/orgont#manages -->
 
     <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#manages">
-        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#orgontObject"/>
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#controls"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Agent"/>
         <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Asset"/>
         <rdfs:comment>relationship of work</rdfs:comment>
         <rdfs:label>manages</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#monitors -->
+
+    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#monitors">
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#controls"/>
+        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
+        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
+        <rdfs:comment>relationship of monitoring</rdfs:comment>
+        <rdfs:label>monitors</rdfs:label>
     </owl:ObjectProperty>
     
 
@@ -343,6 +375,30 @@
         <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#is"/>
         <rdfs:comment>relationship of having secure words</rdfs:comment>
         <rdfs:label>hasCredentials</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#hasDeviceName -->
+
+    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#hasDeviceName">
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#hasName"/>
+        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>declares a device name</rdfs:comment>
+        <rdfs:label>hasDeviceName</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#hasDeviceTarget -->
+
+    <owl:DatatypeProperty rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#hasDeviceTarget">
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#hasTarget"/>
+        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+        <rdfs:comment>reference to a device outcome</rdfs:comment>
+        <rdfs:label>hasDeviceTarget</rdfs:label>
     </owl:DatatypeProperty>
     
 
@@ -501,6 +557,26 @@
         <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#orgont"/>
         <rdfs:comment>constituent part of a system that provides a specific functionality</rdfs:comment>
         <rdfs:label>Component</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#Device -->
+
+    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#Device">
+        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#orgont"/>
+        <rdfs:comment>resource that does predefined actions</rdfs:comment>
+        <rdfs:label>Device</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#DeviceType -->
+
+    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#DeviceType">
+        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#orgont"/>
+        <rdfs:comment>function made by a device</rdfs:comment>
+        <rdfs:label>DeviceType</rdfs:label>
     </owl:Class>
     
 
@@ -912,6 +988,17 @@
     
 
 
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#AudioRecorder -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AudioRecorder">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
+        <hasDeviceValue rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#tool"/>
+        <hasDeviceName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Microphone</hasDeviceName>
+        <hasDeviceTarget rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://138.250.108.1:3003/api/files/wav</hasDeviceTarget>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://138.250.108.1:3003/api/files/owl/orgont#Babcock -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#Babcock">
@@ -931,6 +1018,127 @@
         <manages rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#MK8_MOD1_GUN"/>
         <hasAgentPassword rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tester</hasAgentPassword>
         <hasAgentUsername rdf:datatype="http://www.w3.org/2001/XMLSchema#string">expert</hasAgentUsername>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#Heli_CMC_CPU_Temperature -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#Heli_CMC_CPU_Temperature">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
+        <hasDeviceValue rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#sensor"/>
+        <monitors rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_2"/>
+        <hasDeviceName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Helicopter Client Mission Computer CPU Temperature Sensor</hasDeviceName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#Heli_CMC_CPU_Usage -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#Heli_CMC_CPU_Usage">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
+        <hasDeviceValue rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#sensor"/>
+        <monitors rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_2"/>
+        <hasDeviceName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Helicopter Client Mission Computer CPU Usage Sensor</hasDeviceName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#Heli_CMC_Connectivity_Time -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#Heli_CMC_Connectivity_Time">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
+        <hasDeviceValue rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#sensor"/>
+        <monitors rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_MNT-BBCKTSHBCDT2019_2"/>
+        <hasDeviceName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Helicopter Client Mission Computer Connectivity Sensor</hasDeviceName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#Heli_CMC_RAM_Temperature -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#Heli_CMC_RAM_Temperature">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
+        <hasDeviceValue rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#sensor"/>
+        <monitors rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_2_RAM-BBCKTSHBRAMDT2019_2"/>
+        <hasDeviceName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Helicopter Client Mission Computer RAM Usage Sensor</hasDeviceName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#Heli_Camera_Connectivity_Time -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#Heli_Camera_Connectivity_Time">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
+        <hasDeviceValue rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#sensor"/>
+        <monitors rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_2_CMR-BBCKCDT2019_1"/>
+        <hasDeviceName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Helicopter Mission System Camera Connectivity Sensor</hasDeviceName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#Heli_MMC_CPU_Temperature -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#Heli_MMC_CPU_Temperature">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
+        <hasDeviceValue rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#sensor"/>
+        <monitors rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_1"/>
+        <hasDeviceName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Helicopter Main Mission Computer CPU Temperature Sensor</hasDeviceName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#Heli_MMC_CPU_Usage -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#Heli_MMC_CPU_Usage">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
+        <hasDeviceValue rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#sensor"/>
+        <monitors rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_1"/>
+        <hasDeviceName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Helicopter Main Mission Computer CPU Usage Sensor</hasDeviceName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#Heli_MMC_Connectivity_Time -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#Heli_MMC_Connectivity_Time">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
+        <hasDeviceValue rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#sensor"/>
+        <monitors rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_MNT-BBCKTSHBCDT2019_1"/>
+        <hasDeviceName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Helicopter Main Mission Computer Connectivity Sensor</hasDeviceName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#Heli_MMC_RAM_Usage -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#Heli_MMC_RAM_Usage">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
+        <hasDeviceValue rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#sensor"/>
+        <monitors rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_2_RAM-BBCKTSHBRAMDT2019_1"/>
+        <hasDeviceName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Helicopter Main Mission Computer RAM Usage Sensor</hasDeviceName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#Heli_Monitor_Connectivity_Time -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#Heli_Monitor_Connectivity_Time">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
+        <hasDeviceValue rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#sensor"/>
+        <monitors rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_MNT-BBCKTSHBCDT2019_3"/>
+        <hasDeviceName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Helicopter Mission System Monitor Connectivity Sensor</hasDeviceName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#ImageCamera -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#ImageCamera">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
+        <hasDeviceValue rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#tool"/>
+        <hasDeviceName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Camera</hasDeviceName>
+        <hasDeviceTarget rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://138.250.108.1:3003/api/files/jpg</hasDeviceTarget>
     </owl:NamedIndividual>
     
 
@@ -1196,6 +1404,16 @@
     
 
 
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#MK8_Gunbay_Display_Panel -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#MK8_Gunbay_Display_Panel">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
+        <hasDeviceValue rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#sensor"/>
+        <hasDeviceName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MK8 MOD1 Gunbay DisplayPanel</hasDeviceName>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://138.250.108.1:3003/api/files/owl/orgont#MK8_MOD1_GUN -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#MK8_MOD1_GUN">
@@ -1261,6 +1479,22 @@
     
 
 
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#consumable -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#consumable">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#DeviceType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#document -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#document">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#DeviceType"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://138.250.108.1:3003/api/files/owl/orgont#maintainer -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#maintainer">
@@ -1293,10 +1527,34 @@
     
 
 
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#sensor -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#sensor">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#DeviceType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#spare -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#spare">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#DeviceType"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://138.250.108.1:3003/api/files/owl/orgont#tester -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#tester">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AgentType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#tool -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#tool">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#DeviceType"/>
     </owl:NamedIndividual>
     
 
