@@ -1640,8 +1640,9 @@ let monitorsQuery = function(assetURI) {
             MATCH (fa:diagont__Failure)-[:diagont__hasFailurePhenomenon]-(faPH:diagont__Phenomenon) 
             MATCH (ad:diagont__Auditor)-[:diagont__hasAuditorComparison]-(adCM:diagont__Comparison) 
             MATCH (st:diagont__State)-[:diagont__hasMeasureUnit]-(stUN:diagont__Unit) 
+            MATCH (st:diagont__State)-[:diagont__hasStateStatus]-(stST:diagont__Status)
             WHERE at.uri = "${assetURI}" 
-            RETURN DISTINCT mo.uri, mo.diagont__hasMonitorDescription, fa.uri, fa.diagont__hasFailureDescription, faIM.uri, faDM.uri, faPH.uri, ad.uri, adCM.uri, st.uri, st.diagont__hasMeasureValue, stUN.uri, dv.uri`;
+            RETURN DISTINCT mo.uri, mo.diagont__hasMonitorDescription, fa.uri, fa.diagont__hasFailureDescription, faIM.uri, faDM.uri, faPH.uri, ad.uri, adCM.uri, st.uri, st.diagont__hasMeasureValue, stUN.uri, stST.uri, dv.uri`;
 };
 // Task inferencing
 // IMP: to infer tasks, steps, states and devices involved in monitoring a given asset
@@ -1653,17 +1654,74 @@ let tasksQuery = function(assetURI) {
             MATCH (fa:diagont__Failure)-[:diagont__hasFailureDominion]-(faDM:diagont__Dominion) 
             MATCH (fa:diagont__Failure)-[:diagont__hasFailurePhenomenon]-(faPH:diagont__Phenomenon) 
             MATCH (sp:diagont__Step)-[:diagont__hasStepComparison]-(spCM:diagont__Comparison) 
-            MATCH (st:diagont__State)-[:diagont__hasMeasureUnit]-(stUN:diagont__Unit) 
+            MATCH (st:diagont__State)-[:diagont__hasMeasureUnit]-(stUN:diagont__Unit)
+            MATCH (st:diagont__State)-[:diagont__hasStateStatus]-(stST:diagont__Status)
             WHERE at.uri = "${assetURI}" 
-            RETURN DISTINCT tk.uri, tk.diagont__hasTaskDescription, fa.uri, fa.diagont__hasFailureDescription, faIM.uri, faDM.uri, faPH.uri, sp.uri, spCM.uri, st.uri, st.diagont__hasMeasureValue, stUN.uri, dv.uri`;
+            RETURN DISTINCT tk.uri, tk.diagont__hasTaskDescription, fa.uri, fa.diagont__hasFailureDescription, faIM.uri, faDM.uri, faPH.uri, sp.uri, spCM.uri, st.uri, st.diagont__hasMeasureValue, stUN.uri, stST.uri, dv.uri`;
 };
 // Device current state inferencing
 // IMP: to infer the latest state given by a device which measures the same unit as the monitored state
 let deviceQuery = function(deviceURI,stateUnitURI) {
     return `MATCH (dv:orgont__Device{uri:"${deviceURI}"})<-[:diagont__measuredByDevice]-(st:diagont__State)-[:diagont__hasMeasureUnit]-(stUN:diagont__Unit{uri:"${stateUnitURI}"}) 
-    RETURN st.uri, st.diagont__hasMeasureValue, stUN.uri, st.diagont__hasMeasureDate
+    MATCH (st:diagont__State)-[:diagont__refersToComponent]->(cm:orgont__Component)
+    RETURN st.uri, st.diagont__hasMeasureValue, stUN.uri, st.diagont__hasMeasureDate, cm.uri
     ORDER BY datetime(st.diagont__hasMeasureDate) DESC LIMIT 1`;
 };
+// Monitor result inferencing
+// IMP: to infer results of monitors and tasks
+function evaluateMonitor(monitor) {
+    let monitorStatus = constructURI("diagont","Normal");
+    monitor.auditors.forEach(function(auditor) {
+        evaluateAuditor(auditor);
+        if (auditor.auditorComparisonStatus === constructURI("diagont","Normal")) {
+            // Do nothing
+        }
+        else if (auditor.auditorComparisonStatus === constructURI("diagont","SafelyDegraded")) {
+            if (monitorStatus === constructURI("diagont","Normal")) {monitorStatus = auditor.auditorComparisonStatus;}
+            else {} // Do nothing
+        }
+        else if (auditor.auditorComparisonStatus === constructURI("diagont","UnsafelyDegraded")) {
+            if (monitorStatus === constructURI("diagont","Normal")) {monitorStatus = auditor.auditorComparisonStatus;}
+            else if (monitorStatus === constructURI("diagont","SafelyDegraded")) {monitorStatus = auditor.auditorComparisonStatus;}
+            else {} // Do nothing
+        }
+        else if (auditor.auditorComparisonStatus === constructURI("diagont","Faulty")) {
+            if (monitorStatus === constructURI("diagont","Normal")) {monitorStatus = auditor.auditorComparisonStatus;}
+            else if (monitorStatus === constructURI("diagont","SafelyDegraded")) {monitorStatus = auditor.auditorComparisonStatus;}
+            else if (monitorStatus === constructURI("diagont","UnsafelyDegraded")) {monitorStatus = auditor.auditorComparisonStatus;}
+            else {} // Do nothing
+        }
+        else {return -1;}
+    });
+    monitor.monitorStatus = monitorStatus;
+}
+// Auditor result inferencing
+// IMP: to infer result of auditors and steps
+function evaluateAuditor(auditor) {
+    if (compareAuditorUnits(auditor.auditorCurrentStateUnit,auditor.auditorMonitorStateUnit)) {
+        auditor.auditorComparisonResult = compareAuditorValues(auditor.auditorCurrentStateValue,auditor.auditorMonitorStateValue,auditor.auditorComparison);
+        if (auditor.auditorComparisonResult === true) {auditor.auditorComparisonStatus = auditor.auditorMonitorStateStatus;}
+        else {auditor.auditorComparisonStatus = constructURI("diagont","Normal");}
+    }
+    else {
+        auditor.auditorComparisonResult = -1;
+    }
+}
+// Auditor values comparison
+// IMP: to infer auditor result
+function compareAuditorValues(currentVal,monitorVal,comparisonURI) {
+    let comparison = comparisonURI.split("#")[1];
+    if (comparison === "EqualTo") {return currentVal === monitorVal;}
+    else if (comparison === "NotEqualTo") {return currentVal !== monitorVal;}
+    else if (comparison === "GreaterThanOrEqualTo") {return currentVal >= monitorVal;}
+    else if (comparison === "GreaterThan") {return currentVal > monitorVal;}
+    else if (comparison === "LessThanOrEqualTo") {return currentVal <= monitorVal;}
+    else if (comparison === "LessThan") {return currentVal < monitorVal;}
+    else { return -1;}
+}
+// Auditor units comparison
+// IMP: to infer auditor result
+function compareAuditorUnits(currentUnit,monitorUnit) {return currentUnit === monitorUnit;}
 // Monitor parsing
 // To parse each monitor/task record from neo4j to be added completely
 function monitorJSON(record) {
@@ -1687,7 +1745,8 @@ function auditorJSON(record) {
     json.auditorMonitorStateURI = record._fields[9];
     json.auditorMonitorStateValue = record._fields[10];
     json.auditorMonitorStateUnit = record._fields[11];
-    json.auditorStateDeviceURI = record._fields[12];
+    json.auditorMonitorStateStatus = record._fields[12];
+    json.auditorStateDeviceURI = record._fields[13];
     return json;
 }
 // State parsing
@@ -1698,6 +1757,7 @@ function stateJSON(record) {
     json.auditorCurrentStateValue = record._fields[1];
     json.auditorCurrentStateUnit = record._fields[2];
     json.auditorCurrentStateDate = record._fields[3];
+    json.auditorMonitorComponentURI = record._fields[4];
     return json;
 }
 // Monitor containing auditor parsing
@@ -1809,7 +1869,10 @@ app.get('/view/controlmonitoring/:assetName', function(req, res) {
     }
     inferences(assetURI)
         .then(function(results) {
+            results.monitors.forEach(function(monitor) {evaluateMonitor(monitor)});
+            results.tasks.forEach(function(monitor) {evaluateMonitor(monitor)});
             res.render('neoOntologyCM/assetMonitoring',{results:results});
+            // res.json(results);
         })
         .catch(function(error) {
             res.json(error);
