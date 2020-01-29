@@ -1699,7 +1699,7 @@ function evaluateMonitor(monitor) {
 // IMP: to infer result of auditors and steps
 function evaluateAuditor(auditor) {
     if (compareAuditorUnits(auditor.auditorCurrentStateUnit,auditor.auditorMonitorStateUnit)) {
-        auditor.auditorComparisonResult = compareAuditorValues(auditor.auditorCurrentStateValue,auditor.auditorMonitorStateValue,auditor.auditorComparison);
+        auditor.auditorComparisonResult = compareAuditorValues(auditor);
         if (auditor.auditorComparisonResult === true) {auditor.auditorComparisonStatus = auditor.auditorMonitorStateStatus;}
         else {auditor.auditorComparisonStatus = constructURI("diagont","Normal");}
     }
@@ -1709,8 +1709,10 @@ function evaluateAuditor(auditor) {
 }
 // Auditor values comparison
 // IMP: to infer auditor result
-function compareAuditorValues(currentVal,monitorVal,comparisonURI) {
-    let comparison = comparisonURI.split("#")[1];
+function compareAuditorValues(auditor) {
+    let comparison = auditor.auditorComparison.split("#")[1];
+    let currentVal = parseFloat(auditor.auditorCurrentStateValue);
+    let monitorVal = parseFloat(auditor.auditorMonitorStateValue);
     if (comparison === "EqualTo") {return currentVal === monitorVal;}
     else if (comparison === "NotEqualTo") {return currentVal !== monitorVal;}
     else if (comparison === "GreaterThanOrEqualTo") {return currentVal >= monitorVal;}
