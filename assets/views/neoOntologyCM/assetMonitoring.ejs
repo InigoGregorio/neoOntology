@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="®IFDAB">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="refresh" content="30">
+        <link rel="stylesheet" type="text/css" href="/styles/css/main.css">
+        <title>neoOntologyCM</title>
+    </head>
+    <header id="header">
+        <nav class="left">
+            <a href="/" class="logo">neoOntologyCM</a>
+        </nav>
+        <nav class="right">
+            <a href="/view/files" class="button alt">Files</a>
+            <a href="/view/ontologies" class="button alt">Ontologies</a>
+            <a href="/view/controlmonitoring" class="button alt">Monitoring</a>
+        </nav>
+    </header>
+    <body class="subpage">
+        <section id="main" class="wrapper">
+            <div class="inner">
+                <header class="align-left">
+                    <h1><a href="/view/controlmonitoring">Control Monitoring</a></h1>
+                    <h2><a href="/view/ontologies/orgont/individual/<%=results.asset%>/properties">Asset: <%=results.asset%></a></h2>
+                </header>
+                <h3></h3>
+                <h2>Monitoring:</h2>
+                <% results.monitors.forEach(function(monitor) { %>
+                    <div class="table-wrapper">
+                        <table class="alt">
+                            <tr>
+                                <td>Monitor: <%=monitor.monitorURI.split("#")[1]%></td>
+                                <td colspan="2">Description: <%=monitor.monitorDescription%></td>
+                            </tr>
+                            <tr>
+                                <td>Failure: <%=monitor.failureURI.split("#")[1]%></td>
+                                <td colspan="2">Failure Description: <%=monitor.failureDescription%></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Failure Details: <%=monitor.failureImpact.split("#")[1]%> | <%=monitor.failureDominion.split("#")[1]%> | <%=monitor.failurePhenomenon.split("#")[1]%></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Auditors: </td>
+                            </tr>
+                            <% monitor.auditors.forEach(function(auditor) { %>
+                            <tr>
+                                <td>Auditor: <%=auditor.auditorURI.split("#")[1]%></td>
+                                <td>Audited State: <%=auditor.auditorMonitorStateURI.split("#")[1]%></td>
+                                <td>Audited Date: <%=auditor.auditorCurrentStateDate%></td>
+                            </tr>
+                            <tr>
+                                <td>Current Value: <%=auditor.auditorCurrentStateValue%> <%=auditor.auditorCurrentStateUnit.split("#")[1]%></td>
+                                <td>Auditor Comparison: <%=auditor.auditorComparison.split("#")[1]%></td>
+                                <td>Auditor Value: <%=auditor.auditorMonitorStateValue%> <%=auditor.auditorCurrentStateUnit.split("#")[1]%></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3"></td>
+                            </tr>
+                            <% }); %>
+                        </table>
+                    </div>
+                <% }); %>
+                <h3></h3>
+                <h2>Expert recommendations:</h2>
+                <% results.tasks.forEach(function(monitor) { %>
+                    <div class="table-wrapper">
+                        <table class="alt">
+                            <tr>
+                                <td>Monitor: <%=monitor.monitorURI.split("#")[1]%></td>
+                                <td colspan="2">Description: <%=monitor.monitorDescription%></td>
+                            </tr>
+                            <tr>
+                                <td>Failure: <%=monitor.failureURI.split("#")[1]%></td>
+                                <td colspan="2">Failure Description: <%=monitor.failureDescription%></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Failure Details: <%=monitor.failureImpact.split("#")[1]%> | <%=monitor.failureDominion.split("#")[1]%> | <%=monitor.failurePhenomenon.split("#")[1]%></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Auditors: </td>
+                            </tr>
+                            <% monitor.auditors.forEach(function(auditor) { %>
+                            <tr>
+                                <td>Auditor: <%=auditor.auditorURI.split("#")[1]%></td>
+                                <td>Audited State: <%=auditor.auditorMonitorStateURI.split("#")[1]%></td>
+                                <td>Audited Date: <%=auditor.auditorCurrentStateDate%></td>
+                            </tr>
+                            <tr>
+                                <td>Current Value: <%=auditor.auditorCurrentStateValue%> <%=auditor.auditorCurrentStateUnit.split("#")[1]%></td>
+                                <td>Auditor Comparison: <%=auditor.auditorComparison.split("#")[1]%></td>
+                                <td>Auditor Value: <%=auditor.auditorMonitorStateValue%> <%=auditor.auditorCurrentStateUnit.split("#")[1]%></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3"></td>
+                            </tr>
+                            <% }); %>
+                        </table>
+                    </div>
+                <% }); %>
+            </div>
+        </section>
+    </body>
+    <footer id="footer">
+        <div class="inner">
+            <ul class="actions">
+                <li><a href="mailto:i.fernandez@cranfield.ac.uk">Iñigo Fernández del Amo</a></li>
+                <li><a href="https://www.cranfield.ac.uk/people/iigo-fernndez-del-amo-blanco-15695326">&copy; Cranfield University</a></li>
+                <li>®2019 neoOntology</li>
+            </ul>
+        </div>
+    </footer>
+    <script>src="neoOntology.js"</script>
+</html>

@@ -27,14 +27,16 @@ Comments: code notes also declare potential upgrades (UPG) and maintainability (
 Structure:
 1. Namespaces
 2. Middleware setup
-3. Members
-4. Methods
-5. HTTP GET requests: {ping, files, json, view}
-6. HTTP POST requests: {files, json} (view)
-7. HTTP PUT requests
-8. HTTP DELETE requests
-9. Port management
-10. App export
+3. neoOntology
+    3.1. Members
+    3.2. Methods
+    3.3. HTTP GET requests: {ping, files, json, view}
+    3.4. HTTP POST requests: {files, json} (view)
+    3.5. HTTP PUT requests
+    3.6. HTTP DELETE requests
+4. neoOntologyCM
+5. Port management
+6. App export
 ======================================================================================================================*/
 
 /*====================================================================================================================*/
@@ -123,8 +125,13 @@ const upload = multer({
 }).single('file');
 /*====================================================================================================================*/
 
+
 /*====================================================================================================================*/
-// 3. MODULE MEMBERS
+// 3. NEOONTOLOGY
+// Ontology-based data transfer services and visualisation
+/*====================================================================================================================*/
+/*====================================================================================================================*/
+// 3.1. MODULE MEMBERS
 /*====================================================================================================================*/
 /*====================================================================================================================*/
 // A. Environmental variables:
@@ -148,7 +155,7 @@ const ontologiesDisabled = ['xml','rdf','rdfs','owl','xsd'];
 /*====================================================================================================================*/
 
 /*====================================================================================================================*/
-// 4. MODULE METHODS
+// 3.2. MODULE METHODS
 // UPG: to export as middleware when number of functions becomes considerable
 /*====================================================================================================================*/
 /*====================================================================================================================*/
@@ -633,7 +640,8 @@ let individualProperties = function(uri) {
     });
 };
 // Individual last: returns the latest (time-wise) value for a given individual from a class related to another
-// IMP: SPARQL query for dtont visualisation
+// IMP: special ontology inferencing call
+// IMP: SPARQL query for ontologyCM visualisation
 // IMP: since SPARQL endpoint is not done, specific interfaces are required for each module to query data properly
 // IMP: given an ontology, two classes, one relation and one attribute of datetime type
 // UPG: add a SPARQL query system that acts as interface between modules and ontology database
@@ -966,7 +974,7 @@ let individualPropertyCreation = function (individualName,individualOntology,ind
 /*====================================================================================================================*/
 
 /*====================================================================================================================*/
-// 5. HTTP GET REQUESTS
+// 3.3. HTTP GET REQUESTS
 /*====================================================================================================================*/
 /*====================================================================================================================*/
 // A. Files
@@ -1129,11 +1137,11 @@ app.get('/api/cm/:ontologyName/class/:firstClassName/individual/:individualName/
 /*====================================================================================================================*/
 // Home view: to render index page to enable web navigation
 app.get('/', function(req,res) {
-   res.render('index');
+   res.render('neoOntology/index');
 });
 // File namespace view: to render files types available
 app.get('/view/files', function(req,res) {
-    res.render('filetypes', {result:fs.readdirSync(path.join(__dirname,'assets','files'))});
+    res.render('neoOntology/filetypes', {result:fs.readdirSync(path.join(__dirname,'assets','files'))});
 });
 // File type view: to render files available for a given type
 // IMP: includes button to upload new file
@@ -1145,7 +1153,7 @@ app.get('/view/files/:fileType', function(req,res) {
         let filesNames = fs.readdirSync(`assets/files/${req.params.fileType}`)
             .filter(item => !(/(^|\/)\.[^\/\.]/g).test(item));
         // Avoids '.' 'hidden' directories
-        res.render('filetypeFiles',{result:{fileType:req.params.fileType,filesNames: filesNames}});
+        res.render('neoOntology/filetypeFiles',{result:{fileType:req.params.fileType,filesNames: filesNames}});
     }
 });
 // Ontologies namespace view: to render existing proprietary ontologies in json format
@@ -1155,7 +1163,7 @@ app.get('/view/ontologies', function (req,res) {
     }
     ontologiesJSON()
         .then(function(result) {
-            res.render('ontologies',{result:result});
+            res.render('neoOntology/ontologies',{result:result});
         })
         .catch(function(err) {
             res.json(err);
@@ -1192,7 +1200,7 @@ app.get('/view/ontologies/:ontologyName/class/:className/subclasses', function(r
     };
     subclassesJSON(classUri)
         .then(function(result) {
-            res.render('classSubclasses',{uri:classUri,result:result});
+            res.render('neoOntology/classSubclasses',{uri:classUri,result:result});
         })
         .catch(function(err) {
             res.json(err);
@@ -1207,7 +1215,7 @@ app.get('/view/ontologies/:ontologyName/class/:className/individuals', function(
     }
     classIndividualsJSON()
         .then(function(result) {
-            res.render('classIndividuals',{result:result});
+            res.render('neoOntology/classIndividuals',{result:result});
         })
         .catch(function(err) {
             res.json(err);
@@ -1223,7 +1231,7 @@ app.get('/view/ontologies/:ontologyName/class/:className/properties', function(r
     }
     classPropertiesIndividualsJSON(classUri)
         .then(function(result) {
-            res.render('classProperties',{result:result});
+            res.render('neoOntology/classProperties',{result:result});
         })
         .catch(function(err) {
             res.json(err);
@@ -1323,7 +1331,7 @@ app.get('/view/ontologies/:ontologyName/class/:className/individual/:individualN
     };
     form(classUri)
         .then(function(result) {
-            res.render('classIndividualInputForm', {
+            res.render('neoOntology/classIndividualInputForm', {
                 indOnt: req.params.ontologyName,
                 indClass: req.params.className,
                 indName: req.params.individualName,
@@ -1339,64 +1347,16 @@ app.get('/view/ontologies/:ontologyName/individual/:individualName/properties', 
     }
     individualPropertiesJSON()
         .then(function(result) {
-            res.render('individualProperties',{result:result});
+            res.render('neoOntology/individualProperties',{result:result});
         })
         .catch(function(err) {
             res.json(err);
         });
 });
-// Control monitoring view: to render latest values of digital twin control monitoring
-// UPG: to monitor each component/system/asset independently according to measures of properties found
-app.get('/view/controlmonitoring', function(req, res) {
-    async function lastDTData() {
-        let mmcCPUUSAGE = await individualLast("dtont", "Property", "CPUUsage1",
-            "hasMeasureNumeric", "MeasureNumeric", "hasDateNumeric",
-            "hasValueNumeric");
-        let mmcCPUTEMP = await individualLast("dtont", "Property", "CPUTemperature1",
-            "hasMeasureNumeric", "MeasureNumeric", "hasDateNumeric",
-            "hasValueNumeric");
-        let mmcRAMUSAGE = await individualLast("dtont", "Property", "RAMUsage1",
-            "hasMeasureNumeric", "MeasureNumeric", "hasDateNumeric",
-            "hasValueNumeric");
-        let cmcCON = await individualLast("dtont", "Property", "Connectivity1",
-            "hasMeasureBoolean", "MeasureBoolean", "hasDateBoolean",
-            "hasValueBoolean");
-        let cmcCPUUSAGE = await individualLast("dtont", "Property", "CPUUsage2",
-            "hasMeasureNumeric", "MeasureNumeric", "hasDateNumeric",
-            "hasValueNumeric");
-        let cmcCPUTEMP = await individualLast("dtont", "Property", "CPUTemperature2",
-            "hasMeasureNumeric", "MeasureNumeric", "hasDateNumeric",
-            "hasValueNumeric");
-        let cmcRAMUSAGE = await individualLast("dtont", "Property", "RAMUsage2",
-            "hasMeasureNumeric", "MeasureNumeric", "hasDateNumeric",
-            "hasValueNumeric");
-        let cmrCON = await individualLast("dtont", "Property", "Connectivity2",
-            "hasMeasureBoolean", "MeasureBoolean", "hasDateBoolean",
-            "hasValueBoolean");
-        let mntCON = await individualLast("dtont", "Property", "Connectivity3",
-            "hasMeasureBoolean", "MeasureBoolean", "hasDateBoolean",
-            "hasValueBoolean");
-        return { checkDate: new Date(),
-            mmcCheck: mmcCPUUSAGE.ontResults[0].ontValue,
-            mmcCPUUSAGE: mmcCPUUSAGE.ontResults[1].ontValue,
-            mmcCPUTEMP: mmcCPUTEMP.ontResults[1].ontValue,
-            mmcRAMUSAGE: mmcRAMUSAGE.ontResults[1].ontValue,
-            cmcCheck: cmcCPUUSAGE.ontResults[0].ontValue,
-            cmcCON: cmcCON.ontResults[1].ontValue,
-            cmcCPUUSAGE: cmcCPUUSAGE.ontResults[1].ontValue,
-            cmcCPUTEMP: cmcCPUTEMP.ontResults[1].ontValue,
-            cmcRAMUSAGE: cmcRAMUSAGE.ontResults[1].ontValue,
-            cmrCheck: cmrCON.ontResults[0].ontValue, cmrCON: cmrCON.ontResults[1].ontValue,
-            mntCheck: mntCON.ontResults[0].ontValue, mntCON: mntCON.ontResults[1].ontValue };
-    }
-    lastDTData()
-        .then(function(result) { res.render('controlmonitoring',result); })
-        .catch(function(err) { res.json(err) });
-});
 /*====================================================================================================================*/
 
 /*====================================================================================================================*/
-// 6. HTTP POST REQUESTS
+// 3.4. HTTP POST REQUESTS
 /*====================================================================================================================*/
 /*====================================================================================================================*/
 // A. Files
@@ -1588,7 +1548,7 @@ app.post('/view/ontologies/:ontologyName/class/:className/individual/:individual
     indResult(req.body,req.params.ontologyName,req.params.individualName)
         .then(function(result) {
             if (result[1]["ontErrors"].length !== 0) {
-                res.render('classIndividualInputResult',{
+                res.render('neoOntology/classIndividualInputResult',{
                     indOnt: returnUriElement(result[0]["ontIndividual"]["ontOntology"]),
                     indClass: returnUriElement(result[0]["ontIndividual"]["ontClass"]),
                     indName: returnUriElement(result[0]["ontIndividual"]["ontName"]),
@@ -1604,7 +1564,7 @@ app.post('/view/ontologies/:ontologyName/class/:className/individual/:individual
                         inputResults[1].forEach(function(result){inputResolution.push(result["records"])});
                         // res.send({ontWarnings:reviewResults["ontWarnings"],ontInput:inputResolution});
                         // console.log(returnUriElement(result[0]["ontIndividual"]["ontOntology"]));
-                        res.render('classIndividualInputResult',{
+                        res.render('neoOntology/classIndividualInputResult',{
                             indOnt: returnUriElement(result[0]["ontIndividual"]["ontOntology"]),
                             indClass: returnUriElement(result[0]["ontIndividual"]["ontClass"]),
                             indName: returnUriElement(result[0]["ontIndividual"]["ontName"]),
@@ -1627,7 +1587,7 @@ app.post('/view/ontologies/:ontologyName/class/:className/individual/:individual
 /*====================================================================================================================*/
 
 /*====================================================================================================================*/
-// 7. HTTP PUT REQUESTS
+// 3.5. HTTP PUT REQUESTS
 /*====================================================================================================================*/
 /*====================================================================================================================*/
 // A. Files
@@ -1645,7 +1605,7 @@ app.post('/view/ontologies/:ontologyName/class/:className/individual/:individual
 
 
 /*====================================================================================================================*/
-// 8. HTTP DELETE REQUESTS
+// 3.6. HTTP DELETE REQUESTS
 /*====================================================================================================================*/
 /*====================================================================================================================*/
 // A. Files
@@ -1661,8 +1621,268 @@ app.post('/view/ontologies/:ontologyName/class/:className/individual/:individual
 
 /*====================================================================================================================*/
 
+
 /*====================================================================================================================*/
-// 9. PORT MANAGEMENT
+// 4. NEOONTOLOGYCM
+// Asset monitoring services
+// IMP: includes direct ontology calls to neo4j and real-time inferencing
+/*====================================================================================================================*/
+/*====================================================================================================================*/
+// A. Methods
+/*====================================================================================================================*/
+// Monitor inferencing
+// IMP: to infer monitors, auditors, states and devices involved in monitoring a given asset
+let monitorsQuery = function(assetURI) {
+    return `MATCH (st:diagont__State)-[:diagont__auditorMonitorsState]-(ad:diagont__Auditor{diagont__isValidated: 'true'})-[:diagont__considersAuditor]-(mo:diagont__Monitor)-[:diagont__encountersFailure]-(fa:diagont__Failure)-[*..2]-(at:orgont__Asset) 
+            MATCH (st:diagont__State)-[:diagont__measuredByDevice]-(dv:orgont__Device) 
+            MATCH (fa:diagont__Failure)-[:diagont__hasFailureImpact]-(faIM:diagont__Impact) 
+            MATCH (fa:diagont__Failure)-[:diagont__hasFailureDominion]-(faDM:diagont__Dominion) 
+            MATCH (fa:diagont__Failure)-[:diagont__hasFailurePhenomenon]-(faPH:diagont__Phenomenon) 
+            MATCH (ad:diagont__Auditor)-[:diagont__hasAuditorComparison]-(adCM:diagont__Comparison) 
+            MATCH (st:diagont__State)-[:diagont__hasMeasureUnit]-(stUN:diagont__Unit) 
+            WHERE at.uri = "${assetURI}" 
+            RETURN DISTINCT mo.uri, mo.diagont__hasMonitorDescription, fa.uri, fa.diagont__hasFailureDescription, faIM.uri, faDM.uri, faPH.uri, ad.uri, adCM.uri, st.uri, st.diagont__hasMeasureValue, stUN.uri, dv.uri`;
+};
+// Task inferencing
+// IMP: to infer tasks, steps, states and devices involved in monitoring a given asset
+// IMP: follows inferencing rules to turn tasks and steps into monitors and auditors
+let tasksQuery = function(assetURI) {
+    return `MATCH (st:diagont__State)-[:diagont__stepDiagnosesState]-(sp:diagont__Step{diagont__isContributory: 'true'})-[:diagont__belongsToTask]-(tk:diagont__Task)-[:diagont__identifiedByTask]-(fa:diagont__Failure)-[*..2]-(at:orgont__Asset) 
+            MATCH (st:diagont__State)-[:diagont__measuredByDevice]-(dv:orgont__Device) 
+            MATCH (fa:diagont__Failure)-[:diagont__hasFailureImpact]-(faIM:diagont__Impact) 
+            MATCH (fa:diagont__Failure)-[:diagont__hasFailureDominion]-(faDM:diagont__Dominion) 
+            MATCH (fa:diagont__Failure)-[:diagont__hasFailurePhenomenon]-(faPH:diagont__Phenomenon) 
+            MATCH (sp:diagont__Step)-[:diagont__hasStepComparison]-(spCM:diagont__Comparison) 
+            MATCH (st:diagont__State)-[:diagont__hasMeasureUnit]-(stUN:diagont__Unit) 
+            WHERE at.uri = "${assetURI}" 
+            RETURN DISTINCT tk.uri, tk.diagont__hasTaskDescription, fa.uri, fa.diagont__hasFailureDescription, faIM.uri, faDM.uri, faPH.uri, sp.uri, spCM.uri, st.uri, st.diagont__hasMeasureValue, stUN.uri, dv.uri`;
+};
+// Device current state inferencing
+// IMP: to infer the latest state given by a device which measures the same unit as the monitored state
+let deviceQuery = function(deviceURI,stateUnitURI) {
+    return `MATCH (dv:orgont__Device{uri:"${deviceURI}"})<-[:diagont__measuredByDevice]-(st:diagont__State)-[:diagont__hasMeasureUnit]-(stUN:diagont__Unit{uri:"${stateUnitURI}"}) 
+    RETURN st.uri, st.diagont__hasMeasureValue, stUN.uri, st.diagont__hasMeasureDate
+    ORDER BY datetime(st.diagont__hasMeasureDate) DESC LIMIT 1`;
+};
+// Monitor parsing
+// To parse each monitor/task record from neo4j to be added completely
+function monitorJSON(record) {
+    let json = {};
+    json.monitorURI = record._fields[0];
+    json.monitorDescription = record._fields[1];
+    json.failureURI = record._fields[2];
+    json.failureDescription = record._fields[3];
+    json.failureImpact = record._fields[4];
+    json.failureDominion = record._fields[5];
+    json.failurePhenomenon = record._fields[6];
+    json.auditors = [auditorJSON(record)];
+    return json;
+}
+// Auditor parsing
+// IMP: to parse each auditor/step record from neo4j to be added partially to a monitor/task record
+function auditorJSON(record) {
+    let json = {};
+    json.auditorURI = record._fields[7];
+    json.auditorComparison = record._fields[8];
+    json.auditorMonitorStateURI = record._fields[9];
+    json.auditorMonitorStateValue = record._fields[10];
+    json.auditorMonitorStateUnit = record._fields[11];
+    json.auditorStateDeviceURI = record._fields[12];
+    return json;
+}
+// State parsing
+// IMP: to parse each current state record from neo$J to be added partially to an auditor/step record
+function stateJSON(record) {
+    let json = {};
+    json.auditorCurrentStateURI = record._fields[0];
+    json.auditorCurrentStateValue = record._fields[1];
+    json.auditorCurrentStateUnit = record._fields[2];
+    json.auditorCurrentStateDate = record._fields[3];
+    return json;
+}
+// Monitor containing auditor parsing
+// IMP: to identify if an existing element in a json array has a value for a specific key
+function contains(arr,key,val) {
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i][key] === val) return i;
+    }
+    return -1;
+}
+// Monitors and Tasks inferencing results
+// IMP: to return the monitors and tasks inferencing results
+let inferenceResults = function(inferenceQuery) {
+  return new Promise(function(resolve, reject) {
+      session
+          .run(inferenceQuery)
+          .then(function(result) {
+              let array = [];
+              result.records.forEach(function(record) {
+                  let arrayID = contains(array,"monitorURI",record._fields[0]);
+                  if (arrayID !== -1) {array[arrayID].auditors.push(auditorJSON(record));}
+                  else {array.push(monitorJSON(record));}
+              });
+              resolve(array);
+          })
+          .catch(function(error) {
+              reject(error);
+          });
+  });
+};
+// Device inferencing results
+// IMP: to return the current states inferencing from given devices and monitored states
+let currentResult = function(auditor) {
+    return new Promise(function(resolve,reject) {
+        let stateQuery = deviceQuery(auditor.auditorStateDeviceURI,auditor.auditorMonitorStateUnit);
+        session
+            .run(stateQuery)
+            .then(function(result) {
+                // resolve(result);
+                let statesArray = [];
+                result.records.forEach(function(record) {
+                    statesArray.push(stateJSON(record));
+                });
+                resolve(statesArray);
+            })
+            .catch(function(error) {
+                reject(error);
+            });
+    });
+};
+// IMP: to merge current state results with auditors one by one
+let stateResults = async function(inferredResult) {
+    let result = await(inferredResult);
+    let resultState = await Promise.all(result.auditors.map(async function(auditor) {
+        let state = await currentResult(auditor);
+        Object.keys(state[0]).forEach(function(key) {
+            auditor[key] = state[0][key];
+        });
+        return state;
+    }));
+    return result;
+};
+// IMP: to await for current states promises once monitors and tasks have been retrieved
+let additionalResults = async function(inferredResults) {
+    let results = await inferredResults;
+    return await Promise.all(results.map(async function(result) {return await stateResults(result);}));
+};
+/*====================================================================================================================*/
+// B. Views
+/*====================================================================================================================*/
+// Control monitoring selection: to render "assets" to which control monitoring can be applied
+// IMP: includes assets whose failures
+// UPG: neo4j queries are made ad-hoc because this is a separate module from common functions above
+app.get('/view/controlmonitoring', function(req, res) {
+    // Identifies distinct "assets" and "assets" "systems" whose "failures" are "encountered" by "monitors"
+    // With 3 relationships "assets" can be found ("affectsToAsset" or "affectsToSystem" and "hasAssetParent")
+    // UPG: To modify so it becomes independent of diagont's ontology structure
+    session
+        .run(`MATCH (n:diagont__Monitor)-[*..3]->(m:orgont__Asset) RETURN DISTINCT m.uri`)
+        .then(function(result) {
+            let assets = [];
+            if(result.records.length !== 0) {
+                result.records.forEach(function(record) {
+                    assets.push(returnUriElement(record._fields[0]));
+                });
+                res.render('neoOntologyCM/assetSelection',{assets});
+            }
+            else {
+                res.json({ontError:"Monitored assets not found"});
+            }
+        })
+        .catch(function(error) {
+            res.json(error);
+        });
+});
+// Control monitoring view: to render asserted and inferred "monitors" for a given "asset"
+// IMP: includes inferencing of "monitors" from "tasks"
+// IMP: includes reading latest sensor-given "states"
+app.get('/view/controlmonitoring/:assetName', function(req, res) {
+    let assetURI = constructURI("orgont",req.params.assetName);
+    async function inferences(assetURI) {
+        // Obtain monitors and tasks conducting inference
+        let monitors = await inferenceResults(monitorsQuery(assetURI));
+        let tasks = await inferenceResults(tasksQuery(assetURI));
+        // Update monitors and tasks with latest states from devices
+        let monitorsStates = await additionalResults(monitors);
+        let tasksStates = await additionalResults(tasks);
+        return {asset: returnUriElement(assetURI), monitors: monitorsStates,tasks: tasksStates};
+    }
+    inferences(assetURI)
+        .then(function(results) {
+            res.render('neoOntologyCM/assetMonitoring',{results:results});
+        })
+        .catch(function(error) {
+            res.json(error);
+        });
+
+    // CLASS DECLARATION
+    // Monitor: {uri:, description: string, failure: uri, auditors:[Auditor]}
+    // Auditor: {uri:, validated:  boolean, comparison: string, monitoredState: State, currentState: State}
+    // State: {uri:, status: string, domain: string, phenomenon: string, measureValue: double, measureUnit: string, measureDate: dateTime}
+
+    // 1. Identify all monitors and their auditors for a given asset
+    // MATCH (a:diagont__Auditor)<-[:diagont__considersAuditor]-(b:diagont__Monitor)-[*..3]->(c:orgont__Asset) WHERE c.uri = "${assetURI}" RETURN DISTINCT  a.uri,b.uri
+    // 2. Identify all tasks and steps for a given asset
+    //  MATCH (n:diagont__Step)-[r1:diagont__belongsToTask]->(m:diagont__Task)-[*..3]->(o:orgont__Asset) WHERE o.uri = "{assetURI}" RETURN  *
+    // 3. Infer new monitors and auditors from retrieved tasks and steps
+    // { monitor: { name: , description: , failure: , auditors: [{name: , comparison: , validated: , monitoredState: }]}
+    // 4. Find monitor states of retrieved and inferred auditors
+    // 5. Find latest states from retrieved and inferred monitors
+    // 6. Prepare all collected data for visualisation
+    // res.render('neoOntologyCM/assetMonitoring',{assetUri: assetURI});
+});
+// Control monitoring view: to render latest values of digital twin control monitoring
+// UPG: to monitor each component/system/asset independently according to measures of properties found
+app.get('/view/controlmonitoring/old', function(req, res) {
+    async function lastDTData() {
+        let mmcCPUUSAGE = await individualLast("dtont", "Property", "CPUUsage1",
+            "hasMeasureNumeric", "MeasureNumeric", "hasDateNumeric",
+            "hasValueNumeric");
+        let mmcCPUTEMP = await individualLast("dtont", "Property", "CPUTemperature1",
+            "hasMeasureNumeric", "MeasureNumeric", "hasDateNumeric",
+            "hasValueNumeric");
+        let mmcRAMUSAGE = await individualLast("dtont", "Property", "RAMUsage1",
+            "hasMeasureNumeric", "MeasureNumeric", "hasDateNumeric",
+            "hasValueNumeric");
+        let cmcCON = await individualLast("dtont", "Property", "Connectivity1",
+            "hasMeasureBoolean", "MeasureBoolean", "hasDateBoolean",
+            "hasValueBoolean");
+        let cmcCPUUSAGE = await individualLast("dtont", "Property", "CPUUsage2",
+            "hasMeasureNumeric", "MeasureNumeric", "hasDateNumeric",
+            "hasValueNumeric");
+        let cmcCPUTEMP = await individualLast("dtont", "Property", "CPUTemperature2",
+            "hasMeasureNumeric", "MeasureNumeric", "hasDateNumeric",
+            "hasValueNumeric");
+        let cmcRAMUSAGE = await individualLast("dtont", "Property", "RAMUsage2",
+            "hasMeasureNumeric", "MeasureNumeric", "hasDateNumeric",
+            "hasValueNumeric");
+        let cmrCON = await individualLast("dtont", "Property", "Connectivity2",
+            "hasMeasureBoolean", "MeasureBoolean", "hasDateBoolean",
+            "hasValueBoolean");
+        let mntCON = await individualLast("dtont", "Property", "Connectivity3",
+            "hasMeasureBoolean", "MeasureBoolean", "hasDateBoolean",
+            "hasValueBoolean");
+        return { checkDate: new Date(),
+            mmcCheck: mmcCPUUSAGE.ontResults[0].ontValue,
+            mmcCPUUSAGE: mmcCPUUSAGE.ontResults[1].ontValue,
+            mmcCPUTEMP: mmcCPUTEMP.ontResults[1].ontValue,
+            mmcRAMUSAGE: mmcRAMUSAGE.ontResults[1].ontValue,
+            cmcCheck: cmcCPUUSAGE.ontResults[0].ontValue,
+            cmcCON: cmcCON.ontResults[1].ontValue,
+            cmcCPUUSAGE: cmcCPUUSAGE.ontResults[1].ontValue,
+            cmcCPUTEMP: cmcCPUTEMP.ontResults[1].ontValue,
+            cmcRAMUSAGE: cmcRAMUSAGE.ontResults[1].ontValue,
+            cmrCheck: cmrCON.ontResults[0].ontValue, cmrCON: cmrCON.ontResults[1].ontValue,
+            mntCheck: mntCON.ontResults[0].ontValue, mntCON: mntCON.ontResults[1].ontValue };
+    }
+    lastDTData()
+        .then(function(result) { res.render('neoOntologyCM/controlmonitoringOLD',result); })
+        .catch(function(err) { res.json(err) });
+});
+/*====================================================================================================================*/
+
+/*====================================================================================================================*/
+// 5. PORT MANAGEMENT
 /*====================================================================================================================*/
 /*====================================================================================================================*/
 // Initialise port for the server to start listen in
@@ -1670,7 +1890,7 @@ app.listen(port, function(){console.log(`Server listening on port: ${port}`)});
 /*====================================================================================================================*/
 
 /*====================================================================================================================*/
-// 10. APP EXPORT
+// 6. APP EXPORT
 /*====================================================================================================================*/
 /*====================================================================================================================*/
 // IMP: to export the app (express) functions declare as a class
