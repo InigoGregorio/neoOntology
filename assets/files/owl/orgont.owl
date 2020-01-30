@@ -1022,6 +1022,28 @@
     
 
 
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#GB_DrivenShaft_Overload_Speed -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#GB_DrivenShaft_Overload_Speed">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
+        <hasDeviceValue rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#sensor"/>
+        <monitors rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_SHF-W15H6250_1"/>
+        <hasDeviceName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gearbox Driven Shaft Overload Sensor</hasDeviceName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#GB_DrivingShaft_Overload_Speed -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#GB_DrivingShaft_Overload_Speed">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
+        <hasDeviceValue rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#sensor"/>
+        <monitors rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_SHF-W15H6300_1"/>
+        <hasDeviceName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gearbox Driving Shaft Overload Sensor</hasDeviceName>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://138.250.108.1:3003/api/files/owl/orgont#Heli_CMC_CPU_Temperature -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#Heli_CMC_CPU_Temperature">
