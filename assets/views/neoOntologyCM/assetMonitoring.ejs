@@ -28,6 +28,7 @@
                 <h3></h3>
                 <h2>Monitoring:</h2>
                 <% results.monitors.forEach(function(monitor) { %>
+                    <h3>Monitor:</h3>
                     <div class="table-wrapper">
                         <table class="alt">
                             <tr>
@@ -88,10 +89,12 @@
                             <% }); %>
                         </table>
                     </div>
+                    <hr>
                 <% }); %>
                 <h3></h3>
                 <h2>Expert recommendations:</h2>
                 <% results.tasks.forEach(function(monitor) { %>
+                    <h3>Recommendation:</h3>
                     <div class="table-wrapper">
                         <table class="alt">
                             <tr>
@@ -152,6 +155,7 @@
                             <% }); %>
                         </table>
                     </div>
+                    <hr>
                 <% }); %>
             </div>
         </section>
