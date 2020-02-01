@@ -1887,6 +1887,7 @@ app.get('/view/controlmonitoring/:assetName', function(req, res) {
 // 5. NEOONTOLOGYAR
 // Ontology-based recommendation services
 // IMP: includes direct ontology calls to neo4j and real-time inferencing for recommendation services
+// UPG: to make these services generic and add them as part of neoOntology
 /*====================================================================================================================*/
 /*====================================================================================================================*/
 // A. Methods
@@ -1907,7 +1908,7 @@ let recommendableStatesQuery = function() {
 // IMP: includes states that are used by auditors and steps to diagnose failure
 // IMP: only provides inferencing on states returned, similarity functions are applied within the service context
 // UPG: neo4j queries are made ad-hoc because this is a separate module from common functions above
-app.get('/api/recommendations/:ontologyName/:className', function(req, res) {
+app.get('/api/recommendations/ontology/:ontologyName/class/:className/individuals', function(req, res) {
     // Returns class individuals in neoOntology format if :className coincides with the recommended class
     // UPG: to provide inferencing recommendation parameters through req.params
     if (req.params.ontologyName === "diagont" && req.params.className === "State") {
