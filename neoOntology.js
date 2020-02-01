@@ -35,8 +35,9 @@ Structure:
     3.5. HTTP PUT requests
     3.6. HTTP DELETE requests
 4. neoOntologyCM
-5. Port management
-6. App export
+5. neoOntologyAR
+6. Port management
+7. App export
 ======================================================================================================================*/
 
 /*====================================================================================================================*/
@@ -1879,75 +1880,67 @@ app.get('/view/controlmonitoring/:assetName', function(req, res) {
         .catch(function(error) {
             res.json(error);
         });
-
-    // CLASS DECLARATION
-    // Monitor: {uri:, description: string, failure: uri, auditors:[Auditor]}
-    // Auditor: {uri:, validated:  boolean, comparison: string, monitoredState: State, currentState: State}
-    // State: {uri:, status: string, domain: string, phenomenon: string, measureValue: double, measureUnit: string, measureDate: dateTime}
-
-    // 1. Identify all monitors and their auditors for a given asset
-    // MATCH (a:diagont__Auditor)<-[:diagont__considersAuditor]-(b:diagont__Monitor)-[*..3]->(c:orgont__Asset) WHERE c.uri = "${assetURI}" RETURN DISTINCT  a.uri,b.uri
-    // 2. Identify all tasks and steps for a given asset
-    //  MATCH (n:diagont__Step)-[r1:diagont__belongsToTask]->(m:diagont__Task)-[*..3]->(o:orgont__Asset) WHERE o.uri = "{assetURI}" RETURN  *
-    // 3. Infer new monitors and auditors from retrieved tasks and steps
-    // { monitor: { name: , description: , failure: , auditors: [{name: , comparison: , validated: , monitoredState: }]}
-    // 4. Find monitor states of retrieved and inferred auditors
-    // 5. Find latest states from retrieved and inferred monitors
-    // 6. Prepare all collected data for visualisation
-    // res.render('neoOntologyCM/assetMonitoring',{assetUri: assetURI});
 });
-// Control monitoring view: to render latest values of digital twin control monitoring
-// UPG: to monitor each component/system/asset independently according to measures of properties found
-app.get('/view/controlmonitoring/old', function(req, res) {
-    async function lastDTData() {
-        let mmcCPUUSAGE = await individualLast("dtont", "Property", "CPUUsage1",
-            "hasMeasureNumeric", "MeasureNumeric", "hasDateNumeric",
-            "hasValueNumeric");
-        let mmcCPUTEMP = await individualLast("dtont", "Property", "CPUTemperature1",
-            "hasMeasureNumeric", "MeasureNumeric", "hasDateNumeric",
-            "hasValueNumeric");
-        let mmcRAMUSAGE = await individualLast("dtont", "Property", "RAMUsage1",
-            "hasMeasureNumeric", "MeasureNumeric", "hasDateNumeric",
-            "hasValueNumeric");
-        let cmcCON = await individualLast("dtont", "Property", "Connectivity1",
-            "hasMeasureBoolean", "MeasureBoolean", "hasDateBoolean",
-            "hasValueBoolean");
-        let cmcCPUUSAGE = await individualLast("dtont", "Property", "CPUUsage2",
-            "hasMeasureNumeric", "MeasureNumeric", "hasDateNumeric",
-            "hasValueNumeric");
-        let cmcCPUTEMP = await individualLast("dtont", "Property", "CPUTemperature2",
-            "hasMeasureNumeric", "MeasureNumeric", "hasDateNumeric",
-            "hasValueNumeric");
-        let cmcRAMUSAGE = await individualLast("dtont", "Property", "RAMUsage2",
-            "hasMeasureNumeric", "MeasureNumeric", "hasDateNumeric",
-            "hasValueNumeric");
-        let cmrCON = await individualLast("dtont", "Property", "Connectivity2",
-            "hasMeasureBoolean", "MeasureBoolean", "hasDateBoolean",
-            "hasValueBoolean");
-        let mntCON = await individualLast("dtont", "Property", "Connectivity3",
-            "hasMeasureBoolean", "MeasureBoolean", "hasDateBoolean",
-            "hasValueBoolean");
-        return { checkDate: new Date(),
-            mmcCheck: mmcCPUUSAGE.ontResults[0].ontValue,
-            mmcCPUUSAGE: mmcCPUUSAGE.ontResults[1].ontValue,
-            mmcCPUTEMP: mmcCPUTEMP.ontResults[1].ontValue,
-            mmcRAMUSAGE: mmcRAMUSAGE.ontResults[1].ontValue,
-            cmcCheck: cmcCPUUSAGE.ontResults[0].ontValue,
-            cmcCON: cmcCON.ontResults[1].ontValue,
-            cmcCPUUSAGE: cmcCPUUSAGE.ontResults[1].ontValue,
-            cmcCPUTEMP: cmcCPUTEMP.ontResults[1].ontValue,
-            cmcRAMUSAGE: cmcRAMUSAGE.ontResults[1].ontValue,
-            cmrCheck: cmrCON.ontResults[0].ontValue, cmrCON: cmrCON.ontResults[1].ontValue,
-            mntCheck: mntCON.ontResults[0].ontValue, mntCON: mntCON.ontResults[1].ontValue };
+/*====================================================================================================================*/
+
+/*====================================================================================================================*/
+// 5. NEOONTOLOGYAR
+// Ontology-based recommendation services
+// IMP: includes direct ontology calls to neo4j and real-time inferencing for recommendation services
+/*====================================================================================================================*/
+/*====================================================================================================================*/
+// A. Methods
+/*====================================================================================================================*/
+// State inferencing
+// IMP: to infer states that are recommendable for neoOntologyAR
+let recommendableStatesQuery = function() {
+    return `MATCH (st1:diagont__State)-[:diagont__auditorMonitorsState]-(ad:diagont__Auditor{diagont__isValidated: 'true'})
+            RETURN st1.uri AS uri
+            UNION
+            MATCH (st2:diagont__State)-[:diagont__stepDiagnosesState]-(sp:diagont__Step{diagont__isContributory: 'true'})
+            RETURN st2.uri AS uri`;
+};
+/*====================================================================================================================*/
+// B. Views
+/*====================================================================================================================*/
+// State recommendation: to recommend states that is reasonable to evaluate for diagnosis
+// IMP: includes states that are used by auditors and steps to diagnose failure
+// IMP: only provides inferencing on states returned, similarity functions are applied within the service context
+// UPG: neo4j queries are made ad-hoc because this is a separate module from common functions above
+app.get('/api/recommendations/:ontologyName/:className', function(req, res) {
+    // Returns class individuals in neoOntology format if :className coincides with the recommended class
+    // UPG: to provide inferencing recommendation parameters through req.params
+    if (req.params.ontologyName === "diagont" && req.params.className === "State") {
+        // Build uri of recommended class
+        let classURI = constructURI(req.params.ontologyName,req.params.className);
+        // Run recommendableStatesQuery to return inferred states to recommend within neoOntologyAR
+        session
+            .run(recommendableStatesQuery())
+            .then(function(result) {
+                if (result.records.length !== 0) {
+                    let individualsArray = [];
+                    // Captures individual names retrieved by neo4j
+                    result.records.forEach(function(record){
+                        individualsArray.push({ontIndividual: record._fields[0]});
+                    });
+                    res.json({ontClass: classURI, ontIndividuals: individualsArray});
+                }
+                else {
+                    res.json({ontError: "No recommendable individuals found"})
+                }
+            })
+            .catch(function(error) {
+                res.json(error);
+            });
     }
-    lastDTData()
-        .then(function(result) { res.render('neoOntologyCM/controlmonitoringOLD',result); })
-        .catch(function(err) { res.json(err) });
+    else {
+        res.json({ontError: "Ontology or Class has not been implemented for recommendations"});
+    }
 });
 /*====================================================================================================================*/
 
 /*====================================================================================================================*/
-// 5. PORT MANAGEMENT
+// 6. PORT MANAGEMENT
 /*====================================================================================================================*/
 /*====================================================================================================================*/
 // Initialise port for the server to start listen in
@@ -1955,7 +1948,7 @@ app.listen(port, function(){console.log(`Server listening on port: ${port}`)});
 /*====================================================================================================================*/
 
 /*====================================================================================================================*/
-// 6. APP EXPORT
+// 7. APP EXPORT
 /*====================================================================================================================*/
 /*====================================================================================================================*/
 // IMP: to export the app (express) functions declare as a class
