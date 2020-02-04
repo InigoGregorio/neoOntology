@@ -160,6 +160,18 @@
     
 
 
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#firstStepIs -->
+
+    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#firstStepIs">
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#leads"/>
+        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Task"/>
+        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Step"/>
+        <rdfs:comment>activity that starts investigation of its action</rdfs:comment>
+        <rdfs:label>firstStepIs</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#hasAuditorComparison -->
 
     <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#hasAuditorComparison">
@@ -354,6 +366,18 @@
         <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
         <rdfs:comment>device being used by the state to measure</rdfs:comment>
         <rdfs:label>measuredByDevice</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#nextStepIs -->
+
+    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#nextStepIs">
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#leads"/>
+        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Step"/>
+        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Step"/>
+        <rdfs:comment>activity that continues investigation of its action</rdfs:comment>
+        <rdfs:label>nextStepIs</rdfs:label>
     </owl:ObjectProperty>
     
 
@@ -1176,6 +1200,7 @@
         <hasStepComparison rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#GreaterThan"/>
         <hasStepMethod rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Inspect"/>
         <hasStepObject rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Symptom"/>
+        <nextStepIs rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Example_Step_2"/>
         <stepDiagnosesState rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Example_State_2"/>
         <stepEvaluatesState rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Example_State_1"/>
         <isContributory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">true</isContributory>
@@ -1205,6 +1230,7 @@
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Example_Task">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Task"/>
         <conductedByAgent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Inigo"/>
+        <firstStepIs rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Example_Step_1"/>
         <managedByAgent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Inigo"/>
         <hasTaskDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">example task to do inference for neoOntologyCM and neoOntologyAR</hasTaskDescription>
     </owl:NamedIndividual>
