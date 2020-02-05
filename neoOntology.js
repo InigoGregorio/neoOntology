@@ -1640,10 +1640,10 @@ let monitorsQuery = function(assetURI) {
             MATCH (fa:diagont__Failure)-[:diagont__hasFailureDominion]-(faDM:diagont__Dominion) 
             MATCH (fa:diagont__Failure)-[:diagont__hasFailurePhenomenon]-(faPH:diagont__Phenomenon) 
             MATCH (ad:diagont__Auditor)-[:diagont__hasAuditorComparison]-(adCM:diagont__Comparison) 
-            MATCH (st:diagont__State)-[:diagont__hasMeasureUnit]-(stUN:diagont__Unit) 
+            MATCH (st:diagont__State)-[:diagont__hasStateUnit]-(stUN:diagont__Unit) 
             MATCH (st:diagont__State)-[:diagont__hasStateStatus]-(stST:diagont__Status)
             WHERE at.uri = "${assetURI}" 
-            RETURN DISTINCT mo.uri, mo.diagont__hasMonitorDescription, fa.uri, fa.diagont__hasFailureDescription, faIM.uri, faDM.uri, faPH.uri, ad.uri, adCM.uri, st.uri, st.diagont__hasMeasureValue, stUN.uri, stST.uri, dv.uri`;
+            RETURN DISTINCT mo.uri, mo.diagont__hasMonitorDescription, fa.uri, fa.diagont__hasFailureDescription, faIM.uri, faDM.uri, faPH.uri, ad.uri, adCM.uri, st.uri, st.diagont__hasStateValue, stUN.uri, stST.uri, dv.uri`;
 };
 // Task inferencing
 // IMP: to infer tasks, steps, states and devices involved in monitoring a given asset
@@ -1655,18 +1655,18 @@ let tasksQuery = function(assetURI) {
             MATCH (fa:diagont__Failure)-[:diagont__hasFailureDominion]-(faDM:diagont__Dominion) 
             MATCH (fa:diagont__Failure)-[:diagont__hasFailurePhenomenon]-(faPH:diagont__Phenomenon) 
             MATCH (sp:diagont__Step)-[:diagont__hasStepComparison]-(spCM:diagont__Comparison) 
-            MATCH (st:diagont__State)-[:diagont__hasMeasureUnit]-(stUN:diagont__Unit)
+            MATCH (st:diagont__State)-[:diagont__hasStateUnit]-(stUN:diagont__Unit)
             MATCH (st:diagont__State)-[:diagont__hasStateStatus]-(stST:diagont__Status)
             WHERE at.uri = "${assetURI}" 
-            RETURN DISTINCT tk.uri, tk.diagont__hasTaskDescription, fa.uri, fa.diagont__hasFailureDescription, faIM.uri, faDM.uri, faPH.uri, sp.uri, spCM.uri, st.uri, st.diagont__hasMeasureValue, stUN.uri, stST.uri, dv.uri`;
+            RETURN DISTINCT tk.uri, tk.diagont__hasTaskDescription, fa.uri, fa.diagont__hasFailureDescription, faIM.uri, faDM.uri, faPH.uri, sp.uri, spCM.uri, st.uri, st.diagont__hasStateValue, stUN.uri, stST.uri, dv.uri`;
 };
 // Device current state inferencing
 // IMP: to infer the latest state given by a device which measures the same unit as the monitored state
 let deviceQuery = function(deviceURI,stateUnitURI) {
-    return `MATCH (dv:orgont__Device{uri:"${deviceURI}"})<-[:diagont__measuredByDevice]-(st:diagont__State)-[:diagont__hasMeasureUnit]-(stUN:diagont__Unit{uri:"${stateUnitURI}"}) 
+    return `MATCH (dv:orgont__Device{uri:"${deviceURI}"})<-[:diagont__measuredByDevice]-(st:diagont__State)-[:diagont__hasStateUnit]-(stUN:diagont__Unit{uri:"${stateUnitURI}"}) 
     MATCH (st:diagont__State)-[:diagont__refersToComponent]->(cm:orgont__Component)
-    RETURN st.uri, st.diagont__hasMeasureValue, stUN.uri, st.diagont__hasMeasureDate, cm.uri
-    ORDER BY datetime(st.diagont__hasMeasureDate) DESC LIMIT 1`;
+    RETURN st.uri, st.diagont__hasStateValue, stUN.uri, st.diagont__hasStateDate, cm.uri
+    ORDER BY datetime(st.diagont__hasStateDate) DESC LIMIT 1`;
 };
 // Monitor result inferencing
 // IMP: to infer results of monitors and tasks
@@ -1865,6 +1865,7 @@ app.get('/view/controlmonitoring/:assetName', function(req, res) {
         // Obtain monitors and tasks conducting inference
         let monitors = await inferenceResults(monitorsQuery(assetURI));
         let tasks = await inferenceResults(tasksQuery(assetURI));
+
         // Update monitors and tasks with latest states from devices
         let monitorsStates = await additionalResults(monitors);
         let tasksStates = await additionalResults(tasks);
