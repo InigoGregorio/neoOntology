@@ -1052,8 +1052,8 @@
         <hasStatePhenomenon rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#ThermalShock"/>
         <hasStateStatus rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Faulty"/>
         <hasStateUnit rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#kelvin"/>
-        <measuredByDevice rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Heli_MMC_CPU_Temperature"/>
-        <refersToComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_1"/>
+        <measuredByDevice rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Heli_MMC_CPU_Temperature"/>
+        <refersToComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_1"/>
         <hasStateDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2020-01-26T14:10:30Z</hasStateDate>
         <hasStateValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">370</hasStateValue>
     </owl:NamedIndividual>
@@ -1068,8 +1068,8 @@
         <hasStatePhenomenon rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#ThermalShock"/>
         <hasStateStatus rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Faulty"/>
         <hasStateUnit rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#kelvin"/>
-        <measuredByDevice rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Heli_MMC_CPU_Temperature"/>
-        <refersToComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_1"/>
+        <measuredByDevice rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Heli_MMC_CPU_Temperature"/>
+        <refersToComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_1"/>
         <hasStateDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2020-01-25T14:45:30Z</hasStateDate>
         <hasStateValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">363</hasStateValue>
     </owl:NamedIndividual>
@@ -1085,8 +1085,8 @@
         <hasStatePhenomenon rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#ThermalShock"/>
         <hasStateStatus rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Faulty"/>
         <hasStateUnit rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#kelvin"/>
-        <measuredByDevice rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Heli_CMC_CPU_Temperature"/>
-        <refersToComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_2"/>
+        <measuredByDevice rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Heli_CMC_CPU_Temperature"/>
+        <refersToComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_2"/>
         <hasStateDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2020-01-26T14:10:30Z</hasStateDate>
         <hasStateValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">367</hasStateValue>
     </owl:NamedIndividual>
@@ -1101,8 +1101,8 @@
         <hasStatePhenomenon rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#ThermalShock"/>
         <hasStateStatus rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Faulty"/>
         <hasStateUnit rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#kelvin"/>
-        <measuredByDevice rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Heli_CMC_CPU_Temperature"/>
-        <refersToComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_2"/>
+        <measuredByDevice rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Heli_CMC_CPU_Temperature"/>
+        <refersToComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_2"/>
         <hasStateDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2020-01-25T14:45:30Z</hasStateDate>
         <hasStateValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">363</hasStateValue>
     </owl:NamedIndividual>
@@ -1118,10 +1118,10 @@
         <hasStatePhenomenon rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#ElectricLoss"/>
         <hasStateStatus rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Faulty"/>
         <hasStateUnit rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#second"/>
-        <measuredByDevice rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Heli_CMC_Connectivity_Time"/>
-        <refersToComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_1"/>
-        <refersToComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#1_OpEx-0_1_MNT-BBCKTSHBCDT2019_1"/>
-        <refersToComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#1_OpEx-0_2_RAM-BBCKTSHBRAMDT2019_1"/>
+        <measuredByDevice rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Heli_CMC_Connectivity_Time"/>
+        <refersToComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_1"/>
+        <refersToComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_MNT-BBCKTSHBCDT2019_1"/>
+        <refersToComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_2_RAM-BBCKTSHBRAMDT2019_1"/>
         <hasStateDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2020-01-25T14:45:30Z</hasStateDate>
         <hasStateValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</hasStateValue>
     </owl:NamedIndividual>
@@ -1273,30 +1273,6 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#GreaterThanOrEqualTo">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Comparison"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Heli_CMC_CPU_Temperature -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Heli_CMC_CPU_Temperature">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Heli_CMC_Connectivity_Time -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Heli_CMC_Connectivity_Time">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Heli_MMC_CPU_Temperature -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Heli_MMC_CPU_Temperature">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
     </owl:NamedIndividual>
     
 
@@ -1650,38 +1626,6 @@
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_1 -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_1">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_2 -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_2">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#1_OpEx-0_1_MNT-BBCKTSHBCDT2019_1 -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#1_OpEx-0_1_MNT-BBCKTSHBCDT2019_1">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#1_OpEx-0_2_RAM-BBCKTSHBRAMDT2019_1 -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#1_OpEx-0_2_RAM-BBCKTSHBRAMDT2019_1">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-    </owl:NamedIndividual>
-    
-
-
     <!-- http://138.250.108.1:3003/api/files/owl/orgont#GB_DrivenShaft_Overload_Speed -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#GB_DrivenShaft_Overload_Speed">
@@ -1698,9 +1642,33 @@
     
 
 
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#Heli_CMC_CPU_Temperature -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#Heli_CMC_CPU_Temperature">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#Heli_CMC_Connectivity_Time -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#Heli_CMC_Connectivity_Time">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://138.250.108.1:3003/api/files/owl/orgont#Heli_Camera_Connectivity_Time -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#Heli_Camera_Connectivity_Time">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#Heli_MMC_CPU_Temperature -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#Heli_MMC_CPU_Temperature">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
     </owl:NamedIndividual>
     
@@ -1718,6 +1686,30 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#Inigo">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Agent"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_1 -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_1">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_2 -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_2">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_MNT-BBCKTSHBCDT2019_1 -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_MNT-BBCKTSHBCDT2019_1">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
     </owl:NamedIndividual>
     
 
@@ -1749,6 +1741,14 @@
     <!-- http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_2_CMR-BBCKCDT2019_1 -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_2_CMR-BBCKCDT2019_1">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_2_RAM-BBCKTSHBRAMDT2019_1 -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_2_RAM-BBCKTSHBRAMDT2019_1">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
     </owl:NamedIndividual>
     
