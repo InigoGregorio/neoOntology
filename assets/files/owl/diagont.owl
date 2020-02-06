@@ -1055,7 +1055,7 @@
         <measuredByDevice rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Heli_MMC_CPU_Temperature"/>
         <refersToComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_1"/>
         <hasStateDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2020-01-26T14:10:30Z</hasStateDate>
-        <hasStateValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">370</hasStateValue>
+        <hasStateValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">354</hasStateValue>
     </owl:NamedIndividual>
     
 
@@ -1071,7 +1071,7 @@
         <measuredByDevice rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Heli_MMC_CPU_Temperature"/>
         <refersToComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_1"/>
         <hasStateDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2020-01-25T14:45:30Z</hasStateDate>
-        <hasStateValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">363</hasStateValue>
+        <hasStateValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">340</hasStateValue>
     </owl:NamedIndividual>
     
 
@@ -1088,7 +1088,7 @@
         <measuredByDevice rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Heli_CMC_CPU_Temperature"/>
         <refersToComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_2"/>
         <hasStateDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2020-01-26T14:10:30Z</hasStateDate>
-        <hasStateValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">367</hasStateValue>
+        <hasStateValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">352</hasStateValue>
     </owl:NamedIndividual>
     
 
@@ -1104,7 +1104,7 @@
         <measuredByDevice rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Heli_CMC_CPU_Temperature"/>
         <refersToComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_2"/>
         <hasStateDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2020-01-25T14:45:30Z</hasStateDate>
-        <hasStateValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">363</hasStateValue>
+        <hasStateValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">340</hasStateValue>
     </owl:NamedIndividual>
     
 
