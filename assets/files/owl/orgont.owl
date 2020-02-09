@@ -1088,9 +1088,9 @@
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#H_Client_Computer_RAM_Temperature -->
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#H_Client_Computer_RAM_Usage -->
 
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#H_Client_Computer_RAM_Temperature">
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#H_Client_Computer_RAM_Usage">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
         <hasDeviceValue rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#sensor"/>
         <monitors rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_2_RAM-BBCKTSHBRAMDT2019_2"/>
