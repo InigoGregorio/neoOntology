@@ -873,7 +873,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Auditor_GB_DrivenShaft_Speed_Overload">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Auditor"/>
-        <auditorMonitorsState rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Example_State_8"/>
+        <auditorMonitorsState rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State_DrivenShaft_Overload_Fault"/>
         <hasAuditorComparison rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#GreaterThan"/>
         <isValidated rdf:datatype="http://www.w3.org/2001/XMLSchema#string">true</isValidated>
     </owl:NamedIndividual>
@@ -884,7 +884,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Auditor_GB_DrivingShaft_Speed_Overload">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Auditor"/>
-        <auditorMonitorsState rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Example_State_9"/>
+        <auditorMonitorsState rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State_DrivingShaft_Overload_Fault"/>
         <hasAuditorComparison rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#GreaterThan"/>
         <isValidated rdf:datatype="http://www.w3.org/2001/XMLSchema#string">true</isValidated>
     </owl:NamedIndividual>
@@ -895,7 +895,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Auditor_Heli_CMC_Time_Connect">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Auditor"/>
-        <auditorMonitorsState rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Example_State_5"/>
+        <auditorMonitorsState rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State_Client_Computer_CPU_Connectivity_Fault"/>
         <hasAuditorComparison rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#EqualTo"/>
         <isValidated rdf:datatype="http://www.w3.org/2001/XMLSchema#string">true</isValidated>
     </owl:NamedIndividual>
@@ -906,7 +906,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Auditor_Heli_Camera_Time_Connect">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Auditor"/>
-        <auditorMonitorsState rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Example_State_6"/>
+        <auditorMonitorsState rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State_Camera_Connectivity_Fault"/>
         <hasAuditorComparison rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#EqualTo"/>
         <isValidated rdf:datatype="http://www.w3.org/2001/XMLSchema#string">true</isValidated>
     </owl:NamedIndividual>
@@ -917,7 +917,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Auditor_Heli_Monitor_Time_Connect">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Auditor"/>
-        <auditorMonitorsState rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Example_State_7"/>
+        <auditorMonitorsState rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State_Monitor_Connectivity_Fault"/>
         <hasAuditorComparison rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#EqualTo"/>
         <isValidated rdf:datatype="http://www.w3.org/2001/XMLSchema#string">true</isValidated>
     </owl:NamedIndividual>
@@ -972,67 +972,9 @@
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Example_Failure_1 -->
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Failure_GB_Overload -->
 
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Example_Failure_1">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Failure"/>
-        <affectsToSystem rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-2_1_MainMissionComputer-BBCKTSHBCDT2019_1"/>
-        <affectsToSystem rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-2_2_ClientMissionComputer-BBCKTSHBCDT2019_2"/>
-        <hasFailureDominion rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Electronics"/>
-        <hasFailureImpact rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Global"/>
-        <hasFailurePhenomenon rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#ElectricLoss"/>
-        <identifiedByTask rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Example_Task"/>
-        <hasFailureAudio rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://138.250.108.1:3003/api/files/wav/audioexample.wav</hasFailureAudio>
-        <hasFailureDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Example failure discovered by Task for neoOntologyCM and neoOntologyAR inference</hasFailureDescription>
-        <hasFailureImage rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://138.250.108.1:3003/api/files/jpg/1_AluminiumPlate015-Body.jpg</hasFailureImage>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Example_Failure_2 -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Example_Failure_2">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Failure"/>
-        <affectsToAsset rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-1_4_TESMissionSystem-BBCKDT2019_1"/>
-        <affectsToSystem rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-2_2_ClientMissionComputer-BBCKTSHBCDT2019_2"/>
-        <hasFailureDominion rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Electrics"/>
-        <hasFailureImpact rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Local"/>
-        <hasFailurePhenomenon rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#ElectricLoss"/>
-        <hasFailureDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mission System Client Computer is down. Please check connection cable.</hasFailureDescription>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Example_Failure_3 -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Example_Failure_3">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Failure"/>
-        <affectsToAsset rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-1_4_TESMissionSystem-BBCKDT2019_1"/>
-        <hasFailureDominion rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Electrics"/>
-        <hasFailureImpact rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Local"/>
-        <hasFailurePhenomenon rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#ElectricLoss"/>
-        <hasFailureDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mission System Camera is down. Please check connection cable.</hasFailureDescription>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Example_Failure_4 -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Example_Failure_4">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Failure"/>
-        <affectsToAsset rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-1_4_TESMissionSystem-BBCKDT2019_1"/>
-        <affectsToSystem rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-3_2_Movement-TESGBMM2015_1"/>
-        <hasFailureDominion rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Electrics"/>
-        <hasFailureImpact rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Local"/>
-        <hasFailurePhenomenon rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#ElectricLoss"/>
-        <hasFailureDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mission System Monitor is down. Please check connection cable.</hasFailureDescription>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Example_Failure_5 -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Example_Failure_5">
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Failure_GB_Overload">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Failure"/>
         <affectsToAsset rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-1_1_TESGearbox-TESGB2015_1"/>
         <affectsToSystem rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-3_2_Movement-TESGBMM2015_1"/>
@@ -1044,195 +986,60 @@
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Example_State_1 -->
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Failure_H_CC_Connectivity -->
 
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Example_State_1">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State"/>
-        <hasStateDominion rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Electronics"/>
-        <hasStatePhenomenon rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#ThermalShock"/>
-        <hasStateStatus rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Faulty"/>
-        <hasStateUnit rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#kelvin"/>
-        <measuredByDevice rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Heli_MMC_CPU_Temperature"/>
-        <refersToComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_1"/>
-        <hasStateDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2020-01-26T14:10:30Z</hasStateDate>
-        <hasStateValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">354</hasStateValue>
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Failure_H_CC_Connectivity">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Failure"/>
+        <affectsToAsset rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-1_4_TESMissionSystem-BBCKDT2019_1"/>
+        <affectsToSystem rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-2_2_ClientMissionComputer-BBCKTSHBCDT2019_2"/>
+        <hasFailureDominion rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Electrics"/>
+        <hasFailureImpact rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Local"/>
+        <hasFailurePhenomenon rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#ElectricLoss"/>
+        <hasFailureDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mission System Client Computer is down. Please check connection cable.</hasFailureDescription>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Example_State_2 -->
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Failure_H_Camera_Connectivity -->
 
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Example_State_2">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State"/>
-        <hasStateDominion rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Electronics"/>
-        <hasStatePhenomenon rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#ThermalShock"/>
-        <hasStateStatus rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Faulty"/>
-        <hasStateUnit rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#kelvin"/>
-        <measuredByDevice rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Heli_MMC_CPU_Temperature"/>
-        <refersToComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_1"/>
-        <hasStateDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2020-01-25T14:45:30Z</hasStateDate>
-        <hasStateValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">340</hasStateValue>
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Failure_H_Camera_Connectivity">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Failure"/>
+        <affectsToAsset rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-1_4_TESMissionSystem-BBCKDT2019_1"/>
+        <hasFailureDominion rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Electrics"/>
+        <hasFailureImpact rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Local"/>
+        <hasFailurePhenomenon rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#ElectricLoss"/>
+        <hasFailureDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mission System Camera is down. Please check connection cable.</hasFailureDescription>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Example_State_3 -->
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Failure_H_Monitor_Connectivity -->
 
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Example_State_3">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State"/>
-        <causesFailure rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Example_Failure_1"/>
-        <hasStateDominion rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Electronics"/>
-        <hasStatePhenomenon rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#ThermalShock"/>
-        <hasStateStatus rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Faulty"/>
-        <hasStateUnit rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#kelvin"/>
-        <measuredByDevice rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Heli_CMC_CPU_Temperature"/>
-        <refersToComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_2"/>
-        <hasStateDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2020-01-26T14:10:30Z</hasStateDate>
-        <hasStateValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">352</hasStateValue>
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Failure_H_Monitor_Connectivity">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Failure"/>
+        <affectsToAsset rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-1_4_TESMissionSystem-BBCKDT2019_1"/>
+        <affectsToSystem rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-3_2_Movement-TESGBMM2015_1"/>
+        <hasFailureDominion rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Electrics"/>
+        <hasFailureImpact rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Local"/>
+        <hasFailurePhenomenon rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#ElectricLoss"/>
+        <hasFailureDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mission System Monitor is down. Please check connection cable.</hasFailureDescription>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Example_State_4 -->
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Failure_H_Overload -->
 
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Example_State_4">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State"/>
-        <hasStateDominion rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Electronics"/>
-        <hasStatePhenomenon rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#ThermalShock"/>
-        <hasStateStatus rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Faulty"/>
-        <hasStateUnit rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#kelvin"/>
-        <measuredByDevice rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Heli_CMC_CPU_Temperature"/>
-        <refersToComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_2"/>
-        <hasStateDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2020-01-25T14:45:30Z</hasStateDate>
-        <hasStateValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">340</hasStateValue>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Example_State_5 -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Example_State_5">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State"/>
-        <causesFailure rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Example_Failure_2"/>
-        <hasStateDominion rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Electrics"/>
-        <hasStatePhenomenon rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#ElectricLoss"/>
-        <hasStateStatus rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Faulty"/>
-        <hasStateUnit rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#second"/>
-        <measuredByDevice rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Heli_CMC_Connectivity_Time"/>
-        <refersToComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_1"/>
-        <refersToComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_MNT-BBCKTSHBCDT2019_1"/>
-        <refersToComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_2_RAM-BBCKTSHBRAMDT2019_1"/>
-        <hasStateDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2020-01-25T14:45:30Z</hasStateDate>
-        <hasStateValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</hasStateValue>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Example_State_6 -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Example_State_6">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State"/>
-        <hasStateDominion rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Electrics"/>
-        <hasStatePhenomenon rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#ElectricLoss"/>
-        <hasStateStatus rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Faulty"/>
-        <hasStateUnit rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#second"/>
-        <measuredByDevice rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Heli_Camera_Connectivity_Time"/>
-        <refersToComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_2_CMR-BBCKCDT2019_1"/>
-        <hasStateDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2020-01-25T14:45:30Z</hasStateDate>
-        <hasStateValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</hasStateValue>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Example_State_7 -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Example_State_7">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State"/>
-        <hasStateDominion rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Electrics"/>
-        <hasStatePhenomenon rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#ElectricLoss"/>
-        <hasStateStatus rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Faulty"/>
-        <hasStateUnit rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#second"/>
-        <measuredByDevice rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Heli_Monitor_Connectivity_Time"/>
-        <refersToComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_MNT-BBCKTSHBCDT2019_3"/>
-        <hasStateDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2020-01-25T14:45:30Z</hasStateDate>
-        <hasStateValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</hasStateValue>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Example_State_8 -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Example_State_8">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State"/>
-        <hasStateDominion rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Mechanics"/>
-        <hasStatePhenomenon rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Overload"/>
-        <hasStateStatus rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Faulty"/>
-        <hasStateUnit rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#hertz"/>
-        <measuredByDevice rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#GB_DrivenShaft_Overload_Speed"/>
-        <refersToComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_SHF-W15H6250_1"/>
-        <hasStateDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2020-01-25T14:45:30Z</hasStateDate>
-        <hasStateValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">5</hasStateValue>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Example_State_9 -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Example_State_9">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State"/>
-        <hasStateDominion rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Mechanics"/>
-        <hasStatePhenomenon rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Overload"/>
-        <hasStateStatus rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Faulty"/>
-        <hasStateUnit rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#hertz"/>
-        <measuredByDevice rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#GB_DrivingShaft_Overload_Speed"/>
-        <refersToComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_SHF-W15H6300_1"/>
-        <hasStateDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2020-01-25T14:45:30Z</hasStateDate>
-        <hasStateValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">5</hasStateValue>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Example_Step_1 -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Example_Step_1">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Step"/>
-        <belongsToTask rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Example_Task"/>
-        <hasStepComparison rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#GreaterThan"/>
-        <hasStepMethod rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Inspect"/>
-        <hasStepObject rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Symptom"/>
-        <nextStepIs rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Example_Step_2"/>
-        <stepDiagnosesState rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Example_State_2"/>
-        <stepEvaluatesState rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Example_State_1"/>
-        <isContributory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">true</isContributory>
-        <isCritical rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</isCritical>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Example_Step_2 -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Example_Step_2">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Step"/>
-        <belongsToTask rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Example_Task"/>
-        <hasStepComparison rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#GreaterThan"/>
-        <hasStepMethod rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Measure"/>
-        <hasStepObject rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Cause"/>
-        <stepDiagnosesState rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Example_State_4"/>
-        <stepEvaluatesState rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Example_State_3"/>
-        <isContributory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">true</isContributory>
-        <isCritical rdf:datatype="http://www.w3.org/2001/XMLSchema#string">true</isCritical>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Example_Task -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Example_Task">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Task"/>
-        <conductedByAgent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Inigo"/>
-        <firstStepIs rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Example_Step_1"/>
-        <managedByAgent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Inigo"/>
-        <hasTaskDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">example task to do inference for neoOntologyCM and neoOntologyAR</hasTaskDescription>
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Failure_H_Overload">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Failure"/>
+        <affectsToSystem rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-2_1_MainMissionComputer-BBCKTSHBCDT2019_1"/>
+        <affectsToSystem rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-2_2_ClientMissionComputer-BBCKTSHBCDT2019_2"/>
+        <hasFailureDominion rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Electronics"/>
+        <hasFailureImpact rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Global"/>
+        <hasFailurePhenomenon rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#ElectricLoss"/>
+        <identifiedByTask rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Task_H_Overload"/>
+        <hasFailureAudio rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://138.250.108.1:3003/api/files/wav/audioexample.wav</hasFailureAudio>
+        <hasFailureDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mission System is overloaded. Please close apps.</hasFailureDescription>
+        <hasFailureImage rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://138.250.108.1:3003/api/files/jpg/1_AluminiumPlate015-Body.jpg</hasFailureImage>
     </owl:NamedIndividual>
     
 
@@ -1363,7 +1170,7 @@
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Monitor"/>
         <considersAuditor rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Auditor_GB_DrivenShaft_Speed_Overload"/>
         <considersAuditor rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Auditor_GB_DrivingShaft_Speed_Overload"/>
-        <encountersFailure rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Example_Failure_5"/>
+        <encountersFailure rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Failure_GB_Overload"/>
         <hasMonitorDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">To identify gearbox speed overload</hasMonitorDescription>
     </owl:NamedIndividual>
     
@@ -1374,7 +1181,7 @@
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Monitor_Heli_CMC_Connectivity">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Monitor"/>
         <considersAuditor rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Auditor_Heli_CMC_Time_Connect"/>
-        <encountersFailure rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Example_Failure_2"/>
+        <encountersFailure rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Failure_H_CC_Connectivity"/>
         <hasMonitorDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">To identify connectivity of client computer</hasMonitorDescription>
     </owl:NamedIndividual>
     
@@ -1385,7 +1192,7 @@
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Monitor_Heli_Camera_Connectivity">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Monitor"/>
         <considersAuditor rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Auditor_Heli_Camera_Time_Connect"/>
-        <encountersFailure rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Example_Failure_3"/>
+        <encountersFailure rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Failure_H_Camera_Connectivity"/>
         <hasMonitorDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">To identify connectivity of camera</hasMonitorDescription>
     </owl:NamedIndividual>
     
@@ -1396,7 +1203,7 @@
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Monitor_Heli_Monitor_Connectivity">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Monitor"/>
         <considersAuditor rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Auditor_Heli_Monitor_Time_Connect"/>
-        <encountersFailure rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Example_Failure_4"/>
+        <encountersFailure rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Failure_H_Monitor_Connectivity"/>
         <hasMonitorDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">To identify connectivity of monitor</hasMonitorDescription>
     </owl:NamedIndividual>
     
@@ -1482,10 +1289,203 @@
     
 
 
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#State_Camera_Connectivity_Fault -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#State_Camera_Connectivity_Fault">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State"/>
+        <hasStateDominion rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Electrics"/>
+        <hasStatePhenomenon rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#ElectricLoss"/>
+        <hasStateStatus rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Faulty"/>
+        <hasStateUnit rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#second"/>
+        <measuredByDevice rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#H_Camera_Connectivity_Time"/>
+        <refersToComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_2_CMR-BBCKCDT2019_1"/>
+        <hasStateDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2020-01-25T14:45:30Z</hasStateDate>
+        <hasStateValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</hasStateValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#State_Client_Computer_CPU_Connectivity_Fault -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#State_Client_Computer_CPU_Connectivity_Fault">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State"/>
+        <causesFailure rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Failure_H_CC_Connectivity"/>
+        <hasStateDominion rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Electrics"/>
+        <hasStatePhenomenon rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#ElectricLoss"/>
+        <hasStateStatus rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Faulty"/>
+        <hasStateUnit rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#second"/>
+        <measuredByDevice rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#H_Client_Computer_Connectivity_Time"/>
+        <refersToComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_1"/>
+        <refersToComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_MNT-BBCKTSHBCDT2019_1"/>
+        <refersToComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_2_RAM-BBCKTSHBRAMDT2019_1"/>
+        <hasStateDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2020-01-25T14:45:30Z</hasStateDate>
+        <hasStateValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</hasStateValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#State_Client_Computer_CPU_Temperature_Current -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#State_Client_Computer_CPU_Temperature_Current">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State"/>
+        <causesFailure rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Failure_H_Overload"/>
+        <hasStateDominion rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Electronics"/>
+        <hasStatePhenomenon rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#ThermalShock"/>
+        <hasStateStatus rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Faulty"/>
+        <hasStateUnit rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#kelvin"/>
+        <measuredByDevice rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#H_Client_Computer_CPU_Temperature"/>
+        <refersToComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_2"/>
+        <hasStateDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2020-01-26T14:10:30Z</hasStateDate>
+        <hasStateValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">352</hasStateValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#State_Client_Computer_CPU_Temperature_Fault -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#State_Client_Computer_CPU_Temperature_Fault">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State"/>
+        <hasStateDominion rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Electronics"/>
+        <hasStatePhenomenon rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#ThermalShock"/>
+        <hasStateStatus rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Faulty"/>
+        <hasStateUnit rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#kelvin"/>
+        <measuredByDevice rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#H_Client_Computer_CPU_Temperature"/>
+        <refersToComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_2"/>
+        <hasStateDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2020-01-25T14:45:30Z</hasStateDate>
+        <hasStateValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">340</hasStateValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#State_DrivenShaft_Overload_Fault -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#State_DrivenShaft_Overload_Fault">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State"/>
+        <hasStateDominion rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Mechanics"/>
+        <hasStatePhenomenon rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Overload"/>
+        <hasStateStatus rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Faulty"/>
+        <hasStateUnit rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#hertz"/>
+        <measuredByDevice rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#GB_DrivenShaft_Overload_Speed"/>
+        <refersToComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_SHF-W15H6250_1"/>
+        <hasStateDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2020-01-25T14:45:30Z</hasStateDate>
+        <hasStateValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">5</hasStateValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#State_DrivingShaft_Overload_Fault -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#State_DrivingShaft_Overload_Fault">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State"/>
+        <hasStateDominion rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Mechanics"/>
+        <hasStatePhenomenon rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Overload"/>
+        <hasStateStatus rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Faulty"/>
+        <hasStateUnit rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#hertz"/>
+        <measuredByDevice rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#GB_DrivingShaft_Overload_Speed"/>
+        <refersToComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_SHF-W15H6300_1"/>
+        <hasStateDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2020-01-25T14:45:30Z</hasStateDate>
+        <hasStateValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">5</hasStateValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#State_Main_Computer_CPU_Temperature_Current -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#State_Main_Computer_CPU_Temperature_Current">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State"/>
+        <hasStateDominion rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Electronics"/>
+        <hasStatePhenomenon rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#ThermalShock"/>
+        <hasStateStatus rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Faulty"/>
+        <hasStateUnit rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#kelvin"/>
+        <measuredByDevice rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#H_Main_Computer_CPU_Temperature"/>
+        <refersToComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_1"/>
+        <hasStateDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2020-01-26T14:10:30Z</hasStateDate>
+        <hasStateValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">354</hasStateValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#State_Main_Computer_CPU_Temperature_Fault -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#State_Main_Computer_CPU_Temperature_Fault">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State"/>
+        <hasStateDominion rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Electronics"/>
+        <hasStatePhenomenon rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#ThermalShock"/>
+        <hasStateStatus rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Faulty"/>
+        <hasStateUnit rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#kelvin"/>
+        <measuredByDevice rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#H_Main_Computer_CPU_Temperature"/>
+        <refersToComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_1"/>
+        <hasStateDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2020-01-25T14:45:30Z</hasStateDate>
+        <hasStateValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">340</hasStateValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#State_Monitor_Connectivity_Fault -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#State_Monitor_Connectivity_Fault">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State"/>
+        <hasStateDominion rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Electrics"/>
+        <hasStatePhenomenon rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#ElectricLoss"/>
+        <hasStateStatus rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Faulty"/>
+        <hasStateUnit rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#second"/>
+        <measuredByDevice rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#H_Monitor_Connectivity_Time"/>
+        <refersToComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_MNT-BBCKTSHBCDT2019_3"/>
+        <hasStateDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2020-01-25T14:45:30Z</hasStateDate>
+        <hasStateValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</hasStateValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Step_CC_CPU_Overload -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Step_CC_CPU_Overload">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Step"/>
+        <belongsToTask rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Task_H_Overload"/>
+        <hasStepComparison rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#GreaterThan"/>
+        <hasStepMethod rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Measure"/>
+        <hasStepObject rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Cause"/>
+        <stepDiagnosesState rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State_Client_Computer_CPU_Temperature_Fault"/>
+        <stepEvaluatesState rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State_Client_Computer_CPU_Temperature_Current"/>
+        <isContributory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">true</isContributory>
+        <isCritical rdf:datatype="http://www.w3.org/2001/XMLSchema#string">true</isCritical>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Step_MC_CPU_Overload -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Step_MC_CPU_Overload">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Step"/>
+        <belongsToTask rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Task_H_Overload"/>
+        <hasStepComparison rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#GreaterThan"/>
+        <hasStepMethod rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Inspect"/>
+        <hasStepObject rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Symptom"/>
+        <nextStepIs rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Step_CC_CPU_Overload"/>
+        <stepDiagnosesState rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State_Main_Computer_CPU_Temperature_Fault"/>
+        <stepEvaluatesState rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#State_Main_Computer_CPU_Temperature_Current"/>
+        <isContributory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">true</isContributory>
+        <isCritical rdf:datatype="http://www.w3.org/2001/XMLSchema#string">false</isCritical>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://138.250.108.1:3003/api/files/owl/diagont#Symptom -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Symptom">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Object"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/diagont#Task_H_Overload -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/diagont#Task_H_Overload">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Task"/>
+        <conductedByAgent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Inigo"/>
+        <firstStepIs rdf:resource="http://138.250.108.1:3003/api/files/owl/diagont#Step_MC_CPU_Overload"/>
+        <managedByAgent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Inigo"/>
+        <hasTaskDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">When CPU temperatures are too high, system is overloaded. Please close apps.</hasTaskDescription>
     </owl:NamedIndividual>
     
 
@@ -1642,41 +1642,41 @@
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#Heli_CMC_CPU_Temperature -->
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#H_Camera_Connectivity_Time -->
 
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#Heli_CMC_CPU_Temperature">
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#H_Camera_Connectivity_Time">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#Heli_CMC_Connectivity_Time -->
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#H_Client_Computer_CPU_Temperature -->
 
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#Heli_CMC_Connectivity_Time">
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#H_Client_Computer_CPU_Temperature">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#Heli_Camera_Connectivity_Time -->
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#H_Client_Computer_Connectivity_Time -->
 
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#Heli_Camera_Connectivity_Time">
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#H_Client_Computer_Connectivity_Time">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#Heli_MMC_CPU_Temperature -->
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#H_Main_Computer_CPU_Temperature -->
 
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#Heli_MMC_CPU_Temperature">
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#H_Main_Computer_CPU_Temperature">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#Heli_Monitor_Connectivity_Time -->
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#H_Monitor_Connectivity_Time -->
 
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#Heli_Monitor_Connectivity_Time">
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#H_Monitor_Connectivity_Time">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
     </owl:NamedIndividual>
     

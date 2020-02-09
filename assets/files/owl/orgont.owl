@@ -1044,53 +1044,9 @@
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#Heli_CMC_CPU_Temperature -->
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#H_Camera_Connectivity_Time -->
 
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#Heli_CMC_CPU_Temperature">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
-        <hasDeviceValue rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#sensor"/>
-        <monitors rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_2"/>
-        <hasDeviceName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Helicopter Client Mission Computer CPU Temperature Sensor</hasDeviceName>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#Heli_CMC_CPU_Usage -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#Heli_CMC_CPU_Usage">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
-        <hasDeviceValue rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#sensor"/>
-        <monitors rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_2"/>
-        <hasDeviceName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Helicopter Client Mission Computer CPU Usage Sensor</hasDeviceName>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#Heli_CMC_Connectivity_Time -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#Heli_CMC_Connectivity_Time">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
-        <hasDeviceValue rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#sensor"/>
-        <monitors rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_MNT-BBCKTSHBCDT2019_2"/>
-        <hasDeviceName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Helicopter Client Mission Computer Connectivity Sensor</hasDeviceName>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#Heli_CMC_RAM_Temperature -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#Heli_CMC_RAM_Temperature">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
-        <hasDeviceValue rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#sensor"/>
-        <monitors rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_2_RAM-BBCKTSHBRAMDT2019_2"/>
-        <hasDeviceName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Helicopter Client Mission Computer RAM Usage Sensor</hasDeviceName>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#Heli_Camera_Connectivity_Time -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#Heli_Camera_Connectivity_Time">
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#H_Camera_Connectivity_Time">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
         <hasDeviceValue rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#sensor"/>
         <monitors rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_2_CMR-BBCKCDT2019_1"/>
@@ -1099,9 +1055,53 @@
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#Heli_MMC_CPU_Temperature -->
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#H_Client_Computer_CPU_Temperature -->
 
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#Heli_MMC_CPU_Temperature">
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#H_Client_Computer_CPU_Temperature">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
+        <hasDeviceValue rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#sensor"/>
+        <monitors rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_2"/>
+        <hasDeviceName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Helicopter Client Mission Computer CPU Temperature Sensor</hasDeviceName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#H_Client_Computer_CPU_Usage -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#H_Client_Computer_CPU_Usage">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
+        <hasDeviceValue rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#sensor"/>
+        <monitors rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_2"/>
+        <hasDeviceName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Helicopter Client Mission Computer CPU Usage Sensor</hasDeviceName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#H_Client_Computer_Connectivity_Time -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#H_Client_Computer_Connectivity_Time">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
+        <hasDeviceValue rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#sensor"/>
+        <monitors rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_MNT-BBCKTSHBCDT2019_2"/>
+        <hasDeviceName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Helicopter Client Mission Computer Connectivity Sensor</hasDeviceName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#H_Client_Computer_RAM_Temperature -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#H_Client_Computer_RAM_Temperature">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
+        <hasDeviceValue rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#sensor"/>
+        <monitors rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_2_RAM-BBCKTSHBRAMDT2019_2"/>
+        <hasDeviceName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Helicopter Client Mission Computer RAM Usage Sensor</hasDeviceName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#H_Main_Computer_CPU_Temperature -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#H_Main_Computer_CPU_Temperature">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
         <hasDeviceValue rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#sensor"/>
         <monitors rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_1"/>
@@ -1110,9 +1110,9 @@
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#Heli_MMC_CPU_Usage -->
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#H_Main_Computer_CPU_Usage -->
 
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#Heli_MMC_CPU_Usage">
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#H_Main_Computer_CPU_Usage">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
         <hasDeviceValue rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#sensor"/>
         <monitors rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_1"/>
@@ -1121,9 +1121,9 @@
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#Heli_MMC_Connectivity_Time -->
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#H_Main_Computer_Connectivity_Time -->
 
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#Heli_MMC_Connectivity_Time">
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#H_Main_Computer_Connectivity_Time">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
         <hasDeviceValue rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#sensor"/>
         <monitors rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_MNT-BBCKTSHBCDT2019_1"/>
@@ -1132,9 +1132,9 @@
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#Heli_MMC_RAM_Usage -->
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#H_Main_Computer_RAM_Usage -->
 
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#Heli_MMC_RAM_Usage">
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#H_Main_Computer_RAM_Usage">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
         <hasDeviceValue rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#sensor"/>
         <monitors rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_2_RAM-BBCKTSHBRAMDT2019_1"/>
@@ -1143,9 +1143,9 @@
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#Heli_Monitor_Connectivity_Time -->
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#H_Monitor_Connectivity_Time -->
 
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#Heli_Monitor_Connectivity_Time">
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#H_Monitor_Connectivity_Time">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
         <hasDeviceValue rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#sensor"/>
         <monitors rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_MNT-BBCKTSHBCDT2019_3"/>
