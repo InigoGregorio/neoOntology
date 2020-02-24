@@ -631,11 +631,42 @@
     
 
 
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_00000_ASM -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_00000_ASM">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#DF56950"/>
+        <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_02000_ASM"/>
+        <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_38000_AF1_ASM"/>
+        <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_47000_ASM"/>
+        <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_00000_ASM"/>
+        <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#10748A1-1_ASM"/>
+        <systemHasAssetParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#MK8_MOD1_GUN"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_00014 -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_00014">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿10748A1-1_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#10748A1-1_ASM"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_02000_ASM -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_02000_ASM">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_01_07_01004_1"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_01_07_01005_1"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_01_07_01008_1"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_01_07_01009_1"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_01_07_01012_1"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_18_03014_1"/>
+        <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_95000_ASM_1"/>
+        <hasSystemParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_00000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -644,7 +675,18 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_07003">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_47000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_47000_ASM"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_38000_AF1_ASM -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_38000_AF1_ASM">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_38001_AF0"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_38002_AF1"/>
+        <hasSystemParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_00000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -653,7 +695,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_38001_AF0">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_38000_AF1_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_38000_AF1_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -662,7 +704,33 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_38002_AF1">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_38000_AF1_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_38000_AF1_ASM"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_47000_ASM -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_47000_ASM">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_07003"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_47002"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_47003"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_47004"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_75001_AF0"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_75002_AF0"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_75003_AF0"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP146_1-4"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP146_1-4_1"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP192_18DX"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP192_18DX_1"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP348_M16_1"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP411_0"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP49_1-4X0-75"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP49_1-4X0-75_1"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_93_14009"/>
+        <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_99000_ASM"/>
+        <hasSystemParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_00000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -671,7 +739,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_47002">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_47000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_47000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -680,7 +748,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_47003">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_47000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_47000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -689,7 +757,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_47004">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_47000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_47000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -698,7 +766,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_75001_AF0">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_47000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_47000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -707,7 +775,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_75002_AF0">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_47000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_47000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -716,7 +784,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_75003_AF0">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_47000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_47000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -726,7 +794,7 @@
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_95000_ASM_1">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
         <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_01_07_01018_AF0_1"/>
-        <hasSystemParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_02000_ASM"/>
+        <hasSystemParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_02000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -739,7 +807,7 @@
         <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_99002_AF0"/>
         <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_99003_AF0"/>
         <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_99004_AF0"/>
-        <hasSystemParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_47000_ASM"/>
+        <hasSystemParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_47000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -780,11 +848,91 @@
     
 
 
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_00000_ASM -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_00000_ASM">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
+        <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_01000_ASM"/>
+        <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_02000_ASM"/>
+        <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_04000_ASM"/>
+        <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_05000_ASM"/>
+        <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_06000_ASM"/>
+        <hasSystemParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_00000_ASM"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_01000_ASM -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_01000_ASM">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_01007"/>
+        <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_07000_ASM"/>
+        <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_08000_ASM"/>
+        <hasSystemParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_00000_ASM"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_01007 -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_01007">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_01000_ASM"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_02000_ASM -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_02000_ASM">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_02001"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_02002"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_02003"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_02004"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_02005"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_02011"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_02014"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_02015"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_02020"/>
+        <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_10000_ASM"/>
+        <hasSystemParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_00000_ASM"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_04000_ASM -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_04000_ASM">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_04026"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_04028"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_09000"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP31_1-2"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP31_3-4"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_04001"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_04002"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_04003"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_04005"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_04006"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_04009"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_04010"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_04013"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_04014"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_04018"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_04023"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_04024"/>
+        <hasSystemParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_00000_ASM"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_04026 -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_04026">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_04000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_04000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -793,7 +941,24 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_04028">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_04000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_04000_ASM"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_05000_ASM -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_05000_ASM">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_05009_AF0"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_05010_AF0"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_05011_AF0"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_05006"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_05007"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_08_23_01003"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_08_23_01029"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_08_23_01029_1"/>
+        <hasSystemParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_00000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -802,7 +967,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_05009_AF0">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_05000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_05000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -811,7 +976,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_05010_AF0">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_05000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_05000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -820,7 +985,53 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_05011_AF0">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_05000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_05000_ASM"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_06000_ASM -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_06000_ASM">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_06002"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_06003"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_06005"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_06005_1"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_06012"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_06015"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_06016"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_06020"/>
+        <hasSystemParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_00000_ASM"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_07000_ASM -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_07000_ASM">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_016_01002_AF0"/>
+        <hasSystemParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_01000_ASM"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_08000_ASM -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_08000_ASM">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_08001"/>
+        <hasSystemParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_01000_ASM"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_08001 -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_08001">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_08000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -829,7 +1040,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_09000">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_04000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_04000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -839,7 +1050,7 @@
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_10000_ASM">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
         <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_10001"/>
-        <hasSystemParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_02000_ASM"/>
+        <hasSystemParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_02000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -853,11 +1064,111 @@
     
 
 
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#AJ_10_00_00000_ASM -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_10_00_00000_ASM">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
+        <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_10_01_00000_ASM"/>
+        <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_00000_ASM"/>
+        <systemHasAssetParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#MK8_MOD1_GUN"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#AJ_10_01_00000_ASM -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_10_01_00000_ASM">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_10_01_00001"/>
+        <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_10_01_06000_ASM"/>
+        <hasSystemParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_10_00_00000_ASM"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#AJ_10_01_00001 -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_10_01_00001">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_10_01_00000_ASM"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#AJ_10_01_06000_ASM -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_10_01_06000_ASM">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_10_01_06001"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP18_M12_1"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP18_M12_2"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP347_LA12-2120-4_1"/>
+        <hasSystemParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_10_01_00000_ASM"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://138.250.108.1:3003/api/files/owl/orgont#AJ_10_01_06001 -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_10_01_06001">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_10_01_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_10_01_06000_ASM"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_00000_ASM -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_00000_ASM">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
+        <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15000_ASM"/>
+        <hasSystemParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_10_00_00000_ASM"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06000_ASM -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06000_ASM">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06001"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06004"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06005"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06006"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06007"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06008"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06009"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06010"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06010_1"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06011"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP146_1-2"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP463_RS1300254-T10N"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP463_RS1300254-T10N_1"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP540_M4X6"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP540_M4X6_1"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP540_M4X6_2"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP56_011"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP56_014"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP785_326"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP785_326_1"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP793_3-8X1-2"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_091_01001"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_091_01002"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_091_01015"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_091_01019"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_091_01023"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_091_01023_1"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_091_01023_2"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_091_01023_3"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_091_01024"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_091_01027"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#2008169"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#2008178"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#2008180"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#2008190"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#2008190_1"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#2008190_2"/>
+        <hasSystemParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -866,7 +1177,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06001">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -875,7 +1186,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06004">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -884,7 +1195,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06005">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -893,7 +1204,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06006">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -902,7 +1213,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06007">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -911,7 +1222,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06008">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -920,7 +1231,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06009">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -929,7 +1240,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06010">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -938,7 +1249,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06010_1">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -947,7 +1258,48 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06011">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06000_ASM"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15000_ASM -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15000_ASM">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15047"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15049"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15050"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15727"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP18_M12"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP18_M12_3"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#PROX_SWITCH_LA12_2120_4"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01003"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01015"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01016"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01018"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01019"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01020"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01022"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01023"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01024"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01025"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01026"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01028"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01031"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01032"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01033"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01036"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01038"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01039"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01040"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01043"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01044"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01046"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01713"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01726"/>
+        <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06000_ASM"/>
+        <hasSystemParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_00000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -956,7 +1308,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15047">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_15000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -965,7 +1317,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15049">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_15000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -974,7 +1326,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15050">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_15000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -983,7 +1335,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15727">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_15000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -1005,6 +1357,15 @@
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Organisation"/>
         <hasAgent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Expert"/>
         <hasAsset rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#MK8_MOD1_GUN"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#DF56950 -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#DF56950">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_00000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -1044,9 +1405,9 @@
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#H_Camera_Connectivity_Time -->
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#HMS_Camera_Connectivity_Time -->
 
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#H_Camera_Connectivity_Time">
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#HMS_Camera_Connectivity_Time">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
         <hasDeviceValue rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#sensor"/>
         <monitors rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_2_CMR-BBCKCDT2019_1"/>
@@ -1055,9 +1416,9 @@
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#H_Client_Computer_CPU_Temperature -->
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#HMS_Client_Computer_CPU_Temperature -->
 
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#H_Client_Computer_CPU_Temperature">
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#HMS_Client_Computer_CPU_Temperature">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
         <hasDeviceValue rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#sensor"/>
         <monitors rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_2"/>
@@ -1066,9 +1427,9 @@
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#H_Client_Computer_CPU_Usage -->
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#HMS_Client_Computer_CPU_Usage -->
 
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#H_Client_Computer_CPU_Usage">
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#HMS_Client_Computer_CPU_Usage">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
         <hasDeviceValue rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#sensor"/>
         <monitors rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_2"/>
@@ -1077,9 +1438,9 @@
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#H_Client_Computer_Connectivity_Time -->
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#HMS_Client_Computer_Connectivity_Time -->
 
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#H_Client_Computer_Connectivity_Time">
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#HMS_Client_Computer_Connectivity_Time">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
         <hasDeviceValue rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#sensor"/>
         <monitors rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_MNT-BBCKTSHBCDT2019_2"/>
@@ -1088,9 +1449,9 @@
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#H_Client_Computer_RAM_Usage -->
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#HMS_Client_Computer_RAM_Usage -->
 
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#H_Client_Computer_RAM_Usage">
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#HMS_Client_Computer_RAM_Usage">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
         <hasDeviceValue rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#sensor"/>
         <monitors rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_2_RAM-BBCKTSHBRAMDT2019_2"/>
@@ -1099,9 +1460,9 @@
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#H_Main_Computer_CPU_Temperature -->
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#HMS_Main_Computer_CPU_Temperature -->
 
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#H_Main_Computer_CPU_Temperature">
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#HMS_Main_Computer_CPU_Temperature">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
         <hasDeviceValue rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#sensor"/>
         <monitors rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_1"/>
@@ -1110,9 +1471,9 @@
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#H_Main_Computer_CPU_Usage -->
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#HMS_Main_Computer_CPU_Usage -->
 
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#H_Main_Computer_CPU_Usage">
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#HMS_Main_Computer_CPU_Usage">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
         <hasDeviceValue rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#sensor"/>
         <monitors rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_CPU-BBCKTSHBCPUDT2019_1"/>
@@ -1121,9 +1482,9 @@
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#H_Main_Computer_Connectivity_Time -->
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#HMS_Main_Computer_Connectivity_Time -->
 
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#H_Main_Computer_Connectivity_Time">
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#HMS_Main_Computer_Connectivity_Time">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
         <hasDeviceValue rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#sensor"/>
         <monitors rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_MNT-BBCKTSHBCDT2019_1"/>
@@ -1132,9 +1493,9 @@
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#H_Main_Computer_RAM_Usage -->
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#HMS_Main_Computer_RAM_Usage -->
 
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#H_Main_Computer_RAM_Usage">
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#HMS_Main_Computer_RAM_Usage">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
         <hasDeviceValue rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#sensor"/>
         <monitors rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_2_RAM-BBCKTSHBRAMDT2019_1"/>
@@ -1143,9 +1504,9 @@
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#H_Monitor_Connectivity_Time -->
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#HMS_Monitor_Connectivity_Time -->
 
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#H_Monitor_Connectivity_Time">
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#HMS_Monitor_Connectivity_Time">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
         <hasDeviceValue rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#sensor"/>
         <monitors rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#1_OpEx-0_1_MNT-BBCKTSHBCDT2019_3"/>
@@ -1196,7 +1557,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#LP146_1-2">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -1205,7 +1566,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#LP146_1-4">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_47000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_47000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -1214,7 +1575,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#LP146_1-4_1">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_47000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_47000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -1223,7 +1584,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#LP18_M12">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_15000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -1232,7 +1593,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#LP18_M12_1">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_10_01_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_10_01_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -1241,7 +1602,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#LP18_M12_2">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_10_01_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_10_01_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -1250,7 +1611,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#LP18_M12_3">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_15000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -1259,7 +1620,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#LP192_18DX">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_47000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_47000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -1268,7 +1629,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#LP192_18DX_1">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_47000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_47000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -1277,7 +1638,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#LP31_1-2">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_04000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_04000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -1286,7 +1647,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#LP31_3-4">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_04000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_04000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -1295,7 +1656,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#LP347_LA12-2120-4_1">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_10_01_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_10_01_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -1304,7 +1665,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#LP348_M16_1">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_47000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_47000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -1313,7 +1674,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#LP411_0">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_47000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_47000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -1322,7 +1683,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#LP463_RS1300254-T10N">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -1331,7 +1692,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#LP463_RS1300254-T10N_1">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -1340,7 +1701,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#LP49_1-4X0-75">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_47000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_47000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -1349,7 +1710,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#LP49_1-4X0-75_1">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_47000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_47000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -1358,7 +1719,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#LP540_M4X6">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -1367,7 +1728,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#LP540_M4X6_1">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -1376,7 +1737,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#LP540_M4X6_2">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -1385,7 +1746,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#LP56_011">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -1394,7 +1755,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#LP56_014">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -1403,7 +1764,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#LP785_326">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -1412,7 +1773,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#LP785_326_1">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -1421,7 +1782,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#LP793_3-8X1-2">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -1436,12 +1797,32 @@
     
 
 
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#MK8_LA_Rotation_Degrees -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#MK8_LA_Rotation_Degrees">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
+        <hasDeviceValue rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#sensor"/>
+        <monitors rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_016_01002_AF0"/>
+        <hasDeviceName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MK8 MOD1 Loading Arm Rotation Sensor</hasDeviceName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#MK8_LA_Top_Position -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#MK8_LA_Top_Position">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Device"/>
+        <hasDeviceValue rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#sensor"/>
+        <monitors rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01018"/>
+        <hasDeviceName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MK8 MOD1 Loading Arm Position Switch</hasDeviceName>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://138.250.108.1:3003/api/files/owl/orgont#MK8_MOD1_GUN -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#MK8_MOD1_GUN">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Asset"/>
-        <assetHasChildSystem rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_00000_ASM"/>
-        <assetHasChildSystem rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_10_00_00000_ASM"/>
         <hasAssetModel rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://138.250.108.1:3003/api/files/dat/MK8_MOD1_GUN.obj</hasAssetModel>
         <hasAssetName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mark VIII 4.5 Gun</hasAssetName>
         <hasAssetTarget rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://138.250.108.1:3003/api/files/dat/MK8_MOD1_GUN.dat</hasAssetTarget>
@@ -1483,7 +1864,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#PROX_SWITCH_LA12_2120_4">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_15000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -1577,387 +1958,6 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#tool">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#DeviceType"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#﻿10748A1-1_ASM -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#﻿10748A1-1_ASM">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_00014"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#10748A1-1"/>
-        <hasSystemParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_00000_ASM"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#﻿11_454_03_016_01002_AF0 -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#﻿11_454_03_016_01002_AF0">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_07000_ASM"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_00000_ASM -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_00000_ASM">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿DF56950"/>
-        <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿10748A1-1_ASM"/>
-        <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_02000_ASM"/>
-        <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_38000_AF1_ASM"/>
-        <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_47000_ASM"/>
-        <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_00000_ASM"/>
-        <systemHasAssetParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#MK8_MOD1_GUN"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_02000_ASM -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_02000_ASM">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_01_07_01004_1"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_01_07_01005_1"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_01_07_01008_1"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_01_07_01009_1"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_01_07_01012_1"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_18_03014_1"/>
-        <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_95000_ASM_1"/>
-        <hasSystemParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_00000_ASM"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_38000_AF1_ASM -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_38000_AF1_ASM">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_38001_AF0"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_38002_AF1"/>
-        <hasSystemParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_00000_ASM"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_47000_ASM -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_47000_ASM">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_07003"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_47002"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_47003"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_47004"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_75001_AF0"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_75002_AF0"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_75003_AF0"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP146_1-4"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP146_1-4_1"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP192_18DX"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP192_18DX_1"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP348_M16_1"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP411_0"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP49_1-4X0-75"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP49_1-4X0-75_1"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_93_14009"/>
-        <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_99000_ASM"/>
-        <hasSystemParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_00000_ASM"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_00000_ASM -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_00000_ASM">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
-        <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_01000_ASM"/>
-        <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_02000_ASM"/>
-        <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_04000_ASM"/>
-        <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_05000_ASM"/>
-        <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_06000_ASM"/>
-        <hasSystemParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_00000_ASM"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_01000_ASM -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_01000_ASM">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_01007"/>
-        <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_07000_ASM"/>
-        <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_08000_ASM"/>
-        <hasSystemParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_00000_ASM"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_01007 -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_01007">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_01000_ASM"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_02000_ASM -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_02000_ASM">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_02001"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_02002"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_02003"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_02004"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_02005"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_02011"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_02014"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_02015"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_02020"/>
-        <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_10000_ASM"/>
-        <hasSystemParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_00000_ASM"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_04000_ASM -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_04000_ASM">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_04026"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_04028"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_09000"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP31_1-2"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP31_3-4"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_04001"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_04002"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_04003"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_04005"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_04006"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_04009"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_04010"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_04013"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_04014"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_04018"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_04023"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_04024"/>
-        <hasSystemParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_00000_ASM"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_05000_ASM -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_05000_ASM">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_05009_AF0"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_05010_AF0"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_05011_AF0"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_05006"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_05007"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_08_23_01003"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_08_23_01029"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_08_23_01029_1"/>
-        <hasSystemParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_00000_ASM"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_06000_ASM -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_06000_ASM">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_06002"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_06003"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_06005"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_06005_1"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_06012"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_06015"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_06016"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_06020"/>
-        <hasSystemParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_00000_ASM"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_07000_ASM -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_07000_ASM">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿11_454_03_016_01002_AF0"/>
-        <hasSystemParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_01000_ASM"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_08000_ASM -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_08000_ASM">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_08001"/>
-        <hasSystemParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_01000_ASM"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_08001 -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_08001">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_08000_ASM"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_10_00_00000_ASM -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_10_00_00000_ASM">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
-        <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_10_01_00000_ASM"/>
-        <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_00000_ASM"/>
-        <systemHasAssetParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#MK8_MOD1_GUN"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_10_01_00000_ASM -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_10_01_00000_ASM">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_10_01_00001"/>
-        <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_10_01_06000_ASM"/>
-        <hasSystemParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_10_00_00000_ASM"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_10_01_00001 -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_10_01_00001">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_10_01_00000_ASM"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_10_01_06000_ASM -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_10_01_06000_ASM">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_10_01_06001"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP18_M12_1"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP18_M12_2"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP347_LA12-2120-4_1"/>
-        <hasSystemParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_10_01_00000_ASM"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_00000_ASM -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_00000_ASM">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
-        <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_15000_ASM"/>
-        <hasSystemParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_10_00_00000_ASM"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_06000_ASM -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_06000_ASM">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06001"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06004"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06005"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06006"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06007"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06008"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06009"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06010"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06010_1"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06011"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP146_1-2"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP463_RS1300254-T10N"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP463_RS1300254-T10N_1"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP540_M4X6"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP540_M4X6_1"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP540_M4X6_2"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP56_011"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP56_014"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP785_326"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP785_326_1"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP793_3-8X1-2"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_091_01001"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_091_01002"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_091_01015"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_091_01019"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_091_01023"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_091_01023_1"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_091_01023_2"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_091_01023_3"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_091_01024"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_091_01027"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#2008169"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#2008178"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#2008180"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#2008190"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#2008190_1"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#2008190_2"/>
-        <hasSystemParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_15000_ASM"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_15000_ASM -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_15000_ASM">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15047"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15049"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15050"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15727"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP18_M12"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#LP18_M12_3"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#PROX_SWITCH_LA12_2120_4"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01003"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01015"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01016"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01018"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01019"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01020"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01022"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01023"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01024"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01025"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01026"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01028"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01031"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01032"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01033"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01036"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01038"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01039"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01040"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01043"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01044"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01046"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01713"/>
-        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01726"/>
-        <hasSystemChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_06000_ASM"/>
-        <hasSystemParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_00000_ASM"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://138.250.108.1:3003/api/files/owl/orgont#﻿DF56950 -->
-
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#﻿DF56950">
-        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_00000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4008,7 +4008,18 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#10748A1-1">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿10748A1-1_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#10748A1-1_ASM"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#10748A1-1_ASM -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#10748A1-1_ASM">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#System"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_00014"/>
+        <hasComponentChild rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#10748A1-1"/>
+        <hasSystemParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_00000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4017,7 +4028,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_01_07_01004_1">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_02000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_02000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4026,7 +4037,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_01_07_01005_1">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_02000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_02000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4035,7 +4046,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_01_07_01008_1">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_02000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_02000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4044,7 +4055,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_01_07_01009_1">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_02000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_02000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4053,7 +4064,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_01_07_01012_1">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_02000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_02000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4067,11 +4078,20 @@
     
 
 
+    <!-- http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_016_01002_AF0 -->
+
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_016_01002_AF0">
+        <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_07000_ASM"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_091_01001 -->
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_091_01001">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4080,7 +4100,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_091_01002">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4089,7 +4109,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_091_01015">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4098,7 +4118,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_091_01019">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4107,7 +4127,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_091_01023">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4116,7 +4136,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_091_01023_1">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4125,7 +4145,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_091_01023_2">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4134,7 +4154,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_091_01023_3">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4143,7 +4163,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_091_01024">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4152,7 +4172,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_091_01027">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4161,7 +4181,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01003">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_15000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4170,7 +4190,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01015">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_15000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4179,7 +4199,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01016">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_15000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4188,7 +4208,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01018">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_15000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4197,7 +4217,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01019">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_15000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4206,7 +4226,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01020">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_15000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4215,7 +4235,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01022">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_15000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4224,7 +4244,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01023">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_15000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4233,7 +4253,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01024">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_15000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4242,7 +4262,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01025">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_15000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4251,7 +4271,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01026">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_15000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4260,7 +4280,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01028">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_15000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4269,7 +4289,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01031">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_15000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4278,7 +4298,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01032">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_15000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4287,7 +4307,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01033">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_15000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4296,7 +4316,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01036">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_15000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4305,7 +4325,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01038">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_15000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4314,7 +4334,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01039">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_15000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4323,7 +4343,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01040">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_15000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4332,7 +4352,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01043">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_15000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4341,7 +4361,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01044">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_15000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4350,7 +4370,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01046">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_15000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4359,7 +4379,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01713">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_15000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4368,7 +4388,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_093_01726">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_15000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_15000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4377,7 +4397,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_02001">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_02000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_02000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4386,7 +4406,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_02002">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_02000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_02000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4395,7 +4415,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_02003">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_02000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_02000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4404,7 +4424,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_02004">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_02000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_02000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4413,7 +4433,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_02005">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_02000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_02000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4422,7 +4442,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_02011">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_02000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_02000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4431,7 +4451,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_02014">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_02000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_02000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4440,7 +4460,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_02015">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_02000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_02000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4449,7 +4469,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_02020">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_02000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_02000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4458,7 +4478,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_04001">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_04000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_04000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4467,7 +4487,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_04002">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_04000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_04000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4476,7 +4496,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_04003">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_04000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_04000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4485,7 +4505,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_04005">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_04000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_04000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4494,7 +4514,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_04006">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_04000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_04000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4503,7 +4523,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_04009">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_04000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_04000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4512,7 +4532,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_04010">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_04000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_04000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4521,7 +4541,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_04013">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_04000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_04000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4530,7 +4550,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_04014">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_04000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_04000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4539,7 +4559,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_04018">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_04000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_04000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4548,7 +4568,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_04023">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_04000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_04000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4557,7 +4577,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_04024">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_04000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_04000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4566,7 +4586,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_05006">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_05000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_05000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4575,7 +4595,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_05007">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_05000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_05000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4584,7 +4604,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_06002">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4593,7 +4613,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_06003">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4602,7 +4622,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_06005">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4611,7 +4631,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_06005_1">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4620,7 +4640,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_06012">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4629,7 +4649,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_06015">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4638,7 +4658,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_06016">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4647,7 +4667,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_16_06020">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4656,7 +4676,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_18_03014_1">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_02000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_02000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4665,7 +4685,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_03_93_14009">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_01_47000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_01_47000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4674,7 +4694,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_08_23_01003">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_05000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_05000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4683,7 +4703,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_08_23_01029">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_05000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_05000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4692,7 +4712,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#11_454_08_23_01029_1">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_03_03_05000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_03_03_05000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4701,7 +4721,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#2008169">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4710,7 +4730,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#2008178">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4719,7 +4739,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#2008180">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4728,7 +4748,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#2008190">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4737,7 +4757,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#2008190_1">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06000_ASM"/>
     </owl:NamedIndividual>
     
 
@@ -4746,7 +4766,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#2008190_2">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
-        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#﻿AJ_12_01_06000_ASM"/>
+        <hasComponentParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#AJ_12_01_06000_ASM"/>
     </owl:NamedIndividual>
 </rdf:RDF>
 
