@@ -1821,7 +1821,7 @@ let stateResults = async function(inferredResult) {
         Object.keys(state[0]).forEach(function(key) {
             auditor[key] = state[0][key];
         });
-        console.log(util.inspect(state,false,null,true));
+        // console.log(util.inspect(state,false,null,true));
         return state;
     }));
     return result;
@@ -1868,7 +1868,7 @@ app.get('/view/controlmonitoring/:assetName', function(req, res) {
         // Obtain monitors and tasks conducting inference
         let monitors = await inferenceResults(monitorsQuery(assetURI));
         let tasks = await inferenceResults(tasksQuery(assetURI));
-        console.log(util.inspect(tasks,false,null,true));
+        // console.log(util.inspect(tasks,false,null,true));
         // Update monitors and tasks with latest states from devices
         let monitorsStates = await additionalResults(monitors);
         let tasksStates = await additionalResults(tasks);
