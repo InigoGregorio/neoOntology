@@ -547,7 +547,9 @@
 
     <!-- http://138.250.108.1:3003/api/files/owl/damont#Cause -->
 
-    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/damont#Cause"/>
+    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/damont#Cause">
+        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#damont"/>
+    </owl:Class>
     
 
 
@@ -561,7 +563,9 @@
 
     <!-- http://138.250.108.1:3003/api/files/owl/damont#Data -->
 
-    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/damont#Data"/>
+    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/damont#Data">
+        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#damont"/>
+    </owl:Class>
     
 
 
@@ -575,7 +579,9 @@
 
     <!-- http://138.250.108.1:3003/api/files/owl/damont#Experiment -->
 
-    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/damont#Experiment"/>
+    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/damont#Experiment">
+        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#damont"/>
+    </owl:Class>
     
 
 
@@ -589,7 +595,9 @@
 
     <!-- http://138.250.108.1:3003/api/files/owl/damont#Feature -->
 
-    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/damont#Feature"/>
+    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/damont#Feature">
+        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#damont"/>
+    </owl:Class>
     
 
 
@@ -603,13 +611,16 @@
 
     <!-- http://138.250.108.1:3003/api/files/owl/damont#Interrogation -->
 
-    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/damont#Interrogation"/>
+    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/damont#Interrogation">
+        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#damont"/>
+    </owl:Class>
     
 
 
     <!-- http://138.250.108.1:3003/api/files/owl/damont#Processed -->
 
     <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/damont#Processed">
+        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#damont"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#hasRawData"/>
@@ -652,13 +663,17 @@
 
     <!-- http://138.250.108.1:3003/api/files/owl/damont#Report -->
 
-    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/damont#Report"/>
+    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/damont#Report">
+        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#damont"/>
+    </owl:Class>
     
 
 
     <!-- http://138.250.108.1:3003/api/files/owl/damont#Sample -->
 
-    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/damont#Sample"/>
+    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/damont#Sample">
+        <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#damont"/>
+    </owl:Class>
     
 
 
@@ -675,6 +690,12 @@
     <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/damont#VisualisedData">
         <rdfs:subClassOf rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#Data"/>
     </owl:Class>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/damont#damont -->
+
+    <owl:Class rdf:about="http://138.250.108.1:3003/api/files/owl/damont#damont"/>
     
 
 
