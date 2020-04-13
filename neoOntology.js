@@ -879,7 +879,7 @@ let propertyValue = function(individualProperty) {
                         ontEvaluation:"valueExistence",ontValue:individualProperty["ontValue"]}});
             }
         } else {
-            // Returns error because no support property ype has been found
+            // Returns error because no support property type has been found
             resolve ({ontError:{ontLevel:"property",ontName:individualProperty["ontName"],
                     ontEvaluation:"supportedType",ontValue:individualProperty["ontValue"]}});
         }
