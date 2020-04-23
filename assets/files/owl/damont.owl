@@ -74,6 +74,18 @@
     
 
 
+    <!-- http://138.250.108.1:3003/api/files/owl/damont#hasComponentFeature -->
+
+    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/damont#hasComponentFeature">
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#has"/>
+        <owl:inverseOf rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#isComponentFeatureOf"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#Feature"/>
+        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://138.250.108.1:3003/api/files/owl/damont#hasEffect -->
 
     <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/damont#hasEffect">
@@ -208,6 +220,17 @@
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
         <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#Cause"/>
         <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#Mechanism"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://138.250.108.1:3003/api/files/owl/damont#isComponentFeatureOf -->
+
+    <owl:ObjectProperty rdf:about="http://138.250.108.1:3003/api/files/owl/damont#isComponentFeatureOf">
+        <rdfs:subPropertyOf rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#is"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
+        <rdfs:range rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#Feature"/>
     </owl:ObjectProperty>
     
 
@@ -756,8 +779,11 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/damont#Exp1Feature">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#Feature"/>
+        <damont:ReportFeature rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#Report1"/>
+        <damont:hasComponentFeature rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#08JP6S042"/>
         <damont:hasEffect rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#Dent"/>
         <damont:isFeatureOf rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#Exp1Sample"/>
+        <damont:isReportedIn rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#Report1"/>
     </owl:NamedIndividual>
     
 
@@ -768,6 +794,7 @@
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#Interrogation"/>
         <damont:hasInterrogationType rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#PulsedThermography"/>
         <damont:hasView rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#Exp1View1"/>
+        <damont:isInterrogationOf rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#Exp1Sample"/>
     </owl:NamedIndividual>
     
 
@@ -777,6 +804,7 @@
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/damont#Exp1Sample">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#Sample"/>
         <damont:hasAsset rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#2_TES-1_1_08JP6S042"/>
+        <damont:hasFeature rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#Exp1Feature"/>
         <damont:hasInterrogation rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#Exp1Interrogation"/>
         <damont:hasSampleMaterial rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#FibreGlass"/>
     </owl:NamedIndividual>
@@ -787,6 +815,8 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/damont#Exp1View1">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#View"/>
+        <damont:hasComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#08JP6S042"/>
+        <damont:isViewOf rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#Exp1Interrogation"/>
         <damont:hasViewModel rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://Exp1View1.obj</damont:hasViewModel>
     </owl:NamedIndividual>
     
@@ -797,6 +827,7 @@
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/damont#FibreGlass">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#SampleMaterial"/>
         <damont:hasParentMaterial rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#Composite"/>
+        <damont:isSampleMaterialOf rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#Exp1Sample"/>
     </owl:NamedIndividual>
     
 
@@ -813,6 +844,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/damont#ForeignParticules">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#Cause"/>
+        <damont:isCauseOf rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#WearFriction"/>
     </owl:NamedIndividual>
     
 
@@ -837,6 +869,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/damont#LoadingConditions">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#Cause"/>
+        <damont:isCauseOf rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#MediumImpact"/>
     </owl:NamedIndividual>
     
 
@@ -864,6 +897,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/damont#Moisture">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#Cause"/>
+        <damont:isCauseOf rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#Corrosion"/>
     </owl:NamedIndividual>
     
 
@@ -872,6 +906,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/damont#PressureOperation">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#Cause"/>
+        <damont:isCauseOf rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#MediumImpact"/>
     </owl:NamedIndividual>
     
 
@@ -880,6 +915,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/damont#PulsedThermography">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#InterrogationType"/>
+        <damont:isInterrogationTypeOf rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#Exp1Interrogation"/>
     </owl:NamedIndividual>
     
 
@@ -888,6 +924,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/damont#Report1">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#Report"/>
+        <damont:ReportFeature rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#Exp1Feature"/>
         <damont:isReportOf rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#Exp1View1"/>
         <damont:isReporting rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#Exp1Feature"/>
     </owl:NamedIndividual>
@@ -898,6 +935,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/damont#Sand">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#Cause"/>
+        <damont:isCauseOf rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#WearFriction"/>
     </owl:NamedIndividual>
     
 
@@ -906,6 +944,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/damont#Scratch">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#Effect"/>
+        <damont:hasMechanism rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#WearFriction"/>
     </owl:NamedIndividual>
     
 
@@ -914,13 +953,14 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/damont#Temperature">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#Cause"/>
+        <damont:isCauseOf rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#Corrosion"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://138.250.108.1:3003/api/files/owl/damont#Wear/Friction -->
+    <!-- http://138.250.108.1:3003/api/files/owl/damont#WearFriction -->
 
-    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/damont#Wear/Friction">
+    <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/damont#WearFriction">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#Mechanism"/>
         <damont:hasCause rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#ForeignParticules"/>
         <damont:hasCause rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#ImproperRepair"/>
@@ -934,7 +974,9 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#08JP6S042">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
+        <damont:isComponentFeatureOf rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#Exp1Feature"/>
         <damont:isComponentOf rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#Exp1View1"/>
+        <orgont:hasAssetParent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#2_TES-1_1_08JP6S042"/>
     </owl:NamedIndividual>
     
 
@@ -943,6 +985,7 @@
 
     <owl:NamedIndividual rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#2_TES-1_1_08JP6S042">
         <rdf:type rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#Asset"/>
+        <damont:isAssetOf rdf:resource="http://138.250.108.1:3003/api/files/owl/damont#Exp1Sample"/>
         <orgont:hasChildComponent rdf:resource="http://138.250.108.1:3003/api/files/owl/orgont#08JP6S042"/>
         <orgont:hasAssetModel rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://2_TES-1_1_08JP6S042.obj</orgont:hasAssetModel>
         <orgont:hasAssetTarget rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://2_TES-1_1_08JP6S042.dat</orgont:hasAssetTarget>
@@ -975,6 +1018,40 @@
             <rdf:Description rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#Asset"/>
             <rdf:Description rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#Component"/>
         </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://138.250.108.1:3003/api/files/owl/damont#CarbonFibre"/>
+            <rdf:Description rdf:about="http://138.250.108.1:3003/api/files/owl/damont#Chemicals"/>
+            <rdf:Description rdf:about="http://138.250.108.1:3003/api/files/owl/damont#Composite"/>
+            <rdf:Description rdf:about="http://138.250.108.1:3003/api/files/owl/damont#Corrosion"/>
+            <rdf:Description rdf:about="http://138.250.108.1:3003/api/files/owl/damont#Delamination"/>
+            <rdf:Description rdf:about="http://138.250.108.1:3003/api/files/owl/damont#Dent"/>
+            <rdf:Description rdf:about="http://138.250.108.1:3003/api/files/owl/damont#EnvironementalTemp"/>
+            <rdf:Description rdf:about="http://138.250.108.1:3003/api/files/owl/damont#Exp1Feature"/>
+            <rdf:Description rdf:about="http://138.250.108.1:3003/api/files/owl/damont#Exp1Interrogation"/>
+            <rdf:Description rdf:about="http://138.250.108.1:3003/api/files/owl/damont#Exp1Sample"/>
+            <rdf:Description rdf:about="http://138.250.108.1:3003/api/files/owl/damont#Exp1View1"/>
+            <rdf:Description rdf:about="http://138.250.108.1:3003/api/files/owl/damont#FibreGlass"/>
+            <rdf:Description rdf:about="http://138.250.108.1:3003/api/files/owl/damont#FibreMisalignement"/>
+            <rdf:Description rdf:about="http://138.250.108.1:3003/api/files/owl/damont#ForeignParticules"/>
+            <rdf:Description rdf:about="http://138.250.108.1:3003/api/files/owl/damont#ImproperRepair"/>
+            <rdf:Description rdf:about="http://138.250.108.1:3003/api/files/owl/damont#InterlaminarFracture"/>
+            <rdf:Description rdf:about="http://138.250.108.1:3003/api/files/owl/damont#LoadingConditions"/>
+            <rdf:Description rdf:about="http://138.250.108.1:3003/api/files/owl/damont#MatrixMicroCracking"/>
+            <rdf:Description rdf:about="http://138.250.108.1:3003/api/files/owl/damont#MediumImpact"/>
+            <rdf:Description rdf:about="http://138.250.108.1:3003/api/files/owl/damont#Moisture"/>
+            <rdf:Description rdf:about="http://138.250.108.1:3003/api/files/owl/damont#PressureOperation"/>
+            <rdf:Description rdf:about="http://138.250.108.1:3003/api/files/owl/damont#PulsedThermography"/>
+            <rdf:Description rdf:about="http://138.250.108.1:3003/api/files/owl/damont#Report1"/>
+            <rdf:Description rdf:about="http://138.250.108.1:3003/api/files/owl/damont#Sand"/>
+            <rdf:Description rdf:about="http://138.250.108.1:3003/api/files/owl/damont#Scratch"/>
+            <rdf:Description rdf:about="http://138.250.108.1:3003/api/files/owl/damont#Temperature"/>
+            <rdf:Description rdf:about="http://138.250.108.1:3003/api/files/owl/damont#WearFriction"/>
+            <rdf:Description rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#08JP6S042"/>
+            <rdf:Description rdf:about="http://138.250.108.1:3003/api/files/owl/orgont#2_TES-1_1_08JP6S042"/>
+        </owl:distinctMembers>
     </rdf:Description>
 </rdf:RDF>
 
