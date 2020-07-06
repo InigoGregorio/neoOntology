@@ -61,6 +61,7 @@ const morgan = require ('morgan');
 const bodyParser = require('body-parser');
 // 4. To connect to neo4j graphical databases
 const neo4j = require('neo4j-driver').v1;
+// const neo4j = require('neo4j-driver');
 // 5. To enable files upload
 const multer = require('multer');
 // 6. To enable favicon request
@@ -96,6 +97,7 @@ app.use(favicon(path.join(__dirname,'assets','favicon.ico')));
 /*====================================================================================================================*/
 // Declare route to neo4j server
 const driver = neo4j.driver('bolt://localhost', neo4j.auth.basic('neo4j','opexcellence'));
+// const driver = neo4j.driver('neo4j://localhost', neo4j.auth.basic('neo4j', 'neo4j'));
 // Instantiate connection to neo4j server
 let session = driver.session();
 /*====================================================================================================================*/
@@ -154,7 +156,7 @@ const owlURL = "http://www.w3.org/2002/07/owl";
 const xsdURL = "http://www.w3.org/2001/XMLSchema";
 // Disabled prefixes
 // IMP: to manage non-used ontology prefixes declared in neo4j
-const ontologiesDisabled = ['xml','rdf','rdfs','owl','xsd'];
+const ontologiesDisabled = ['xml','rdf','rdfs','owl','xsd','sch','dc','dct','skos','sh'];
 /*====================================================================================================================*/
 
 /*====================================================================================================================*/
