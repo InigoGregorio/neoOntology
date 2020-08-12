@@ -15,6 +15,7 @@
     "morgan": "*",
     "multer": "*",
     "neo4j-driver": "*",
+    "npm-check-updates": "^7.1.0",
     "serve-favicon": "*"
   }
 }
