@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "*",
-    "ejs": "^3.0.1",
+    "ejs": "^3.1.7",
     "express": "*",
     "morgan": "*",
     "multer": "*",
